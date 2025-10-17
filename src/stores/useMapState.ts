@@ -18,7 +18,8 @@ interface MapState {
   
   // Selection State
   selectedCities: Set<string>;
-  selectedNeighborhoods: Set<string>;
+  selectedDistricts: Set<string>;
+  selectedMah: Set<string>;
   
   // Actions
   toggleTheme: () => void;
@@ -28,9 +29,12 @@ interface MapState {
   setMetric: (metric: Metric) => void;
   setYear: (year: Year) => void;
   toggleCity: (city: string) => void;
-  toggleNeighborhood: (id: string) => void;
+  toggleDistrict: (district: string) => void;
+  toggleMah: (id: string) => void;
   clearCities: () => void;
-  clearNeighborhoods: () => void;
+  clearDistricts: () => void;
+  clearMah: () => void;
+  selectAllMah: () => void;
 }
 
 export const useMapState = create<MapState>((set) => ({
@@ -42,7 +46,8 @@ export const useMapState = create<MapState>((set) => ({
   metric: 'risk_score',
   year: 2025,
   selectedCities: new Set(['İstanbul', 'Ankara']),
-  selectedNeighborhoods: new Set(),
+  selectedDistricts: new Set(),
+  selectedMah: new Set(),
   
   // Actions
   toggleTheme: () => set((state) => ({
@@ -69,17 +74,31 @@ export const useMapState = create<MapState>((set) => ({
     return { selectedCities: newSet };
   }),
   
-  toggleNeighborhood: (id) => set((state) => {
-    const newSet = new Set(state.selectedNeighborhoods);
+  toggleDistrict: (district) => set((state) => {
+    const newSet = new Set(state.selectedDistricts);
+    if (newSet.has(district)) {
+      newSet.delete(district);
+    } else {
+      newSet.add(district);
+    }
+    return { selectedDistricts: newSet };
+  }),
+  
+  toggleMah: (id) => set((state) => {
+    const newSet = new Set(state.selectedMah);
     if (newSet.has(id)) {
       newSet.delete(id);
     } else {
       newSet.add(id);
     }
-    return { selectedNeighborhoods: newSet };
+    return { selectedMah: newSet };
   }),
   
   clearCities: () => set({ selectedCities: new Set() }),
   
-  clearNeighborhoods: () => set({ selectedNeighborhoods: new Set() }),
+  clearDistricts: () => set({ selectedDistricts: new Set() }),
+  
+  clearMah: () => set({ selectedMah: new Set() }),
+  
+  selectAllMah: () => set({ selectedMah: new Set() }),
 }));
