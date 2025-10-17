@@ -1,10 +1,18 @@
-# Welcome to your Lovable project
+# Türkiye Risk Haritası | Turkey Risk Map
 
-## Project info
+Professional seismic risk analysis dashboard for Turkish neighborhoods with interactive visualizations.
 
-**URL**: https://lovable.dev/projects/4043406e-68bc-472c-9fe0-b228b20a393c
+## 🌟 Features
 
-## How can I edit this code?
+- **Interactive Map Views**: Choropleth, heatmap, and scatter plot visualizations
+- **Multi-Selection**: Select multiple cities and neighborhoods with smart zoom
+- **Risk Analytics**: Real-time risk distribution and metrics
+- **Bilingual Support**: Turkish (TR) and English (EN)
+- **Year Comparison**: Switch between 2025/2026 data
+- **Dark/Light Themes**: Synchronized map and UI themes
+- **Responsive Design**: Works on desktop and mobile devices
+
+## 🚀 Quick Start
 
 There are several ways of editing your application.
 
