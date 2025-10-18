@@ -12,6 +12,10 @@ const MAPTILER_KEY = import.meta.env.VITE_MAPTILER_KEY || '';
 const UI_PADDING = { top: 96, right: 24, bottom: 24, left: 24 }; // header için pay
 const TARGET_ZOOM = 13.5; // Target zoom level for neighborhood focus
 
+// popup'ın üst barda kırpılmaması için
+const HEADER_PX = 96;      // header yüksekliği
+const POPUP_CLEAR = 140;   // popup + boşluk için ek marj
+
 function getStyleUrl(theme: 'light' | 'dark'): string {
   if (!MAPTILER_KEY) {
     return 'https://demotiles.maplibre.org/style.json';
@@ -140,7 +144,7 @@ export function MapContainer() {
     popup.current = new maplibregl.Popup({
       closeButton: false,     // No X button
       closeOnClick: true,     // Close when clicking elsewhere on map
-      closeOnMove: false,
+      closeOnMove: true,      // Close during movement to reopen cleanly
       maxWidth: '320px',
       offset: [0, 12]        // Offset below the pin
     });
@@ -383,17 +387,16 @@ export function MapContainer() {
     console.info('[MapContainer] Layers added:', allFeatures.length);
   }
 
-  // Helper to fly to location with proper padding and zoom
-  function flyToWithPopup(center: [number, number]) {
-    if (!map.current) return;
-    const currentZoom = map.current.getZoom();
-    const targetZoom = Math.max(TARGET_ZOOM, currentZoom); // never zoom out
-    map.current.easeTo({ 
-      center, 
-      zoom: targetZoom, 
-      padding: UI_PADDING, 
-      duration: 700 
-    });
+  // Helper to place popup safely (avoid clipping with header)
+  function placePopupSafely(lngLat: [number, number]) {
+    if (!map.current || !popup.current) return;
+    // piksele çevir
+    const pt = map.current.project(lngLat);
+    // üstten min boşluğu koru
+    const minY = HEADER_PX + POPUP_CLEAR;
+    const safePt = new maplibregl.Point(pt.x, Math.max(pt.y, minY));
+    const safeLL = map.current.unproject(safePt);
+    popup.current.setLngLat(safeLL);
   }
 
   // Handle feature click
@@ -464,14 +467,21 @@ export function MapContainer() {
     
     // Calculate feature center and fly there with proper padding
     const center: [number, number] = e.lngLat ? [e.lngLat.lng, e.lngLat.lat] : [0, 0];
-    flyToWithPopup(center);
     
-    if (popup.current) {
-      popup.current
-        .setLngLat(center)
-        .setHTML(html)
-        .addTo(map.current!);
-    }
+    // asla zoom-out yapma
+    const currentZoom = map.current!.getZoom();
+    const targetZoom = Math.max(TARGET_ZOOM, currentZoom);
+    map.current!.easeTo({ center, zoom: targetZoom, padding: UI_PADDING, duration: 700 });
+
+    // hareket bitince popup'ı ekranda garanti konuma yerleştirerek aç
+    const openPopup = () => {
+      if (!popup.current) return;
+      popup.current.setHTML(html);
+      placePopupSafely(center);
+      popup.current.addTo(map.current!);
+      map.current!.off('moveend', openPopup);
+    };
+    map.current!.on('moveend', openPopup);
   }
 
   // Global function for popup button
@@ -594,11 +604,12 @@ export function MapContainer() {
             popup.current = new maplibregl.Popup({ 
               closeButton: false,
               closeOnClick: true,
+              closeOnMove: true,
               offset: [0, 12]
-            })
-              .setLngLat(center)
-              .setHTML(html)
-              .addTo(map.current);
+            });
+            popup.current.setHTML(html);
+            placePopupSafely(center);
+            popup.current.addTo(map.current);
           }
         }, 500);
       }
