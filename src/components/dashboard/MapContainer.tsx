@@ -91,6 +91,8 @@ export function MapContainer() {
     selectedMah,
     metric,
     setMahData,
+    setCityIndex,
+    setAllFeatures,
     toggleMah
   } = useMapState();
   
@@ -141,16 +143,41 @@ export function MapContainer() {
     const dataMap = await loadCitiesData(cities);
     citiesData.current = dataMap;
     
-    // Build mahData for sidebar
+    // Build mahData for sidebar and collect normalized data
     const mahDataMap = new Map();
-    dataMap.forEach((cityData) => {
+    const allNormalizedFeatures: any[] = [];
+    const combinedCityIndex = new Map();
+    
+    dataMap.forEach((cityData, cityName) => {
       Object.assign(allBBoxes.current, cityData.bboxes);
+      
+      // Store raw features for sidebar compatibility
       cityData.features.forEach(f => {
         const id = String(f.properties.mah_id || f.properties.fid);
         mahDataMap.set(id, f.properties);
       });
+      
+      // Collect normalized features
+      if (cityData.normalized) {
+        allNormalizedFeatures.push(...cityData.normalized);
+      }
+      
+      // Merge city info into combined index
+      if (cityData.cityInfo) {
+        combinedCityIndex.set(cityData.cityInfo.key, cityData.cityInfo);
+      }
     });
+    
+    console.info('[MapContainer] Data loaded:', {
+      mahDataSize: mahDataMap.size,
+      normalizedFeatures: allNormalizedFeatures.length,
+      cityIndexSize: combinedCityIndex.size,
+      cityKeys: [...combinedCityIndex.keys()]
+    });
+    
     setMahData(mahDataMap);
+    setAllFeatures(allNormalizedFeatures);
+    setCityIndex(combinedCityIndex);
     
     addLayers();
     fitToSelectedCities(cities);

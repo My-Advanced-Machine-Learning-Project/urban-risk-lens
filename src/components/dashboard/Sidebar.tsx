@@ -13,40 +13,19 @@ import {
 import { useMapState } from '@/stores/useMapState';
 import { t } from '@/lib/i18n';
 import { cn } from '@/lib/utils';
+import { toKey } from '@/lib/geoNormalize';
 
-const CITIES = ['İstanbul', 'Ankara'];
-
-// Safe string conversion for sorting
-const toStr = (v: unknown): string => {
-  if (typeof v === 'string') return v;
-  if (v && typeof v === 'object') {
-    const obj = v as any;
-    if ('name' in obj) return String(obj.name ?? '');
-    if ('label' in obj) return String(obj.label ?? '');
-    if ('properties' in obj && obj.properties?.name) return String(obj.properties.name);
-    if ('mahalle_adi' in obj) return String(obj.mahalle_adi ?? '');
-  }
-  return String(v ?? '');
-};
-
-// Turkish locale-aware sorting
-const sortByName = (a: any, b: any): number => {
-  const aStr = toStr(a);
-  const bStr = toStr(b);
-  return aStr.localeCompare(bStr, 'tr', { sensitivity: 'base', numeric: true });
-};
-
-interface District {
-  name: string;
-  neighborhoods: Array<{ id: string; name: string }>;
-}
+const CITIES = [
+  { label: 'İstanbul', key: 'istanbul' },
+  { label: 'Ankara', key: 'ankara' },
+];
 
 export function Sidebar() {
   const { 
     language, 
     selectedCities, 
     selectedMah,
-    mahData,
+    cityIndex,
     metric,
     toggleCity: toggleCitySelection,
     toggleMah,
@@ -57,52 +36,42 @@ export function Sidebar() {
   } = useMapState();
 
   const [searchTerm, setSearchTerm] = useState('');
-  const [expandedCities, setExpandedCities] = useState<Set<string>>(new Set(['İstanbul', 'Ankara']));
+  const [expandedCities, setExpandedCities] = useState<Set<string>>(new Set(['istanbul', 'ankara']));
   const [expandedDistricts, setExpandedDistricts] = useState<Set<string>>(new Set());
 
-  // Group neighborhoods by city and district
+  // Build grouped data from cityIndex
   const groupedData = useMemo(() => {
-    const cityMap: Record<string, Record<string, Array<{ id: string; name: string }>>> = {
-      'İstanbul': {},
-      'Ankara': {}
-    };
+    const result: Record<string, Record<string, Array<{ id: string; name: string }>>> = {};
     
-    mahData.forEach((mah, id) => {
-      if (!mah.mahalle_adi || !mah.ilce_adi) return;
+    console.log('[Sidebar DIAG] cityIndex size:', cityIndex.size);
+    console.log('[Sidebar DIAG] cityIndex keys:', [...cityIndex.keys()]);
+    console.log('[Sidebar DIAG] selectedCities:', [...selectedCities]);
+    
+    // Process each selected city
+    selectedCities.forEach(cityLabel => {
+      const cityKey = toKey(cityLabel);
+      const cityInfo = cityIndex.get(cityKey);
       
-      let city = 'Unknown';
-      const idStr = id.toString();
-      
-      // City detection based on mah_id patterns
-      if (idStr.startsWith('40') || idStr.startsWith('99') || idStr.startsWith('100')) {
-        city = 'İstanbul';
-      } else if (idStr.startsWith('1') && idStr.length <= 6) {
-        city = 'Ankara';
+      if (!cityInfo) {
+        console.warn(`[Sidebar] No city info for: ${cityLabel} (key: ${cityKey})`);
+        return;
       }
       
-      if (!cityMap[city]) return;
-      if (!selectedCities.has(city)) return;
+      result[cityLabel] = {};
       
-      const district = mah.ilce_adi;
-      if (!cityMap[city][district]) {
-        cityMap[city][district] = [];
-      }
-      
-      cityMap[city][district].push({
-        id: idStr,
-        name: toStr(mah.mahalle_adi)
+      // Process each district in the city
+      cityInfo.districts.forEach((districtInfo, districtKey) => {
+        result[cityLabel][districtInfo.label] = districtInfo.neighborhoods.map(n => ({
+          id: n.id,
+          name: n.name,
+        }));
       });
     });
     
-    // Sort neighborhoods alphabetically within each district
-    Object.values(cityMap).forEach(districts => {
-      Object.values(districts).forEach(neighborhoods => {
-        neighborhoods.sort(sortByName);
-      });
-    });
+    console.log('[Sidebar DIAG] grouped data:', Object.keys(result), Object.values(result).map(d => Object.keys(d).length));
     
-    return cityMap;
-  }, [mahData, selectedCities]);
+    return result;
+  }, [cityIndex, selectedCities]);
 
   // Filter data based on search
   const filteredData = useMemo(() => {
@@ -190,13 +159,13 @@ export function Sidebar() {
             <div className="flex gap-2">
               {CITIES.map(city => (
                 <Button
-                  key={city}
-                  variant={selectedCities.has(city) ? 'default' : 'outline'}
+                  key={city.key}
+                  variant={selectedCities.has(city.label) ? 'default' : 'outline'}
                   size="sm"
-                  onClick={() => toggleCitySelection(city)}
+                  onClick={() => toggleCitySelection(city.label)}
                   className="flex-1"
                 >
-                  {city}
+                  {city.label}
                 </Button>
               ))}
             </div>
@@ -282,7 +251,7 @@ export function Sidebar() {
                   {/* Districts */}
                   {isCityExpanded && (
                     <div className="ml-2 mt-1 space-y-1">
-                      {Object.entries(districts).sort((a, b) => toStr(a[0]).localeCompare(toStr(b[0]), 'tr')).map(([district, neighborhoods]) => {
+                      {Object.entries(districts).sort((a, b) => a[0].localeCompare(b[0], 'tr', { sensitivity: 'base', numeric: true })).map(([district, neighborhoods]) => {
                         const districtKey = `${city}-${district}`;
                         const isDistrictExpanded = expandedDistricts.has(districtKey);
                         

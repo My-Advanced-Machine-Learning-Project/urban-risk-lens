@@ -1,5 +1,6 @@
 import { create } from 'zustand';
 import { Language } from '@/lib/i18n';
+import { CityInfo, NormalizedFeature } from '@/lib/geoNormalize';
 
 export type ViewMode = 'choropleth' | 'heatmap' | 'scatter';
 export type Metric = 'risk_score' | 'vs30' | 'population' | 'buildings' | 'risk_class';
@@ -25,6 +26,8 @@ interface MapState {
   
   // Data
   mahData: Map<string, any>; // mahalle verisi cache
+  cityIndex: Map<string, CityInfo>; // normalized city index
+  allFeatures: NormalizedFeature[]; // all normalized features
   
   // Actions
   toggleTheme: () => void;
@@ -42,6 +45,8 @@ interface MapState {
   clearMah: () => void;
   selectAllMah: () => void;
   setMahData: (data: Map<string, any>) => void;
+  setCityIndex: (index: Map<string, CityInfo>) => void;
+  setAllFeatures: (features: NormalizedFeature[]) => void;
 }
 
 export const useMapState = create<MapState>((set) => ({
@@ -57,6 +62,8 @@ export const useMapState = create<MapState>((set) => ({
   selectedDistricts: new Set(),
   selectedMah: new Set(),
   mahData: new Map(),
+  cityIndex: new Map(),
+  allFeatures: [],
   
   // Actions
   toggleTheme: () => set((state) => ({
@@ -114,4 +121,8 @@ export const useMapState = create<MapState>((set) => ({
   selectAllMah: () => set({ selectedMah: new Set() }),
   
   setMahData: (mahData) => set({ mahData }),
+  
+  setCityIndex: (cityIndex) => set({ cityIndex }),
+  
+  setAllFeatures: (allFeatures) => set({ allFeatures }),
 }));

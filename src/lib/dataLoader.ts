@@ -1,4 +1,5 @@
 import { joinData } from './dataJoin';
+import { buildCityIndex, NormalizedFeature, CityInfo } from './geoNormalize';
 
 export interface MahalleFeature {
   type: 'Feature';
@@ -20,6 +21,8 @@ export interface CityData {
   geojson: any;
   features: MahalleFeature[];
   bboxes: Record<string, [number, number, number, number]>;
+  normalized: NormalizedFeature[];
+  cityInfo?: CityInfo;
 }
 
 const CITY_CONFIG: Record<string, { geo: string; csv: string }> = {
@@ -105,6 +108,9 @@ export async function loadCityData(cityName: string): Promise<CityData | null> {
     // Join data
     const joinedGeoJSON = joinData(geojson, csvData);
     
+    // Build normalized index
+    const { normalized, cityIndex } = buildCityIndex(joinedGeoJSON.features);
+    
     // Calculate bboxes
     const bboxes: Record<string, [number, number, number, number]> = {};
     joinedGeoJSON.features.forEach((feature: MahalleFeature) => {
@@ -114,10 +120,16 @@ export async function loadCityData(cityName: string): Promise<CityData | null> {
     
     console.info(`[DataLoader] Loaded ${cityName}: ${joinedGeoJSON.features.length} features`);
     
+    // Get the city info for this specific city
+    const cityKey = [...cityIndex.keys()][0]; // Should only be one city per load
+    const cityInfo = cityIndex.get(cityKey);
+    
     return {
       geojson: joinedGeoJSON,
       features: joinedGeoJSON.features,
-      bboxes
+      bboxes,
+      normalized,
+      cityInfo,
     };
   } catch (error) {
     console.error(`[DataLoader] Error loading ${cityName}:`, error);
