@@ -63,7 +63,7 @@ export default function CollapsibleMapLegend({
 
   const legendTitle = title || t('legend', language);
   const legendSubtitle = subtitle || (() => {
-    if (metric === 'risk_score') return t('riskScoreDesc', language);
+    if (metric === 'risk_score') return "Risk Sınıfı";
     if (metric === 'vs30') return t('vs30Desc', language);
     if (metric === 'population') return t('populationDesc', language);
     if (metric === 'buildings') return t('buildingsDesc', language);
