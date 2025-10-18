@@ -159,6 +159,19 @@ export function MapContainer() {
     };
   }, []);
 
+  // Resize map and scatter when sidebar toggles
+  useEffect(() => {
+    if (!map.current) return;
+    
+    const timer = setTimeout(() => {
+      map.current?.resize();
+      // Trigger window resize for ResponsiveContainer (Recharts)
+      window.dispatchEvent(new Event('resize'));
+    }, 320); // Match sidebar animation duration
+    
+    return () => clearTimeout(timer);
+  }, [sidebarOpen]);
+
   // Reload data when year changes
   useEffect(() => {
     if (!map.current || !map.current.isStyleLoaded()) return;

@@ -31,8 +31,21 @@ interface TooltipData {
 }
 
 export function ScatterPlot() {
-  const { language, mahData, scatterSelectedId, setScatterSelectedId, scatterMode, setScatterMode, selectedMah, setSelectedMah } = useMapState();
+  const { language, mahData, scatterSelectedId, setScatterSelectedId, scatterMode, setScatterMode, selectedMah, setSelectedMah, sidebarOpen } = useMapState();
   const [hoveredPoint, setHoveredPoint] = useState<TooltipData | null>(null);
+  const [containerWidth, setContainerWidth] = useState(() => 
+    typeof window !== 'undefined' ? Math.min(window.innerWidth - 40, 1200) : 1200
+  );
+  
+  // Update width on window resize (triggered by sidebar toggle)
+  useEffect(() => {
+    const handleResize = () => {
+      setContainerWidth(Math.min(window.innerWidth - 40, 1200));
+    };
+    
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
   
   // Clear selection on Escape key
   useEffect(() => {
@@ -49,9 +62,9 @@ export function ScatterPlot() {
 
   const currentMode = SCATTER_MODES.find(m => m.value === scatterMode) || SCATTER_MODES[0];
 
-  // Prepare data based on scatter mode
+  // Prepare data based on scatter mode - filtered by selection
   const scatterData = useMemo(() => {
-    console.log('[ScatterPlot] Preparing data, mahData size:', mahData.size);
+    console.log('[ScatterPlot] Preparing data, mahData size:', mahData.size, 'selectedMah size:', selectedMah.size);
     
     // Sample check
     if (mahData.size > 0) {
@@ -111,6 +124,13 @@ export function ScatterPlot() {
     }> = [];
     
     mahData.forEach((mah, id) => {
+      const idStr = id.toString();
+      
+      // Filter by selection: if selection is not empty, only show selected neighborhoods
+      if (selectedMah.size > 0 && !selectedMah.has(idStr)) {
+        return;
+      }
+      
       let x = 0, y = 0, size = 1000;
       
       // Validate data exists and is not NaN
@@ -202,8 +222,7 @@ export function ScatterPlot() {
     return { xMin, xMax, yMin, yMax };
   }, [scatterData, scatterMode]);
 
-  // SVG dimensions - responsive
-  const containerWidth = typeof window !== 'undefined' ? Math.min(window.innerWidth - 40, 1200) : 1200;
+  // SVG dimensions - responsive (reacts to window resize)
   const width = containerWidth;
   const height = 400;
   const margin = { top: 20, right: 20, bottom: 70, left: 80 };
