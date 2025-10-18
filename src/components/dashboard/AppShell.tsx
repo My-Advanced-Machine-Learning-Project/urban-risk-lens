@@ -1,7 +1,7 @@
 import { HeaderBar } from './HeaderBar';
 import { Sidebar } from './Sidebar';
 import { MapContainer } from './MapContainer';
-import { Legend } from './Legend';
+import CollapsibleMapLegend from './CollapsibleMapLegend';
 import { MetricCards } from './MetricCards';
 import { ScatterPlot } from './ScatterPlot';
 import { CompactStats } from './CompactStats';
@@ -20,7 +20,7 @@ export function AppShell() {
         {/* Map Container */}
         <div className="flex-1 relative">
           <MapContainer />
-          <Legend />
+          <CollapsibleMapLegend />
           <CompactStats />
         </div>
 
