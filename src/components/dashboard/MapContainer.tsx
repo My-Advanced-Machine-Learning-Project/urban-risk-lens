@@ -267,18 +267,8 @@ export function MapContainer() {
         type: 'line',
         source: 'mahalle',
         paint: {
-          'line-color': [
-            'case',
-            ['boolean', ['feature-state', 'selected'], false],
-            '#ffffff',
-            theme === 'dark' ? '#666666' : '#cccccc'
-          ],
-          'line-width': [
-            'case',
-            ['boolean', ['feature-state', 'selected'], false],
-            2,
-            0.5
-          ],
+          'line-color': '#ffffff',
+          'line-width': 0.8,
           'line-opacity': 0.8
         }
       });
@@ -317,41 +307,36 @@ export function MapContainer() {
     const riskScore = props.risk_score || 0;
     const riskClass = getRiskClass(riskScore);
     const riskColor = getRiskColor(riskClass);
+    const riskLabel = t(riskClass as any, language);
     
     const html = `
-      <div class="p-3">
-        <h3 class="font-semibold text-base mb-3">${props.mahalle_adi || 'N/A'}</h3>
-        <div class="text-sm space-y-2">
-          <div class="flex justify-between">
-            <span class="text-muted-foreground">${t('district', language)}:</span>
-            <span class="font-medium">${props.ilce_adi || 'N/A'}</span>
+      <div class="p-4 bg-white/95 backdrop-blur-md rounded-xl shadow-lg">
+        <h3 class="font-bold text-lg text-black mb-1">${props.mahalle_adi || 'N/A'}</h3>
+        <p class="text-sm text-gray-600 mb-3">${props.ilce_adi || 'N/A'} • ${props.il_adi || 'N/A'}</p>
+        
+        <div class="text-sm space-y-2 mb-3">
+          <div class="flex items-center justify-between">
+            <span class="text-gray-600">${t('riskClass', language)}:</span>
+            <span class="px-3 py-1 rounded-lg font-medium text-white text-sm" style="background-color: ${riskColor}">
+              ${riskLabel}
+            </span>
           </div>
           <div class="flex justify-between">
-            <span class="text-muted-foreground">${t('population', language)}:</span>
-            <span class="font-medium">${props.toplam_nufus?.toLocaleString() || 'N/A'}</span>
+            <span class="text-gray-600">${t('population', language)}:</span>
+            <span class="font-medium text-black">${props.toplam_nufus?.toLocaleString() || 'N/A'}</span>
           </div>
           <div class="flex justify-between">
-            <span class="text-muted-foreground">${t('buildings', language)}:</span>
-            <span class="font-medium">${props.toplam_bina?.toLocaleString() || 'N/A'}</span>
+            <span class="text-gray-600">${t('buildings', language)}:</span>
+            <span class="font-medium text-black">${props.toplam_bina?.toLocaleString() || 'N/A'}</span>
           </div>
-          <div class="flex justify-between">
-            <span class="text-muted-foreground">${t('vs30', language)}:</span>
-            <span class="font-medium">${props.vs30_mean?.toFixed(1) || 'N/A'}</span>
-          </div>
-          <div class="flex items-center justify-between pt-2 border-t">
-            <span class="text-muted-foreground">${t('riskScore', language)}:</span>
-            <div class="flex items-center gap-2">
-              <div class="w-4 h-4 rounded" style="background-color: ${riskColor}"></div>
-              <span class="font-semibold">${riskScore.toFixed(3)}</span>
-            </div>
-          </div>
-          <button 
-            onclick="window.selectAndZoom('${mahId}')"
-            class="w-full mt-3 px-3 py-2 bg-primary text-primary-foreground rounded-md text-sm font-medium hover:bg-primary/90 transition-colors"
-          >
-            ${t('selectZoom', language)}
-          </button>
         </div>
+        
+        <button 
+          onclick="window.selectAndZoom('${mahId}')"
+          class="w-full px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white font-medium rounded-xl transition-colors"
+        >
+          ${t('zoom', language)}
+        </button>
       </div>
     `;
     
@@ -424,23 +409,40 @@ export function MapContainer() {
         setTimeout(() => {
           const mah = mahData.get(mahId.toString());
           if (mah && map.current) {
+            const riskScore = mah.risk_score || 0;
+            const riskClass = getRiskClass(riskScore);
+            const riskColor = getRiskColor(riskClass);
+            const riskLabel = t(riskClass as any, language);
+            
             const html = `
-              <div style="min-width: 180px;">
-                <div style="font-weight: 600; margin-bottom: 8px; font-size: 13px;">${mah.mahalle_adi || 'N/A'}</div>
-                <div style="font-size: 12px; color: #666; margin-bottom: 4px;">
-                  <strong>${t('district', language)}:</strong> ${mah.ilce_adi || 'N/A'}
+              <div style="padding: 16px; background: rgba(255,255,255,0.95); backdrop-filter: blur(12px); border-radius: 12px; min-width: 200px;">
+                <h3 style="font-weight: bold; font-size: 18px; color: #000; margin-bottom: 4px;">${mah.mahalle_adi || 'N/A'}</h3>
+                <p style="font-size: 14px; color: #666; margin-bottom: 12px;">${mah.ilce_adi || 'N/A'} • ${mah.il_adi || 'N/A'}</p>
+                
+                <div style="margin-bottom: 12px;">
+                  <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+                    <span style="color: #666; font-size: 14px;">${t('riskClass', language)}:</span>
+                    <span style="padding: 4px 12px; border-radius: 8px; font-weight: 500; color: white; font-size: 14px; background-color: ${riskColor}">
+                      ${riskLabel}
+                    </span>
+                  </div>
+                  <div style="display: flex; justify-content: space-between; margin-bottom: 6px;">
+                    <span style="color: #666; font-size: 14px;">${t('population', language)}:</span>
+                    <span style="font-weight: 500; color: #000; font-size: 14px;">${(mah.toplam_nufus || 0).toLocaleString()}</span>
+                  </div>
+                  <div style="display: flex; justify-content: space-between;">
+                    <span style="color: #666; font-size: 14px;">${t('buildings', language)}:</span>
+                    <span style="font-weight: 500; color: #000; font-size: 14px;">${(mah.toplam_bina || 0).toLocaleString()}</span>
+                  </div>
                 </div>
-                <div style="font-size: 12px; color: #666; margin-bottom: 4px;">
-                  <strong>${t('city', language)}:</strong> ${mah.il_adi || 'N/A'}
-                </div>
-                <div style="font-size: 12px; color: #666; margin-bottom: 8px;">
-                  <strong>${t('riskScore', language)}:</strong> ${(mah.risk_score || 0).toFixed(3)}
-                </div>
+                
                 <button 
                   onclick="window.selectAndZoom('${mahId}')" 
-                  style="width: 100%; padding: 6px; background: #3b82f6; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 12px;"
+                  style="width: 100%; padding: 8px 16px; background: #3b82f6; color: white; border: none; border-radius: 12px; cursor: pointer; font-weight: 500; font-size: 14px; transition: background 0.2s;"
+                  onmouseover="this.style.background='#2563eb'" 
+                  onmouseout="this.style.background='#3b82f6'"
                 >
-                  ${language === 'tr' ? 'Seç ve Yakınlaştır' : 'Select & Zoom'}
+                  ${t('zoom', language)}
                 </button>
               </div>
             `;

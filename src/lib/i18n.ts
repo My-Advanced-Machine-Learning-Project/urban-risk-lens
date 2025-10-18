@@ -29,6 +29,7 @@ export const translations = {
     // Popup
     district: 'İlçe',
     selectZoom: 'Seç & Zoom',
+    zoom: 'Zoom',
     
     // Cards
     totalDistricts: 'Toplam Mahalle',
@@ -84,6 +85,7 @@ export const translations = {
     // Popup
     district: 'District',
     selectZoom: 'Select & Zoom',
+    zoom: 'Zoom',
     
     // Cards
     totalDistricts: 'Total Neighborhoods',
