@@ -36,7 +36,7 @@ function getMetricPaint(metric: string): any {
     // Blue gradient (higher VS30 = better soil = darker blue)
     return [
       'step',
-      ['coalesce', ['get', 'vs30_mean'], -1],
+      ['coalesce', ['get', 'vs30_mean'], ['get', 'vs30'], -1],
       '#6b7280', // default gray
       0, '#e8f0f7',      // 222-376: Very light blue
       222, '#e8f0f7',
@@ -98,7 +98,7 @@ export function MapContainer() {
   function getAllFeatures(): GeoJSON.Feature[] {
     if (featuresRef.current.length) return featuresRef.current;
     try {
-      const feats = map.current?.querySourceFeatures('neighborhoods') ?? [];
+      const feats = map.current?.querySourceFeatures('mahalle') ?? [];
       featuresRef.current = feats as unknown as GeoJSON.Feature[];
     } catch {
       // Ignore query errors
@@ -197,7 +197,11 @@ export function MapContainer() {
   async function loadInitialData() {
     if (!map.current) return;
     
-    const cities = ['İstanbul', 'Ankara'];
+    // Use selected cities or default to both
+    const cities = selectedCities.size > 0 
+      ? Array.from(selectedCities) 
+      : ['İstanbul', 'Ankara'];
+    
     console.info('[MapContainer] Loading cities:', cities, 'year:', year);
     
     const dataMap = await loadCitiesData(cities, year);
@@ -267,7 +271,12 @@ export function MapContainer() {
 
     const allFeatures: any[] = [];
     citiesData.current.forEach((cityData) => {
-      allFeatures.push(...cityData.features);
+      cityData.features.forEach((f: any) => {
+        // Assign feature ID for feature-state support
+        const fid = String(f.properties?.mah_id ?? f.properties?.fid);
+        if (fid) f.id = fid;
+        allFeatures.push(f);
+      });
     });
 
     if (allFeatures.length === 0) {
@@ -353,10 +362,16 @@ export function MapContainer() {
     const riskColor = getRiskColor(riskClass);
     const riskLabel = t(riskClass as any, language);
     
+    // Build location string conditionally (no "N/A")
+    const locParts = [];
+    if (props.ilce_adi) locParts.push(props.ilce_adi);
+    if (props.il_adi) locParts.push(props.il_adi);
+    const locationStr = locParts.join(' • ') || '—';
+    
     const html = `
       <div class="p-4 bg-white/95 backdrop-blur-md rounded-xl shadow-lg">
-        <h3 class="font-bold text-lg text-black mb-1">${props.mahalle_adi || 'N/A'}</h3>
-        <p class="text-sm text-gray-600 mb-3">${props.ilce_adi || 'N/A'} • ${props.il_adi || 'N/A'}</p>
+        <h3 class="font-bold text-lg text-black mb-1">${props.mahalle_adi || '—'}</h3>
+        <p class="text-sm text-gray-600 mb-3">${locationStr}</p>
         
         <div class="text-sm space-y-2 mb-3">
           <div class="flex items-center justify-between">
@@ -581,11 +596,12 @@ export function MapContainer() {
     map.current.setPaintProperty('mahalle-fill', 'fill-color', getMetricPaint(metric));
   }, [metric]);
 
-  // Handle sidebar toggle - resize map
+  // Handle sidebar toggle - resize map and scatter
   useEffect(() => {
     if (!map.current) return;
     const timer = setTimeout(() => {
       map.current?.resize();
+      window.dispatchEvent(new Event('resize')); // Trigger Recharts ResponsiveContainer
     }, 320); // Match sidebar animation duration
     return () => clearTimeout(timer);
   }, [sidebarOpen]);
