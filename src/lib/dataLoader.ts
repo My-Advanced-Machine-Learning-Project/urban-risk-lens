@@ -120,18 +120,44 @@ export async function loadCityData(cityName: string, year: number = 2025): Promi
       // Normalize city key
       props.city_key = normalizedKey;
       
-      // Map prediction properties to standard names for compatibility
-      props.risk_score = getNum(props.risk_score_pred) ?? 0;
-      props.risk_label = props.risk_label_pred || 'unknown';
+      // Normalize risk properties - handle multiple column name variants
+      const scoreRaw = 
+        props.risk_score_pred ?? 
+        props.risk_score ?? 
+        props.riskPred ?? 
+        props.risk ?? 
+        props.score ?? 
+        props.riskScore;
       
-      // Keep original prediction properties
-      props.risk_score_pred = getNum(props.risk_score_pred) ?? 0;
-      props.risk_label_pred = props.risk_label_pred || 'unknown';
+      const score = (scoreRaw === '' || scoreRaw == null || scoreRaw === 'NA' || scoreRaw === 'N/A') 
+        ? null 
+        : getNum(scoreRaw);
       
-      // Parse other numeric fields
-      props.toplam_nufus = getNum(props.toplam_nufus) ?? 0;
-      props.toplam_bina = getNum(props.toplam_bina) ?? 0;
-      props.vs30_mean = getNum(props.vs30_mean) ?? getNum(props.vs30) ?? 0;
+      // Map to standard names (null-safe, no forced zeros)
+      props.risk_score = score;
+      props.risk_score_pred = score;
+      
+      // Risk label with fallbacks
+      props.risk_label_pred = 
+        props.risk_label_pred || 
+        props.risk_label_tr || 
+        props.risk_label || 
+        props.label || 
+        'unknown';
+      props.risk_label = props.risk_label_pred;
+      
+      // Risk class with fallbacks
+      props.risk_class_5_pred = 
+        props.risk_class_5_pred ?? 
+        props.risk_class_pred_5 ?? 
+        props.risk_class_5 ?? 
+        props.risk_class ?? 
+        null;
+      
+      // Parse other numeric fields (null-safe)
+      props.toplam_nufus = getNum(props.toplam_nufus);
+      props.toplam_bina = getNum(props.toplam_bina);
+      props.vs30_mean = getNum(props.vs30_mean) ?? getNum(props.vs30);
       
       // Ensure city/district names
       props.il_adi = props.il_adi || normalizedKey;

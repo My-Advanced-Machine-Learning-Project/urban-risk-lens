@@ -30,9 +30,17 @@ function getStyleUrl(theme: 'light' | 'dark'): string {
 function getMetricPaint(metric: string, year: number): any {
   if (metric === 'risk_score') {
     // Yellow to dark red gradient (Very Low to Very High)
+    // Coalesce multiple possible field names for compatibility
     return [
       'step',
-      ['coalesce', ['get', 'risk_score_pred'], ['get', 'risk_score'], -1],
+      [
+        'coalesce',
+        ['get', 'risk_score_pred'],
+        ['get', 'risk_score'],
+        ['get', 'risk'],
+        ['get', 'score'],
+        -1
+      ],
       '#6b7280', // default gray for missing data
       0, '#f5ebb8',      // 0.00-0.18: Very Low (pale yellow)
       0.18, '#f0c96c',   // 0.18-0.23: Low (yellow)
@@ -205,6 +213,44 @@ export function MapContainer() {
     loadInitialData();
   }, [year]);
 
+  // Helper: normalize risk properties from various column name variants
+  function normalizeRiskProps(pr: any) {
+    // 1) risk score - try all possible column names
+    const scoreRaw =
+      pr.risk_score_pred ??
+      pr.risk_score ??
+      pr.riskPred ??
+      pr.risk ??
+      pr.score ??
+      pr.riskScore;
+
+    const score =
+      scoreRaw === undefined || scoreRaw === null || scoreRaw === ''
+        ? null
+        : +scoreRaw;
+
+    pr.risk_score = score;
+    if (pr.risk_score_pred == null && score != null) {
+      pr.risk_score_pred = score;
+    }
+
+    // 2) risk class (5-level classification)
+    pr.risk_class_5_pred =
+      pr.risk_class_5_pred ??
+      pr.risk_class_pred_5 ??
+      pr.risk_class_5 ??
+      pr.risk_class ??
+      null;
+
+    // 3) risk label (text classification)
+    pr.risk_label_pred =
+      pr.risk_label_pred ??
+      pr.risk_label_tr ??
+      pr.risk_label ??
+      pr.label ??
+      null;
+  }
+
   // Helper: build features for current year (data already year-specific from GeoJSON)
   function buildFeaturesForYear(dataMap: Map<string, CityData>) {
     const all: any[] = [];
@@ -212,15 +258,13 @@ export function MapContainer() {
       cd.features.forEach((f: any) => {
         const pr = f.properties || {};
         
-        // Data is already year-specific from the loaded GeoJSON
-        // Ensure numeric types
-        pr.risk_score = pr.risk_score_pred != null ? +pr.risk_score_pred : (pr.risk_score != null ? +pr.risk_score : 0);
-        pr.risk_score_pred = pr.risk_score;
-        pr.risk_label_pred = pr.risk_label_pred || pr.risk_label || 'unknown';
+        // Normalize risk properties first (handles column name variants)
+        normalizeRiskProps(pr);
         
-        pr.vs30_mean = pr.vs30_mean != null ? +pr.vs30_mean : (pr.vs30 != null ? +pr.vs30 : 0);
-        pr.toplam_nufus = pr.toplam_nufus != null ? +pr.toplam_nufus : 0;
-        pr.toplam_bina = pr.toplam_bina != null ? +pr.toplam_bina : 0;
+        // Parse numeric fields (null-safe, no forced zeros)
+        pr.vs30_mean = pr.vs30_mean != null ? +pr.vs30_mean : (pr.vs30 != null ? +pr.vs30 : null);
+        pr.toplam_nufus = pr.toplam_nufus != null ? +pr.toplam_nufus : null;
+        pr.toplam_bina = pr.toplam_bina != null ? +pr.toplam_bina : null;
 
         const fid = String(pr.mah_id ?? pr.fid ?? f.id ?? '');
         if (fid) f.id = fid;
@@ -482,9 +526,18 @@ export function MapContainer() {
     // Get current data from store
     const p = mahData.get(mahId) ?? props0;
     
-    // Extract prediction values
-    const riskScore = Number(p.risk_score_pred ?? p.risk_score) || 0;
-    const riskLabel = p.risk_label_pred || p.risk_label || 'unknown';
+    // Extract prediction values with multiple fallbacks
+    const riskScore = Number(
+      p.risk_score_pred ?? 
+      p.risk_score ?? 
+      p.risk ?? 
+      p.score
+    ) || 0;
+    const riskLabel = 
+      p.risk_label_pred || 
+      p.risk_label || 
+      p.label || 
+      'unknown';
     const population = Number(p.toplam_nufus) || 0;
     const buildings = Number(p.toplam_bina) || 0;
     
@@ -640,9 +693,18 @@ export function MapContainer() {
         setTimeout(() => {
           const mah = mahData.get(mahId.toString());
           if (mah && map.current) {
-            // Extract prediction values
-            const riskScore = Number(mah.risk_score_pred ?? mah.risk_score) || 0;
-            const riskLabelPred = mah.risk_label_pred || mah.risk_label || 'unknown';
+            // Extract prediction values with multiple fallbacks
+            const riskScore = Number(
+              mah.risk_score_pred ?? 
+              mah.risk_score ?? 
+              mah.risk ?? 
+              mah.score
+            ) || 0;
+            const riskLabelPred = 
+              mah.risk_label_pred || 
+              mah.risk_label || 
+              mah.label || 
+              'unknown';
             const population = Number(mah.toplam_nufus) || 0;
             const buildings = Number(mah.toplam_bina) || 0;
             
@@ -845,7 +907,12 @@ export function MapContainer() {
       const totalMah = visible.length;
       const totalPop = visible.reduce((s, f: any) => s + (f.properties?.toplam_nufus ?? 0), 0);
       const totalBld = visible.reduce((s, f: any) => s + (f.properties?.toplam_bina ?? 0), 0);
-      const sumRisk = visible.reduce((s, f: any) => s + (f.properties?.risk_score ?? 0), 0);
+      // Use risk score with fallbacks for column name variants
+      const sumRisk = visible.reduce((s, f: any) => {
+        const p = f.properties;
+        const risk = p?.risk_score_pred ?? p?.risk_score ?? p?.risk ?? p?.score ?? 0;
+        return s + risk;
+      }, 0);
       const meanRisk = totalMah ? sumRisk / totalMah : 0;
       
       setViewportStats({ totalMah, totalPop, totalBld, meanRisk, zoom });

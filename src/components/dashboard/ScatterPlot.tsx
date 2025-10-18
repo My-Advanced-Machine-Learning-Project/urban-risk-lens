@@ -96,8 +96,10 @@ export function ScatterPlot() {
           city = 'Ankara';
         }
         
-        if (city && mah.risk_score) {
-          cityStats[city].totalRisk += mah.risk_score;
+        // Use normalized risk score with fallbacks
+        const riskScore = mah.risk_score_pred ?? mah.risk_score ?? mah.risk ?? mah.score ?? 0;
+        if (city && riskScore) {
+          cityStats[city].totalRisk += riskScore;
           cityStats[city].count += 1;
         }
       });
@@ -134,35 +136,38 @@ export function ScatterPlot() {
       
       let x = 0, y = 0, size = 1000;
       
+      // Get risk score with fallbacks for column name variants
+      const riskScore = mah.risk_score_pred ?? mah.risk_score ?? mah.risk ?? mah.score ?? 0;
+      
       // Convert to proper numbers using utility
       switch (scatterMode) {
         case 'vs30_risk':
           x = toNum(mah.vs30_mean);
-          y = toNum(mah.risk_score);
+          y = toNum(riskScore);
           size = toNum(mah.toplam_bina) || 1000;
           break;
           
         case 'population_risk':
           x = toNum(mah.toplam_nufus);
-          y = toNum(mah.risk_score);
+          y = toNum(riskScore);
           size = toNum(mah.toplam_bina) || 1000;
           break;
           
         case 'buildings_risk':
           x = toNum(mah.toplam_bina);
-          y = toNum(mah.risk_score);
+          y = toNum(riskScore);
           size = toNum(mah.toplam_nufus) || 5000;
           break;
           
         case 'vs30_buildings':
           x = toNum(mah.vs30_mean);
           y = toNum(mah.toplam_bina);
-          size = (toNum(mah.risk_score) || 0.2) * 5000;
+          size = (toNum(riskScore) || 0.2) * 5000;
           break;
           
         case 'risk_class':
-          x = toNum(mah.risk_score);
-          y = toNum(mah.risk_class_5);
+          x = toNum(riskScore);
+          y = toNum(mah.risk_class_5_pred ?? mah.risk_class_5 ?? mah.risk_class);
           size = toNum(mah.toplam_bina) || 1000;
           break;
       }
@@ -176,7 +181,7 @@ export function ScatterPlot() {
         y,
         size,
         label: mah.mahalle_adi || 'N/A',
-        riskClass: getRiskClass(toNum(mah.risk_score) || 0),
+        riskClass: getRiskClass(toNum(riskScore) || 0),
         isSelected: selectedMah.has(id.toString())
       });
     });
