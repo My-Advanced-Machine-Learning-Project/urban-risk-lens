@@ -219,7 +219,7 @@ export function ScatterPlot() {
 
   // SVG dimensions - responsive (reacts to window resize)
   const width = containerWidth;
-  const height = typeof window !== "undefined" && window.innerWidth <= 768 ? 260 : 400;
+  const height = typeof window !== "undefined" && window.innerWidth <= 768 ? 260 : 360;
   const margin = { top: 20, right: 20, bottom: 70, left: 80 };
   const innerWidth = width - margin.left - margin.right;
   const innerHeight = height - margin.top - margin.bottom;
