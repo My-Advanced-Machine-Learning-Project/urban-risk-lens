@@ -462,10 +462,16 @@ export function MapContainer() {
             const riskColor = getRiskColor(riskClass);
             const riskLabel = t(riskClass as any, language);
             
+            // Build location string conditionally (no "N/A")
+            const locationParts = [];
+            if (mah.ilce_adi) locationParts.push(mah.ilce_adi);
+            if (mah.il_adi) locationParts.push(mah.il_adi);
+            const locationStr = locationParts.join(' • ') || '—';
+            
             const html = `
               <div style="padding: 16px; background: rgba(255,255,255,0.95); backdrop-filter: blur(12px); border-radius: 12px; min-width: 200px;">
-                <h3 style="font-weight: bold; font-size: 18px; color: #000; margin-bottom: 4px;">${mah.mahalle_adi || 'N/A'}</h3>
-                <p style="font-size: 14px; color: #666; margin-bottom: 12px;">${mah.ilce_adi || 'N/A'} • ${mah.il_adi || 'N/A'}</p>
+                <h3 style="font-weight: bold; font-size: 18px; color: #000; margin-bottom: 4px;">${mah.mahalle_adi || '—'}</h3>
+                <p style="font-size: 14px; color: #666; margin-bottom: 12px;">${locationStr}</p>
                 
                 <div style="margin-bottom: 12px;">
                   <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
