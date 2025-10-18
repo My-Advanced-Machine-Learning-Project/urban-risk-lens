@@ -249,6 +249,20 @@ export function MapContainer() {
       pr.risk_label ??
       pr.label ??
       null;
+    
+    // 4) population (multiple field name variants)
+    const popRaw = pr.toplam_nufus ?? pr.population ?? pr.nufus ?? pr.pop;
+    pr.toplam_nufus = popRaw != null ? +popRaw : null;
+    if (pr.population == null && pr.toplam_nufus != null) {
+      pr.population = pr.toplam_nufus;
+    }
+    
+    // 5) buildings (multiple field name variants)
+    const buildRaw = pr.toplam_bina ?? pr.building_count ?? pr.bina_sayisi ?? pr.buildings ?? pr.bina;
+    pr.toplam_bina = buildRaw != null ? +buildRaw : null;
+    if (pr.building_count == null && pr.toplam_bina != null) {
+      pr.building_count = pr.toplam_bina;
+    }
   }
 
   // Helper: build features for current year (data already year-specific from GeoJSON)
@@ -574,33 +588,33 @@ export function MapContainer() {
     const buttonHoverBg = isDark ? '#1d4ed8' : '#2563eb';
     
     const html = `
-      <div style="padding:12px;max-width:280px;background:${bgColor};backdrop-filter:blur(8px);border-radius:12px;">
+      <div style="padding:14px;max-width:280px;background:${bgColor};backdrop-filter:blur(8px);border-radius:12px;border:3px solid ${riskColor};box-shadow:0 4px 12px rgba(0,0,0,0.15);">
         <h3 style="margin:0 0 6px;font-weight:700;font-size:16px;color:${titleColor};line-height:1.3;">${p.mahalle_adi || '—'}</h3>
-        <p style="margin:0 0 10px;font-size:13px;color:${subtitleColor};">${locationStr}</p>
+        <p style="margin:0 0 12px;font-size:13px;color:${subtitleColor};">${locationStr}</p>
 
         <div style="font-size:13px;color:${valueColor};">
-          <div style="display:flex;justify-content:space-between;margin:4px 0;">
+          <div style="display:flex;justify-content:space-between;margin:6px 0;align-items:center;">
             <span style="color:${labelColor};">Risk</span>
             <span style="font-weight:600;color:${valueColor};">${fmtFloat(riskScore)}</span>
           </div>
-          <div style="display:flex;justify-content:space-between;margin:4px 0;">
+          <div style="display:flex;justify-content:space-between;margin:6px 0;align-items:center;">
             <span style="color:${labelColor};">Sınıf</span>
-            <span style="padding:2px 10px;border-radius:8px;font-weight:600;color:#fff;background:${riskColor};">${translatedLabel}</span>
+            <span style="padding:4px 12px;border-radius:6px;font-weight:600;color:#000;background:${riskColor};font-size:12px;">${translatedLabel}</span>
           </div>
-          <div style="display:flex;justify-content:space-between;margin:4px 0;">
+          <div style="display:flex;justify-content:space-between;margin:6px 0;align-items:center;">
             <span style="color:${labelColor};">${t('population', language)}</span>
             <span style="font-weight:500;color:${valueColor};">${fmtInt(population)}</span>
           </div>
-          <div style="display:flex;justify-content:space-between;margin:4px 0;">
+          <div style="display:flex;justify-content:space-between;margin:6px 0;align-items:center;">
             <span style="color:${labelColor};">${t('buildings', language)}</span>
             <span style="font-weight:500;color:${valueColor};">${fmtInt(buildings)}</span>
           </div>
         </div>
 
         <button onclick="window.selectAndZoom('${mahId}')" 
-                style="width:100%;margin-top:8px;padding:6px 12px;background:${buttonBg};color:white;border:none;border-radius:8px;cursor:pointer;font-weight:500;font-size:12px;transition:background 0.2s;"
-                onmouseover="this.style.background='${buttonHoverBg}'" 
-                onmouseout="this.style.background='${buttonBg}'">
+                style="width:100%;margin-top:10px;padding:7px 12px;background:${buttonBg};color:white;border:none;border-radius:8px;cursor:pointer;font-weight:600;font-size:12px;transition:all 0.2s;"
+                onmouseover="this.style.background='${buttonHoverBg}';this.style.transform='translateY(-1px)'" 
+                onmouseout="this.style.background='${buttonBg}';this.style.transform='translateY(0)'">
           ${t('zoom', language)}
         </button>
       </div>
@@ -731,33 +745,33 @@ export function MapContainer() {
             const buttonHoverBg = isDark ? '#1d4ed8' : '#2563eb';
             
             const html = `
-              <div style="padding:12px;max-width:280px;background:${bgColor};backdrop-filter:blur(8px);border-radius:12px;">
+              <div style="padding:14px;max-width:280px;background:${bgColor};backdrop-filter:blur(8px);border-radius:12px;border:3px solid ${riskColor};box-shadow:0 4px 12px rgba(0,0,0,0.15);">
                 <h3 style="margin:0 0 6px;font-weight:700;font-size:16px;color:${titleColor};line-height:1.3;">${mah.mahalle_adi || '—'}</h3>
-                <p style="margin:0 0 10px;font-size:13px;color:${subtitleColor};">${locationStr}</p>
+                <p style="margin:0 0 12px;font-size:13px;color:${subtitleColor};">${locationStr}</p>
 
                 <div style="font-size:13px;color:${valueColor};">
-                  <div style="display:flex;justify-content:space-between;margin:4px 0;">
+                  <div style="display:flex;justify-content:space-between;margin:6px 0;align-items:center;">
                     <span style="color:${labelColor};">Risk</span>
                     <span style="font-weight:600;color:${valueColor};">${fmtFloat(riskScore)}</span>
                   </div>
-                  <div style="display:flex;justify-content:space-between;margin:4px 0;">
+                  <div style="display:flex;justify-content:space-between;margin:6px 0;align-items:center;">
                     <span style="color:${labelColor};">Sınıf</span>
-                    <span style="padding:2px 10px;border-radius:8px;font-weight:600;color:#fff;background:${riskColor};">${translatedLabel}</span>
+                    <span style="padding:4px 12px;border-radius:6px;font-weight:600;color:#000;background:${riskColor};font-size:12px;">${translatedLabel}</span>
                   </div>
-                  <div style="display:flex;justify-content:space-between;margin:4px 0;">
+                  <div style="display:flex;justify-content:space-between;margin:6px 0;align-items:center;">
                     <span style="color:${labelColor};">${t('population', language)}</span>
                     <span style="font-weight:500;color:${valueColor};">${fmtInt(population)}</span>
                   </div>
-                  <div style="display:flex;justify-content:space-between;margin:4px 0;">
+                  <div style="display:flex;justify-content:space-between;margin:6px 0;align-items:center;">
                     <span style="color:${labelColor};">${t('buildings', language)}</span>
                     <span style="font-weight:500;color:${valueColor};">${fmtInt(buildings)}</span>
                   </div>
                 </div>
 
                 <button onclick="window.selectAndZoom('${mahId}')" 
-                        style="width:100%;margin-top:8px;padding:6px 12px;background:${buttonBg};color:white;border:none;border-radius:8px;cursor:pointer;font-weight:500;font-size:12px;transition:background 0.2s;"
-                        onmouseover="this.style.background='${buttonHoverBg}'" 
-                        onmouseout="this.style.background='${buttonBg}'">
+                        style="width:100%;margin-top:10px;padding:7px 12px;background:${buttonBg};color:white;border:none;border-radius:8px;cursor:pointer;font-weight:600;font-size:12px;transition:all 0.2s;"
+                        onmouseover="this.style.background='${buttonHoverBg}';this.style.transform='translateY(-1px)'" 
+                        onmouseout="this.style.background='${buttonBg}';this.style.transform='translateY(0)'">
                   ${t('zoom', language)}
                 </button>
               </div>

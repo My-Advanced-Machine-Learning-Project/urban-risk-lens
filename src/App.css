@@ -75,12 +75,23 @@
 /* ---- Scatter Legend (right, compact) ---- */
 .scatter-legend-vertical{
   display: flex; flex-direction: column; gap: 8px;
-  padding: 6px 8px;
+  padding: 8px 10px;
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(8px);
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.1);
 }
 .scatter-legend-vertical .legend-item{
   display: flex; align-items: center; gap: 8px; font-size: 12px;
 }
 .scatter-legend-vertical .legend-swatch{
-  width: 14px; height: 14px; border-radius: 50%; border: 1px solid rgba(0,0,0,.2);
+  width: 16px; height: 16px; border-radius: 50%; 
+  border: 2px solid rgba(255,255,255,0.8);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+  flex-shrink: 0;
 }
-.scatter-legend-vertical .legend-label{ white-space: nowrap; }
+.scatter-legend-vertical .legend-label{ 
+  white-space: nowrap;
+  color: var(--foreground);
+  font-weight: 500;
+}

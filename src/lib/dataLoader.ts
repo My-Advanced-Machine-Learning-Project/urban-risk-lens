@@ -154,10 +154,18 @@ export async function loadCityData(cityName: string, year: number = 2025): Promi
         props.risk_class ?? 
         null;
       
-      // Parse other numeric fields (null-safe)
-      props.toplam_nufus = getNum(props.toplam_nufus);
-      props.toplam_bina = getNum(props.toplam_bina);
+      // Parse other numeric fields (null-safe) with multiple fallbacks
+      props.toplam_nufus = getNum(props.toplam_nufus) ?? getNum(props.population) ?? getNum(props.nufus);
+      props.toplam_bina = getNum(props.toplam_bina) ?? getNum(props.building_count) ?? getNum(props.bina_sayisi) ?? getNum(props.buildings);
       props.vs30_mean = getNum(props.vs30_mean) ?? getNum(props.vs30);
+      
+      // Also set standard field names for compatibility
+      if (props.population == null && props.toplam_nufus != null) {
+        props.population = props.toplam_nufus;
+      }
+      if (props.building_count == null && props.toplam_bina != null) {
+        props.building_count = props.toplam_bina;
+      }
       
       // Ensure city/district names
       props.il_adi = props.il_adi || normalizedKey;
