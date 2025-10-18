@@ -39,7 +39,7 @@ export function Sidebar() {
   const [expandedCities, setExpandedCities] = useState<Set<string>>(new Set(['istanbul', 'ankara']));
   const [expandedDistricts, setExpandedDistricts] = useState<Set<string>>(new Set());
 
-  // Build grouped data from cityIndex
+  // Build grouped data from cityIndex - only show selected cities
   const groupedData = useMemo(() => {
     const result: Record<string, Record<string, Array<{ id: string; name: string }>>> = {};
     
@@ -47,10 +47,8 @@ export function Sidebar() {
     console.log('[Sidebar DIAG] cityIndex keys:', [...cityIndex.keys()]);
     console.log('[Sidebar DIAG] selectedCities:', [...selectedCities]);
     
-    // Always process all available cities (İstanbul and Ankara), regardless of selection
-    const allCityLabels = ['İstanbul', 'Ankara'];
-    
-    allCityLabels.forEach(cityLabel => {
+    // Process each selected city
+    selectedCities.forEach(cityLabel => {
       const cityKey = toKey(cityLabel);
       const cityInfo = cityIndex.get(cityKey);
       
@@ -73,7 +71,7 @@ export function Sidebar() {
     console.log('[Sidebar DIAG] grouped data:', Object.keys(result), Object.values(result).map(d => Object.keys(d).length));
     
     return result;
-  }, [cityIndex]);
+  }, [cityIndex, selectedCities]);
 
   // Filter data based on search
   const filteredData = useMemo(() => {
