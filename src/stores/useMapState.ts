@@ -2,7 +2,7 @@ import { create } from 'zustand';
 import { Language } from '@/lib/i18n';
 
 export type ViewMode = 'choropleth' | 'heatmap' | 'scatter';
-export type Metric = 'risk_score' | 'vs30' | 'population';
+export type Metric = 'risk_score' | 'vs30' | 'population' | 'buildings' | 'risk_class';
 export type Year = 2025 | 2026;
 
 interface MapState {
@@ -21,6 +21,9 @@ interface MapState {
   selectedDistricts: Set<string>;
   selectedMah: Set<string>;
   
+  // Data
+  mahData: Map<string, any>; // mahalle verisi cache
+  
   // Actions
   toggleTheme: () => void;
   setLanguage: (lang: Language) => void;
@@ -35,6 +38,7 @@ interface MapState {
   clearDistricts: () => void;
   clearMah: () => void;
   selectAllMah: () => void;
+  setMahData: (data: Map<string, any>) => void;
 }
 
 export const useMapState = create<MapState>((set) => ({
@@ -48,6 +52,7 @@ export const useMapState = create<MapState>((set) => ({
   selectedCities: new Set(['İstanbul', 'Ankara']),
   selectedDistricts: new Set(),
   selectedMah: new Set(),
+  mahData: new Map(),
   
   // Actions
   toggleTheme: () => set((state) => ({
@@ -101,4 +106,6 @@ export const useMapState = create<MapState>((set) => ({
   clearMah: () => set({ selectedMah: new Set() }),
   
   selectAllMah: () => set({ selectedMah: new Set() }),
+  
+  setMahData: (mahData) => set({ mahData }),
 }));

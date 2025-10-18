@@ -13,10 +13,70 @@ function getStyleUrl(theme: 'light' | 'dark'): string {
     return 'https://demotiles.maplibre.org/style.json';
   }
   
-  // streets-v2 (light) ↔ dataviz-dark (dark)
   return theme === 'dark'
     ? `https://api.maptiler.com/maps/dataviz-dark/style.json?key=${MAPTILER_KEY}`
     : `https://api.maptiler.com/maps/streets-v2/style.json?key=${MAPTILER_KEY}`;
+}
+
+// Metric paint expressions
+function getMetricPaint(metric: string): any {
+  if (metric === 'risk_score') {
+    return [
+      'interpolate',
+      ['linear'],
+      ['get', 'risk_score'],
+      0, '#f1f5f9',
+      0.18, '#fde68a',
+      0.23, '#fbbf24',
+      0.30, '#ef4444',
+      0.43, '#7f1d1d'
+    ];
+  } else if (metric === 'vs30') {
+    return [
+      'interpolate',
+      ['linear'],
+      ['get', 'vs30_mean'],
+      300, '#7f1d1d',
+      400, '#ef4444',
+      500, '#fbbf24',
+      600, '#fde68a',
+      700, '#f1f5f9'
+    ];
+  } else if (metric === 'population') {
+    return [
+      'interpolate',
+      ['linear'],
+      ['get', 'toplam_nufus'],
+      0, '#f1f5f9',
+      5000, '#fde68a',
+      10000, '#fbbf24',
+      20000, '#ef4444',
+      40000, '#7f1d1d'
+    ];
+  } else if (metric === 'buildings') {
+    return [
+      'interpolate',
+      ['linear'],
+      ['get', 'toplam_bina'],
+      0, '#f1f5f9',
+      500, '#fde68a',
+      1000, '#fbbf24',
+      2000, '#ef4444',
+      4000, '#7f1d1d'
+    ];
+  }
+  
+  // Default: risk_score
+  return [
+    'interpolate',
+    ['linear'],
+    ['get', 'risk_score'],
+    0, '#f1f5f9',
+    0.18, '#fde68a',
+    0.23, '#fbbf24',
+    0.30, '#ef4444',
+    0.43, '#7f1d1d'
+  ];
 }
 
 export function MapContainer() {
@@ -27,7 +87,11 @@ export function MapContainer() {
   const { 
     theme, 
     language, 
-    selectedCities
+    selectedCities,
+    selectedMah,
+    metric,
+    setMahData,
+    toggleMah
   } = useMapState();
   
   const citiesData = useRef<Map<string, CityData>>(new Map());
@@ -49,8 +113,9 @@ export function MapContainer() {
     map.current.addControl(new maplibregl.NavigationControl(), 'top-right');
     
     popup.current = new maplibregl.Popup({
-      closeButton: false,
-      closeOnClick: false
+      closeButton: true,
+      closeOnClick: false,
+      maxWidth: '320px'
     });
 
     map.current.on('load', () => {
@@ -66,44 +131,45 @@ export function MapContainer() {
     };
   }, []);
 
-  // Load initial data (İstanbul + Ankara)
+  // Load initial data
   async function loadInitialData() {
     if (!map.current) return;
     
     const cities = ['İstanbul', 'Ankara'];
-    console.info('[MapContainer] Loading initial cities:', cities);
+    console.info('[MapContainer] Loading cities:', cities);
     
     const dataMap = await loadCitiesData(cities);
     citiesData.current = dataMap;
     
-    // Merge all bboxes
+    // Build mahData for sidebar
+    const mahDataMap = new Map();
     dataMap.forEach((cityData) => {
       Object.assign(allBBoxes.current, cityData.bboxes);
+      cityData.features.forEach(f => {
+        const id = String(f.properties.mah_id || f.properties.fid);
+        mahDataMap.set(id, f.properties);
+      });
     });
+    setMahData(mahDataMap);
     
-    // Add layers
     addLayers();
-    
-    // Fit to combined bbox
     fitToSelectedCities(cities);
   }
 
-  // Add layers to map
+  // Add layers
   function addLayers() {
     if (!map.current) return;
 
-    // Combine all features from loaded cities
     const allFeatures: any[] = [];
     citiesData.current.forEach((cityData) => {
       allFeatures.push(...cityData.features);
     });
 
     if (allFeatures.length === 0) {
-      console.warn('[MapContainer] No features to add');
+      console.warn('[MapContainer] No features');
       return;
     }
 
-    // Add source
     if (!map.current.getSource('mahalle')) {
       map.current.addSource('mahalle', {
         type: 'geojson',
@@ -114,43 +180,46 @@ export function MapContainer() {
       });
     }
 
-    // Add fill layer
     if (!map.current.getLayer('mahalle-fill')) {
       map.current.addLayer({
         id: 'mahalle-fill',
         type: 'fill',
         source: 'mahalle',
         paint: {
-          'fill-color': [
-            'interpolate',
-            ['linear'],
-            ['get', 'risk_score'],
-            0, '#f1f5f9',
-            0.18, '#fde68a',
-            0.23, '#fbbf24',
-            0.30, '#ef4444',
-            0.43, '#7f1d1d'
-          ],
-          'fill-opacity': 0.7
+          'fill-color': getMetricPaint(metric),
+          'fill-opacity': [
+            'case',
+            ['boolean', ['feature-state', 'selected'], false],
+            0.9,
+            0.7
+          ]
         }
       });
     }
 
-    // Add line layer
     if (!map.current.getLayer('mahalle-line')) {
       map.current.addLayer({
         id: 'mahalle-line',
         type: 'line',
         source: 'mahalle',
         paint: {
-          'line-color': theme === 'dark' ? '#ffffff' : '#000000',
-          'line-width': 0.5,
-          'line-opacity': 0.3
+          'line-color': [
+            'case',
+            ['boolean', ['feature-state', 'selected'], false],
+            '#ffffff',
+            theme === 'dark' ? '#666666' : '#cccccc'
+          ],
+          'line-width': [
+            'case',
+            ['boolean', ['feature-state', 'selected'], false],
+            2,
+            0.5
+          ],
+          'line-opacity': 0.8
         }
       });
     }
 
-    // Add click handler for popup
     map.current.on('click', 'mahalle-fill', handleFeatureClick as any);
     map.current.on('mouseenter', 'mahalle-fill', () => {
       if (map.current) map.current.getCanvas().style.cursor = 'pointer';
@@ -159,7 +228,7 @@ export function MapContainer() {
       if (map.current) map.current.getCanvas().style.cursor = '';
     });
 
-    console.info('[MapContainer] Layers added:', allFeatures.length, 'features');
+    console.info('[MapContainer] Layers added:', allFeatures.length);
   }
 
   // Handle feature click
@@ -168,24 +237,45 @@ export function MapContainer() {
     
     const feature = e.features[0];
     const props = feature.properties;
+    const mahId = String(props.mah_id || props.fid);
     
     const riskScore = props.risk_score || 0;
     const riskClass = getRiskClass(riskScore);
     const riskColor = getRiskColor(riskClass);
     
     const html = `
-      <div class="p-2 min-w-[200px]">
-        <h3 class="font-semibold text-sm mb-2">${props.mahalle_adi || 'N/A'}</h3>
-        <div class="text-xs space-y-1">
-          <p><strong>${t('district', language)}:</strong> ${props.ilce_adi || 'N/A'}</p>
-          <p><strong>${t('population', language)}:</strong> ${props.toplam_nufus?.toLocaleString() || 'N/A'}</p>
-          <p><strong>${t('buildings', language)}:</strong> ${props.toplam_bina?.toLocaleString() || 'N/A'}</p>
-          <p><strong>VS30:</strong> ${props.vs30_mean?.toFixed(1) || 'N/A'}</p>
-          <div class="flex items-center gap-2 mt-2 pt-2 border-t">
-            <div class="w-4 h-4 rounded" style="background-color: ${riskColor}"></div>
-            <span class="font-medium">${t(riskClass as any, language)}</span>
-            <span class="text-muted-foreground">${riskScore.toFixed(3)}</span>
+      <div class="p-3">
+        <h3 class="font-semibold text-base mb-3">${props.mahalle_adi || 'N/A'}</h3>
+        <div class="text-sm space-y-2">
+          <div class="flex justify-between">
+            <span class="text-muted-foreground">${t('district', language)}:</span>
+            <span class="font-medium">${props.ilce_adi || 'N/A'}</span>
           </div>
+          <div class="flex justify-between">
+            <span class="text-muted-foreground">${t('population', language)}:</span>
+            <span class="font-medium">${props.toplam_nufus?.toLocaleString() || 'N/A'}</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-muted-foreground">${t('buildings', language)}:</span>
+            <span class="font-medium">${props.toplam_bina?.toLocaleString() || 'N/A'}</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-muted-foreground">VS30:</span>
+            <span class="font-medium">${props.vs30_mean?.toFixed(1) || 'N/A'}</span>
+          </div>
+          <div class="flex items-center justify-between pt-2 border-t">
+            <span class="text-muted-foreground">Risk:</span>
+            <div class="flex items-center gap-2">
+              <div class="w-4 h-4 rounded" style="background-color: ${riskColor}"></div>
+              <span class="font-semibold">${riskScore.toFixed(3)}</span>
+            </div>
+          </div>
+          <button 
+            onclick="window.selectAndZoom('${mahId}')"
+            class="w-full mt-3 px-3 py-2 bg-primary text-primary-foreground rounded-md text-sm font-medium hover:bg-primary/90 transition-colors"
+          >
+            Seç & Zoom
+          </button>
         </div>
       </div>
     `;
@@ -195,7 +285,28 @@ export function MapContainer() {
     }
   }
 
-  // Fit map to selected cities
+  // Global function for popup button
+  useEffect(() => {
+    (window as any).selectAndZoom = (mahId: string) => {
+      toggleMah(mahId);
+      zoomToMah(mahId);
+      if (popup.current) popup.current.remove();
+    };
+  }, [toggleMah]);
+
+  // Zoom to mahalle
+  function zoomToMah(mahId: string) {
+    if (!map.current) return;
+    const bbox = allBBoxes.current[mahId];
+    if (bbox) {
+      map.current.fitBounds(
+        [[bbox[0], bbox[1]], [bbox[2], bbox[3]]], 
+        { padding: 60, duration: 800 }
+      );
+    }
+  }
+
+  // Fit to cities
   function fitToSelectedCities(cities: string[]) {
     if (!map.current || cities.length === 0) return;
 
@@ -226,20 +337,74 @@ export function MapContainer() {
   useEffect(() => {
     if (!map.current) return;
 
-    const currentStyle = getStyleUrl(theme);
-    map.current.setStyle(currentStyle as any);
+    map.current.setStyle(getStyleUrl(theme) as any);
     
     map.current.once('idle', () => {
       addLayers();
+      updateFeatureStates();
     });
   }, [theme]);
 
-  // Handle city selection changes
+  // Handle metric changes
   useEffect(() => {
-    if (selectedCities.size > 0) {
-      fitToSelectedCities(Array.from(selectedCities));
+    if (!map.current || !map.current.getLayer('mahalle-fill')) return;
+    
+    map.current.setPaintProperty('mahalle-fill', 'fill-color', getMetricPaint(metric));
+  }, [metric]);
+
+  // Handle selection changes
+  useEffect(() => {
+    updateFeatureStates();
+    
+    if (selectedMah.size > 0) {
+      const bounds = new maplibregl.LngLatBounds();
+      let hasFeatures = false;
+
+      selectedMah.forEach(mahId => {
+        const bbox = allBBoxes.current[mahId];
+        if (bbox) {
+          bounds.extend([bbox[0], bbox[1]]);
+          bounds.extend([bbox[2], bbox[3]]);
+          hasFeatures = true;
+        }
+      });
+
+      if (hasFeatures && map.current) {
+        map.current.fitBounds(bounds, { padding: 60, duration: 800 });
+      }
     }
-  }, [selectedCities]);
+  }, [selectedMah]);
+
+  // Update feature states
+  function updateFeatureStates() {
+    if (!map.current || !map.current.getSource('mahalle')) return;
+
+    // Reset all
+    citiesData.current.forEach((cityData) => {
+      cityData.features.forEach((f: any) => {
+        const mahId = String(f.properties.mah_id || f.properties.fid);
+        map.current?.setFeatureState(
+          { source: 'mahalle', id: f.id },
+          { selected: false }
+        );
+      });
+    });
+
+    // Set selected
+    selectedMah.forEach(mahId => {
+      citiesData.current.forEach((cityData) => {
+        const feature = cityData.features.find((f: any) => 
+          String(f.properties.mah_id || f.properties.fid) === mahId
+        );
+        if (feature) {
+          map.current?.setFeatureState(
+            { source: 'mahalle', id: (feature as any).id },
+            { selected: true }
+          );
+        }
+      });
+    });
+  }
 
   return (
     <div 

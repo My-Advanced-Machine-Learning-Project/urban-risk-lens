@@ -1,62 +1,88 @@
-import { useMemo } from 'react';
+import { useMemo, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { useMapState } from '@/stores/useMapState';
 import { t } from '@/lib/i18n';
 import { getRiskClass, getRiskColor } from '@/lib/riskColors';
 
-// Demo data - gerçek veri yüklendikçe güncellenecek
-const DEMO_DATA = Array.from({ length: 100 }, (_, i) => ({
-  id: i,
-  vs30: 300 + Math.random() * 400,
-  risk_score: 0.1 + Math.random() * 0.4,
-  toplam_bina: Math.floor(500 + Math.random() * 3000)
-}));
-
 export function ScatterPlot() {
-  const { language } = useMapState();
+  const { language, mahData, selectedMah, toggleMah } = useMapState();
 
   const scatterData = useMemo(() => {
-    return DEMO_DATA.map(d => ({
-      ...d,
-      riskClass: getRiskClass(d.risk_score)
-    }));
-  }, []);
+    const data: Array<{
+      id: string;
+      vs30: number;
+      risk_score: number;
+      toplam_bina: number;
+      mahalle_adi: string;
+      riskClass: string;
+      isSelected: boolean;
+    }> = [];
+    
+    mahData.forEach((mah, id) => {
+      if (mah.vs30_mean && mah.risk_score) {
+        data.push({
+          id: id.toString(),
+          vs30: mah.vs30_mean,
+          risk_score: mah.risk_score,
+          toplam_bina: mah.toplam_bina || 1000,
+          mahalle_adi: mah.mahalle_adi || 'N/A',
+          riskClass: getRiskClass(mah.risk_score),
+          isSelected: selectedMah.has(id.toString())
+        });
+      }
+    });
+    
+    return data;
+  }, [mahData, selectedMah]);
 
   // SVG dimensions
-  const width = 600;
+  const width = 700;
   const height = 400;
-  const margin = { top: 20, right: 20, bottom: 50, left: 60 };
+  const margin = { top: 20, right: 20, bottom: 60, left: 70 };
   const innerWidth = width - margin.left - margin.right;
   const innerHeight = height - margin.top - margin.bottom;
 
   // Scales
+  const xMin = 250;
+  const xMax = 750;
+  const yMin = 0;
+  const yMax = 0.6;
+
   const xScale = (value: number) => {
-    const min = 300;
-    const max = 700;
-    return margin.left + ((value - min) / (max - min)) * innerWidth;
+    return margin.left + ((value - xMin) / (xMax - xMin)) * innerWidth;
   };
 
   const yScale = (value: number) => {
-    const min = 0;
-    const max = 0.6;
-    return margin.top + innerHeight - ((value - min) / (max - min)) * innerHeight;
+    return margin.top + innerHeight - ((value - yMin) / (yMax - yMin)) * innerHeight;
   };
 
   const sizeScale = (value: number) => {
-    const min = 500;
-    const max = 3500;
-    return 3 + ((value - min) / (max - min)) * 8;
+    const min = 100;
+    const max = 5000;
+    return 3 + ((Math.min(value, max) - min) / (max - min)) * 10;
   };
 
   // Ticks
   const xTicks = [300, 400, 500, 600, 700];
-  const yTicks = [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6];
+  const yTicks = [0, 0.1, 0.2, 0.3, 0.4, 0.5];
+
+  // Handle click on scatter point
+  const handlePointClick = (mahId: string) => {
+    toggleMah(mahId);
+  };
+
+  // Global function for scatter plot clicks
+  useEffect(() => {
+    (window as any).selectScatterPoint = (mahId: string) => {
+      handlePointClick(mahId);
+    };
+  }, []);
 
   return (
     <Card>
       <CardHeader>
         <CardTitle className="text-base">
-          {t('scatterAnalysis', language)}
+          {t('scatterAnalysis', language)} (VS30 vs Risk Score)
         </CardTitle>
       </CardHeader>
       <CardContent>
@@ -68,7 +94,7 @@ export function ScatterPlot() {
             x2={width - margin.right}
             y2={height - margin.bottom}
             stroke="currentColor"
-            strokeWidth="1"
+            strokeWidth="2"
             className="text-muted-foreground"
           />
           {xTicks.map(tick => (
@@ -77,15 +103,16 @@ export function ScatterPlot() {
                 x1={xScale(tick)}
                 y1={height - margin.bottom}
                 x2={xScale(tick)}
-                y2={height - margin.bottom + 5}
+                y2={height - margin.bottom + 6}
                 stroke="currentColor"
+                strokeWidth="1"
                 className="text-muted-foreground"
               />
               <text
                 x={xScale(tick)}
                 y={height - margin.bottom + 20}
                 textAnchor="middle"
-                className="text-xs fill-muted-foreground"
+                className="text-xs fill-current"
               >
                 {tick}
               </text>
@@ -93,9 +120,9 @@ export function ScatterPlot() {
           ))}
           <text
             x={width / 2}
-            y={height - 5}
+            y={height - 10}
             textAnchor="middle"
-            className="text-sm fill-foreground font-medium"
+            className="text-sm fill-current font-semibold"
           >
             {t('vs30', language)}
           </text>
@@ -107,57 +134,98 @@ export function ScatterPlot() {
             x2={margin.left}
             y2={height - margin.bottom}
             stroke="currentColor"
-            strokeWidth="1"
+            strokeWidth="2"
             className="text-muted-foreground"
           />
           {yTicks.map(tick => (
             <g key={tick}>
               <line
-                x1={margin.left - 5}
+                x1={margin.left - 6}
                 y1={yScale(tick)}
                 x2={margin.left}
                 y2={yScale(tick)}
                 stroke="currentColor"
+                strokeWidth="1"
                 className="text-muted-foreground"
               />
               <text
-                x={margin.left - 10}
+                x={margin.left - 12}
                 y={yScale(tick)}
                 textAnchor="end"
                 alignmentBaseline="middle"
-                className="text-xs fill-muted-foreground"
+                className="text-xs fill-current"
               >
                 {tick.toFixed(1)}
               </text>
             </g>
           ))}
           <text
-            x={15}
+            x={20}
             y={height / 2}
             textAnchor="middle"
-            transform={`rotate(-90, 15, ${height / 2})`}
-            className="text-sm fill-foreground font-medium"
+            transform={`rotate(-90, 20, ${height / 2})`}
+            className="text-sm fill-current font-semibold"
           >
             {t('riskScore', language)}
           </text>
 
           {/* Data points */}
-          {scatterData.map(d => (
-            <circle
-              key={d.id}
-              cx={xScale(d.vs30)}
-              cy={yScale(d.risk_score)}
-              r={sizeScale(d.toplam_bina)}
-              fill={getRiskColor(d.riskClass)}
-              opacity={0.6}
-              className="hover:opacity-100 transition-opacity"
-            >
-              <title>
-                VS30: {d.vs30.toFixed(0)}, Risk: {d.risk_score.toFixed(3)}, Bina: {d.toplam_bina}
-              </title>
-            </circle>
-          ))}
+          {scatterData.map(d => {
+            const cx = xScale(d.vs30);
+            const cy = yScale(d.risk_score);
+            const r = sizeScale(d.toplam_bina);
+            const color = getRiskColor(d.riskClass);
+            
+            return (
+              <g key={d.id}>
+                {/* Highlight ring for selected */}
+                {d.isSelected && (
+                  <circle
+                    cx={cx}
+                    cy={cy}
+                    r={r + 4}
+                    fill="none"
+                    stroke="#ffffff"
+                    strokeWidth="2"
+                    opacity={0.8}
+                  />
+                )}
+                
+                {/* Main point */}
+                <circle
+                  cx={cx}
+                  cy={cy}
+                  r={r}
+                  fill={color}
+                  opacity={d.isSelected ? 1 : 0.6}
+                  className="cursor-pointer hover:opacity-100 transition-opacity"
+                  onClick={() => handlePointClick(d.id)}
+                  style={{ cursor: 'pointer' }}
+                >
+                  <title>
+                    {d.mahalle_adi}
+{'\n'}VS30: {d.vs30.toFixed(0)}
+{'\n'}Risk: {d.risk_score.toFixed(3)}
+{'\n'}Bina: {d.toplam_bina}
+                  </title>
+                </circle>
+              </g>
+            );
+          })}
         </svg>
+        
+        {/* Legend */}
+        <div className="mt-4 flex flex-wrap gap-3 justify-center text-xs">
+          {['veryLow', 'low', 'medium', 'high', 'veryHigh'].map(riskClass => (
+            <div key={riskClass} className="flex items-center gap-1.5">
+              <div
+                className="w-3 h-3 rounded-full"
+                style={{ backgroundColor: getRiskColor(riskClass) }}
+              />
+              <span>{t(riskClass as any, language)}</span>
+            </div>
+          ))}
+        </div>
       </CardContent>
     </Card>
   );
