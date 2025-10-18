@@ -13,12 +13,12 @@ const normalizeTr = (s: string = '') =>
    .replace(/Ü/g, 'U').replace(/ü/g, 'u')
    .toLowerCase().trim();
 
-// Map any city name variant to stable key
+// Map any city name variant to stable key (lowercase)
 const cityKeyFromName = (name: string): string => {
   const n = normalizeTr(name);
-  if (n.includes('istanbul')) return 'İstanbul';
-  if (n.includes('ankara')) return 'Ankara';
-  return name; // fallback to original
+  if (n.includes('istanbul')) return 'istanbul';
+  if (n.includes('ankara')) return 'ankara';
+  return n; // fallback to normalized
 };
 
 // Safe number parsing
@@ -52,28 +52,38 @@ export interface CityData {
   cityInfo?: CityInfo;
 }
 
-const CITY_CONFIG: Record<string, Record<number, { geo: string; csv: string }>> = {
-  'İstanbul': {
-    2025: {
-      geo: '/data/ISTANBUL_MAHALLE_956_FINAL.geojson',
-      csv: '/data/2025_istanbul.csv'
-    },
-    2026: {
-      geo: '/data/ISTANBUL_MAHALLE_956_FINAL.geojson',
-      csv: '/data/2026_istanbul.csv'
-    }
+const CITY_CONFIG: Record<string, { geo: string }> = {
+  'istanbul': {
+    geo: '/data/ISTANBUL_MAHALLE_956_FINAL.geojson'
   },
-  'Ankara': {
-    2025: {
-      geo: '/data/ankara_mahalle_risk.geojson',
-      csv: '/data/2025_ankara.csv'
-    },
-    2026: {
-      geo: '/data/ankara_mahalle_risk.geojson',
-      csv: '/data/2026_ankara.csv'
-    }
+  'ankara': {
+    geo: '/data/ankara_mahalle_risk.geojson'
   }
 };
+
+// Try multiple CSV filename patterns
+async function resolveCityCsv(year: number, cityKey: string): Promise<string> {
+  const candidates = [
+    `/data/${year}_${cityKey}.csv`,
+    `/data/${cityKey}_${year}.csv`,
+    `/data/${year}/${cityKey}.csv`
+  ];
+  
+  for (const url of candidates) {
+    try {
+      const res = await fetch(url, { cache: 'no-store' });
+      if (res.ok) {
+        console.info(`[DataLoader] ✓ Found CSV: ${url}`);
+        return await res.text();
+      }
+    } catch (e) {
+      // Try next candidate
+    }
+  }
+  
+  console.warn(`[DataLoader] ⚠ CSV not found for ${cityKey} ${year}, tried:`, candidates);
+  return ''; // Return empty instead of throwing
+}
 
 // Parse CSV text to array of objects (handles quoted values)
 function parseCSV(text: string): Record<string, any>[] {
@@ -164,29 +174,22 @@ export async function loadCityData(cityName: string, year: number = 2025): Promi
     return null;
   }
   
-  const config = cityConfig[year as 2025 | 2026];
-  if (!config) {
-    console.warn(`No data config for city: ${cityName} year: ${year}`);
-    return null;
-  }
-  
   try {
-    // Fetch GeoJSON and CSV in parallel
-    const [geoResponse, csvResponse] = await Promise.all([
-      fetch(config.geo),
-      fetch(config.csv)
+    // Fetch GeoJSON and CSV with flexible path resolution
+    const [geoResponse, csvText] = await Promise.all([
+      fetch(cityConfig.geo, { cache: 'no-store' }),
+      resolveCityCsv(year, normalizedKey)
     ]);
     
-    if (!geoResponse.ok || !csvResponse.ok) {
-      throw new Error('Failed to fetch data');
+    if (!geoResponse.ok) {
+      throw new Error(`Failed to fetch GeoJSON: ${cityConfig.geo}`);
     }
     
     const geojson = await geoResponse.json();
-    const csvText = await csvResponse.text();
-    const csvData = parseCSV(csvText).map(row => ({
+    const csvData: any[] = csvText ? parseCSV(csvText).map(row => ({
       ...row,
       city: normalizedKey
-    }));
+    })) : [];
     
     console.info(`[DataLoader] ${normalizedKey} - Raw data:`, {
       geoFeatures: geojson.features?.length,
@@ -195,69 +198,70 @@ export async function loadCityData(cityName: string, year: number = 2025): Promi
       sampleCsvKeys: csvData[0] ? Object.keys(csvData[0]).slice(0, 10) : []
     });
     
-    // Join data - NOTE: csvData first, then features!
+    // Join data - KEEP ALL FEATURES, never drop any
     const { features: joinedFeatures } = joinData(csvData, geojson.features);
     
-    // Enhance joined features with safe property copying and ID assignment
+    // Build CSV lookup by mah_id for safe data merging
+    const csvByMahId = new Map<string, any>();
+    csvData.forEach(row => {
+      const id = String(row.mah_id || row.MAH_ID || row.id || '').trim();
+      if (id) csvByMahId.set(id, row);
+    });
+    
+    // Enhance ALL features with safe defaults (never drop features without CSV match)
     joinedFeatures.forEach((feature: any) => {
-      const props = feature.properties;
-      const matchingRow = csvData.find((row: any) => {
-        const rowId = String(row.mah_id || row.fid || '');
-        const featId = String(props.mah_id || props.fid || '');
-        return rowId === featId;
-      });
+      const props = feature.properties || {};
+      const mahId = String(props.mah_id || props.fid || '').trim();
+      const matchingRow = mahId ? csvByMahId.get(mahId) : null;
       
-      if (matchingRow) {
-        // Safe numeric assignments with fallbacks
-        props.risk_score = getNum((matchingRow as any).risk_score) ?? props.risk_score ?? 0;
-        props.toplam_nufus = getNum((matchingRow as any).toplam_nufus) ?? props.toplam_nufus ?? 0;
-        props.toplam_bina = getNum((matchingRow as any).toplam_bina) ?? props.toplam_bina ?? 0;
-        props.vs30_mean = getNum((matchingRow as any).vs30_mean) ?? getNum((matchingRow as any).vs30) ?? props.vs30_mean ?? -1;
-        
-        // City/district names with all variant field names
-        const ilceValue = (matchingRow as any).ilce_adi ?? (matchingRow as any).ilce ?? (matchingRow as any).district;
-        if (ilceValue) {
-          props.ilce_adi = ilceValue;
-          props.ilce = ilceValue;  // Duplicate for compatibility
-          props.district = ilceValue;
-        }
-        
-        const ilValue = (matchingRow as any).il_adi ?? (matchingRow as any).sehir ?? (matchingRow as any).city ?? normalizedKey;
-        if (ilValue) {
-          props.il_adi = ilValue;
-          props.il = ilValue;  // Duplicate for compatibility
-          props.city = ilValue;
-        }
+      // Always set properties with safe defaults
+      props.city_key = normalizedKey;
+      props.risk_score = getNum(matchingRow?.risk_score) ?? props.risk_score ?? 0;
+      props.toplam_nufus = getNum(matchingRow?.toplam_nufus) ?? props.toplam_nufus ?? 0;
+      props.toplam_bina = getNum(matchingRow?.toplam_bina) ?? props.toplam_bina ?? 0;
+      props.vs30_mean = getNum(matchingRow?.vs30_mean) ?? getNum(matchingRow?.vs30) ?? props.vs30_mean;
+      
+      // City/district names with all variant field names
+      const ilceValue = matchingRow?.ilce_adi ?? matchingRow?.ilce ?? matchingRow?.district ?? props.ilce_adi;
+      if (ilceValue) {
+        props.ilce_adi = ilceValue;
+        props.ilce = ilceValue;
+        props.district = ilceValue;
       }
       
-      // Ensure city/district are set even if no CSV match (use normalized city name as fallback)
-      if (!props.il_adi && !props.il && !props.city) {
-        props.il_adi = normalizedKey;
-        props.il = normalizedKey;
-        props.city = normalizedKey;
-      }
+      const ilValue = matchingRow?.il_adi ?? matchingRow?.sehir ?? matchingRow?.city ?? normalizedKey;
+      props.il_adi = ilValue;
+      props.il = ilValue;
+      props.city = ilValue;
       
       // Ensure stable feature ID for feature-state support
       // Prefix with city to avoid ID collisions between cities
-      const fid = String(props.mah_id ?? props.fid ?? feature.id ?? '');
+      const fid = String(props.mah_id || props.fid || feature.id || '').trim();
       if (fid) {
-        feature.id = `${normalizedKey.toLowerCase()}-${fid}`;
-        props.mah_id = feature.id;  // Update property to match
+        feature.id = `${normalizedKey}-${fid}`;
+        props.mah_id = feature.id;
       }
+      
+      feature.properties = props;
     });
     
-    // Verify join and data quality
+    // Verify data quality (but keep ALL features regardless)
     const withScore = joinedFeatures.filter(f => (f.properties?.risk_score ?? 0) > 0).length;
     const withId = joinedFeatures.filter(f => f.id != null).length;
-    console.info(`[DataLoader] ${normalizedKey} - Join result:`, {
+    console.info(`[DataLoader] ${normalizedKey} year ${year}:`, {
       total: joinedFeatures.length,
       withScore: withScore,
       withId: withId,
-      configFiles: config
+      csvRows: csvData.length,
+      geoFile: cityConfig.geo
     });
     
     if (joinedFeatures.length === 0) {
-      console.warn(`[DataLoader] WARNING: ${normalizedKey} loaded ZERO features!`);
+      console.warn(`[DataLoader] ⚠ WARNING: ${normalizedKey} loaded ZERO features!`);
+    }
+    
+    if (csvData.length === 0) {
+      console.warn(`[DataLoader] ⚠ No CSV data for ${normalizedKey} year ${year} - features will have default values`);
     }
     
     // Sample feature check

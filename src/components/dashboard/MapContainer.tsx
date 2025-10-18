@@ -172,13 +172,13 @@ export function MapContainer() {
     return () => clearTimeout(timer);
   }, [sidebarOpen]);
 
-  // Reload data when year changes
+  // Reload data when year changes - full cleanup
   useEffect(() => {
     if (!map.current || !map.current.isStyleLoaded()) return;
     
-    console.info('[MapContainer] Year changed to:', year, '- reloading data');
+    console.info('[MapContainer] Year changed to:', year, '- reloading all data');
     
-    // Remove existing layers and source
+    // Clear map layers before reloading
     if (map.current.getLayer('mahalle-fill')) {
       map.current.removeLayer('mahalle-fill');
     }
@@ -197,84 +197,88 @@ export function MapContainer() {
   async function loadInitialData() {
     if (!map.current) return;
     
-    // Use selected cities or default to both
+    // Always load both cities to ensure data availability
     const cities = selectedCities.size > 0 
       ? Array.from(selectedCities) 
       : ['İstanbul', 'Ankara'];
     
     console.info('[MapContainer] Loading cities:', cities, 'year:', year);
     
+    // Clear previous data to prevent stale data
+    featuresRef.current = [];
+    allBBoxes.current = {};
+    
     const dataMap = await loadCitiesData(cities, year);
-    
-    // Debug: Log per-city feature counts
-    const citySizes = [...dataMap.entries()].map(([name, data]) => 
-      `${name}: ${data.features.length} features`
-    );
-    console.info('[MapContainer] Data sizes:', citySizes.join(', '));
-    citiesData.current = dataMap;
-    
-    // Build mahData for sidebar and collect normalized data
-    const mahDataMap = new Map();
-    const allNormalizedFeatures: any[] = [];
-    const combinedCityIndex = new Map();
-    
-    dataMap.forEach((cityData, cityName) => {
-      Object.assign(allBBoxes.current, cityData.bboxes);
       
-      // Store raw features for sidebar compatibility
-      cityData.features.forEach(f => {
-        const id = String(f.properties.mah_id || f.properties.fid);
-        mahDataMap.set(id, f.properties);
+      // Debug: Log per-city feature counts
+      const citySizes = [...dataMap.entries()].map(([name, cityData]) => 
+        `${name}=${cityData.features.length}`
+      ).join(', ');
+      console.info(`[MapContainer] ✓ Data loaded for year ${year}:`, citySizes);
+      citiesData.current = dataMap;
+    
+      // Build mahData for sidebar and collect normalized data
+      const mahDataMap = new Map();
+      const allNormalizedFeatures: any[] = [];
+      const combinedCityIndex = new Map();
+      
+      dataMap.forEach((cityData, cityName) => {
+        Object.assign(allBBoxes.current, cityData.bboxes);
+        
+        // Store raw features for sidebar compatibility
+        cityData.features.forEach(f => {
+          const id = String(f.properties.mah_id || f.properties.fid);
+          mahDataMap.set(id, f.properties);
+        });
+        
+        // Collect normalized features
+        if (cityData.normalized) {
+          allNormalizedFeatures.push(...cityData.normalized);
+        }
+        
+        // Merge city info into combined index
+        if (cityData.cityInfo) {
+          combinedCityIndex.set(cityData.cityInfo.key, cityData.cityInfo);
+        }
       });
       
-      // Collect normalized features
-      if (cityData.normalized) {
-        allNormalizedFeatures.push(...cityData.normalized);
-      }
+      console.info('[MapContainer] Data loaded:', {
+        mahDataSize: mahDataMap.size,
+        normalizedFeatures: allNormalizedFeatures.length,
+        cityIndexSize: combinedCityIndex.size,
+        cityKeys: [...combinedCityIndex.keys()]
+      });
       
-      // Merge city info into combined index
-      if (cityData.cityInfo) {
-        combinedCityIndex.set(cityData.cityInfo.key, cityData.cityInfo);
-      }
-    });
-    
-    console.info('[MapContainer] Data loaded:', {
-      mahDataSize: mahDataMap.size,
-      normalizedFeatures: allNormalizedFeatures.length,
-      cityIndexSize: combinedCityIndex.size,
-      cityKeys: [...combinedCityIndex.keys()]
-    });
-    
-    // Additional diagnostics
-    const istanbulFeatures = allNormalizedFeatures.filter(f => f.cityKey === 'istanbul');
-    const ankaraFeatures = allNormalizedFeatures.filter(f => f.cityKey === 'ankara');
-    const istanbulWithScore = istanbulFeatures.filter(f => f.risk_score > 0);
-    const ankaraWithScore = ankaraFeatures.filter(f => f.risk_score > 0);
-    
-    console.info('[MapContainer COVERAGE]:', {
-      istanbul: `${istanbulWithScore.length}/${istanbulFeatures.length} have risk_score`,
-      ankara: `${ankaraWithScore.length}/${ankaraFeatures.length} have risk_score`,
-    });
-    
-    setMahData(mahDataMap);
-    setAllFeatures(allNormalizedFeatures);
-    setCityIndex(combinedCityIndex);
-    
-    console.info('[MapContainer] ✅ City index updated:', {
-      cities: [...combinedCityIndex.keys()],
-      totalDistricts: [...combinedCityIndex.values()].reduce((sum, c) => sum + c.districts.size, 0),
-      totalNeighborhoods: allNormalizedFeatures.length
-    });
-    
-    addLayers();
-    fitToSelectedCities(cities);
-    
-    // Trigger viewport stats recalculation after data loads
-    setTimeout(() => {
-      if (map.current) {
-        map.current.fire('moveend');
-      }
-    }, 100);
+      // Additional diagnostics
+      const istanbulFeatures = allNormalizedFeatures.filter(f => f.cityKey === 'istanbul');
+      const ankaraFeatures = allNormalizedFeatures.filter(f => f.cityKey === 'ankara');
+      const istanbulWithScore = istanbulFeatures.filter(f => f.risk_score > 0);
+      const ankaraWithScore = ankaraFeatures.filter(f => f.risk_score > 0);
+      
+      console.info('[MapContainer COVERAGE]:', {
+        istanbul: `${istanbulWithScore.length}/${istanbulFeatures.length} have risk_score`,
+        ankara: `${ankaraWithScore.length}/${ankaraFeatures.length} have risk_score`,
+      });
+      
+      setMahData(mahDataMap);
+      setAllFeatures(allNormalizedFeatures);
+      setCityIndex(combinedCityIndex);
+      
+      console.info('[MapContainer] ✅ City index updated:', {
+        cities: [...combinedCityIndex.keys()],
+        totalDistricts: [...combinedCityIndex.values()].reduce((sum, c) => sum + c.districts.size, 0),
+        totalNeighborhoods: allNormalizedFeatures.length
+      });
+      
+      addLayers();
+      fitToSelectedCities(cities);
+      
+      // Trigger viewport stats recalculation after data loads
+      setTimeout(() => {
+        if (map.current) {
+          map.current.fire('moveend');
+        }
+      }, 100);
   }
 
   // Add layers
