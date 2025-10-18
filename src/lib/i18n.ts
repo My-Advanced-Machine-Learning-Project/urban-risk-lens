@@ -3,6 +3,7 @@ export const translations = {
     // Sidebar
     citySelection: 'Risk Haritası',
     selected: 'Seçilen',
+    year: 'Yıl',
     
     // Risk levels
     veryLow: 'Çok Düşük',
@@ -18,11 +19,23 @@ export const translations = {
     district: 'İlçe',
     population: 'Nüfus',
     buildings: 'Bina Sayısı',
+    
+    // Metrics
+    totalDistricts: 'Toplam Mahalle',
+    averageRisk: 'Ortalama Risk',
+    highRiskAreas: 'Yüksek Riskli Alanlar',
+    
+    // Analytics
+    riskDistribution: 'Risk Dağılımı',
+    scatterAnalysis: 'Dağılım Analizi',
+    vs30: 'VS30',
+    riskScore: 'Risk Skoru',
   },
   en: {
     // Sidebar
     citySelection: 'Risk Map',
     selected: 'Selected',
+    year: 'Year',
     
     // Risk levels
     veryLow: 'Very Low',
@@ -38,6 +51,17 @@ export const translations = {
     district: 'District',
     population: 'Population',
     buildings: 'Building Count',
+    
+    // Metrics
+    totalDistricts: 'Total Neighborhoods',
+    averageRisk: 'Average Risk',
+    highRiskAreas: 'High Risk Areas',
+    
+    // Analytics
+    riskDistribution: 'Risk Distribution',
+    scatterAnalysis: 'Scatter Analysis',
+    vs30: 'VS30',
+    riskScore: 'Risk Score',
   },
 };
 

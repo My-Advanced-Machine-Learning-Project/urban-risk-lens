@@ -7,8 +7,10 @@ export function HeaderBar() {
   const {
     theme,
     language,
+    year,
     toggleTheme,
     setLanguage,
+    setYear,
     toggleSidebar
   } = useMapState();
 
@@ -33,8 +35,28 @@ export function HeaderBar() {
         </h1>
       </div>
 
-      {/* Right: Language & Theme */}
+      {/* Right: Year, Language & Theme */}
       <div className="flex items-center gap-2">
+        {/* Year Toggle */}
+        <div className="flex gap-1 bg-muted rounded-lg p-1">
+          <Button
+            variant={year === 2025 ? 'secondary' : 'ghost'}
+            size="sm"
+            onClick={() => setYear(2025)}
+            className="h-8 px-3"
+          >
+            2025
+          </Button>
+          <Button
+            variant={year === 2026 ? 'secondary' : 'ghost'}
+            size="sm"
+            onClick={() => setYear(2026)}
+            className="h-8 px-3"
+          >
+            2026
+          </Button>
+        </div>
+
         {/* Language Toggle */}
         <Button 
           variant="ghost" 
