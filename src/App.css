@@ -41,29 +41,69 @@
   color: #888;
 }
 
-/* ---- Map Legend (collapsible) ---- */
+/* ---- Map Legend (collapsible, professional) ---- */
 .map-legend .legend-card{
-  background: rgba(17, 24, 39, 0.9); /* dark card */
+  background: rgba(17, 24, 39, 0.93);
   color: #e5e7eb;
-  backdrop-filter: blur(8px);
-  border-radius: 14px;
-  padding: 10px 12px;
+  backdrop-filter: blur(12px);
+  border-radius: 12px;
+  padding: 12px 14px;
   max-width: 280px;
-  box-shadow: 0 6px 20px rgba(0,0,0,.35);
+  box-shadow: 0 6px 24px rgba(0,0,0,.45);
+  border: 1px solid rgba(255,255,255,0.12);
 }
 .map-legend .legend-header{
-  display: flex; align-items: center; justify-content: space-between;
-  gap: 8px; margin-bottom: 6px;
+  display: flex; 
+  align-items: center; 
+  justify-content: space-between;
+  gap: 8px; 
+  margin-bottom: 8px;
 }
-.map-legend .legend-title{ font-weight: 700; font-size: 15px; }
+.map-legend .legend-title{ 
+  font-weight: 700; 
+  font-size: 15px;
+  letter-spacing: 0.01em;
+}
 .map-legend .legend-toggle{
-  width: 28px; height: 28px; border-radius: 8px; border: 1px solid #334155;
-  color:#e5e7eb; background: rgba(51,65,85,.35); cursor: pointer;
+  width: 28px; 
+  height: 28px; 
+  border-radius: 8px; 
+  border: 1px solid rgba(255,255,255,0.2);
+  color: #e5e7eb; 
+  background: rgba(51,65,85,.4); 
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 600;
+  transition: all 0.2s ease;
 }
-.map-legend .legend-item{ display:flex; align-items:center; gap:10px; margin: 6px 0; }
-.map-legend .legend-swatch{ width:22px; height:14px; border-radius: 4px; border: 1px solid rgba(255,255,255,.5); }
-.map-legend .legend-label{ font-size: 13px; }
-.map-legend .legend-sub{ font-size: 12px; opacity: .8; margin-top: 4px; }
+.map-legend .legend-toggle:hover{
+  background: rgba(51,65,85,.6);
+  border-color: rgba(255,255,255,0.3);
+}
+.map-legend .legend-item{ 
+  display: flex; 
+  align-items: center; 
+  gap: 10px; 
+  margin: 7px 0;
+}
+.map-legend .legend-swatch{ 
+  width: 24px; 
+  height: 16px; 
+  border-radius: 5px; 
+  border: 1.5px solid rgba(255,255,255,.6);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+.map-legend .legend-label{ 
+  font-size: 13px;
+  font-weight: 500;
+}
+.map-legend .legend-sub{ 
+  font-size: 12px; 
+  opacity: .75; 
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
 
 /* Mobilde kartı biraz daha küçült */
 @media (max-width: 768px){
@@ -72,26 +112,36 @@
   .map-legend .legend-item{ margin: 4px 0; }
 }
 
-/* ---- Scatter Legend (right, compact) ---- */
+/* ---- Scatter Legend (left, vertical, professional) ---- */
 .scatter-legend-vertical{
-  display: flex; flex-direction: column; gap: 8px;
-  padding: 8px 10px;
-  background: rgba(255,255,255,0.08);
-  backdrop-filter: blur(8px);
-  border-radius: 8px;
-  border: 1px solid rgba(255,255,255,0.1);
+  display: flex; 
+  flex-direction: column; 
+  gap: 6px;
+  padding: 12px 14px;
+  background: rgba(17, 24, 39, 0.92);
+  backdrop-filter: blur(12px);
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.15);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+  min-width: 120px;
 }
 .scatter-legend-vertical .legend-item{
-  display: flex; align-items: center; gap: 8px; font-size: 12px;
+  display: flex; 
+  align-items: center; 
+  gap: 10px; 
+  font-size: 13px;
 }
 .scatter-legend-vertical .legend-swatch{
-  width: 16px; height: 16px; border-radius: 50%; 
-  border: 2px solid rgba(255,255,255,0.8);
-  box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+  width: 20px; 
+  height: 20px; 
+  border-radius: 50%; 
+  border: 2.5px solid rgba(255,255,255,0.9);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.4);
   flex-shrink: 0;
 }
 .scatter-legend-vertical .legend-label{ 
   white-space: nowrap;
-  color: var(--foreground);
-  font-weight: 500;
+  color: #e5e7eb;
+  font-weight: 600;
+  font-size: 12px;
 }

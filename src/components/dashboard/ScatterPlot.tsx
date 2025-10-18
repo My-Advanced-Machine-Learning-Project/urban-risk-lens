@@ -478,8 +478,8 @@ export function ScatterPlot() {
         </svg>
         </div>
         
-        {/* Legend - Right side, vertical */}
-        <div className="absolute right-4 top-1/2 transform -translate-y-1/2 scatter-legend-vertical">
+        {/* Legend - Left side, vertical */}
+        <div className="absolute left-4 top-1/2 transform -translate-y-1/2 scatter-legend-vertical">
           {['veryLow', 'low', 'medium', 'high', 'veryHigh'].map(riskClass => (
             <div key={riskClass} className="legend-item">
               <div
