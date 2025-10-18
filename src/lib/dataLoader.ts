@@ -25,14 +25,26 @@ export interface CityData {
   cityInfo?: CityInfo;
 }
 
-const CITY_CONFIG: Record<string, { geo: string; csv: string }> = {
+const CITY_CONFIG: Record<string, Record<number, { geo: string; csv: string }>> = {
   'İstanbul': {
-    geo: '/data/ISTANBUL_MAHALLE_956_FINAL.geojson',
-    csv: '/data/2025_istanbul.csv'
+    2025: {
+      geo: '/data/ISTANBUL_MAHALLE_956_FINAL.geojson',
+      csv: '/data/2025_istanbul.csv'
+    },
+    2026: {
+      geo: '/data/ISTANBUL_MAHALLE_956_FINAL.geojson',
+      csv: '/data/2026_istanbul.csv'
+    }
   },
   'Ankara': {
-    geo: '/data/ankara_mahalle_risk.geojson',
-    csv: '/data/2025_ankara.csv'
+    2025: {
+      geo: '/data/ankara_mahalle_risk.geojson',
+      csv: '/data/2025_ankara.csv'
+    },
+    2026: {
+      geo: '/data/ankara_mahalle_risk.geojson',
+      csv: '/data/2026_ankara.csv'
+    }
   }
 };
 
@@ -115,10 +127,16 @@ function calculateFeatureBBox(feature: MahalleFeature): [number, number, number,
 }
 
 // Load data for a specific city
-export async function loadCityData(cityName: string): Promise<CityData | null> {
-  const config = CITY_CONFIG[cityName];
-  if (!config) {
+export async function loadCityData(cityName: string, year: number = 2025): Promise<CityData | null> {
+  const cityConfig = CITY_CONFIG[cityName];
+  if (!cityConfig) {
     console.warn(`No data config for city: ${cityName}`);
+    return null;
+  }
+  
+  const config = cityConfig[year as 2025 | 2026];
+  if (!config) {
+    console.warn(`No data config for city: ${cityName} year: ${year}`);
     return null;
   }
   
@@ -200,11 +218,11 @@ export async function loadCityData(cityName: string): Promise<CityData | null> {
 }
 
 // Load multiple cities
-export async function loadCitiesData(cityNames: string[]): Promise<Map<string, CityData>> {
+export async function loadCitiesData(cityNames: string[], year: number = 2025): Promise<Map<string, CityData>> {
   const dataMap = new Map<string, CityData>();
   
   const results = await Promise.all(
-    cityNames.map(city => loadCityData(city))
+    cityNames.map(city => loadCityData(city, year))
   );
   
   cityNames.forEach((city, idx) => {

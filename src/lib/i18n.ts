@@ -1,5 +1,8 @@
 export const translations = {
   tr: {
+    // App
+    appTitle: 'Türkiye Risk Haritası',
+    
     // Sidebar
     citySelection: 'Risk Haritası',
     selected: 'Seçilen',
@@ -56,6 +59,9 @@ export const translations = {
     buildingsDesc: 'Toplam bina sayısı',
   },
   en: {
+    // App
+    appTitle: 'Turkey Risk Map',
+    
     // Sidebar
     citySelection: 'Risk Map',
     selected: 'Selected',

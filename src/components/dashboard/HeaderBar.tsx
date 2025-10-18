@@ -1,6 +1,7 @@
 import { Moon, Sun, Menu, Globe } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useMapState } from '@/stores/useMapState';
+import { t } from '@/lib/i18n';
 import { useEffect } from 'react';
 
 export function HeaderBar() {
@@ -31,7 +32,7 @@ export function HeaderBar() {
           <Menu className="h-5 w-5" />
         </Button>
         <h1 className="text-lg font-semibold hidden sm:block">
-          Türkiye Risk Haritası
+          {t('appTitle', language)}
         </h1>
       </div>
 

@@ -112,6 +112,7 @@ export function MapContainer() {
     selectedCities,
     selectedMah,
     metric,
+    year,
     setMahData,
     setCityIndex,
     setAllFeatures,
@@ -156,14 +157,35 @@ export function MapContainer() {
     };
   }, []);
 
+  // Reload data when year changes
+  useEffect(() => {
+    if (!map.current || !map.current.isStyleLoaded()) return;
+    
+    console.info('[MapContainer] Year changed to:', year, '- reloading data');
+    
+    // Remove existing layers and source
+    if (map.current.getLayer('mahalle-fill')) {
+      map.current.removeLayer('mahalle-fill');
+    }
+    if (map.current.getLayer('mahalle-line')) {
+      map.current.removeLayer('mahalle-line');
+    }
+    if (map.current.getSource('mahalle')) {
+      map.current.removeSource('mahalle');
+    }
+    
+    // Reload data with new year
+    loadInitialData();
+  }, [year]);
+
   // Load initial data
   async function loadInitialData() {
     if (!map.current) return;
     
     const cities = ['İstanbul', 'Ankara'];
-    console.info('[MapContainer] Loading cities:', cities);
+    console.info('[MapContainer] Loading cities:', cities, 'year:', year);
     
-    const dataMap = await loadCitiesData(cities);
+    const dataMap = await loadCitiesData(cities, year);
     citiesData.current = dataMap;
     
     // Build mahData for sidebar and collect normalized data
@@ -322,6 +344,10 @@ export function MapContainer() {
             </span>
           </div>
           <div class="flex justify-between">
+            <span class="text-gray-600">${t('riskScore', language)}:</span>
+            <span class="font-semibold text-black">${riskScore.toFixed(3)}</span>
+          </div>
+          <div class="flex justify-between">
             <span class="text-gray-600">${t('population', language)}:</span>
             <span class="font-medium text-black">${props.toplam_nufus?.toLocaleString() || 'N/A'}</span>
           </div>
@@ -425,6 +451,10 @@ export function MapContainer() {
                     <span style="padding: 4px 12px; border-radius: 8px; font-weight: 500; color: white; font-size: 14px; background-color: ${riskColor}">
                       ${riskLabel}
                     </span>
+                  </div>
+                  <div style="display: flex; justify-content: space-between; margin-bottom: 6px;">
+                    <span style="color: #666; font-size: 14px;">${t('riskScore', language)}:</span>
+                    <span style="font-weight: 600; color: #000; font-size: 14px;">${riskScore.toFixed(3)}</span>
                   </div>
                   <div style="display: flex; justify-content: space-between; margin-bottom: 6px;">
                     <span style="color: #666; font-size: 14px;">${t('population', language)}:</span>
