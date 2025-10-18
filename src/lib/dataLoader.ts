@@ -105,11 +105,17 @@ export async function loadCityData(cityName: string): Promise<CityData | null> {
     const csvText = await csvResponse.text();
     const csvData = parseCSV(csvText);
     
-    // Join data
-    const joinedGeoJSON = joinData(geojson, csvData);
+    // Join data - NOTE: csvData first, then features!
+    const { features: joinedFeatures } = joinData(csvData, geojson.features);
+    
+    // Reconstruct GeoJSON
+    const joinedGeoJSON = {
+      ...geojson,
+      features: joinedFeatures
+    };
     
     // Build normalized index
-    const { normalized, cityIndex } = buildCityIndex(joinedGeoJSON.features);
+    const { normalized, cityIndex } = buildCityIndex(joinedFeatures);
     
     // Calculate bboxes
     const bboxes: Record<string, [number, number, number, number]> = {};
