@@ -4,12 +4,12 @@ export const toKey = (s: string): string => {
   return s
     .normalize('NFD')
     .replace(/\p{Diacritic}/gu, '')
-    .replace(/ş/g, 's').replace(/Ş/g, 'S')
-    .replace(/ı/g, 'i').replace(/İ/g, 'I')
-    .replace(/ğ/g, 'g').replace(/Ğ/g, 'G')
-    .replace(/ç/g, 'c').replace(/Ç/g, 'C')
-    .replace(/ö/g, 'o').replace(/Ö/g, 'O')
-    .replace(/ü/g, 'u').replace(/Ü/g, 'U')
+    .replace(/ş/gi, 's')
+    .replace(/ı/gi, 'i')
+    .replace(/ğ/gi, 'g')
+    .replace(/ç/gi, 'c')
+    .replace(/ö/gi, 'o')
+    .replace(/ü/gi, 'u')
     .toLowerCase()
     .trim();
 };
