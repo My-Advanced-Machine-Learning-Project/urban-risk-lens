@@ -16,6 +16,26 @@ import { cn } from '@/lib/utils';
 
 const CITIES = ['İstanbul', 'Ankara'];
 
+// Safe string conversion for sorting
+const toStr = (v: unknown): string => {
+  if (typeof v === 'string') return v;
+  if (v && typeof v === 'object') {
+    const obj = v as any;
+    if ('name' in obj) return String(obj.name ?? '');
+    if ('label' in obj) return String(obj.label ?? '');
+    if ('properties' in obj && obj.properties?.name) return String(obj.properties.name);
+    if ('mahalle_adi' in obj) return String(obj.mahalle_adi ?? '');
+  }
+  return String(v ?? '');
+};
+
+// Turkish locale-aware sorting
+const sortByName = (a: any, b: any): number => {
+  const aStr = toStr(a);
+  const bStr = toStr(b);
+  return aStr.localeCompare(bStr, 'tr', { sensitivity: 'base', numeric: true });
+};
+
 interface District {
   name: string;
   neighborhoods: Array<{ id: string; name: string }>;
@@ -70,14 +90,14 @@ export function Sidebar() {
       
       cityMap[city][district].push({
         id: idStr,
-        name: mah.mahalle_adi
+        name: toStr(mah.mahalle_adi)
       });
     });
     
     // Sort neighborhoods alphabetically within each district
     Object.values(cityMap).forEach(districts => {
       Object.values(districts).forEach(neighborhoods => {
-        neighborhoods.sort((a, b) => a.name.localeCompare(b.name, 'tr'));
+        neighborhoods.sort(sortByName);
       });
     });
     
@@ -262,7 +282,7 @@ export function Sidebar() {
                   {/* Districts */}
                   {isCityExpanded && (
                     <div className="ml-2 mt-1 space-y-1">
-                      {Object.entries(districts).sort((a, b) => a[0].localeCompare(b[0], 'tr')).map(([district, neighborhoods]) => {
+                      {Object.entries(districts).sort((a, b) => toStr(a[0]).localeCompare(toStr(b[0]), 'tr')).map(([district, neighborhoods]) => {
                         const districtKey = `${city}-${district}`;
                         const isDistrictExpanded = expandedDistricts.has(districtKey);
                         
