@@ -39,9 +39,9 @@ interface MapState {
 
 export const useMapState = create<MapState>((set) => ({
   // Initial state
-  theme: 'light',
+  theme: 'dark',
   language: 'tr',
-  sidebarOpen: true,
+  sidebarOpen: false,
   viewMode: 'choropleth',
   metric: 'risk_score',
   year: 2025,
