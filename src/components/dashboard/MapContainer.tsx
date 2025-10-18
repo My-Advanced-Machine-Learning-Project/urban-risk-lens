@@ -87,6 +87,19 @@ function getMetricPaint(metric: string, year: number): any {
   return getMetricPaint('risk_score', year);
 }
 
+// number formatting helpers (TR/EN duyarlı)
+const makeFormatters = (lang: string) => {
+  const locale = lang === 'tr' ? 'tr-TR' : 'en-US';
+  return {
+    int: (n?: number | null) =>
+      n == null ? '—' : new Intl.NumberFormat(locale, { maximumFractionDigits: 0 }).format(n),
+    float: (n?: number | null, d = 3) =>
+      n == null ? '—' : new Intl.NumberFormat(locale, { minimumFractionDigits: d, maximumFractionDigits: d }).format(n),
+    proper: (s?: string | null) =>
+      s ? s.charAt(0).toLocaleUpperCase('tr-TR') + s.slice(1) : '',
+  };
+};
+
 export function MapContainer() {
   const mapContainer = useRef<HTMLDivElement>(null);
   const map = useRef<maplibregl.Map | null>(null);
@@ -484,10 +497,12 @@ export function MapContainer() {
     const riskColor = getRiskColor(riskClass);
     const riskLabel = t(riskClass as any, language);
     
+    const { int: fmtInt, float: fmtFloat, proper } = makeFormatters(language);
+    
     // Build location string conditionally (no "N/A")
     const locParts = [];
-    if (p.ilce_adi) locParts.push(p.ilce_adi);
-    if (p.il_adi) locParts.push(p.il_adi);
+    if (p.ilce_adi) locParts.push(proper(p.ilce_adi));
+    if (p.il_adi) locParts.push(proper(p.il_adi));
     const locationStr = locParts.join(' • ') || '—';
     
     // Theme-aware popup colors
@@ -508,7 +523,7 @@ export function MapContainer() {
         <div style="font-size:13px;color:${valueColor};">
           <div style="display:flex;justify-content:space-between;margin:4px 0;">
             <span style="color:${labelColor};">Risk</span>
-            <span style="font-weight:600;color:${valueColor};">${riskScore.toFixed(3)}</span>
+            <span style="font-weight:600;color:${valueColor};">${fmtFloat(riskScore)}</span>
           </div>
           <div style="display:flex;justify-content:space-between;margin:4px 0;">
             <span style="color:${labelColor};">Sınıf</span>
@@ -516,11 +531,11 @@ export function MapContainer() {
           </div>
           <div style="display:flex;justify-content:space-between;margin:4px 0;">
             <span style="color:${labelColor};">${t('population', language)}</span>
-            <span style="font-weight:500;color:${valueColor};">${population.toLocaleString()}</span>
+            <span style="font-weight:500;color:${valueColor};">${fmtInt(population)}</span>
           </div>
           <div style="display:flex;justify-content:space-between;margin:4px 0;">
             <span style="color:${labelColor};">${t('buildings', language)}</span>
-            <span style="font-weight:500;color:${valueColor};">${buildings.toLocaleString()}</span>
+            <span style="font-weight:500;color:${valueColor};">${fmtInt(buildings)}</span>
           </div>
         </div>
 
@@ -629,10 +644,12 @@ export function MapContainer() {
             const riskColor = getRiskColor(riskClass);
             const riskLabel = t(riskClass as any, language);
             
+            const { int: fmtInt, float: fmtFloat, proper } = makeFormatters(language);
+            
             // Build location string conditionally (no "N/A")
             const locationParts = [];
-            if (mah.ilce_adi) locationParts.push(mah.ilce_adi);
-            if (mah.il_adi) locationParts.push(mah.il_adi);
+            if (mah.ilce_adi) locationParts.push(proper(mah.ilce_adi));
+            if (mah.il_adi) locationParts.push(proper(mah.il_adi));
             const locationStr = locationParts.join(' • ') || '—';
             
             // Theme-aware popup colors
@@ -653,7 +670,7 @@ export function MapContainer() {
                 <div style="font-size:13px;color:${valueColor};">
                   <div style="display:flex;justify-content:space-between;margin:4px 0;">
                     <span style="color:${labelColor};">Risk</span>
-                    <span style="font-weight:600;color:${valueColor};">${riskScore.toFixed(3)}</span>
+                    <span style="font-weight:600;color:${valueColor};">${fmtFloat(riskScore)}</span>
                   </div>
                   <div style="display:flex;justify-content:space-between;margin:4px 0;">
                     <span style="color:${labelColor};">Sınıf</span>
@@ -661,11 +678,11 @@ export function MapContainer() {
                   </div>
                   <div style="display:flex;justify-content:space-between;margin:4px 0;">
                     <span style="color:${labelColor};">${t('population', language)}</span>
-                    <span style="font-weight:500;color:${valueColor};">${population.toLocaleString()}</span>
+                    <span style="font-weight:500;color:${valueColor};">${fmtInt(population)}</span>
                   </div>
                   <div style="display:flex;justify-content:space-between;margin:4px 0;">
                     <span style="color:${labelColor};">${t('buildings', language)}</span>
-                    <span style="font-weight:500;color:${valueColor};">${buildings.toLocaleString()}</span>
+                    <span style="font-weight:500;color:${valueColor};">${fmtInt(buildings)}</span>
                   </div>
                 </div>
 
