@@ -1,6 +1,33 @@
 import { joinData } from './dataJoin';
 import { buildCityIndex, NormalizedFeature, CityInfo } from './geoNormalize';
 
+// Robust Turkish character normalization
+const normalizeTr = (s: string = '') =>
+  s.normalize('NFD')
+   .replace(/\p{Diacritic}/gu, '')
+   .replace(/İ/g, 'I').replace(/ı/g, 'i')
+   .replace(/Ş/g, 'S').replace(/ş/g, 's')
+   .replace(/Ğ/g, 'G').replace(/ğ/g, 'g')
+   .replace(/Ç/g, 'C').replace(/ç/g, 'c')
+   .replace(/Ö/g, 'O').replace(/ö/g, 'o')
+   .replace(/Ü/g, 'U').replace(/ü/g, 'u')
+   .toLowerCase().trim();
+
+// Map any city name variant to stable key
+const cityKeyFromName = (name: string): string => {
+  const n = normalizeTr(name);
+  if (n.includes('istanbul')) return 'İstanbul';
+  if (n.includes('ankara')) return 'Ankara';
+  return name; // fallback to original
+};
+
+// Safe number parsing
+const getNum = (v: any): number | undefined => {
+  if (v === '' || v == null || v === 'NA' || v === 'N/A') return undefined;
+  const num = Number(v);
+  return isNaN(num) ? undefined : num;
+};
+
 export interface MahalleFeature {
   type: 'Feature';
   properties: {
@@ -128,9 +155,12 @@ function calculateFeatureBBox(feature: MahalleFeature): [number, number, number,
 
 // Load data for a specific city
 export async function loadCityData(cityName: string, year: number = 2025): Promise<CityData | null> {
-  const cityConfig = CITY_CONFIG[cityName];
+  // Normalize city name for lookup
+  const normalizedKey = cityKeyFromName(cityName);
+  const cityConfig = CITY_CONFIG[normalizedKey];
+  
   if (!cityConfig) {
-    console.warn(`No data config for city: ${cityName}`);
+    console.warn(`[DataLoader] No data config for city: ${cityName} (normalized: ${normalizedKey})`);
     return null;
   }
   
@@ -155,10 +185,10 @@ export async function loadCityData(cityName: string, year: number = 2025): Promi
     const csvText = await csvResponse.text();
     const csvData = parseCSV(csvText).map(row => ({
       ...row,
-      city: cityName
+      city: normalizedKey
     }));
     
-    console.info(`[DataLoader] ${cityName} - Raw data:`, {
+    console.info(`[DataLoader] ${normalizedKey} - Raw data:`, {
       geoFeatures: geojson.features?.length,
       csvRows: csvData.length,
       sampleGeoId: geojson.features?.[0]?.properties?.mah_id || geojson.features?.[0]?.properties?.fid,
@@ -168,16 +198,58 @@ export async function loadCityData(cityName: string, year: number = 2025): Promi
     // Join data - NOTE: csvData first, then features!
     const { features: joinedFeatures } = joinData(csvData, geojson.features);
     
-    // Verify join worked
+    // Enhance joined features with safe property copying and ID assignment
+    joinedFeatures.forEach((feature: any) => {
+      const props = feature.properties;
+      const matchingRow = csvData.find((row: any) => {
+        const rowId = String(row.mah_id || row.fid || '');
+        const featId = String(props.mah_id || props.fid || '');
+        return rowId === featId;
+      });
+      
+      if (matchingRow) {
+        // Safe numeric assignments with fallbacks
+        props.risk_score = getNum((matchingRow as any).risk_score) ?? props.risk_score ?? 0;
+        props.toplam_nufus = getNum((matchingRow as any).toplam_nufus) ?? props.toplam_nufus ?? 0;
+        props.toplam_bina = getNum((matchingRow as any).toplam_bina) ?? props.toplam_bina ?? 0;
+        props.vs30_mean = getNum((matchingRow as any).vs30_mean) ?? getNum((matchingRow as any).vs30) ?? props.vs30_mean ?? -1;
+        
+        // District/city names with aliases
+        if ((matchingRow as any).ilce_adi || (matchingRow as any).ilce || (matchingRow as any).district) {
+          props.ilce_adi = (matchingRow as any).ilce_adi ?? (matchingRow as any).ilce ?? (matchingRow as any).district;
+        }
+        if ((matchingRow as any).il_adi || (matchingRow as any).sehir || (matchingRow as any).city) {
+          props.il_adi = (matchingRow as any).il_adi ?? (matchingRow as any).sehir ?? (matchingRow as any).city;
+        }
+      }
+      
+      // Ensure stable feature ID for feature-state support
+      const fid = String(props.mah_id ?? props.fid ?? feature.id ?? '');
+      if (fid) feature.id = fid;
+    });
+    
+    // Verify join and data quality
     const withScore = joinedFeatures.filter(f => (f.properties?.risk_score ?? 0) > 0).length;
-    console.info(`[DataLoader] ${cityName} - Join result: ${withScore}/${joinedFeatures.length} features have risk_score`);
+    const withId = joinedFeatures.filter(f => f.id != null).length;
+    console.info(`[DataLoader] ${normalizedKey} - Join result:`, {
+      total: joinedFeatures.length,
+      withScore: withScore,
+      withId: withId,
+      configFiles: config
+    });
+    
+    if (joinedFeatures.length === 0) {
+      console.warn(`[DataLoader] WARNING: ${normalizedKey} loaded ZERO features!`);
+    }
     
     // Sample feature check
     if (joinedFeatures.length > 0) {
       const sample = joinedFeatures[Math.floor(Math.random() * joinedFeatures.length)];
-      console.info(`[DataLoader] ${cityName} - Sample feature:`, {
+      console.info(`[DataLoader] ${normalizedKey} - Sample feature:`, {
+        id: sample.id,
         mahalle: sample.properties?.mahalle_adi,
-        id: sample.properties?.mah_id || sample.properties?.fid,
+        ilce: sample.properties?.ilce_adi,
+        il: sample.properties?.il_adi,
         risk_score: sample.properties?.risk_score,
         population: sample.properties?.toplam_nufus,
         buildings: sample.properties?.toplam_bina,
@@ -201,7 +273,7 @@ export async function loadCityData(cityName: string, year: number = 2025): Promi
       bboxes[mahId] = calculateFeatureBBox(feature);
     });
     
-    console.info(`[DataLoader] Loaded ${cityName}: ${joinedGeoJSON.features.length} features`);
+    console.info(`[DataLoader] ✅ Loaded ${normalizedKey}: ${joinedGeoJSON.features.length} features`);
     
     // Get the city info for this specific city
     const cityKey = [...cityIndex.keys()][0]; // Should only be one city per load
@@ -215,7 +287,7 @@ export async function loadCityData(cityName: string, year: number = 2025): Promi
       cityInfo,
     };
   } catch (error) {
-    console.error(`[DataLoader] Error loading ${cityName}:`, error);
+    console.error(`[DataLoader] ❌ Error loading ${normalizedKey}:`, error);
     return null;
   }
 }

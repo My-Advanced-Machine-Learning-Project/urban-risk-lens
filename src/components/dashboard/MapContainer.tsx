@@ -205,6 +205,12 @@ export function MapContainer() {
     console.info('[MapContainer] Loading cities:', cities, 'year:', year);
     
     const dataMap = await loadCitiesData(cities, year);
+    
+    // Debug: Log per-city feature counts
+    const citySizes = [...dataMap.entries()].map(([name, data]) => 
+      `${name}: ${data.features.length} features`
+    );
+    console.info('[MapContainer] Data sizes:', citySizes.join(', '));
     citiesData.current = dataMap;
     
     // Build mahData for sidebar and collect normalized data
@@ -270,22 +276,36 @@ export function MapContainer() {
     if (!map.current) return;
 
     const allFeatures: any[] = [];
-    citiesData.current.forEach((cityData) => {
+    const mahDataMap = new Map<string, any>();
+    
+    citiesData.current.forEach((cityData, cityName) => {
+      console.info(`[MapContainer] Processing ${cityName}: ${cityData.features.length} features`);
+      
       cityData.features.forEach((f: any) => {
-        // Assign feature ID for feature-state support
-        const fid = String(f.properties?.mah_id ?? f.properties?.fid);
-        if (fid) f.id = fid;
+        // Ensure stable feature ID for feature-state support
+        const fid = String(f.properties?.mah_id ?? f.properties?.fid ?? '');
+        if (fid) {
+          f.id = fid;
+          mahDataMap.set(fid, f.properties);
+        } else {
+          console.warn('[MapContainer] Feature without ID:', f.properties?.mahalle_adi);
+        }
         allFeatures.push(f);
       });
     });
 
     if (allFeatures.length === 0) {
-      console.warn('[MapContainer] No features');
+      console.warn('[MapContainer] ⚠️ No features to display - check data loading');
       return;
     }
     
+    console.info(`[MapContainer] Total features to render: ${allFeatures.length}, mahDataMap size: ${mahDataMap.size}`);
+    
     // Populate features ref for safe access
     featuresRef.current = allFeatures as GeoJSON.Feature[];
+    
+    // Store mahData for sidebar
+    setMahData(mahDataMap);
 
     if (!map.current.getSource('mahalle')) {
       map.current.addSource('mahalle', {
