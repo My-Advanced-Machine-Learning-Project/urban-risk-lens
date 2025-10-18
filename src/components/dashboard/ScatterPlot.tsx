@@ -1,52 +1,167 @@
-import { useMemo, useEffect } from 'react';
+import { useMemo } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
 import { useMapState } from '@/stores/useMapState';
 import { t } from '@/lib/i18n';
 import { getRiskClass, getRiskColor } from '@/lib/riskColors';
 
-export function ScatterPlot() {
-  const { language, mahData, selectedMah, toggleMah } = useMapState();
+const SCATTER_MODES = [
+  { value: 'vs30_risk', label: '1. VS30 vs Risk Skoru', xLabel: 'VS30 (m/s)', yLabel: 'Risk Skoru' },
+  { value: 'population_risk', label: '2. Nüfus Yoğunluğu vs Risk', xLabel: 'Nüfus', yLabel: 'Risk Skoru' },
+  { value: 'buildings_risk', label: '3. Bina Sayısı vs Risk', xLabel: 'Bina Sayısı', yLabel: 'Risk Skoru' },
+  { value: 'vs30_buildings', label: '4. VS30 vs Bina Sayısı', xLabel: 'VS30 (m/s)', yLabel: 'Bina Sayısı' },
+  { value: 'risk_class', label: '5. Risk Skoru vs Risk Sınıfı', xLabel: 'Risk Skoru', yLabel: 'Risk Sınıfı (1-5)' },
+  { value: 'city_comparison', label: '6. Şehir Karşılaştırması', xLabel: 'Şehir', yLabel: 'Ortalama Risk' },
+];
 
+export function ScatterPlot() {
+  const { language, mahData, selectedMah, toggleMah, scatterMode, setScatterMode } = useMapState();
+
+  const currentMode = SCATTER_MODES.find(m => m.value === scatterMode) || SCATTER_MODES[0];
+
+  // Prepare data based on scatter mode
   const scatterData = useMemo(() => {
+    if (scatterMode === 'city_comparison') {
+      // City comparison mode
+      const cityStats: Record<string, { totalRisk: number; count: number; city: string }> = {
+        'İstanbul': { totalRisk: 0, count: 0, city: 'İstanbul' },
+        'Ankara': { totalRisk: 0, count: 0, city: 'Ankara' }
+      };
+      
+      mahData.forEach((mah, id) => {
+        const idStr = id.toString();
+        let city = '';
+        
+        if (idStr.startsWith('40') || idStr.startsWith('99') || idStr.startsWith('100')) {
+          city = 'İstanbul';
+        } else if (idStr.startsWith('1') && idStr.length <= 6) {
+          city = 'Ankara';
+        }
+        
+        if (city && mah.risk_score) {
+          cityStats[city].totalRisk += mah.risk_score;
+          cityStats[city].count += 1;
+        }
+      });
+      
+      return Object.values(cityStats).map((stat, idx) => ({
+        id: stat.city,
+        x: idx,
+        y: stat.count > 0 ? stat.totalRisk / stat.count : 0,
+        size: stat.count,
+        label: stat.city,
+        riskClass: getRiskClass(stat.count > 0 ? stat.totalRisk / stat.count : 0),
+        isSelected: false
+      }));
+    }
+    
+    // Regular scatter modes
     const data: Array<{
       id: string;
-      vs30: number;
-      risk_score: number;
-      toplam_bina: number;
-      mahalle_adi: string;
+      x: number;
+      y: number;
+      size: number;
+      label: string;
       riskClass: string;
       isSelected: boolean;
     }> = [];
     
     mahData.forEach((mah, id) => {
-      if (mah.vs30_mean && mah.risk_score) {
-        data.push({
-          id: id.toString(),
-          vs30: mah.vs30_mean,
-          risk_score: mah.risk_score,
-          toplam_bina: mah.toplam_bina || 1000,
-          mahalle_adi: mah.mahalle_adi || 'N/A',
-          riskClass: getRiskClass(mah.risk_score),
-          isSelected: selectedMah.has(id.toString())
-        });
+      let x = 0, y = 0, size = 1000;
+      
+      switch (scatterMode) {
+        case 'vs30_risk':
+          if (!mah.vs30_mean || !mah.risk_score) return;
+          x = mah.vs30_mean;
+          y = mah.risk_score;
+          size = mah.toplam_bina || 1000;
+          break;
+          
+        case 'population_risk':
+          if (!mah.toplam_nufus || !mah.risk_score) return;
+          x = mah.toplam_nufus;
+          y = mah.risk_score;
+          size = mah.toplam_bina || 1000;
+          break;
+          
+        case 'buildings_risk':
+          if (!mah.toplam_bina || !mah.risk_score) return;
+          x = mah.toplam_bina;
+          y = mah.risk_score;
+          size = mah.toplam_nufus || 5000;
+          break;
+          
+        case 'vs30_buildings':
+          if (!mah.vs30_mean || !mah.toplam_bina) return;
+          x = mah.vs30_mean;
+          y = mah.toplam_bina;
+          size = mah.risk_score ? mah.risk_score * 5000 : 1000;
+          break;
+          
+        case 'risk_class':
+          if (!mah.risk_score || !mah.risk_class_5) return;
+          x = mah.risk_score;
+          y = mah.risk_class_5;
+          size = mah.toplam_bina || 1000;
+          break;
       }
+      
+      data.push({
+        id: id.toString(),
+        x,
+        y,
+        size,
+        label: mah.mahalle_adi || 'N/A',
+        riskClass: getRiskClass(mah.risk_score || 0),
+        isSelected: selectedMah.has(id.toString())
+      });
     });
     
     return data;
-  }, [mahData, selectedMah]);
+  }, [mahData, selectedMah, scatterMode]);
+
+  // Calculate scales based on mode
+  const { xMin, xMax, yMin, yMax } = useMemo(() => {
+    if (scatterMode === 'city_comparison') {
+      return { xMin: 0, xMax: 2, yMin: 0, yMax: 0.6 };
+    }
+    
+    if (scatterData.length === 0) {
+      return { xMin: 0, xMax: 100, yMin: 0, yMax: 100 };
+    }
+    
+    const xValues = scatterData.map(d => d.x);
+    const yValues = scatterData.map(d => d.y);
+    
+    let xMin = Math.min(...xValues);
+    let xMax = Math.max(...xValues);
+    let yMin = Math.min(...yValues);
+    let yMax = Math.max(...yValues);
+    
+    // Add padding
+    const xPadding = (xMax - xMin) * 0.1;
+    const yPadding = (yMax - yMin) * 0.1;
+    
+    xMin -= xPadding;
+    xMax += xPadding;
+    yMin = Math.max(0, yMin - yPadding);
+    yMax += yPadding;
+    
+    return { xMin, xMax, yMin, yMax };
+  }, [scatterData, scatterMode]);
 
   // SVG dimensions
   const width = 700;
   const height = 400;
-  const margin = { top: 20, right: 20, bottom: 60, left: 70 };
+  const margin = { top: 20, right: 20, bottom: 70, left: 80 };
   const innerWidth = width - margin.left - margin.right;
   const innerHeight = height - margin.top - margin.bottom;
-
-  // Scales
-  const xMin = 250;
-  const xMax = 750;
-  const yMin = 0;
-  const yMax = 0.6;
 
   const xScale = (value: number) => {
     return margin.left + ((value - xMin) / (xMax - xMin)) * innerWidth;
@@ -57,33 +172,60 @@ export function ScatterPlot() {
   };
 
   const sizeScale = (value: number) => {
+    if (scatterMode === 'city_comparison') return 20;
     const min = 100;
     const max = 5000;
     return 3 + ((Math.min(value, max) - min) / (max - min)) * 10;
   };
 
-  // Ticks
-  const xTicks = [300, 400, 500, 600, 700];
-  const yTicks = [0, 0.1, 0.2, 0.3, 0.4, 0.5];
+  // Generate ticks
+  const xTicks = useMemo(() => {
+    if (scatterMode === 'city_comparison') return [];
+    const range = xMax - xMin;
+    const step = Math.pow(10, Math.floor(Math.log10(range / 5)));
+    const ticks = [];
+    for (let i = Math.ceil(xMin / step) * step; i <= xMax; i += step) {
+      ticks.push(i);
+    }
+    return ticks.slice(0, 7);
+  }, [xMin, xMax, scatterMode]);
 
-  // Handle click on scatter point
+  const yTicks = useMemo(() => {
+    const range = yMax - yMin;
+    const step = Math.pow(10, Math.floor(Math.log10(range / 5)));
+    const ticks = [];
+    for (let i = Math.ceil(yMin / step) * step; i <= yMax; i += step) {
+      ticks.push(i);
+    }
+    return ticks.slice(0, 7);
+  }, [yMin, yMax]);
+
   const handlePointClick = (mahId: string) => {
-    toggleMah(mahId);
+    if (scatterMode !== 'city_comparison') {
+      toggleMah(mahId);
+    }
   };
-
-  // Global function for scatter plot clicks
-  useEffect(() => {
-    (window as any).selectScatterPoint = (mahId: string) => {
-      handlePointClick(mahId);
-    };
-  }, []);
 
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="text-base">
-          {t('scatterAnalysis', language)} (VS30 vs Risk Score)
-        </CardTitle>
+        <div className="flex items-center justify-between">
+          <CardTitle className="text-base">
+            Dağılım Analizi
+          </CardTitle>
+          <Select value={scatterMode} onValueChange={(value) => setScatterMode(value as any)}>
+            <SelectTrigger className="w-[280px]">
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent>
+              {SCATTER_MODES.map(mode => (
+                <SelectItem key={mode.value} value={mode.value}>
+                  {mode.label}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        </div>
       </CardHeader>
       <CardContent>
         <svg width={width} height={height} className="w-full h-auto">
@@ -97,34 +239,52 @@ export function ScatterPlot() {
             strokeWidth="2"
             className="text-muted-foreground"
           />
-          {xTicks.map(tick => (
-            <g key={tick}>
-              <line
-                x1={xScale(tick)}
-                y1={height - margin.bottom}
-                x2={xScale(tick)}
-                y2={height - margin.bottom + 6}
-                stroke="currentColor"
-                strokeWidth="1"
-                className="text-muted-foreground"
-              />
+          
+          {scatterMode === 'city_comparison' ? (
+            // City labels for comparison mode
+            scatterData.map((d, idx) => (
               <text
-                x={xScale(tick)}
+                key={d.id}
+                x={xScale(idx)}
                 y={height - margin.bottom + 20}
                 textAnchor="middle"
-                className="text-xs fill-current"
+                className="text-sm fill-current font-medium"
               >
-                {tick}
+                {d.label}
               </text>
-            </g>
-          ))}
+            ))
+          ) : (
+            // Regular ticks
+            xTicks.map(tick => (
+              <g key={tick}>
+                <line
+                  x1={xScale(tick)}
+                  y1={height - margin.bottom}
+                  x2={xScale(tick)}
+                  y2={height - margin.bottom + 6}
+                  stroke="currentColor"
+                  strokeWidth="1"
+                  className="text-muted-foreground"
+                />
+                <text
+                  x={xScale(tick)}
+                  y={height - margin.bottom + 20}
+                  textAnchor="middle"
+                  className="text-xs fill-current"
+                >
+                  {tick >= 1000 ? `${(tick / 1000).toFixed(0)}k` : tick.toFixed(0)}
+                </text>
+              </g>
+            ))
+          )}
+          
           <text
             x={width / 2}
             y={height - 10}
             textAnchor="middle"
             className="text-sm fill-current font-semibold"
           >
-            {t('vs30', language)}
+            {currentMode.xLabel}
           </text>
 
           {/* Y-axis */}
@@ -155,7 +315,7 @@ export function ScatterPlot() {
                 alignmentBaseline="middle"
                 className="text-xs fill-current"
               >
-                {tick.toFixed(1)}
+                {tick >= 1000 ? `${(tick / 1000).toFixed(1)}k` : tick.toFixed(scatterMode === 'vs30_risk' || scatterMode === 'population_risk' || scatterMode === 'buildings_risk' || scatterMode === 'city_comparison' ? 2 : 0)}
               </text>
             </g>
           ))}
@@ -166,19 +326,18 @@ export function ScatterPlot() {
             transform={`rotate(-90, 20, ${height / 2})`}
             className="text-sm fill-current font-semibold"
           >
-            {t('riskScore', language)}
+            {currentMode.yLabel}
           </text>
 
           {/* Data points */}
           {scatterData.map(d => {
-            const cx = xScale(d.vs30);
-            const cy = yScale(d.risk_score);
-            const r = sizeScale(d.toplam_bina);
+            const cx = xScale(d.x);
+            const cy = yScale(d.y);
+            const r = sizeScale(d.size);
             const color = getRiskColor(d.riskClass);
             
             return (
               <g key={d.id}>
-                {/* Highlight ring for selected */}
                 {d.isSelected && (
                   <circle
                     cx={cx}
@@ -191,7 +350,6 @@ export function ScatterPlot() {
                   />
                 )}
                 
-                {/* Main point */}
                 <circle
                   cx={cx}
                   cy={cy}
@@ -200,13 +358,12 @@ export function ScatterPlot() {
                   opacity={d.isSelected ? 1 : 0.6}
                   className="cursor-pointer hover:opacity-100 transition-opacity"
                   onClick={() => handlePointClick(d.id)}
-                  style={{ cursor: 'pointer' }}
+                  style={{ cursor: scatterMode !== 'city_comparison' ? 'pointer' : 'default' }}
                 >
                   <title>
-                    {d.mahalle_adi}
-{'\n'}VS30: {d.vs30.toFixed(0)}
-{'\n'}Risk: {d.risk_score.toFixed(3)}
-{'\n'}Bina: {d.toplam_bina}
+                    {d.label}
+{'\n'}{currentMode.xLabel}: {d.x.toFixed(scatterMode === 'city_comparison' || scatterMode.includes('risk') ? 3 : 0)}
+{'\n'}{currentMode.yLabel}: {d.y.toFixed(scatterMode === 'city_comparison' || scatterMode.includes('risk') ? 3 : 0)}
                   </title>
                 </circle>
               </g>

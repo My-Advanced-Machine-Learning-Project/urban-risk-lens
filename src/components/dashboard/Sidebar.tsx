@@ -1,5 +1,5 @@
-import { useState, useMemo, useEffect } from 'react';
-import { Search, X } from 'lucide-react';
+import { useState, useMemo } from 'react';
+import { Search, X, ChevronDown, ChevronRight } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { ScrollArea } from '@/components/ui/scroll-area';
@@ -16,6 +16,11 @@ import { cn } from '@/lib/utils';
 
 const CITIES = ['İstanbul', 'Ankara'];
 
+interface District {
+  name: string;
+  neighborhoods: Array<{ id: string; name: string }>;
+}
+
 export function Sidebar() {
   const { 
     language, 
@@ -23,7 +28,7 @@ export function Sidebar() {
     selectedMah,
     mahData,
     metric,
-    toggleCity,
+    toggleCity: toggleCitySelection,
     toggleMah,
     clearMah,
     setMetric,
@@ -32,46 +37,112 @@ export function Sidebar() {
   } = useMapState();
 
   const [searchTerm, setSearchTerm] = useState('');
+  const [expandedCities, setExpandedCities] = useState<Set<string>>(new Set(['İstanbul', 'Ankara']));
+  const [expandedDistricts, setExpandedDistricts] = useState<Set<string>>(new Set());
 
-  // Mahalle listesi
-  const neighborhoods = useMemo(() => {
-    const list: Array<{ id: string; name: string; district: string; city: string }> = [];
+  // Group neighborhoods by city and district
+  const groupedData = useMemo(() => {
+    const cityMap: Record<string, Record<string, Array<{ id: string; name: string }>>> = {
+      'İstanbul': {},
+      'Ankara': {}
+    };
     
     mahData.forEach((mah, id) => {
-      if (mah.mahalle_adi && mah.ilce_adi) {
-        let city = 'Unknown';
+      if (!mah.mahalle_adi || !mah.ilce_adi) return;
+      
+      let city = 'Unknown';
+      const idStr = id.toString();
+      
+      // City detection based on mah_id patterns
+      if (idStr.startsWith('40') || idStr.startsWith('99') || idStr.startsWith('100')) {
+        city = 'İstanbul';
+      } else if (idStr.startsWith('1') && idStr.length <= 6) {
+        city = 'Ankara';
+      }
+      
+      if (!cityMap[city]) return;
+      if (!selectedCities.has(city)) return;
+      
+      const district = mah.ilce_adi;
+      if (!cityMap[city][district]) {
+        cityMap[city][district] = [];
+      }
+      
+      cityMap[city][district].push({
+        id: idStr,
+        name: mah.mahalle_adi
+      });
+    });
+    
+    // Sort neighborhoods alphabetically within each district
+    Object.values(cityMap).forEach(districts => {
+      Object.values(districts).forEach(neighborhoods => {
+        neighborhoods.sort((a, b) => a.name.localeCompare(b.name, 'tr'));
+      });
+    });
+    
+    return cityMap;
+  }, [mahData, selectedCities]);
+
+  // Filter data based on search
+  const filteredData = useMemo(() => {
+    if (!searchTerm) return groupedData;
+    
+    const term = searchTerm.toLowerCase();
+    const filtered: typeof groupedData = {};
+    
+    Object.entries(groupedData).forEach(([city, districts]) => {
+      const filteredDistricts: Record<string, Array<{ id: string; name: string }>> = {};
+      
+      Object.entries(districts).forEach(([district, neighborhoods]) => {
+        const filteredNeighborhoods = neighborhoods.filter(n => 
+          n.name.toLowerCase().includes(term) ||
+          district.toLowerCase().includes(term)
+        );
         
-        // City detection
-        if (id.toString().startsWith('40') || id.toString().startsWith('99') || id.toString().startsWith('100')) {
-          city = 'İstanbul';
-        } else if (id.toString().startsWith('1')) {
-          city = 'Ankara';
+        if (filteredNeighborhoods.length > 0) {
+          filteredDistricts[district] = filteredNeighborhoods;
         }
-        
-        if (selectedCities.has(city)) {
-          list.push({
-            id: id.toString(),
-            name: mah.mahalle_adi,
-            district: mah.ilce_adi,
-            city
-          });
-        }
+      });
+      
+      if (Object.keys(filteredDistricts).length > 0) {
+        filtered[city] = filteredDistricts;
       }
     });
     
-    return list.sort((a, b) => a.name.localeCompare(b.name, 'tr'));
-  }, [mahData, selectedCities]);
+    return filtered;
+  }, [groupedData, searchTerm]);
 
-  // Filtered neighborhoods
-  const filteredNeighborhoods = useMemo(() => {
-    if (!searchTerm) return neighborhoods;
-    
-    const term = searchTerm.toLowerCase();
-    return neighborhoods.filter(n => 
-      n.name.toLowerCase().includes(term) ||
-      n.district.toLowerCase().includes(term)
-    );
-  }, [neighborhoods, searchTerm]);
+  const toggleCity = (city: string) => {
+    const newSet = new Set(expandedCities);
+    if (newSet.has(city)) {
+      newSet.delete(city);
+    } else {
+      newSet.add(city);
+    }
+    setExpandedCities(newSet);
+  };
+
+  const toggleDistrict = (districtKey: string) => {
+    const newSet = new Set(expandedDistricts);
+    if (newSet.has(districtKey)) {
+      newSet.delete(districtKey);
+    } else {
+      newSet.add(districtKey);
+    }
+    setExpandedDistricts(newSet);
+  };
+
+  // Count total neighborhoods
+  const totalNeighborhoods = useMemo(() => {
+    let count = 0;
+    Object.values(groupedData).forEach(districts => {
+      Object.values(districts).forEach(neighborhoods => {
+        count += neighborhoods.length;
+      });
+    });
+    return count;
+  }, [groupedData]);
 
   return (
     <>
@@ -102,7 +173,7 @@ export function Sidebar() {
                   key={city}
                   variant={selectedCities.has(city) ? 'default' : 'outline'}
                   size="sm"
-                  onClick={() => toggleCity(city)}
+                  onClick={() => toggleCitySelection(city)}
                   className="flex-1"
                 >
                   {city}
@@ -134,7 +205,7 @@ export function Sidebar() {
           <div className="relative">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
             <Input
-              placeholder="Mahalle ara..."
+              placeholder="Mahalle veya ilçe ara..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               className="pl-9 pr-9"
@@ -151,50 +222,101 @@ export function Sidebar() {
             )}
           </div>
 
-          {/* Action Buttons */}
-          <div className="flex gap-2">
-            <Button
-              variant="outline"
-              size="sm"
-              className="flex-1 text-xs"
-              onClick={clearMah}
-            >
-              Tümünü Temizle
-            </Button>
-          </div>
+          {/* Action Button */}
+          <Button
+            variant="outline"
+            size="sm"
+            className="w-full text-xs"
+            onClick={clearMah}
+          >
+            Seçimi Temizle
+          </Button>
         </div>
 
-        {/* Neighborhood List */}
+        {/* Hierarchical List */}
         <ScrollArea className="flex-1">
           <div className="p-2">
-            {filteredNeighborhoods.length === 0 ? (
-              <div className="text-center text-sm text-muted-foreground py-8">
-                Mahalle bulunamadı
-              </div>
-            ) : (
-              <div className="space-y-1">
-                {filteredNeighborhoods.map((n) => {
-                  const isSelected = selectedMah.has(n.id);
-                  return (
-                    <button
-                      key={n.id}
-                      onClick={() => toggleMah(n.id)}
-                      className={cn(
-                        "w-full text-left px-3 py-2 rounded-md text-sm transition-colors",
-                        isSelected
-                          ? "bg-primary text-primary-foreground font-medium"
-                          : "hover:bg-accent"
+            {Object.entries(filteredData).map(([city, districts]) => {
+              const isCityExpanded = expandedCities.has(city);
+              const districtCount = Object.keys(districts).length;
+              
+              return (
+                <div key={city} className="mb-2">
+                  {/* City Header */}
+                  <button
+                    onClick={() => toggleCity(city)}
+                    className="w-full flex items-center justify-between px-3 py-2 rounded-md hover:bg-accent transition-colors"
+                  >
+                    <span className="font-semibold text-sm">{city}</span>
+                    <div className="flex items-center gap-2">
+                      <span className="text-xs text-muted-foreground">
+                        {districtCount} ilçe
+                      </span>
+                      {isCityExpanded ? (
+                        <ChevronDown className="h-4 w-4" />
+                      ) : (
+                        <ChevronRight className="h-4 w-4" />
                       )}
-                    >
-                      <div className="font-medium">{n.name}</div>
-                      <div className="text-xs opacity-80">
-                        {n.district}, {n.city}
-                      </div>
-                    </button>
-                  );
-                })}
-              </div>
-            )}
+                    </div>
+                  </button>
+
+                  {/* Districts */}
+                  {isCityExpanded && (
+                    <div className="ml-2 mt-1 space-y-1">
+                      {Object.entries(districts).sort((a, b) => a[0].localeCompare(b[0], 'tr')).map(([district, neighborhoods]) => {
+                        const districtKey = `${city}-${district}`;
+                        const isDistrictExpanded = expandedDistricts.has(districtKey);
+                        
+                        return (
+                          <div key={districtKey}>
+                            {/* District Header */}
+                            <button
+                              onClick={() => toggleDistrict(districtKey)}
+                              className="w-full flex items-center justify-between px-3 py-1.5 rounded-md hover:bg-accent/50 transition-colors"
+                            >
+                              <span className="text-sm">{district}</span>
+                              <div className="flex items-center gap-2">
+                                <span className="text-xs text-muted-foreground">
+                                  {neighborhoods.length}
+                                </span>
+                                {isDistrictExpanded ? (
+                                  <ChevronDown className="h-3 w-3" />
+                                ) : (
+                                  <ChevronRight className="h-3 w-3" />
+                                )}
+                              </div>
+                            </button>
+
+                            {/* Neighborhoods */}
+                            {isDistrictExpanded && (
+                              <div className="ml-3 mt-1 space-y-0.5">
+                                {neighborhoods.map(n => {
+                                  const isSelected = selectedMah.has(n.id);
+                                  return (
+                                    <button
+                                      key={n.id}
+                                      onClick={() => toggleMah(n.id)}
+                                      className={cn(
+                                        "w-full text-left px-3 py-1.5 rounded-md text-xs transition-colors",
+                                        isSelected
+                                          ? "bg-primary text-primary-foreground font-medium"
+                                          : "hover:bg-accent"
+                                      )}
+                                    >
+                                      {n.name}
+                                    </button>
+                                  );
+                                })}
+                              </div>
+                            )}
+                          </div>
+                        );
+                      })}
+                    </div>
+                  )}
+                </div>
+              );
+            })}
           </div>
         </ScrollArea>
 
@@ -202,8 +324,8 @@ export function Sidebar() {
         <div className="p-4 border-t bg-muted/30">
           <div className="text-xs text-muted-foreground space-y-1">
             <div className="flex justify-between">
-              <span>Toplam:</span>
-              <span className="font-medium text-foreground">{neighborhoods.length}</span>
+              <span>Toplam Mahalle:</span>
+              <span className="font-medium text-foreground">{totalNeighborhoods}</span>
             </div>
             <div className="flex justify-between">
               <span>{t('selected', language)}:</span>

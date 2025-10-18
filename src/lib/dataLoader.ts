@@ -24,8 +24,8 @@ export interface CityData {
 
 const CITY_CONFIG: Record<string, { geo: string; csv: string }> = {
   'İstanbul': {
-    geo: '/data/istanbul_mahalle_risk.geojson',
-    csv: '/data/istanbul_risk_data.csv'
+    geo: '/data/ISTANBUL_MAHALLE_956_FINAL.geojson',
+    csv: '/data/2025_istanbul.csv'
   },
   'Ankara': {
     geo: '/data/ankara_mahalle_risk.geojson',

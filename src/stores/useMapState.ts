@@ -4,6 +4,7 @@ import { Language } from '@/lib/i18n';
 export type ViewMode = 'choropleth' | 'heatmap' | 'scatter';
 export type Metric = 'risk_score' | 'vs30' | 'population' | 'buildings' | 'risk_class';
 export type Year = 2025 | 2026;
+export type ScatterMode = 'vs30_risk' | 'population_risk' | 'buildings_risk' | 'vs30_buildings' | 'risk_class' | 'city_comparison';
 
 interface MapState {
   // UI State
@@ -15,6 +16,7 @@ interface MapState {
   viewMode: ViewMode;
   metric: Metric;
   year: Year;
+  scatterMode: ScatterMode;
   
   // Selection State
   selectedCities: Set<string>;
@@ -31,6 +33,7 @@ interface MapState {
   setViewMode: (mode: ViewMode) => void;
   setMetric: (metric: Metric) => void;
   setYear: (year: Year) => void;
+  setScatterMode: (mode: ScatterMode) => void;
   toggleCity: (city: string) => void;
   toggleDistrict: (district: string) => void;
   toggleMah: (id: string) => void;
@@ -49,6 +52,7 @@ export const useMapState = create<MapState>((set) => ({
   viewMode: 'choropleth',
   metric: 'risk_score',
   year: 2025,
+  scatterMode: 'vs30_risk',
   selectedCities: new Set(['İstanbul', 'Ankara']),
   selectedDistricts: new Set(),
   selectedMah: new Set(),
@@ -68,6 +72,8 @@ export const useMapState = create<MapState>((set) => ({
   setMetric: (metric) => set({ metric }),
   
   setYear: (year) => set({ year }),
+  
+  setScatterMode: (scatterMode) => set({ scatterMode }),
   
   toggleCity: (city) => set((state) => {
     const newSet = new Set(state.selectedCities);
