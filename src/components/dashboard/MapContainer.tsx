@@ -18,13 +18,13 @@ function getStyleUrl(theme: 'light' | 'dark'): string {
     : `https://api.maptiler.com/maps/streets-v2/style.json?key=${MAPTILER_KEY}`;
 }
 
-// Metric paint expressions
+// Metric paint expressions with null safety
 function getMetricPaint(metric: string): any {
   if (metric === 'risk_score') {
     return [
-      'interpolate',
-      ['linear'],
-      ['get', 'risk_score'],
+      'step',
+      ['coalesce', ['get', 'risk_score'], -1],
+      '#6b7280', // default gray for missing data
       0, '#f1f5f9',
       0.18, '#fde68a',
       0.23, '#fbbf24',
@@ -33,20 +33,20 @@ function getMetricPaint(metric: string): any {
     ];
   } else if (metric === 'vs30') {
     return [
-      'interpolate',
-      ['linear'],
-      ['get', 'vs30_mean'],
-      300, '#7f1d1d',
-      400, '#ef4444',
-      500, '#fbbf24',
-      600, '#fde68a',
-      700, '#f1f5f9'
+      'step',
+      ['coalesce', ['get', 'vs30_mean'], -1],
+      '#6b7280',
+      0, '#7f1d1d',
+      300, '#ef4444',
+      400, '#fbbf24',
+      500, '#fde68a',
+      600, '#f1f5f9'
     ];
   } else if (metric === 'population') {
     return [
-      'interpolate',
-      ['linear'],
-      ['get', 'toplam_nufus'],
+      'step',
+      ['coalesce', ['get', 'toplam_nufus'], -1],
+      '#6b7280',
       0, '#f1f5f9',
       5000, '#fde68a',
       10000, '#fbbf24',
@@ -55,9 +55,9 @@ function getMetricPaint(metric: string): any {
     ];
   } else if (metric === 'buildings') {
     return [
-      'interpolate',
-      ['linear'],
-      ['get', 'toplam_bina'],
+      'step',
+      ['coalesce', ['get', 'toplam_bina'], -1],
+      '#6b7280',
       0, '#f1f5f9',
       500, '#fde68a',
       1000, '#fbbf24',
@@ -68,9 +68,9 @@ function getMetricPaint(metric: string): any {
   
   // Default: risk_score
   return [
-    'interpolate',
-    ['linear'],
-    ['get', 'risk_score'],
+    'step',
+    ['coalesce', ['get', 'risk_score'], -1],
+    '#6b7280',
     0, '#f1f5f9',
     0.18, '#fde68a',
     0.23, '#fbbf24',
@@ -173,6 +173,17 @@ export function MapContainer() {
       normalizedFeatures: allNormalizedFeatures.length,
       cityIndexSize: combinedCityIndex.size,
       cityKeys: [...combinedCityIndex.keys()]
+    });
+    
+    // Additional diagnostics
+    const istanbulFeatures = allNormalizedFeatures.filter(f => f.cityKey === 'istanbul');
+    const ankaraFeatures = allNormalizedFeatures.filter(f => f.cityKey === 'ankara');
+    const istanbulWithScore = istanbulFeatures.filter(f => f.risk_score > 0);
+    const ankaraWithScore = ankaraFeatures.filter(f => f.risk_score > 0);
+    
+    console.info('[MapContainer COVERAGE]:', {
+      istanbul: `${istanbulWithScore.length}/${istanbulFeatures.length} have risk_score`,
+      ankara: `${ankaraWithScore.length}/${ankaraFeatures.length} have risk_score`,
     });
     
     setMahData(mahDataMap);
