@@ -182,16 +182,16 @@ export function MapContainer() {
     
     console.info('[MapContainer] Year changed to:', year, '- reloading all data');
     
+    // Kesin temizle - stale veri ihtimalini sıfırla
+    featuresRef.current = [];
+    allBBoxes.current = {};
+    setMahData(new Map());
+    setAllFeatures([]);
+    
     // Clear map layers before reloading
-    if (map.current.getLayer('mahalle-selected')) {
-      map.current.removeLayer('mahalle-selected');
-    }
-    if (map.current.getLayer('mahalle-line')) {
-      map.current.removeLayer('mahalle-line');
-    }
-    if (map.current.getLayer('mahalle-fill')) {
-      map.current.removeLayer('mahalle-fill');
-    }
+    ['mahalle-selected', 'mahalle-line', 'mahalle-fill'].forEach(id => {
+      if (map.current!.getLayer(id)) map.current!.removeLayer(id);
+    });
     if (map.current.getSource('mahalle')) {
       map.current.removeSource('mahalle');
     }
@@ -297,13 +297,20 @@ export function MapContainer() {
       console.info(`[MapContainer] Processing ${cityName}: ${cityData.features.length} features`);
       
       cityData.features.forEach((f: any) => {
+        // Sayısallaştırma - CSV'den string gelebilir
+        const pr = f.properties;
+        pr.risk_score = pr.risk_score != null ? +pr.risk_score : null;
+        pr.vs30_mean = pr.vs30_mean != null ? +pr.vs30_mean : (pr.vs30 != null ? +pr.vs30 : null);
+        pr.toplam_nufus = pr.toplam_nufus != null ? +pr.toplam_nufus : null;
+        pr.toplam_bina = pr.toplam_bina != null ? +pr.toplam_bina : null;
+        
         // IDs are already prefixed with city name in dataLoader (e.g., "istanbul-12345")
-        const fid = String(f.properties?.mah_id ?? f.properties?.fid ?? f.id ?? '');
+        const fid = String(pr.mah_id ?? pr.fid ?? f.id ?? '');
         if (fid) {
           f.id = fid;
-          mahDataMap.set(fid, f.properties);
+          mahDataMap.set(fid, pr);
         } else {
-          console.warn('[MapContainer] Feature without ID:', f.properties?.mahalle_adi);
+          console.warn('[MapContainer] Feature without ID:', pr.mahalle_adi);
         }
         allFeatures.push(f);
       });
@@ -412,35 +419,38 @@ export function MapContainer() {
     if (!e.features || e.features.length === 0) return;
     
     const feature = e.features[0];
-    const props = feature.properties;
+    const props0 = feature.properties;
     // Consistent ID resolution
-    const mahId = String(props.mah_id ?? props.fid ?? feature.id ?? '');
+    const mahId = String(props0.mah_id ?? props0.fid ?? feature.id ?? '');
+    
+    // YIL-BAĞIMLI: her zaman güncel store'dan oku
+    const p = mahData.get(mahId) ?? props0;
     
     // Debug: log what data is actually available
-    console.log('[Popup Debug] Feature properties:', {
-      mahalle: props.mahalle_adi,
+    console.log('[Popup Debug] Using data from store:', {
+      mahalle: p.mahalle_adi,
       id: mahId,
-      risk_score: props.risk_score,
-      population: props.toplam_nufus,
-      buildings: props.toplam_bina,
-      vs30: props.vs30_mean,
-      allKeys: Object.keys(props).slice(0, 20)
+      risk_score: p.risk_score,
+      population: p.toplam_nufus,
+      buildings: p.toplam_bina,
+      vs30: p.vs30_mean,
+      year
     });
     
-    const riskScore = props.risk_score || 0;
+    const riskScore = Number(p.risk_score) || 0;
     const riskClass = getRiskClass(riskScore);
     const riskColor = getRiskColor(riskClass);
     const riskLabel = t(riskClass as any, language);
     
     // Build location string conditionally (no "N/A")
     const locParts = [];
-    if (props.ilce_adi) locParts.push(props.ilce_adi);
-    if (props.il_adi) locParts.push(props.il_adi);
+    if (p.ilce_adi) locParts.push(p.ilce_adi);
+    if (p.il_adi) locParts.push(p.il_adi);
     const locationStr = locParts.join(' • ') || '—';
     
     const html = `
       <div class="space-y-1">
-        <div class="font-semibold text-black text-base leading-5">${props.mahalle_adi || '—'}</div>
+        <div class="font-semibold text-black text-base leading-5">${p.mahalle_adi || '—'}</div>
         <div class="text-xs text-gray-600">${locationStr}</div>
 
         <div class="mt-2 grid grid-cols-2 gap-x-3 text-xs">
@@ -451,9 +461,9 @@ export function MapContainer() {
             <span style="background:${riskColor}" class="px-2 py-0.5 rounded text-white">${riskLabel}</span>
           </div>
           <div class="text-gray-600">${t('population', language)}</div>
-          <div class="justify-self-end font-medium">${props.toplam_nufus?.toLocaleString() || '—'}</div>
+          <div class="justify-self-end font-medium">${(p.toplam_nufus ?? 0).toLocaleString()}</div>
           <div class="text-gray-600">${t('buildings', language)}</div>
-          <div class="justify-self-end font-medium">${props.toplam_bina?.toLocaleString() || '—'}</div>
+          <div class="justify-self-end font-medium">${(p.toplam_bina ?? 0).toLocaleString()}</div>
         </div>
 
         <button onclick="window.selectAndZoom('${mahId}')" 
@@ -684,13 +694,13 @@ export function MapContainer() {
     });
   }, [theme]);
 
-  // Handle metric changes
+  // Handle metric + year changes - choropleth rengi yenilenir
   useEffect(() => {
     if (!map.current || !map.current.getLayer('mahalle-fill')) return;
     
-    console.info('[MapContainer] Updating metric paint:', metric);
+    console.info('[MapContainer] Updating metric paint:', metric, 'year:', year);
     map.current.setPaintProperty('mahalle-fill', 'fill-color', getMetricPaint(metric));
-  }, [metric]);
+  }, [metric, year]);
 
   // Handle sidebar toggle - resize map and scatter
   useEffect(() => {
