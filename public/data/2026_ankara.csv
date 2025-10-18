@@ -1,787 +1,787 @@
 mah_id,il,ilce,mahalle_adi,risk_score_pred,risk_class_5_pred,risk_label_pred,risk_proba_c1,risk_proba_c2,risk_proba_c3,risk_proba_c4,risk_proba_c5,vs30,population,building_count
-100000,Ankara,Bilinmeyen İlçe,Subaşı Mahallesi,0.1811,1,Low,0.9661,0.0252,0.0039,0.0037,0.0011,493.76,18282,1481
-100001,Ankara,Bilinmeyen İlçe,Akçaali Mahallesi,0.152,1,Very Low,0.9766,0.0155,0.0019,0.0057,0.0004,504.0,102,200
-100002,Ankara,Bilinmeyen İlçe,Akkoyunlu Mahallesi,0.2015,1,Low,0.7175,0.1179,0.1214,0.04,0.0032,417.97,102,84
-100003,Ankara,Bilinmeyen İlçe,Davdanlı Mahallesi,0.2216,1,Low,0.9213,0.0505,0.0086,0.0151,0.0044,393.17,14552,1379
-100004,Ankara,Bilinmeyen İlçe,Kayadibi Mahallesi,0.2206,1,Low,0.7871,0.1399,0.0421,0.0105,0.0203,441.86,23616,2101
-100005,Ankara,Bilinmeyen İlçe,Süleymanlı Mahallesi,0.3284,1,High,0.6887,0.1423,0.0846,0.0387,0.0457,545.22,24671,2196
-100006,Ankara,Bilinmeyen İlçe,Tekke Mahallesi,0.2471,1,Medium,0.6622,0.1877,0.0645,0.0451,0.0405,405.35,31444,2490
-100007,Ankara,Bilinmeyen İlçe,Gökler,0.2969,1,Medium,0.6396,0.1242,0.0714,0.0871,0.0777,293.24,28705,2309
-100008,Ankara,Bilinmeyen İlçe,Aydıncık Mahallesi,0.1586,1,Very Low,0.9793,0.0122,0.0038,0.0042,0.0005,460.65,102,10
-100009,Ankara,Bilinmeyen İlçe,Baraj Mahallesi,0.1913,1,Low,0.9163,0.0497,0.0139,0.0118,0.0084,539.6,22230,1650
-100010,Ankara,Bilinmeyen İlçe,Beşikkaya Mahallesi,0.2139,1,Low,0.9133,0.0498,0.0131,0.0225,0.0013,398.62,102,104
-100011,Ankara,Bilinmeyen İlçe,Feridun Çelik Mahallesi,0.139,1,Very Low,0.9548,0.0325,0.0073,0.0045,0.0009,533.32,102,248
-100012,Ankara,Bilinmeyen İlçe,Gicik Mahallesi,0.1439,1,Very Low,0.9852,0.0097,0.0022,0.0024,0.0005,501.18,1544,10
-100013,Ankara,Bilinmeyen İlçe,Karacaören Mahallesi,0.2089,1,Low,0.865,0.0608,0.029,0.0379,0.0073,455.22,15332,1432
-100014,Ankara,Bilinmeyen İlçe,Karapürçek Mahallesi,0.1662,1,Very Low,0.9342,0.0434,0.0084,0.0126,0.0014,427.33,262,10
-100015,Ankara,Bilinmeyen İlçe,Kavaklı Mahallesi,0.2554,1,Medium,0.827,0.0876,0.0362,0.0272,0.0219,396.21,23322,2139
-100016,Ankara,Bilinmeyen İlçe,Peçenek Mahallesi,0.223,1,Low,0.9056,0.046,0.0145,0.0085,0.0253,435.29,24416,2146
-100017,Ankara,Bilinmeyen İlçe,Tatlar Mahallesi,0.1673,1,Very Low,0.9636,0.026,0.0039,0.0046,0.002,549.16,102,10
-100018,Ankara,Bilinmeyen İlçe,Hacettepe Mahallesi,0.2177,1,Low,0.89,0.0633,0.0228,0.0219,0.002,407.58,5658,129
-100019,Ankara,Bilinmeyen İlçe,Hacı Bayram Mahallesi,0.126,1,Very Low,0.9911,0.0055,0.0012,0.0018,0.0003,531.35,102,10
-100020,Ankara,Bilinmeyen İlçe,Kale Mahallesi,0.2339,1,Medium,0.6756,0.105,0.1422,0.0373,0.04,446.64,32318,2933
-100021,Ankara,Bilinmeyen İlçe,Zübeyde Hanım Mahallesi,0.184,1,Low,0.9622,0.0185,0.0051,0.0092,0.005,583.93,32893,2463
-100022,Ankara,Bilinmeyen İlçe,Boyalık Mahallesi,0.1861,1,Low,0.9526,0.0396,0.0037,0.0029,0.0013,509.05,16409,1214
-100023,Ankara,Bilinmeyen İlçe,Dikilitaş Mahallesi,0.2072,1,Low,0.9555,0.0291,0.0068,0.0069,0.0017,441.22,18958,1523
-100024,Ankara,Bilinmeyen İlçe,İkizce Mahallesi,0.2965,1,Medium,0.676,0.1024,0.0695,0.0987,0.0533,345.64,37270,3290
-100025,Ankara,Bilinmeyen İlçe,Beştepe Mahallesi,0.1566,1,Very Low,0.9792,0.0147,0.003,0.0027,0.0005,479.5,548,10
-100026,Ankara,Bilinmeyen İlçe,Ata Mahallesi,0.2465,1,Medium,0.792,0.1215,0.0434,0.0402,0.0029,330.76,2711,498
-100027,Ankara,Bilinmeyen İlçe,Aşağıemirler Mahallesi,0.2102,1,Low,0.8697,0.0993,0.0172,0.0094,0.0045,468.04,20877,1641
-100028,Ankara,Bilinmeyen İlçe,Cumhuriyet Mahallesi,0.2465,1,Medium,0.9089,0.0412,0.0161,0.031,0.0028,366.23,10132,1033
-100029,Ankara,Bilinmeyen İlçe,Selametli Şehit Emrah Mahallesi,0.1986,1,Low,0.9528,0.0304,0.0079,0.0064,0.0025,449.97,21012,1707
-100030,Ankara,Bilinmeyen İlçe,Bezirhane Mahallesi,0.2001,1,Low,0.9035,0.0739,0.0099,0.0102,0.0024,427.11,11690,974
-100031,Ankara,Bilinmeyen İlçe,Gümüşdere Mahallesi,0.2432,1,Medium,0.5272,0.3079,0.1137,0.023,0.0281,526.03,32426,2699
-100032,Ankara,Bilinmeyen İlçe,Kavacık Subayevleri Mahallesi,0.1546,1,Very Low,0.9799,0.0103,0.0036,0.0058,0.0005,438.08,102,10
-100033,Ankara,Bilinmeyen İlçe,Hasköy Mahallesi,0.2177,1,Low,0.906,0.0555,0.02,0.0067,0.0118,446.97,26678,1910
-100034,Ankara,Bilinmeyen İlçe,Şefkat Mahallesi,0.2312,1,Medium,0.5691,0.3622,0.0307,0.0348,0.0032,420.82,10185,631
-100035,Ankara,Bilinmeyen İlçe,Kalaba Mahallesi,0.2852,1,Medium,0.4248,0.4192,0.0775,0.0713,0.0071,362.45,7931,189
-100036,Ankara,Bilinmeyen İlçe,Güçlükaya Mahallesi,0.1752,1,Very Low,0.9332,0.0518,0.008,0.006,0.001,443.09,749,10
-100037,Ankara,Bilinmeyen İlçe,Bağlarbaşı Mahallesi,0.2292,1,Low,0.8779,0.0321,0.0352,0.0406,0.0141,427.69,43467,3792
-100038,Ankara,Bilinmeyen İlçe,Yakacık Mahallesi,0.1818,1,Low,0.8305,0.1149,0.0172,0.0182,0.0193,431.25,5475,325
-100039,Ankara,Bilinmeyen İlçe,Tepebaşı Mahallesi,0.2485,1,Medium,0.8888,0.0501,0.0277,0.0305,0.0029,353.09,12952,1220
-100040,Ankara,Bilinmeyen İlçe,Çiçekli Mahallesi,0.1446,1,Very Low,0.9657,0.0292,0.0017,0.0032,0.0003,623.44,102,62
-100041,Ankara,Bilinmeyen İlçe,Karargahtepe Mahallesi,0.1946,1,Low,0.972,0.0195,0.0037,0.0036,0.0012,476.97,19361,1556
-100042,Ankara,Bilinmeyen İlçe,Basınevleri Mahallesi,0.2821,1,Medium,0.6394,0.1347,0.0862,0.0879,0.0519,320.38,18910,1769
-100043,Ankara,Bilinmeyen İlçe,Emrah Mahallesi,0.1902,1,Low,0.9494,0.0342,0.005,0.0067,0.0047,504.79,16005,1276
-100044,Ankara,Bilinmeyen İlçe,Aşağı Eğlence Mahallesi,0.1624,1,Very Low,0.9782,0.0173,0.002,0.002,0.0005,504.84,5459,279
-100045,Ankara,Bilinmeyen İlçe,İncirli Mahallesi,0.1416,1,Very Low,0.9788,0.0146,0.0029,0.003,0.0007,512.95,5887,374
-100046,Ankara,Bilinmeyen İlçe,19 Mayıs Mahallesi,0.2338,1,Medium,0.6713,0.3014,0.011,0.012,0.0043,442.12,14041,1692
-100047,Ankara,Bilinmeyen İlçe,Kuşcağız Mahallesi,0.1604,1,Very Low,0.9904,0.006,0.0011,0.0018,0.0007,608.56,10410,1016
-100048,Ankara,Bilinmeyen İlçe,Pınarbaşı Mahallesi,0.2131,1,Low,0.9427,0.0361,0.0089,0.0112,0.0011,386.11,102,10
-100049,Ankara,Bilinmeyen İlçe,Şenlik Mahallesi,0.1606,1,Very Low,0.9391,0.0502,0.0057,0.0042,0.0008,454.48,902,40
-100050,Ankara,Bilinmeyen İlçe,Atapark Mahallesi,0.1687,1,Very Low,0.9405,0.0268,0.019,0.0121,0.0016,438.95,2058,191
-100051,Ankara,Bilinmeyen İlçe,Ufuktepe Mahallesi,0.157,1,Very Low,0.9834,0.0128,0.002,0.0015,0.0003,483.9,6766,543
-100052,Ankara,Bilinmeyen İlçe,Osmangazi Mahallesi,0.1593,1,Very Low,0.9389,0.0504,0.0071,0.0026,0.001,497.6,8397,617
-100053,Ankara,Bilinmeyen İlçe,Kamil Ocak Mahallesi,0.1318,1,Very Low,0.9791,0.0081,0.0018,0.0103,0.0007,534.31,102,10
-100054,Ankara,Bilinmeyen İlçe,Çaldıran Mahallesi,0.2012,1,Low,0.8881,0.0927,0.0105,0.0051,0.0036,432.36,13152,1115
-100055,Ankara,Bilinmeyen İlçe,Yeşiltepe Mahallesi,0.2089,1,Low,0.9031,0.0784,0.0093,0.0071,0.002,479.22,14246,978
-100056,Ankara,Bilinmeyen İlçe,Yeşilöz Mahallesi,0.2016,1,Low,0.8908,0.0848,0.0134,0.007,0.004,433.31,16766,904
-100057,Ankara,Bilinmeyen İlçe,Aktepe Mahallesi,0.2416,1,Medium,0.9027,0.0607,0.0133,0.0193,0.004,402.32,18237,1541
-100058,Ankara,Bilinmeyen İlçe,Adnan Menderes Mahallesi,0.2859,1,Medium,0.6544,0.1281,0.0818,0.0845,0.0512,359.85,38111,3135
-100059,Ankara,Bilinmeyen İlçe,Güzelyurt Mahallesi,0.1765,1,Very Low,0.9444,0.038,0.0106,0.0052,0.0018,477.52,14004,886
-100060,Ankara,Bilinmeyen İlçe,Şenyuva Mahallesi,0.1785,1,Very Low,0.9148,0.0741,0.0048,0.0033,0.0031,522.98,17610,1410
-100061,Ankara,Bilinmeyen İlçe,23 Nisan Mahallesi,0.1691,1,Very Low,0.9815,0.013,0.0026,0.0024,0.0005,507.12,2894,449
-100062,Ankara,Bilinmeyen İlçe,Köşk Mahallesi,0.1257,1,Very Low,0.9903,0.0076,0.0007,0.001,0.0004,550.33,5645,759
-100063,Ankara,Bilinmeyen İlçe,Uyanış Mahallesi,0.239,1,Medium,0.7813,0.1768,0.0246,0.0139,0.0034,444.37,102,145
-100064,Ankara,Bilinmeyen İlçe,Bademlik Mahallesi,0.1373,1,Very Low,0.9846,0.0128,0.0012,0.0011,0.0004,540.67,3070,493
-100065,Ankara,Bilinmeyen İlçe,Kanuni Mahallesi,0.1624,1,Very Low,0.9756,0.0172,0.0031,0.0033,0.0008,487.43,6758,675
-100066,Ankara,Bilinmeyen İlçe,Karşıyaka Mahallesi,0.175,1,Very Low,0.9795,0.013,0.003,0.0021,0.0024,607.84,11400,1181
-100067,Ankara,Bilinmeyen İlçe,Karakaya Mahallesi,0.1802,1,Low,0.9648,0.0211,0.0046,0.0036,0.0059,538.34,25927,2376
-100068,Ankara,Bilinmeyen İlçe,Kafkas Mahallesi,0.1724,1,Very Low,0.965,0.0245,0.0036,0.0053,0.0016,493.62,102,159
-100069,Ankara,Bilinmeyen İlçe,Hisar Mahallesi,0.2171,1,Low,0.8707,0.0972,0.0146,0.0055,0.012,462.51,26020,1939
-100070,Ankara,Bilinmeyen İlçe,Ovacık Mahallesi,0.2395,1,Medium,0.8092,0.1459,0.0244,0.0131,0.0074,392.44,17522,1344
-100071,Ankara,Bilinmeyen İlçe,Yükseltepe Mahallesi,0.233,1,Medium,0.9275,0.0401,0.0121,0.0103,0.01,411.28,23663,1910
-100072,Ankara,Bilinmeyen İlçe,Esertepe Mahallesi,0.2021,1,Low,0.9148,0.0592,0.0092,0.0115,0.0053,493.45,19263,1680
-100073,Ankara,Bilinmeyen İlçe,Etlik Mahallesi,0.1852,1,Low,0.9423,0.0374,0.0082,0.011,0.0011,415.91,102,122
-100074,Ankara,Bilinmeyen İlçe,Ayvalı Mahallesi,0.1618,1,Very Low,0.9561,0.0309,0.0053,0.0067,0.0009,454.22,102,10
-100075,Ankara,Bilinmeyen İlçe,Yayla Mahallesi,0.1717,1,Very Low,0.9607,0.0285,0.0049,0.0043,0.0015,466.3,9219,612
-100076,Ankara,Bilinmeyen İlçe,Sancaktepe Mahallesi,0.2296,1,Low,0.6233,0.2774,0.0491,0.038,0.0122,419.26,16895,1531
-100077,Ankara,Bilinmeyen İlçe,Şehit Kubilay Mahallesi,0.1593,1,Very Low,0.9728,0.0221,0.0019,0.0022,0.001,634.44,19919,1872
-100078,Ankara,Bilinmeyen İlçe,Kösrelik Mahallesi,0.2194,1,Low,0.9052,0.0682,0.0133,0.0104,0.0029,425.1,16975,1531
-100079,Ankara,Bilinmeyen İlçe,Sarıbeyler Mahallesi,0.2043,1,Low,0.9608,0.0232,0.0058,0.0051,0.005,486.78,22357,1881
-100080,Ankara,Bilinmeyen İlçe,Çalseki Mahallesi,0.1976,1,Low,0.9508,0.0331,0.004,0.0046,0.0075,524.18,21971,1237
-100081,Ankara,Bilinmeyen İlçe,Bağlum Güzelyurt Mahallesi,0.2953,2,Medium,0.257,0.4159,0.114,0.1259,0.0872,359.94,24983,1961
-100082,Ankara,Bilinmeyen İlçe,Emniyet Mahallesi,0.1589,1,Very Low,0.962,0.0311,0.0035,0.0029,0.0005,457.37,7236,485
-100083,Ankara,Bilinmeyen İlçe,Gazi Mahallesi,0.1886,1,Low,0.9645,0.0225,0.0041,0.0045,0.0044,581.22,25006,1478
-100084,Ankara,Bilinmeyen İlçe,Macun Mahallesi,0.1638,1,Very Low,0.9793,0.0155,0.0027,0.0016,0.0009,600.34,13637,1199
-100085,Ankara,Bilinmeyen İlçe,25 Mart Mahallesi,0.2201,1,Low,0.7489,0.1024,0.0229,0.0157,0.1101,475.11,25102,2020
-100086,Ankara,Bilinmeyen İlçe,Çamlıca Mahallesi,0.2176,1,Low,0.8238,0.1372,0.0103,0.0252,0.0035,387.88,9298,770
-100087,Ankara,Bilinmeyen İlçe,Gayret Mahallesi,0.2895,1,Medium,0.7025,0.0778,0.1073,0.0468,0.0655,317.89,26235,2475
-100088,Ankara,Bilinmeyen İlçe,Demetgül Mahallesi,0.1968,1,Low,0.9464,0.0301,0.0102,0.0069,0.0063,490.54,30187,2605
-100089,Ankara,Bilinmeyen İlçe,Varlık Mahallesi,0.2931,1,Medium,0.3768,0.2286,0.1393,0.1239,0.1313,338.35,24643,1908
-100090,Ankara,Bilinmeyen İlçe,Işınlar Mahallesi,0.1666,1,Very Low,0.9649,0.0294,0.0026,0.0024,0.0008,539.27,13772,946
-100091,Ankara,Bilinmeyen İlçe,Demetlale Mahallesi,0.2249,1,Low,0.918,0.0445,0.0173,0.0078,0.0124,437.72,27037,2169
-100092,Ankara,Bilinmeyen İlçe,Barış Mahallesi,0.1944,1,Low,0.939,0.0434,0.0071,0.0095,0.001,492.91,102,71
-100093,Ankara,Bilinmeyen İlçe,Ragıp Tüzün Mahallesi,0.197,1,Low,0.9759,0.0166,0.0038,0.0023,0.0014,479.6,15837,1306
-100094,Ankara,Bilinmeyen İlçe,Yeniçağ Mahallesi,0.1816,1,Low,0.95,0.0327,0.0061,0.0105,0.0007,415.02,3818,109
-100095,Ankara,Bilinmeyen İlçe,Yunus Emre Mahallesi,0.1948,1,Low,0.9256,0.0521,0.0102,0.0091,0.003,438.62,20942,2121
-100096,Ankara,Bilinmeyen İlçe,Çarşı Mahallesi,0.2678,1,Medium,0.8507,0.0834,0.027,0.0181,0.0208,388.12,26258,2290
-100097,Ankara,Bilinmeyen İlçe,Tepealtı Mahallesi,0.1897,1,Low,0.9354,0.0481,0.0067,0.0084,0.0014,411.68,102,10
-100098,Ankara,Bilinmeyen İlçe,Esentepe Mahallesi,0.1711,1,Very Low,0.9735,0.0212,0.0022,0.0021,0.0009,510.23,12717,1029
-100099,Ankara,Bilinmeyen İlçe,Ergenekon Mahallesi,0.2952,2,Medium,0.348,0.6009,0.0376,0.0104,0.0032,440.77,12298,1048
-100100,Ankara,Bilinmeyen İlçe,Anadolu Mahallesi,0.1754,1,Very Low,0.9668,0.0219,0.0058,0.0044,0.0011,450.15,12380,1128
-100101,Ankara,Bilinmeyen İlçe,Karşıyaka Mahallesi,0.2154,1,Low,0.8603,0.1041,0.0172,0.0153,0.0031,417.2,13614,1054
-100102,Ankara,Bilinmeyen İlçe,Demetevler Mahallesi,0.1758,1,Very Low,0.9549,0.028,0.0079,0.0084,0.0009,446.63,102,10
-100103,Ankara,Bilinmeyen İlçe,Mehmet Akif Ersoy Mahallesi,0.2381,1,Medium,0.7985,0.1399,0.0285,0.031,0.002,364.65,4293,433
-100104,Ankara,Bilinmeyen İlçe,Özevler Mahallesi,0.3011,1,High,0.6171,0.1524,0.0756,0.0712,0.0836,314.64,27289,2077
-100105,Ankara,Bilinmeyen İlçe,Yeşilevler Mahallesi,0.2171,1,Low,0.7847,0.1139,0.0527,0.0264,0.0223,499.49,40556,3224
-100106,Ankara,Bilinmeyen İlçe,Güzelyaka Mahallesi,0.218,1,Low,0.93,0.042,0.0136,0.012,0.0024,405.72,14798,1129
-100107,Ankara,Bilinmeyen İlçe,Pamuklar Mahallesi,0.2898,1,Medium,0.6847,0.1632,0.0537,0.0553,0.0432,368.12,24980,1908
-100108,Ankara,Bilinmeyen İlçe,Güventepe Mahallesi,0.2376,1,Medium,0.9332,0.0332,0.0098,0.0139,0.0098,402.6,21623,1904
-100109,Ankara,Bilinmeyen İlçe,Burç Mahallesi,0.2579,1,Medium,0.8681,0.0782,0.0246,0.0261,0.003,373.05,14443,1158
-100110,Ankara,Bilinmeyen İlçe,Barıştepe Mahallesi,0.1979,1,Low,0.9035,0.0748,0.0111,0.0078,0.0028,448.71,15997,1325
-100111,Ankara,Bilinmeyen İlçe,Kayalar Mahallesi,0.1858,1,Low,0.9622,0.0263,0.0041,0.0057,0.0016,500.17,19206,1228
-100112,Ankara,Bilinmeyen İlçe,Çiğdemtepe Mahallesi,0.145,1,Very Low,0.9669,0.027,0.0023,0.0033,0.0005,527.08,102,98
-100113,Ankara,Bilinmeyen İlçe,Yıldırım Beyazıt Mahallesi,0.1715,1,Very Low,0.9387,0.0393,0.0156,0.0054,0.0011,490.2,659,10
-100114,Ankara,Bilinmeyen İlçe,Aşağı Yahyalar Mahallesi,0.1677,1,Very Low,0.9468,0.0353,0.0136,0.0034,0.0008,548.06,4051,371
-100115,Ankara,Bilinmeyen İlçe,Yukarı Yahyalar Mahallesi,0.3063,1,High,0.5189,0.1354,0.0941,0.1263,0.1253,286.05,24333,2145
-100116,Ankara,Bilinmeyen İlçe,Kaletepe Mahallesi,0.1369,1,Very Low,0.9884,0.0088,0.001,0.0014,0.0004,524.09,6931,624
-100117,Ankara,Bilinmeyen İlçe,Avcılar Mahallesi,0.2172,1,Low,0.7872,0.1379,0.0184,0.0515,0.0049,426.14,15955,1286
-100118,Ankara,Bilinmeyen İlçe,İvedikköy Mahallesi,0.1892,1,Low,0.9574,0.0335,0.0048,0.003,0.0014,478.43,16378,1129
-100119,Ankara,Bilinmeyen İlçe,Serhat Mahallesi,0.2144,1,Low,0.8816,0.0659,0.0258,0.0143,0.0124,453.14,31641,2555
-100120,Ankara,Bilinmeyen İlçe,Uğur Mumcu Mahallesi,0.2029,1,Low,0.9502,0.0258,0.007,0.0073,0.0098,472.26,22274,1584
-100121,Ankara,Bilinmeyen İlçe,Ostim OSB Mahallesi,0.1977,1,Low,0.9126,0.07,0.008,0.007,0.0025,465.15,17372,1573
-100122,Ankara,Bilinmeyen İlçe,İlkyerleşim Mahallesi,0.1319,1,Very Low,0.9835,0.0132,0.0015,0.0015,0.0003,539.26,2087,187
-100123,Ankara,Bilinmeyen İlçe,Yuvaköy Mahallesi,0.2297,1,Low,0.8284,0.1205,0.0137,0.0156,0.0218,436.72,15954,1265
-100124,Ankara,Bilinmeyen İlçe,Yakacık Mahallesi,0.1807,1,Low,0.9076,0.0532,0.0171,0.0053,0.0168,568.16,23950,1841
-100125,Ankara,Bilinmeyen İlçe,Kuzey Yıldızı Mahallesi,0.1399,1,Very Low,0.9505,0.0354,0.0069,0.0065,0.0007,579.65,102,94
-100126,Ankara,Bilinmeyen İlçe,Memlik Mahallesi,0.1991,1,Low,0.929,0.0499,0.0086,0.0077,0.0048,466.24,19394,1665
-100127,Ankara,Bilinmeyen İlçe,Turgut Özal Mahallesi,0.1859,1,Low,0.9724,0.0148,0.005,0.0066,0.0012,424.18,10397,405
-100128,Ankara,Bilinmeyen İlçe,Kardelen Mahallesi,0.1793,1,Very Low,0.969,0.0198,0.0044,0.0057,0.0012,456.74,10238,1092
-100129,Ankara,Bilinmeyen İlçe,İnönü Mahallesi,0.1564,1,Very Low,0.9649,0.0267,0.0029,0.005,0.0007,516.89,102,33
-100130,Ankara,Bilinmeyen İlçe,Kentkoop Mahallesi,0.2967,1,Medium,0.6653,0.1181,0.0784,0.0809,0.0573,322.53,26469,2159
-100131,Ankara,Bilinmeyen İlçe,Şirintepe Mahallesi,0.1865,1,Low,0.977,0.0133,0.0035,0.0024,0.0037,494.47,23540,1835
-100132,Ankara,Bilinmeyen İlçe,Misket Mahallesi,0.218,1,Low,0.6967,0.1649,0.0868,0.0108,0.0408,448.09,24367,2355
-100133,Ankara,Bilinmeyen İlçe,Malazgirt Mahallesi,0.1879,1,Low,0.9427,0.0408,0.01,0.0046,0.0018,485.47,2847,10
-100134,Ankara,Bilinmeyen İlçe,Tandoğan Mahallesi,0.1602,1,Very Low,0.9799,0.0129,0.0036,0.003,0.0005,480.19,8178,189
-100135,Ankara,Bilinmeyen İlçe,Fatih Mahallesi,0.2235,1,Low,0.8865,0.0766,0.0141,0.0213,0.0015,369.06,5862,343
-100136,Ankara,Bilinmeyen İlçe,Atatürk Mahallesi,0.1835,1,Low,0.9592,0.0316,0.0042,0.0036,0.0015,467.38,9472,917
-100137,Ankara,Bilinmeyen İlçe,Satıkadın Mahallesi,0.1803,1,Low,0.925,0.0571,0.0096,0.0071,0.0011,470.65,102,10
-100138,Ankara,Bilinmeyen İlçe,Kanuni Sultan Süleyman Mahallesi,0.152,1,Very Low,0.9773,0.0168,0.0024,0.0028,0.0007,546.8,102,10
-100139,Ankara,Bilinmeyen İlçe,Örencik Mahallesi,0.2154,1,Low,0.931,0.0284,0.0104,0.0112,0.019,417.25,24405,2072
-100140,Ankara,Bilinmeyen İlçe,Ciğir Mahallesi,0.2488,1,Medium,0.6248,0.3262,0.0222,0.0131,0.0137,483.03,23094,2165
-100141,Ankara,Bilinmeyen İlçe,Günbaşı Mahallesi,0.1705,1,Very Low,0.9537,0.0299,0.0061,0.0062,0.0041,533.62,22264,1484
-100142,Ankara,Bilinmeyen İlçe,Kayı Mahallesi,0.2417,1,Medium,0.4764,0.3096,0.1377,0.0719,0.0043,352.23,4080,294
-100143,Ankara,Bilinmeyen İlçe,Alpagut Mahallesi,0.2245,1,Low,0.9035,0.0634,0.0121,0.0123,0.0086,427.94,18948,1564
-100144,Ankara,Bilinmeyen İlçe,Güvenç Mahallesi,0.2758,1,Medium,0.6196,0.2633,0.0439,0.0655,0.0077,360.96,14834,1406
-100145,Ankara,Bilinmeyen İlçe,Yıldırımbeyazıt Mahallesi,0.1924,1,Low,0.9265,0.0464,0.0105,0.0153,0.0012,458.14,102,10
-100146,Ankara,Bilinmeyen İlçe,Kumpınar Mahallesi,0.3031,2,High,0.1176,0.7747,0.0899,0.0163,0.0015,426.19,102,108
-100147,Ankara,Bilinmeyen İlçe,Yavuz Sultan Selim Mahallesi,0.1548,1,Very Low,0.9867,0.0081,0.0021,0.0027,0.0004,446.87,2694,398
-100148,Ankara,Bilinmeyen İlçe,Yassıören Mahallesi,0.1535,1,Very Low,0.9808,0.0148,0.0016,0.0023,0.0004,518.55,102,641
-100149,Ankara,Bilinmeyen İlçe,Sarıayak Mahallesi,0.1758,1,Very Low,0.9833,0.0123,0.0019,0.0018,0.0007,596.08,9806,1011
-100150,Ankara,Bilinmeyen İlçe,Soğucak Mahallesi,0.2144,1,Low,0.9145,0.0599,0.0076,0.0051,0.013,498.45,24405,2117
-100151,Ankara,Bilinmeyen İlçe,Tekke Mahallesi,0.1803,1,Low,0.9301,0.0448,0.0108,0.0113,0.0029,413.44,9433,627
-100152,Ankara,Bilinmeyen İlçe,Dutözü Mahallesi,0.1522,1,Very Low,0.9851,0.0106,0.0018,0.0022,0.0004,504.79,1304,10
-100153,Ankara,Bilinmeyen İlçe,İçören Mahallesi,0.1646,1,Very Low,0.9747,0.0213,0.0013,0.0021,0.0005,587.24,11727,1170
-100154,Ankara,Bilinmeyen İlçe,Akçaören Mahallesi,0.2419,1,Medium,0.854,0.0911,0.0257,0.0266,0.0026,343.13,1711,320
-100155,Ankara,Bilinmeyen İlçe,Aşağıkaraören Mahallesi,0.2263,1,Low,0.9185,0.0521,0.0142,0.014,0.0011,372.73,2793,169
-100156,Ankara,Bilinmeyen İlçe,Uçarı Mahallesi,0.2168,1,Low,0.9036,0.0593,0.0172,0.0087,0.0112,486.14,32662,2426
-100157,Ankara,Bilinmeyen İlçe,İnceğiz Mahallesi,0.2192,1,Low,0.8986,0.0558,0.0162,0.0281,0.0013,366.92,102,11
-100158,Ankara,Bilinmeyen İlçe,Saraç Mahallesi,0.2419,1,Medium,0.9033,0.0464,0.0151,0.0101,0.0251,409.39,24643,2356
-100159,Ankara,Bilinmeyen İlçe,Yayalar Mahallesi,0.1507,1,Very Low,0.99,0.0062,0.0018,0.0017,0.0003,456.92,4322,323
-100160,Ankara,Bilinmeyen İlçe,Yakupderviş Maallesi,0.1775,1,Very Low,0.9756,0.0176,0.0022,0.0024,0.0022,576.94,18837,1545
-100161,Ankara,Bilinmeyen İlçe,Ahi Mahallesi,0.1586,1,Very Low,0.9802,0.0125,0.0032,0.0032,0.0009,464.44,102,10
-100162,Ankara,Bilinmeyen İlçe,Sancar Mahallesi,0.2368,1,Medium,0.89,0.0406,0.0267,0.0237,0.019,412.24,34039,2787
-100163,Ankara,Bilinmeyen İlçe,Peçenek Mahallesi,0.1625,1,Very Low,0.9685,0.0219,0.004,0.005,0.0005,484.68,102,58
-100164,Ankara,Bilinmeyen İlçe,Kılıçlar Mahallesi,0.1693,1,Very Low,0.9716,0.0192,0.0044,0.0042,0.0007,456.73,102,10
-100165,Ankara,Bilinmeyen İlçe,Atatürk Mahallesi,0.1707,1,Very Low,0.9633,0.0185,0.0058,0.0116,0.0009,428.38,102,10
-100166,Ankara,Bilinmeyen İlçe,Maraşal Çakmak Mahallesi,0.1458,1,Very Low,0.9551,0.0402,0.0024,0.0018,0.0005,563.98,3016,346
-100167,Ankara,Bilinmeyen İlçe,Andiçen Mahallesi,0.2174,1,Low,0.9082,0.0574,0.0104,0.0211,0.0028,412.2,20052,1398
-100168,Ankara,Bilinmeyen İlçe,Osmanlı Mahallesi,0.1631,1,Very Low,0.983,0.0102,0.0029,0.0033,0.0006,469.46,102,10
-100169,Ankara,Bilinmeyen İlçe,Pınarbaşı Mahallesi,0.2085,1,Low,0.9434,0.0344,0.009,0.0113,0.0019,429.72,11812,782
-100170,Ankara,Bilinmeyen İlçe,Ertuğrulgazi Mahallesi,0.288,5,Medium,0.0836,0.0166,0.0046,0.0292,0.866,432.52,30547,2438
-100171,Ankara,Bilinmeyen İlçe,Selçuklu Mahallesi,0.1655,1,Very Low,0.9276,0.0523,0.0104,0.0065,0.0031,529.46,17478,1523
-100172,Ankara,Bilinmeyen İlçe,Plevne Mahallesi,0.1954,1,Low,0.9559,0.033,0.0051,0.0052,0.0008,391.91,1808,10
-100173,Ankara,Bilinmeyen İlçe,Akşemsettin Mahallesi,0.2723,1,Medium,0.5588,0.321,0.0469,0.0507,0.0226,418.1,31200,2226
-100174,Ankara,Bilinmeyen İlçe,İstasyon Mahallesi,0.2994,2,Medium,0.2914,0.4261,0.149,0.0197,0.1138,431.12,25730,1921
-100175,Ankara,Bilinmeyen İlçe,Ahi Evran Mahallesi,0.2039,1,Low,0.9344,0.0507,0.0054,0.0069,0.0026,505.37,20552,1781
-100176,Ankara,Bilinmeyen İlçe,Yunus Emre Mahallesi,0.2122,1,Low,0.9152,0.0601,0.012,0.0091,0.0036,436.59,20949,1900
-100177,Ankara,Bilinmeyen İlçe,Ulubatlı Hasan Mahallesi,0.1736,1,Very Low,0.9502,0.038,0.0053,0.0051,0.0013,469.23,8428,749
-100178,Ankara,Bilinmeyen İlçe,Fatih Mahallesi,0.2247,1,Low,0.9338,0.0356,0.01,0.0185,0.002,393.57,12555,906
-100179,Ankara,Bilinmeyen İlçe,Gökçek Mahallesi,0.1725,1,Very Low,0.8892,0.0901,0.0172,0.0025,0.001,487.28,5822,447
-100180,Ankara,Bilinmeyen İlçe,Gazi Osmanpaşa Mahallesi,0.177,1,Very Low,0.9804,0.0123,0.0034,0.0027,0.0011,456.43,16231,1329
-100181,Ankara,Bilinmeyen İlçe,Mevlana Mahallesi,0.1539,1,Very Low,0.9773,0.0143,0.0022,0.0056,0.0006,512.01,102,10
-100182,Ankara,Bilinmeyen İlçe,Törekent Mahallesi,0.1752,1,Very Low,0.9553,0.0311,0.0035,0.0095,0.0006,494.24,102,195
-100183,Ankara,Bilinmeyen İlçe,Mustafa Kemal Mahallesi,0.181,1,Low,0.9732,0.0203,0.0022,0.0033,0.0011,522.69,19293,1579
-100184,Ankara,Bilinmeyen İlçe,Menderes Mahallesi,0.2799,1,Medium,0.7931,0.0569,0.0461,0.0674,0.0365,375.98,35087,3173
-100185,Ankara,Bilinmeyen İlçe,29 Ekim Mahallesi,0.2316,1,Medium,0.842,0.0923,0.0283,0.0197,0.0177,479.2,33282,2947
-100186,Ankara,Bilinmeyen İlçe,Fevzi Çakmak Mahallesi,0.242,1,Medium,0.8407,0.0568,0.0399,0.0183,0.0442,406.72,26012,2623
-100187,Ankara,Bilinmeyen İlçe,Çoğlu Mahallesi,0.1798,1,Very Low,0.9116,0.0649,0.0093,0.0131,0.0012,430.93,4248,524
-100188,Ankara,Bilinmeyen İlçe,Atakent Mahallesi,0.2393,1,Medium,0.8657,0.0971,0.0164,0.0079,0.013,489.08,22222,1902
-100189,Ankara,Bilinmeyen İlçe,Topçu Mahallesi,0.1997,1,Low,0.9665,0.0168,0.0047,0.0114,0.0005,384.89,2659,422
-100190,Ankara,Bilinmeyen İlçe,Oğuzlar Mahallesi,0.2354,1,Medium,0.6642,0.2859,0.024,0.0238,0.0022,387.47,6396,848
-100191,Ankara,Bilinmeyen İlçe,Ayyıldız Mahallesi,0.1459,1,Very Low,0.9883,0.007,0.0012,0.002,0.0015,601.76,8709,655
-100192,Ankara,Bilinmeyen İlçe,Ahi Mesut Mahallesi,0.1756,1,Very Low,0.9359,0.043,0.0105,0.0085,0.0022,516.07,11626,697
-100193,Ankara,Bilinmeyen İlçe,Elvan Mahallesi,0.2214,1,Low,0.8969,0.0595,0.0184,0.0137,0.0115,456.76,23135,1861
-100194,Ankara,Bilinmeyen İlçe,Piyade Mahallesi,0.2814,1,Medium,0.4811,0.2104,0.1904,0.1024,0.0158,327.81,16468,1427
-100195,Ankara,Bilinmeyen İlçe,Süvari Mahallesi,0.1672,1,Very Low,0.9827,0.0083,0.0013,0.0071,0.0007,505.94,11046,923
-100196,Ankara,Bilinmeyen İlçe,Kazım Karabekir Mahallesi,0.1792,1,Very Low,0.9028,0.0843,0.0049,0.0037,0.0043,561.39,9115,627
-100197,Ankara,Bilinmeyen İlçe,İstasyon Mahallesi,0.1953,1,Low,0.9358,0.0389,0.01,0.0111,0.0042,459.52,21069,1898
-100198,Ankara,Bilinmeyen İlçe,Alsancak Mahallesi,0.1746,1,Very Low,0.9666,0.0219,0.0037,0.0029,0.0049,567.63,22137,1889
-100199,Ankara,Bilinmeyen İlçe,Bağlıca Mahallesi,0.2258,1,Low,0.8577,0.087,0.0348,0.0175,0.0029,399.33,11830,1157
-100200,Ankara,Bilinmeyen İlçe,Örnek Mahallesi,0.1918,1,Low,0.9703,0.0208,0.0034,0.0045,0.001,482.56,19631,1428
-100201,Ankara,Bilinmeyen İlçe,Ergazi Mahallesi,0.1863,1,Low,0.928,0.0474,0.0093,0.0076,0.0077,434.24,5449,435
-100202,Ankara,Bilinmeyen İlçe,Batı Sitesi Mahallesi,0.2014,1,Low,0.9448,0.0286,0.0131,0.0058,0.0078,476.81,27198,2080
-100203,Ankara,Bilinmeyen İlçe,Yeni Batı Mahallesi,0.1902,1,Low,0.9226,0.0424,0.0186,0.0055,0.0109,513.13,25991,2552
-100204,Ankara,Bilinmeyen İlçe,Şeker Mahallesi,0.2767,2,Medium,0.295,0.6029,0.062,0.0221,0.018,418.47,20010,1829
-100205,Ankara,Bilinmeyen İlçe,Şehit Osman Avcı Mahallesi,0.2557,1,Medium,0.6675,0.2703,0.0381,0.0068,0.0173,488.61,28130,2661
-100206,Ankara,Bilinmeyen İlçe,Altay Mahallesi,0.1993,2,Low,0.4383,0.5055,0.0458,0.0079,0.0025,477.89,14857,993
-100207,Ankara,Bilinmeyen İlçe,Göksu Mahallesi,0.1923,1,Low,0.9487,0.0425,0.0049,0.0025,0.0015,480.47,16072,1487
-100208,Ankara,Bilinmeyen İlçe,Şeyh Şamil Mahallesi,0.1675,1,Very Low,0.945,0.0389,0.0057,0.0091,0.0013,443.7,8859,580
-100209,Ankara,Bilinmeyen İlçe,Tunahan Mahallesi,0.1731,1,Very Low,0.9351,0.0492,0.0067,0.0082,0.0008,431.27,102,10
-100210,Ankara,Bilinmeyen İlçe,Güzelkent Mahallesi,0.2203,1,Low,0.8714,0.0546,0.0282,0.0402,0.0056,432.6,19308,1232
-100211,Ankara,Bilinmeyen İlçe,Eryaman Mahallesi,0.1758,1,Very Low,0.9338,0.05,0.007,0.0078,0.0014,487.33,102,10
-100212,Ankara,Bilinmeyen İlçe,Yavuz Selim Mahallesi,0.1747,1,Very Low,0.9682,0.0247,0.0029,0.0025,0.0017,530.13,10917,1244
-100213,Ankara,Bilinmeyen İlçe,Yeşilova Mahallesi,0.2101,1,Low,0.9026,0.0741,0.0099,0.0123,0.001,379.56,6909,1112
-100214,Ankara,Bilinmeyen İlçe,Etiler Mahallesi,0.2238,1,Low,0.8388,0.1255,0.0208,0.0135,0.0014,387.36,4266,520
-100215,Ankara,Bilinmeyen İlçe,Erler Mahallesi,0.2208,1,Low,0.8507,0.0932,0.037,0.0148,0.0043,403.52,17100,1348
-100216,Ankara,Bilinmeyen İlçe,30 Ağustos Mahallesi,0.1835,1,Low,0.9334,0.0491,0.0072,0.0079,0.0025,450.21,2818,84
-100217,Ankara,Bilinmeyen İlçe,Ayyıldız Mahallesi,0.209,1,Low,0.8003,0.1046,0.0329,0.01,0.0522,501.07,13515,685
-100218,Ankara,Bilinmeyen İlçe,Bahçekapı Mahallesi,0.2205,1,Low,0.929,0.0481,0.0099,0.0108,0.0022,404.98,14962,1053
-100219,Ankara,Bilinmeyen İlçe,Başpınar Mahallesi,0.1699,1,Very Low,0.9555,0.033,0.0054,0.0047,0.0014,460.39,9265,899
-100220,Ankara,Bilinmeyen İlçe,Doğantepe Mahallesi,0.2472,1,Medium,0.8227,0.0716,0.0666,0.0221,0.0169,400.45,23278,1828
-100221,Ankara,Bilinmeyen İlçe,Solfasol Mahallesi,0.17,1,Very Low,0.9621,0.0237,0.0069,0.0066,0.0008,451.08,102,69
-100222,Ankara,Bilinmeyen İlçe,Yıldıztepe Mahallesi,0.1948,1,Low,0.9507,0.0319,0.0045,0.0045,0.0084,523.38,24123,1942
-100223,Ankara,Bilinmeyen İlçe,Güneşevler Mahallesi,0.1804,1,Low,0.9593,0.027,0.0039,0.0086,0.0011,501.81,10779,515
-100224,Ankara,Bilinmeyen İlçe,Aydınlıkevler Mahallesi,0.1613,1,Very Low,0.9737,0.0196,0.0031,0.0026,0.001,482.77,8713,892
-100225,Ankara,Bilinmeyen İlçe,Ulubey Mahallesi,0.1501,1,Very Low,0.9835,0.0088,0.0032,0.0041,0.0004,450.43,102,125
-100226,Ankara,Bilinmeyen İlçe,Önder Mahallesi,0.2721,1,Medium,0.6854,0.1843,0.0465,0.0702,0.0136,323.04,17382,1521
-100227,Ankara,Bilinmeyen İlçe,Gültepe Mahallesi,0.2111,1,Low,0.8802,0.0714,0.0215,0.0146,0.0123,429.46,27720,2194
-100228,Ankara,Bilinmeyen İlçe,Atıfbey Mahallesi,0.1604,1,Very Low,0.9764,0.0179,0.0024,0.0026,0.0007,559.07,13774,1146
-100229,Ankara,Bilinmeyen İlçe,Bostancık Mahallesi,0.2119,1,Low,0.9185,0.0501,0.0151,0.0051,0.0112,480.27,27167,2174
-100230,Ankara,Bilinmeyen İlçe,Ekin Mahallesi,0.2002,1,Low,0.9262,0.0552,0.0094,0.0069,0.0023,448.76,15878,1242
-100231,Ankara,Bilinmeyen İlçe,Başak Mahallesi,0.1442,1,Very Low,0.9916,0.0049,0.0011,0.0021,0.0003,501.49,1788,514
-100232,Ankara,Bilinmeyen İlçe,Karaağaç Mahallesi,0.2468,1,Medium,0.6467,0.2373,0.0522,0.0577,0.0062,344.07,102,37
-100233,Ankara,Bilinmeyen İlçe,Altıağaç Mahallesi,0.2327,1,Medium,0.9242,0.0224,0.019,0.0214,0.013,410.14,33745,3001
-100234,Ankara,Bilinmeyen İlçe,Bahçeleriçi Mahallesi,0.2088,1,Low,0.9338,0.0461,0.0105,0.0086,0.001,385.67,347,10
-100235,Ankara,Bilinmeyen İlçe,Hüseyingazi Mahallesi,0.2621,1,Medium,0.8325,0.0761,0.0341,0.0524,0.0048,349.33,10423,852
-100236,Ankara,Bilinmeyen İlçe,Harman Mahallesi,0.2231,1,Low,0.8105,0.0685,0.0325,0.0197,0.0689,418.57,27853,2243
-100237,Ankara,Bilinmeyen İlçe,Çiğiltepe Mahallesi,0.208,1,Low,0.8094,0.1465,0.0175,0.0244,0.0021,379.31,102,10
-100238,Ankara,Bilinmeyen İlçe,Altınevler Mahallesi,0.2049,1,Low,0.9192,0.0461,0.0131,0.0106,0.011,486.32,32649,2520
-100239,Ankara,Bilinmeyen İlçe,Gülveren Mahallesi,0.2956,2,Medium,0.1956,0.3517,0.3304,0.0335,0.0888,387.43,24743,2146
-100240,Ankara,Bilinmeyen İlçe,Bahçelerüstü Mahallesi,0.1764,1,Very Low,0.926,0.0537,0.0048,0.0146,0.0009,497.7,102,10
-100241,Ankara,Bilinmeyen İlçe,Erzurum Mahallesi,0.1961,1,Low,0.96,0.0292,0.0039,0.0051,0.0018,509.1,1257,271
-100242,Ankara,Çankaya,Cebeci Mahallesi,0.1943,1,Low,0.9711,0.018,0.0034,0.0059,0.0016,491.99,21397,1555
-100243,Ankara,Mamak,Abidinpaşa Mahallesi,0.1658,1,Very Low,0.9621,0.0301,0.0038,0.003,0.0011,459.04,9130,688
-100244,Ankara,Mamak,Balkiraz Mahallesi,0.2691,1,Medium,0.7489,0.091,0.0468,0.0981,0.0152,353.13,11787,1551
-100245,Ankara,Bilinmeyen İlçe,Hürel Mahallesi,0.1683,1,Very Low,0.9503,0.0292,0.0107,0.0086,0.0012,494.06,10068,882
-100246,Ankara,Bilinmeyen İlçe,Şafaktepe Mahallesi,0.1586,1,Very Low,0.9625,0.024,0.0085,0.0038,0.0012,507.94,8727,543
-100247,Ankara,Bilinmeyen İlçe,Demirlibahçe Mahallesi,0.2841,1,Medium,0.6283,0.19,0.0494,0.0948,0.0375,370.11,30643,2207
-100248,Ankara,Bilinmeyen İlçe,Mehtap Mahallesi,0.1598,1,Very Low,0.9499,0.043,0.0033,0.0031,0.0007,527.65,652,10
-100249,Ankara,Mamak,Saimekadın Mahallesi,0.2291,1,Low,0.8758,0.0661,0.0199,0.0232,0.015,426.54,21613,2074
-100250,Ankara,Bilinmeyen İlçe,Kartaltepe Mahallesi,0.1583,1,Very Low,0.9686,0.0221,0.0031,0.0051,0.0012,521.45,102,60
-100251,Ankara,Bilinmeyen İlçe,Çağlayan Mahallesi,0.1673,1,Very Low,0.9678,0.0268,0.0023,0.0026,0.0005,490.78,4656,821
-100252,Ankara,Bilinmeyen İlçe,Tuzluçayır Mahallesi,0.151,1,Very Low,0.9895,0.0074,0.001,0.0018,0.0003,495.65,7805,965
-100253,Ankara,Mamak,Aşık Veysel Mahallesi,0.2143,1,Low,0.9055,0.0603,0.0155,0.0169,0.0019,398.11,102,10
-100254,Ankara,Bilinmeyen İlçe,Peyami Safa Mahallesi,0.1546,1,Very Low,0.9845,0.011,0.0017,0.0021,0.0008,542.52,10581,631
-100255,Ankara,Bilinmeyen İlçe,General Zeki Doğan Mahallesi,0.2947,1,Medium,0.4614,0.1603,0.2161,0.0957,0.0666,342.36,24978,2112
-100256,Ankara,Bilinmeyen İlçe,Şahintepe Mahallesi,0.2747,1,Medium,0.682,0.2111,0.0633,0.0229,0.0207,485.13,38078,2861
-100257,Ankara,Bilinmeyen İlçe,Mutlu Mahallesi,0.1503,1,Very Low,0.9882,0.0072,0.0015,0.0025,0.0005,614.32,10260,746
-100258,Ankara,Bilinmeyen İlçe,Kutlu Mahallesi,0.1616,1,Very Low,0.9803,0.0152,0.0023,0.0019,0.0004,505.47,4241,320
-100259,Ankara,Bilinmeyen İlçe,Kazım Orbay Mahallesi,0.1868,1,Low,0.841,0.1024,0.0309,0.0135,0.0122,529.78,28644,2406
-100260,Ankara,Bilinmeyen İlçe,Türközü Mahallesi,0.1614,1,Very Low,0.9631,0.0237,0.0054,0.0072,0.0006,418.46,102,34
-100261,Ankara,Mamak,Akdere Mahallesi,0.2224,1,Low,0.5293,0.3101,0.1114,0.0157,0.0336,455.58,26223,2088
-100262,Ankara,Mamak,Şehit Cengiz Topel Mahallesi,0.2018,1,Low,0.9419,0.045,0.0053,0.0064,0.0014,457.61,10394,840
-100263,Ankara,Bilinmeyen İlçe,Fahri Korutürk Mahallesi,0.2301,1,Medium,0.8931,0.0629,0.0186,0.0227,0.0027,398.83,13101,1183
-100264,Ankara,Bilinmeyen İlçe,Durali Alıç Mahallesi,0.2136,1,Low,0.7914,0.1443,0.03,0.0293,0.005,424.32,18363,1444
-100265,Ankara,Bilinmeyen İlçe,Boğaziçi Mahallesi,0.1453,1,Very Low,0.9748,0.0156,0.0015,0.0064,0.0016,532.11,950,164
-100266,Ankara,Bilinmeyen İlçe,Akşemsettin Mahallesi,0.2639,3,Medium,0.272,0.2993,0.3442,0.0523,0.0323,448.16,31705,2991
-100267,Ankara,Mamak,Cengizhan Mahallesi,0.2202,1,Low,0.858,0.0921,0.0188,0.0177,0.0134,496.15,30083,2545
-100268,Ankara,Bilinmeyen İlçe,Dutluk Mahallesi,0.224,1,Low,0.8902,0.0436,0.011,0.0049,0.0503,458.33,24951,1875
-100269,Ankara,Bilinmeyen İlçe,Derbent Mahallesi,0.1772,1,Very Low,0.9505,0.0283,0.0085,0.0045,0.0082,549.07,28427,2424
-100270,Ankara,Bilinmeyen İlçe,Araplar Mahallesi,0.233,1,Medium,0.8019,0.0964,0.0461,0.0339,0.0217,458.76,37378,2837
-100271,Ankara,Bilinmeyen İlçe,Dostlar Mahallesi,0.266,1,Medium,0.792,0.1034,0.0496,0.0255,0.0295,395.34,28510,2584
-100272,Ankara,Bilinmeyen İlçe,Köstence Mahallesi,0.1645,1,Very Low,0.9717,0.0201,0.0042,0.0035,0.0006,488.41,799,10
-100273,Ankara,Mamak,Üreğil Mahallesi,0.2687,1,Medium,0.6481,0.1996,0.0894,0.0589,0.004,334.34,102,79
-100274,Ankara,Bilinmeyen İlçe,Tepecik Mahallesi,0.2877,1,Medium,0.5715,0.2033,0.0695,0.0942,0.0615,362.87,29613,2303
-100275,Ankara,Bilinmeyen İlçe,Kayaş Mahallesi,0.3274,2,High,0.1521,0.7268,0.0925,0.0225,0.0062,385.57,16066,1353
-100276,Ankara,Mamak,Şahap Gürler Mahallesi,0.2082,1,Low,0.9543,0.0265,0.0082,0.0029,0.0081,504.03,27756,2446
-100277,Ankara,Mamak,Yeşilbayır Mahallesi,0.2825,1,Medium,0.6139,0.1597,0.1554,0.0311,0.0399,386.47,27604,2260
-100278,Ankara,Bilinmeyen İlçe,Küçük Kayaş Mahallesi,0.1714,1,Very Low,0.9354,0.0377,0.0199,0.0059,0.0011,483.15,3665,366
-100279,Ankara,Bilinmeyen İlçe,Mimar Sinan Mahallesi,0.1472,1,Very Low,0.9826,0.0123,0.0018,0.0029,0.0004,514.93,102,168
-100280,Ankara,Bilinmeyen İlçe,Yunus Emre Mahallesi,0.1841,1,Low,0.9673,0.0131,0.0033,0.0031,0.0132,651.32,25202,2047
-100281,Ankara,Bilinmeyen İlçe,Merkez Mahallesi,0.1474,1,Very Low,0.9879,0.0075,0.0016,0.0027,0.0003,506.52,102,10
-100282,Ankara,Bilinmeyen İlçe,Fatih Mahallesi,0.174,1,Very Low,0.9793,0.012,0.0027,0.0048,0.0012,463.51,18043,1625
-100283,Ankara,Bilinmeyen İlçe,Tevfik İleri Mahallesi,0.1587,1,Very Low,0.9719,0.0202,0.0025,0.0028,0.0027,570.05,3922,544
-100284,Ankara,Çankaya,Ertuğrulgazi Mahallesi,0.1475,1,Very Low,0.988,0.0074,0.0019,0.0024,0.0003,494.79,102,272
-100285,Ankara,Çankaya,Fakülteler Mahallesi,0.2057,1,Low,0.9051,0.0698,0.0112,0.0114,0.0025,410.59,11407,1126
-100286,Ankara,Bilinmeyen İlçe,Çamlıtepe Mahallesi,0.1559,1,Very Low,0.9765,0.0169,0.0029,0.0031,0.0006,442.12,826,85
-100287,Ankara,Bilinmeyen İlçe,İleri Mahallesi,0.1515,1,Very Low,0.9431,0.0421,0.0043,0.0099,0.0006,456.54,102,112
-100288,Ankara,Bilinmeyen İlçe,Ön Cebeci Mahallesi,0.1813,1,Low,0.9812,0.0133,0.0023,0.0022,0.0009,488.27,9821,893
-100289,Ankara,Bilinmeyen İlçe,İncesu Mahallesi,0.1393,1,Very Low,0.9888,0.0071,0.0009,0.0027,0.0004,517.33,8904,627
-100290,Ankara,Çankaya,Topraklık Mahallesi,0.2599,1,Medium,0.8295,0.0746,0.0457,0.0246,0.0256,394.62,27492,2606
-100291,Ankara,Çankaya,Dilekler Mahallesi,0.2018,1,Low,0.9332,0.0465,0.007,0.0115,0.0017,417.76,13535,1000
-100292,Ankara,Çankaya,50. Yıl Mahallesi,0.2654,1,Medium,0.7489,0.1871,0.0358,0.0219,0.0063,370.03,13497,1314
-100293,Ankara,Bilinmeyen İlçe,Fidanlık Mahallesi,0.211,1,Low,0.9333,0.0405,0.0109,0.0099,0.0054,445.75,21597,1613
-100294,Ankara,Bilinmeyen İlçe,Sağlık Mahallesi,0.1588,1,Very Low,0.9565,0.0296,0.0054,0.0077,0.0007,430.57,890,10
-100295,Ankara,Çankaya,Arka Topraklık Mahallsi,0.234,1,Medium,0.605,0.2212,0.1244,0.0468,0.0026,385.5,1668,398
-100296,Ankara,Bilinmeyen İlçe,Zafertepe Mahallesi,0.1847,1,Low,0.9481,0.0343,0.0047,0.0031,0.0098,567.08,24357,1998
-100297,Ankara,Bilinmeyen İlçe,Göktürk Mahallesi,0.2843,1,Medium,0.7254,0.0798,0.0664,0.0835,0.0449,341.49,31990,2772
-100298,Ankara,Bilinmeyen İlçe,Mimar Sinan Mahallesi,0.2004,1,Low,0.9445,0.0339,0.0055,0.0134,0.0026,437.44,18831,1640
-100299,Ankara,Bilinmeyen İlçe,Metin Oktay Mahallesi,0.1779,1,Very Low,0.9454,0.0376,0.0072,0.0066,0.0031,490.17,17127,1591
-100300,Ankara,Bilinmeyen İlçe,Aşıkpaşa Mahallesi,0.1854,1,Low,0.9632,0.025,0.0061,0.0041,0.0016,475.53,6292,296
-100301,Ankara,Bilinmeyen İlçe,Bayraktar Mahallesi,0.208,1,Low,0.8791,0.092,0.0083,0.0072,0.0134,488.02,14878,807
-100302,Ankara,Bilinmeyen İlçe,Büyükesat Mahallesi,0.2046,1,Low,0.9405,0.0471,0.0049,0.0029,0.0046,490.67,11221,815
-100303,Ankara,Bilinmeyen İlçe,Kazım Özalp Mahallesi,0.1615,1,Very Low,0.9627,0.0271,0.004,0.0056,0.0006,455.81,5070,545
-100304,Ankara,Bilinmeyen İlçe,100. Yıl Mahallesi,0.2829,1,Medium,0.6598,0.1412,0.0566,0.0969,0.0454,379.44,34215,3196
-100305,Ankara,Bilinmeyen İlçe,Umut Mahallesi,0.2668,1,Medium,0.8068,0.0689,0.025,0.0361,0.0632,395.94,33362,2730
-100306,Ankara,Bilinmeyen İlçe,Murat Mahallesi,0.217,1,Low,0.7926,0.1361,0.0274,0.0259,0.0181,468.72,29996,2145
-100307,Ankara,Bilinmeyen İlçe,Küçükesat Mahallesi,0.1724,1,Very Low,0.9775,0.0164,0.0023,0.0024,0.0014,500.8,6307,365
-100308,Ankara,Bilinmeyen İlçe,Doğuş Mahallesi,0.1657,1,Very Low,0.9668,0.0287,0.0021,0.002,0.0004,492.9,6411,467
-100309,Ankara,Bilinmeyen İlçe,Esatoğlu Mahallesi,0.1886,1,Low,0.96,0.0325,0.0045,0.0022,0.0008,488.35,13861,1227
-100310,Ankara,Bilinmeyen İlçe,Muhsin Ertuğrul Mahallesi,0.2128,1,Low,0.6522,0.1805,0.1236,0.0142,0.0295,450.63,29742,2633
-100311,Ankara,Bilinmeyen İlçe,Kavaklıdere Mahallesi,0.1641,1,Very Low,0.9634,0.0265,0.0053,0.0039,0.0008,445.62,345,180
-100312,Ankara,Bilinmeyen İlçe,Tınaztepe Mahallesi,0.2229,4,Low,0.1356,0.0306,0.0084,0.8082,0.0173,462.7,34387,2700
-100313,Ankara,Bilinmeyen İlçe,Seyranbağları Mahallesi,0.167,1,Very Low,0.96,0.0302,0.0047,0.0043,0.0009,478.01,102,10
-100314,Ankara,Bilinmeyen İlçe,Barbaros Mahallesi,0.2593,1,Medium,0.693,0.1901,0.0522,0.0553,0.0094,341.4,14613,1460
-100315,Ankara,Bilinmeyen İlçe,Gaziosmanpaşa Mahallesi,0.2498,1,Medium,0.6963,0.2188,0.0452,0.0314,0.0082,373.74,17787,1432
-100316,Ankara,Bilinmeyen İlçe,Birlik Mahallesi,0.1547,1,Very Low,0.97,0.0129,0.0028,0.0129,0.0014,532.39,16929,1449
-100317,Ankara,Bilinmeyen İlçe,Kırkkonaklar Mahallesi,0.1781,1,Very Low,0.937,0.0427,0.0107,0.0082,0.0015,406.24,2555,10
-100318,Ankara,Bilinmeyen İlçe,Bağcılar Mahallesi,0.1643,1,Very Low,0.9207,0.0635,0.0069,0.0063,0.0025,567.15,12230,1121
-100319,Ankara,Bilinmeyen İlçe,Bademlidere Mahallesi,0.1703,1,Very Low,0.9462,0.0453,0.0028,0.0043,0.0013,532.54,13635,1515
-100320,Ankara,Bilinmeyen İlçe,Boztepe Mahallesi,0.239,1,Medium,0.6703,0.2606,0.0323,0.0345,0.0022,350.19,1433,10
-100321,Ankara,Bilinmeyen İlçe,Güvenevler Mahallesi,0.1671,1,Very Low,0.976,0.0191,0.0017,0.0022,0.001,515.0,10390,678
-100322,Ankara,Bilinmeyen İlçe,Aziziye Mahallesi,0.2495,1,Medium,0.7347,0.1658,0.0348,0.0591,0.0056,331.69,102,10
-100323,Ankara,Bilinmeyen İlçe,Güzeltepe Mahallesi,0.1558,1,Very Low,0.9841,0.0089,0.0029,0.0038,0.0003,426.65,1170,137
-100324,Ankara,Bilinmeyen İlçe,Yıldızevler Mahallesi,0.2058,1,Low,0.9554,0.0235,0.0066,0.0075,0.007,431.23,22544,2301
-100325,Ankara,Bilinmeyen İlçe,Hilal Mahallesi,0.1633,1,Very Low,0.9643,0.0249,0.0041,0.0057,0.0009,457.13,8979,646
-100326,Ankara,Bilinmeyen İlçe,İlkbahar Mahallesi,0.2178,1,Low,0.9032,0.0703,0.0093,0.005,0.0122,511.32,25659,2270
-100327,Ankara,Bilinmeyen İlçe,Sancak Mahallesi,0.1688,1,Very Low,0.9798,0.0125,0.0021,0.0038,0.0018,506.69,8931,380
-100328,Ankara,Bilinmeyen İlçe,Çankaya Mahallesi,0.165,1,Very Low,0.9742,0.018,0.004,0.0029,0.0008,478.97,8279,344
-100329,Ankara,Bilinmeyen İlçe,Orta İmrahor Mahallesi,0.1893,1,Low,0.9292,0.0521,0.0112,0.0066,0.0009,413.61,4570,383
-100330,Ankara,Bilinmeyen İlçe,Remzi Oğuz Arık Mahallesi,0.1521,1,Very Low,0.9631,0.0263,0.0056,0.0044,0.0006,508.39,102,10
-100331,Ankara,Bilinmeyen İlçe,Ayrancı Mahallesi,0.2418,1,Medium,0.7899,0.1482,0.0264,0.0337,0.0018,369.61,102,199
-100332,Ankara,Bilinmeyen İlçe,Kültür Mahallesi,0.1777,1,Very Low,0.9713,0.0215,0.0033,0.003,0.0009,487.27,10075,753
-100333,Ankara,Bilinmeyen İlçe,Kocatepe Mahallesi,0.2717,1,Medium,0.6072,0.2121,0.1053,0.0656,0.0099,321.42,10706,929
-100334,Ankara,Bilinmeyen İlçe,Meşrutiyet Mahallesi,0.206,1,Low,0.9478,0.0356,0.0062,0.0082,0.0022,405.71,9928,1014
-100335,Ankara,Bilinmeyen İlçe,Cumhuriyet Mahallesi,0.2198,1,Low,0.6549,0.2362,0.08,0.0267,0.0023,401.12,102,10
-100336,Ankara,Bilinmeyen İlçe,Kızılay Mahallesi,0.1561,1,Very Low,0.9596,0.0276,0.0053,0.0069,0.0006,520.89,4397,563
-100337,Ankara,Bilinmeyen İlçe,Korkutreis Mahallesi,0.1812,1,Low,0.9403,0.0461,0.0066,0.0057,0.0013,474.05,13061,1155
-100338,Ankara,Bilinmeyen İlçe,Eti Mahallesi,0.1633,1,Very Low,0.9724,0.017,0.0041,0.0058,0.0007,452.37,284,134
-100339,Ankara,Bilinmeyen İlçe,Maltepe Mahallesi,0.2221,1,Low,0.901,0.037,0.0203,0.026,0.0157,423.61,31296,2691
-100340,Ankara,Bilinmeyen İlçe,Namık Kemal Mahallesi,0.1859,1,Low,0.9301,0.048,0.0107,0.0076,0.0036,494.37,20881,1777
-100341,Ankara,Bilinmeyen İlçe,Yücetepe Mahallesi,0.1606,1,Very Low,0.9126,0.0677,0.0138,0.0042,0.0016,484.57,5079,635
-100342,Ankara,Bilinmeyen İlçe,Anıttepe Mahallesi,0.2142,1,Low,0.9289,0.0339,0.0076,0.0056,0.0239,467.59,21578,1651
-100343,Ankara,Bilinmeyen İlçe,Mebusevleri Mahallesi,0.1731,1,Very Low,0.9801,0.0134,0.0025,0.0031,0.0008,479.36,10272,835
-100344,Ankara,Bilinmeyen İlçe,Bahçelievler Mahallesi,0.2078,1,Low,0.9395,0.0382,0.0085,0.0128,0.001,400.02,102,356
-100345,Ankara,Bilinmeyen İlçe,Yukarı Bahçelievler Mahallesi,0.1627,1,Very Low,0.9725,0.0125,0.0052,0.0089,0.0009,427.19,7801,542
-100346,Ankara,Bilinmeyen İlçe,Emek Mahallesi,0.1821,1,Low,0.9162,0.0587,0.0129,0.0102,0.002,443.01,11540,1110
-100347,Ankara,Bilinmeyen İlçe,Balgat Mahallesi,0.1856,1,Low,0.9454,0.0327,0.0069,0.0088,0.0063,537.9,29666,2425
-100348,Ankara,Bilinmeyen İlçe,Nasuh Akar Mahallesi,0.1847,1,Low,0.9605,0.0273,0.0046,0.007,0.0007,458.55,20826,1548
-100349,Ankara,Bilinmeyen İlçe,Devlet Mahallesi,0.218,1,Low,0.9056,0.0576,0.0126,0.0131,0.0111,495.21,33984,2721
-100350,Ankara,Bilinmeyen İlçe,Oğuzlar Mahallesi,0.1761,1,Very Low,0.9623,0.0246,0.0045,0.0079,0.0007,486.2,2509,10
-100351,Ankara,Bilinmeyen İlçe,Ehlibeyt Mahallesi,0.1793,1,Very Low,0.9409,0.0423,0.0059,0.0085,0.0025,439.34,102,10
-100352,Ankara,Bilinmeyen İlçe,Yukarı Öveçler Mahallesi,0.16,1,Very Low,0.9781,0.0122,0.0032,0.0061,0.0005,434.8,2346,332
-100353,Ankara,Bilinmeyen İlçe,Cevizlidere Mahallesi,0.2053,1,Low,0.9459,0.0363,0.0056,0.0051,0.0071,496.49,22656,1675
-100354,Ankara,Bilinmeyen İlçe,Huzur Mahallesi,0.185,1,Low,0.9179,0.0607,0.0111,0.0091,0.0013,449.41,102,10
-100355,Ankara,Bilinmeyen İlçe,Gökkuşağı Mahallesi,0.241,1,Medium,0.742,0.1472,0.0418,0.0248,0.0443,430.25,28861,2254
-100356,Ankara,Bilinmeyen İlçe,Akpınar Mahallesi,0.1534,1,Very Low,0.9835,0.0128,0.0017,0.0015,0.0005,599.43,12710,1040
-100357,Ankara,Bilinmeyen İlçe,Karapınar Mahallesi,0.1783,1,Very Low,0.9694,0.0187,0.0054,0.0052,0.0012,449.08,12088,1400
-100358,Ankara,Bilinmeyen İlçe,Ata Mahallesi,0.3069,1,High,0.4873,0.1276,0.0697,0.0987,0.2167,266.26,21926,1683
-100359,Ankara,Bilinmeyen İlçe,Şehit Cengiz Karaca Mahallesi,0.2369,1,Medium,0.6441,0.2839,0.0334,0.0338,0.0048,363.54,4447,426
-100360,Ankara,Bilinmeyen İlçe,Aydınlar Mahallesi,0.1666,1,Very Low,0.9771,0.0149,0.0039,0.0032,0.0009,484.6,8937,529
-100361,Ankara,Bilinmeyen İlçe,Şehit Cevdet Özdemir Mahallesi,0.1358,1,Very Low,0.9673,0.0213,0.0061,0.0047,0.0006,527.81,102,10
-100362,Ankara,Bilinmeyen İlçe,Öveçler Mahallesi,0.2366,1,Medium,0.8646,0.066,0.0236,0.0375,0.0083,339.58,102,10
-100363,Ankara,Bilinmeyen İlçe,Sokullu Mehmet Paşa Mahallesi,0.2063,1,Low,0.9459,0.0277,0.0112,0.0063,0.0088,494.64,32847,2658
-100364,Ankara,Bilinmeyen İlçe,Harbiye Mahallesi,0.1966,1,Low,0.9612,0.022,0.006,0.0101,0.0007,397.39,7038,755
-100365,Ankara,Bilinmeyen İlçe,Aşağı Öveçler Mahallesi,0.2206,1,Low,0.8841,0.0733,0.0141,0.0147,0.0137,405.23,12298,1315
-100366,Ankara,Bilinmeyen İlçe,İlkadım Mahallesi,0.1668,1,Very Low,0.9668,0.022,0.0056,0.0049,0.0008,472.4,724,10
-100367,Ankara,Bilinmeyen İlçe,Naci Çakır Mahallesi,0.2015,1,Low,0.9402,0.0417,0.0071,0.0094,0.0016,425.55,13373,1075
-100368,Ankara,Bilinmeyen İlçe,Osman Temiz Mahallesi,0.1544,1,Very Low,0.9879,0.0074,0.0016,0.0026,0.0005,611.93,12219,1261
-100369,Ankara,Bilinmeyen İlçe,Malazgirt Mahallesi,0.1554,1,Very Low,0.9724,0.0211,0.0028,0.0031,0.0006,481.46,1633,51
-100370,Ankara,Bilinmeyen İlçe,Keklik Pınarı Mahallesi,0.2259,1,Low,0.9207,0.0411,0.0133,0.0148,0.0101,412.34,21674,1752
-100371,Ankara,Bilinmeyen İlçe,Mürsel Uluç Mahallesi,0.2099,1,Low,0.8661,0.0932,0.0217,0.017,0.002,392.06,6364,319
-100372,Ankara,Bilinmeyen İlçe,Metin Akkuş Mahallesi,0.1951,1,Low,0.9254,0.0461,0.0124,0.0138,0.0023,428.85,13131,1256
-100373,Ankara,Bilinmeyen İlçe,İlker Mahallesi,0.2119,1,Low,0.8519,0.1088,0.0196,0.0123,0.0074,449.88,20377,1859
-100374,Ankara,Bilinmeyen İlçe,Sakarya Mahallesi,0.2019,1,Low,0.8078,0.1579,0.013,0.0048,0.0165,478.06,9153,793
-100375,Ankara,Bilinmeyen İlçe,Or-An Mahallesi,0.1602,1,Very Low,0.9812,0.0135,0.0021,0.0024,0.0008,547.25,18178,1407
-100376,Ankara,Bilinmeyen İlçe,Kızılırmak Mahallesi,0.2218,1,Low,0.7332,0.2106,0.0397,0.0098,0.0067,414.63,9965,884
-100377,Ankara,Bilinmeyen İlçe,Çukurambar Mahallesi,0.2513,1,Medium,0.4948,0.4244,0.0564,0.0202,0.0041,423.43,17509,991
-100378,Ankara,Bilinmeyen İlçe,Söğütözü Mahallesi,0.2735,1,Medium,0.5168,0.2425,0.0708,0.1544,0.0155,326.98,14204,1654
-100379,Ankara,Bilinmeyen İlçe,İşçi Blokları Mahallesi,0.2215,1,Low,0.6175,0.2301,0.1154,0.0254,0.0117,394.87,9309,493
-100380,Ankara,Bilinmeyen İlçe,Çiğdem Mahallesi,0.1963,1,Low,0.9611,0.0182,0.0093,0.0056,0.0057,457.03,22180,1855
-100381,Ankara,Bilinmeyen İlçe,Üniversiteler Mahallesi,0.1635,1,Very Low,0.9006,0.0771,0.0128,0.0085,0.0011,532.63,102,10
-100382,Ankara,Bilinmeyen İlçe,Mustafa Kemal Mahallesi,0.2497,1,Medium,0.9007,0.037,0.0162,0.0196,0.0265,401.39,23914,2389
-100383,Ankara,Bilinmeyen İlçe,Mutlukent Mahallesi,0.2021,1,Low,0.9633,0.0225,0.006,0.0059,0.0023,475.18,21399,1836
-100384,Ankara,Bilinmeyen İlçe,Ümit Mahallesi,0.2125,1,Low,0.9075,0.047,0.0155,0.0128,0.0172,456.34,21594,1740
-100385,Ankara,Bilinmeyen İlçe,Çayyolu Mahallesi,0.2913,1,Medium,0.7487,0.0829,0.0567,0.0696,0.042,349.2,34990,3302
-100386,Ankara,Bilinmeyen İlçe,Koru Mahallesi,0.1788,1,Very Low,0.8934,0.0821,0.0104,0.0121,0.002,447.45,102,352
-100387,Ankara,Bilinmeyen İlçe,Konutkent Mahallesi,0.2543,1,Medium,0.7653,0.2074,0.0135,0.0109,0.0029,469.41,12632,835
-100388,Ankara,Bilinmeyen İlçe,Yaşamkent Mahallesi,0.1752,1,Very Low,0.9279,0.0478,0.0095,0.0132,0.0015,414.95,7258,409
-100389,Ankara,Bilinmeyen İlçe,Alacaatlı Mahallesi,0.2202,1,Low,0.9192,0.0507,0.0088,0.0178,0.0035,412.4,18052,1636
-100390,Ankara,Bilinmeyen İlçe,Dodurga Mahallesi,0.1918,1,Low,0.9675,0.0233,0.0031,0.0028,0.0032,592.6,21634,1850
-100391,Ankara,Bilinmeyen İlçe,Prof. Dr. Ahmet Taner Kışlalı Mahallesi,0.272,1,Medium,0.7775,0.0809,0.049,0.061,0.0316,400.92,45839,3914
-100392,Ankara,Bilinmeyen İlçe,Fatih Sultan Mahallesi,0.1703,1,Very Low,0.9734,0.0182,0.0029,0.0045,0.001,467.71,9945,823
-100393,Ankara,Bilinmeyen İlçe,Beytepe Mahallesi,0.2836,1,Medium,0.5429,0.2651,0.1025,0.0737,0.0158,342.33,19078,1454
-100394,Ankara,Bilinmeyen İlçe,Karacakaya Mahallesi,0.2606,1,Medium,0.7686,0.1441,0.0385,0.0226,0.0262,392.15,27177,2140
-100395,Ankara,Bilinmeyen İlçe,Yeniçimşit Mahallesi,0.1996,1,Low,0.9519,0.0258,0.0106,0.0103,0.0015,419.56,12032,522
-100396,Ankara,Bilinmeyen İlçe,Saraycık Mahallesi,0.1686,1,Very Low,0.9717,0.0234,0.0022,0.0019,0.0009,588.75,16966,1224
-100397,Ankara,Bilinmeyen İlçe,Osmaniye Mahallesi,0.1899,1,Low,0.9716,0.0144,0.0057,0.0039,0.0043,473.24,23388,1890
-100398,Ankara,Bilinmeyen İlçe,İncek Mahallesi,0.1469,1,Very Low,0.9855,0.0102,0.0015,0.0024,0.0004,530.48,102,416
-100399,Ankara,Bilinmeyen İlçe,Kızılcaşar Mahallesi,0.1595,1,Very Low,0.987,0.0088,0.0015,0.002,0.0007,582.8,16462,1032
-100400,Ankara,Bilinmeyen İlçe,Taşpınar Mahallesi,0.1932,1,Low,0.8649,0.0928,0.0238,0.0052,0.0134,552.71,25394,2216
-100401,Ankara,Bilinmeyen İlçe,Ahlatlıbel Mahallesi,0.203,1,Low,0.9574,0.0193,0.0083,0.0078,0.0071,500.85,38629,3301
-100402,Ankara,Bilinmeyen İlçe,Ege Mahallesi,0.1789,1,Very Low,0.9281,0.0584,0.006,0.0065,0.001,414.57,821,105
-100403,Ankara,Bilinmeyen İlçe,Kızılca Mahallesi,0.2155,1,Low,0.8131,0.1399,0.0253,0.018,0.0036,423.0,14281,1176
-100404,Ankara,Bilinmeyen İlçe,Adalet Mahallesi,0.195,1,Low,0.8702,0.091,0.0159,0.02,0.0028,433.36,4745,229
-100405,Ankara,Bilinmeyen İlçe,Karşıyaka Mahallesi,0.1451,1,Very Low,0.9576,0.0269,0.0101,0.0047,0.0007,491.7,102,15
-100406,Ankara,Bilinmeyen İlçe,Gaziosmanpaşa Mahallesi,0.1544,1,Very Low,0.9843,0.0104,0.0026,0.0023,0.0004,440.1,2366,203
-100407,Ankara,Bilinmeyen İlçe,Şafak Mahallesi,0.1674,1,Very Low,0.9543,0.0252,0.0033,0.0158,0.0014,610.58,17409,1586
-100408,Ankara,Bilinmeyen İlçe,Bahçelievler Mahallesi,0.2668,1,Medium,0.8206,0.06,0.0282,0.0676,0.0236,373.65,29741,2148
-100409,Ankara,Bilinmeyen İlçe,Muhsin Yazıcıoğlu Mahallesi,0.1732,1,Very Low,0.9253,0.0593,0.0077,0.0059,0.0018,486.88,102,10
-100410,Ankara,Bilinmeyen İlçe,Dumlupınar Mahallesi,0.2208,1,Low,0.9163,0.0394,0.0154,0.0172,0.0118,415.93,23399,1775
-100411,Ankara,Bilinmeyen İlçe,Hasanoğlan Bahçelievler Mahallesi,0.1889,1,Low,0.9285,0.0478,0.0099,0.0126,0.0012,412.78,1276,10
-100412,Ankara,Bilinmeyen İlçe,Hasanoğlan Havuzbaşı Mahallesi,0.1703,1,Very Low,0.9756,0.0158,0.0041,0.004,0.0005,467.5,6052,272
-100413,Ankara,Bilinmeyen İlçe,Muzaffer Ekşi Mahallesi,0.265,1,Medium,0.5568,0.1911,0.1442,0.0964,0.0115,334.28,9549,613
-100414,Ankara,Bilinmeyen İlçe,Hasanoğlan Fatih Mahallesi,0.1934,1,Low,0.8724,0.0995,0.0141,0.0108,0.0032,444.12,6612,444
-100415,Ankara,Bilinmeyen İlçe,İstasyon Mahallesi,0.143,1,Very Low,0.9797,0.0144,0.002,0.0033,0.0005,539.87,102,203
-100416,Ankara,Bilinmeyen İlçe,Şehitlik Mahallesi,0.2055,1,Low,0.8541,0.0974,0.0209,0.0226,0.005,425.07,13838,863
-100417,Ankara,Bilinmeyen İlçe,Yeşiltepe Mahallesi,0.2131,1,Low,0.8995,0.0652,0.0161,0.016,0.0031,412.83,17544,1362
-100418,Ankara,Bilinmeyen İlçe,Beyazıt Mahallesi,0.1662,1,Very Low,0.9794,0.0142,0.0016,0.002,0.0028,532.87,9216,737
-100419,Ankara,Bilinmeyen İlçe,Timurhan Mahallesi,0.2691,1,Medium,0.4525,0.3798,0.0942,0.0299,0.0436,432.26,28037,2274
-100420,Ankara,Bilinmeyen İlçe,Büğdüz Mahallesi,0.1878,1,Low,0.8817,0.0952,0.0138,0.007,0.0022,452.66,12634,1253
-100421,Ankara,Bilinmeyen İlçe,Şeyhler Mahallesi,0.1818,1,Low,0.9774,0.0138,0.0036,0.0043,0.0009,433.55,11582,847
-100422,Ankara,Bilinmeyen İlçe,Yıldırım Mahallesi,0.257,2,Medium,0.4575,0.4941,0.0363,0.0098,0.0023,431.25,359,275
-100423,Ankara,Bilinmeyen İlçe,Atatürk Mahallesi,0.1949,1,Low,0.9193,0.0638,0.0097,0.0051,0.0021,461.32,17112,1355
-100424,Ankara,Bilinmeyen İlçe,Kızık Mahallesi,0.1728,1,Very Low,0.9726,0.0219,0.0026,0.0022,0.0007,506.46,14085,1078
-100425,Ankara,Bilinmeyen İlçe,Karacalar Mahallesi,0.2137,1,Low,0.6739,0.2815,0.0199,0.023,0.0018,397.37,7323,244
-100426,Ankara,Bilinmeyen İlçe,Çardakbağı Mahallesi,0.2898,2,Medium,0.4536,0.4682,0.0546,0.0188,0.0048,406.92,13651,1186
-100427,Ankara,Bilinmeyen İlçe,Kalaba Mahallesi,0.1847,1,Low,0.8846,0.0493,0.01,0.0157,0.0404,562.05,33068,2842
-100428,Ankara,Bilinmeyen İlçe,Uzunlar Mahallesi,0.2125,1,Low,0.9372,0.0358,0.0109,0.0142,0.0019,411.62,14964,1232
-100429,Ankara,Bilinmeyen İlçe,Çam Mahallesi,0.2563,5,Medium,0.0933,0.0124,0.0038,0.0188,0.8717,532.39,27446,2683
-100430,Ankara,Bilinmeyen İlçe,Karayatak Mahallesi,0.1368,1,Very Low,0.9866,0.0098,0.0014,0.0017,0.0004,530.63,4052,32
-100431,Ankara,Bilinmeyen İlçe,Samut Mahallesi,0.1518,1,Very Low,0.989,0.0073,0.0017,0.0016,0.0003,492.63,4330,281
-100432,Ankara,Bilinmeyen İlçe,Ovacık Mahallesi,0.1648,1,Very Low,0.9855,0.0096,0.0022,0.0023,0.0004,459.72,1245,486
-100433,Ankara,Bilinmeyen İlçe,Eğriekin Mahallesi,0.1583,1,Very Low,0.9718,0.0193,0.0038,0.0042,0.001,488.89,102,10
-100434,Ankara,Bilinmeyen İlçe,Güldarpı Mahallesi,0.1519,1,Very Low,0.9873,0.008,0.0021,0.0022,0.0005,489.61,3920,267
-100435,Ankara,Bilinmeyen İlçe,Aliağa Mahallesi,0.2412,1,Medium,0.8893,0.0647,0.0144,0.0262,0.0055,378.87,18195,1653
-100436,Ankara,Bilinmeyen İlçe,İbrahimbeyli Mahallesi,0.216,1,Low,0.4732,0.2815,0.174,0.0509,0.0203,418.83,102,60
-100437,Ankara,Bilinmeyen İlçe,Eskitorunobası Mahallesi,0.2035,1,Low,0.8598,0.1204,0.0098,0.0068,0.0032,481.88,15751,1036
-100438,Ankara,Bilinmeyen İlçe,Cebirli Mahallesi,0.2606,1,Medium,0.6543,0.0762,0.0433,0.2213,0.0049,355.75,102,27
-100439,Ankara,Bilinmeyen İlçe,Kuruçay Mahallesi,0.2213,1,Low,0.7516,0.1188,0.0335,0.0222,0.0739,450.32,37276,2636
-100440,Ankara,Bilinmeyen İlçe,Kışlacık Mahallesi,0.1527,1,Very Low,0.9745,0.0175,0.0021,0.0052,0.0007,549.03,12334,851
-100441,Ankara,Bilinmeyen İlçe,Rüstempaşa Mahallesi,0.1752,1,Very Low,0.8381,0.0938,0.0516,0.0141,0.0024,473.48,102,67
-100442,Ankara,Bilinmeyen İlçe,İstiklal Mahallesi,0.1747,1,Very Low,0.9157,0.0658,0.0082,0.0093,0.0009,450.83,102,10
-100443,Ankara,Bilinmeyen İlçe,Zafer Mahallesi,0.1385,1,Very Low,0.9876,0.0084,0.0015,0.0022,0.0003,529.92,7583,498
-100444,Ankara,Bilinmeyen İlçe,Kurtuluş Mahallesi,0.1468,1,Very Low,0.9908,0.0047,0.0019,0.0024,0.0003,484.07,102,256
-100445,Ankara,Bilinmeyen İlçe,Beytepe Mahallesi,0.2502,1,Medium,0.7231,0.1842,0.0391,0.0459,0.0076,316.86,1730,10
-100446,Ankara,Bilinmeyen İlçe,Cumhuriyet Mahallesi,0.1953,1,Low,0.9507,0.0347,0.0072,0.0054,0.002,445.21,10678,371
-100447,Ankara,Bilinmeyen İlçe,Başağaç Mahallesi,0.262,1,Medium,0.4604,0.4047,0.042,0.0864,0.0064,354.12,10023,845
-100448,Ankara,Bilinmeyen İlçe,Hacıkara Mahallesi,0.1669,1,Very Low,0.976,0.0182,0.0017,0.0033,0.0009,514.88,10068,953
-100449,Ankara,Bilinmeyen İlçe,Ayvaşık Mahallesi,0.2108,1,Low,0.7771,0.0886,0.0294,0.0252,0.0797,528.93,34066,2900
-100450,Ankara,Bilinmeyen İlçe,Yeşilağaç Mahallesi,0.1681,1,Very Low,0.9486,0.037,0.0065,0.0071,0.0008,462.73,102,10
-100451,Ankara,Bilinmeyen İlçe,Gazipaşa Mahallesi,0.1611,1,Very Low,0.9603,0.0279,0.0075,0.0032,0.0012,537.49,12088,719
-100452,Ankara,Bilinmeyen İlçe,Yazı Mahallesi,0.1829,1,Low,0.9461,0.0431,0.0039,0.0026,0.0043,554.81,17615,1324
-100453,Ankara,Bilinmeyen İlçe,Karaköy Mahallesi,0.1733,1,Very Low,0.9654,0.0249,0.0021,0.0063,0.0013,511.42,18308,1662
-100454,Ankara,Bilinmeyen İlçe,Atatürk Mahallesi,0.2524,1,Medium,0.6442,0.2101,0.0465,0.0954,0.0038,338.62,102,10
-100455,Ankara,Bilinmeyen İlçe,Akdere Mahallesi,0.2584,1,Medium,0.8175,0.1038,0.0337,0.0404,0.0045,355.14,10608,1210
-100456,Ankara,Bilinmeyen İlçe,Hacıbey Mahallesi,0.2713,1,Medium,0.7327,0.1732,0.0482,0.0393,0.0065,367.81,18360,1334
-100457,Ankara,Bilinmeyen İlçe,100. Yıl Mahallesi,0.3021,1,High,0.634,0.1402,0.0806,0.0742,0.071,318.39,29001,2507
-100458,Ankara,Bilinmeyen İlçe,Yeni Bağlıca Mahallesi,0.2345,1,Medium,0.6004,0.1101,0.179,0.0748,0.0357,457.43,47058,4004
-100459,Ankara,Bilinmeyen İlçe,Devlet Mahallesi,0.2425,1,Medium,0.7333,0.1108,0.0905,0.0493,0.0161,403.78,20507,1720
-100460,Ankara,Bilinmeyen İlçe,Fatih Mahallesi,0.2117,1,Low,0.8851,0.0696,0.0231,0.0075,0.0148,448.66,28001,2337
-100461,Ankara,Bilinmeyen İlçe,Yazır Mahallesi,0.1673,1,Very Low,0.9819,0.0104,0.0024,0.004,0.0013,554.38,21054,1712
-100462,Ankara,Bilinmeyen İlçe,Yeşilova Mahallesi,0.2153,1,Low,0.9327,0.0293,0.0165,0.0113,0.0101,486.87,42978,3372
-100463,Ankara,Bilinmeyen İlçe,Hürriyet Mahallesi,0.1961,1,Low,0.8144,0.125,0.0449,0.0089,0.0068,442.1,17820,1221
-100464,Ankara,Bilinmeyen İlçe,Yeni Mahalle,0.2065,1,Low,0.5679,0.2301,0.1667,0.0305,0.0048,456.16,102,10
-100465,Ankara,Bilinmeyen İlçe,Yeni Mahalle,0.158,1,Very Low,0.9782,0.0161,0.0023,0.003,0.0004,498.42,1252,10
-100466,Ankara,Bilinmeyen İlçe,Kusunlar Mahallesi,0.1701,1,Very Low,0.9761,0.0125,0.0017,0.0092,0.0005,497.61,6743,902
-100467,Ankara,Bilinmeyen İlçe,Zirvekent Mahallesi,0.1891,1,Low,0.9488,0.0321,0.0062,0.0059,0.0071,522.61,29267,2386
-100468,Ankara,Bilinmeyen İlçe,Kıbrısköy Mahallesi,0.2893,2,Medium,0.0176,0.623,0.3379,0.0188,0.0028,420.91,7612,556
-100469,Ankara,Bilinmeyen İlçe,Lalahan Mahallesi,0.2115,1,Low,0.9314,0.046,0.0079,0.0139,0.0008,356.98,4862,514
-100470,Ankara,Bilinmeyen İlçe,Nasuhpaşa Mahallesi,0.2135,1,Low,0.8836,0.0715,0.0296,0.0111,0.0042,410.43,14209,1367
-100471,Ankara,Bilinmeyen İlçe,Fatih Mahallesi,0.135,1,Very Low,0.9834,0.0119,0.002,0.0021,0.0006,535.33,8716,529
-100472,Ankara,Bilinmeyen İlçe,Bayındır Mahallesi,0.2488,1,Medium,0.7724,0.1077,0.0353,0.0782,0.0064,319.13,102,228
-100473,Ankara,Bilinmeyen İlçe,Ortaköy Mahallesi,0.1637,1,Very Low,0.9787,0.0154,0.0023,0.003,0.0007,513.15,12604,1235
-100474,Ankara,Bilinmeyen İlçe,Kutludüğün Mahallesi,0.1683,1,Very Low,0.9374,0.0496,0.0071,0.005,0.0009,456.65,102,93
-100475,Ankara,Bilinmeyen İlçe,Yeni Bayındır Mahallesi,0.1562,1,Very Low,0.9785,0.0152,0.0026,0.003,0.0008,485.13,8381,988
-100476,Ankara,Bilinmeyen İlçe,Gökçeyurt Mahallesi,0.2077,1,Low,0.9497,0.0332,0.0072,0.0079,0.002,417.02,15734,1187
-100477,Ankara,Bilinmeyen İlçe,Karşıyaka Mahallesi,0.2133,1,Low,0.9278,0.0561,0.0076,0.0077,0.0009,521.3,102,130
-100478,Ankara,Bilinmeyen İlçe,Yukarı İmrohor Mahallesi,0.1339,1,Very Low,0.9859,0.0106,0.0015,0.0017,0.0003,538.94,4688,511
-100479,Ankara,Bilinmeyen İlçe,Diriliş Mahallesi,0.1562,1,Very Low,0.9805,0.0143,0.0017,0.0028,0.0007,472.62,5825,845
-100480,Ankara,Bilinmeyen İlçe,Gençali Mahallesi,0.1437,1,Very Low,0.9781,0.0139,0.0018,0.0058,0.0004,584.71,102,10
-100481,Ankara,Bilinmeyen İlçe,Yeşildere Fatih Mahallesi,0.1768,1,Very Low,0.8162,0.137,0.0377,0.0076,0.0016,438.71,610,10
-100482,Ankara,Bilinmeyen İlçe,Seyitcemali Mahallesi,0.2934,2,Medium,0.322,0.4505,0.0728,0.0494,0.1053,377.52,28481,2418
-100483,Ankara,Bilinmeyen İlçe,Ostim Mahallesi,0.1849,1,Low,0.9017,0.0853,0.005,0.0065,0.0016,507.86,13187,828
-100484,Ankara,Bilinmeyen İlçe,Susuz Mahallesi,0.2794,1,Medium,0.6006,0.2543,0.0651,0.0404,0.0396,344.93,17514,1425
-100485,Ankara,Bilinmeyen İlçe,Battalgazi Mahallesi,0.2625,1,Medium,0.6294,0.1917,0.0446,0.1216,0.0127,368.41,19297,1418
-100486,Ankara,Bilinmeyen İlçe,Aşağı İmrahor Mahallesi,0.1734,1,Very Low,0.9769,0.017,0.0019,0.0034,0.0008,512.51,10766,1174
-100487,Ankara,Bilinmeyen İlçe,Tuzla Mahallesi,0.2219,1,Low,0.7335,0.1743,0.0369,0.0521,0.0031,362.97,102,10
-100488,Ankara,Bilinmeyen İlçe,İstiklal Mahallesi,0.153,1,Very Low,0.9855,0.0092,0.0026,0.0024,0.0004,486.65,222,10
-100489,Ankara,Bilinmeyen İlçe,Hacıenbiya Mahallesi,0.2525,1,Medium,0.74,0.1661,0.0419,0.0437,0.0084,329.14,7807,796
-100490,Ankara,Bilinmeyen İlçe,Ekici Mahallesi,0.26,1,Medium,0.5778,0.1829,0.1293,0.0373,0.0727,392.14,24470,2152
-100491,Ankara,Bilinmeyen İlçe,Akkaya Mahallesi,0.1755,1,Very Low,0.966,0.0198,0.0048,0.0086,0.0007,429.17,102,369
-100492,Ankara,Bilinmeyen İlçe,Taşpınar Mahallesi,0.2752,1,Medium,0.6454,0.1878,0.0702,0.0854,0.0112,341.67,12537,1378
-100493,Ankara,Bilinmeyen İlçe,Sünlü Mahallesi,0.1889,1,Low,0.96,0.0251,0.0052,0.0081,0.0016,440.93,16606,1588
-100494,Ankara,Bilinmeyen İlçe,Ağılcık Mahallesi,0.1715,1,Very Low,0.9272,0.0572,0.0076,0.0071,0.0009,459.44,102,10
-100495,Ankara,Bilinmeyen İlçe,Atatürk Mahallesi,0.182,1,Low,0.8444,0.1431,0.0067,0.0049,0.0009,445.95,2027,147
-100496,Ankara,Bilinmeyen İlçe,Barbaros Mahallesi,0.2187,1,Low,0.8877,0.0617,0.0232,0.0158,0.0116,467.69,31406,2552
-100497,Ankara,Bilinmeyen İlçe,Yavuz Selim Mahallesi,0.1831,1,Low,0.9576,0.03,0.0053,0.0063,0.0008,477.17,2875,245
-100498,Ankara,Bilinmeyen İlçe,Esenboğa Mahallesi,0.2462,1,Medium,0.8594,0.0822,0.0168,0.0337,0.0079,385.15,18515,1840
-100499,Ankara,Bilinmeyen İlçe,Güneyce Mahallesi,0.2273,1,Low,0.924,0.0338,0.0108,0.0055,0.0259,466.84,24618,1688
-100500,Ankara,Bilinmeyen İlçe,Yazıbeyli Mahallesi,0.1789,1,Very Low,0.9412,0.046,0.0048,0.0072,0.0007,458.14,102,388
-100501,Ankara,Bilinmeyen İlçe,Yapracık Mahallesi,0.2002,1,Low,0.9429,0.0347,0.0101,0.0113,0.001,408.27,6343,369
-100502,Ankara,Bilinmeyen İlçe,Hacılar Mahallesi,0.1579,1,Very Low,0.9756,0.0151,0.0051,0.0036,0.0005,492.25,102,10
-100503,Ankara,Bilinmeyen İlçe,Hacıhasan Mahallesi,0.1639,1,Very Low,0.9845,0.0101,0.0014,0.0029,0.0011,505.01,10127,896
-100504,Ankara,Bilinmeyen İlçe,Tulumtaş Mahallesi,0.1897,1,Low,0.9394,0.0455,0.0082,0.0042,0.0028,464.01,13549,1100
-100505,Ankara,Bilinmeyen İlçe,Orhun Mahallesi,0.2017,1,Low,0.946,0.0324,0.0081,0.0117,0.0018,423.11,11836,1005
-100506,Ankara,Bilinmeyen İlçe,Yukarıyurtçu Mahallesi,0.1712,1,Very Low,0.9079,0.0497,0.0333,0.0073,0.0019,449.54,102,243
-100507,Ankara,Bilinmeyen İlçe,Aşağıyurtçu Mahallesi,0.1937,1,Low,0.9311,0.048,0.0078,0.004,0.009,541.51,26006,2434
-100508,Ankara,Bilinmeyen İlçe,Atayurt Mahallesi,0.2067,1,Low,0.7695,0.1146,0.072,0.039,0.0048,405.41,4925,647
-100509,Ankara,Bilinmeyen İlçe,Turkuaz Mahallesi,0.1615,1,Very Low,0.9829,0.0116,0.002,0.0026,0.0008,504.49,11084,1123
-100510,Ankara,Bilinmeyen İlçe,Balıkuyumcu Mahallesi,0.1561,1,Very Low,0.9755,0.0172,0.0032,0.0033,0.0009,508.72,4831,362
-100511,Ankara,Bilinmeyen İlçe,Şehitali Mahallesi,0.2097,1,Low,0.7016,0.2158,0.0357,0.0399,0.007,469.01,11589,953
-100512,Ankara,Bilinmeyen İlçe,Fevziye Mahallesi,0.1476,1,Very Low,0.9855,0.0093,0.002,0.0028,0.0004,507.38,102,174
-100513,Ankara,Bilinmeyen İlçe,Oyaca Akarsu Mahallesi,0.2917,1,Medium,0.7,0.1314,0.069,0.0535,0.0462,356.02,26618,2438
-100514,Ankara,Bilinmeyen İlçe,Oyaca Yeşilçam Mahallesi,0.2023,1,Low,0.9507,0.0314,0.0061,0.0109,0.001,401.98,102,345
-100515,Ankara,Bilinmeyen İlçe,Şentepe Mahallesi,0.186,1,Low,0.9497,0.0349,0.0079,0.0064,0.0011,443.84,5327,358
-100516,Ankara,Bilinmeyen İlçe,İstiklal Mahallesi,0.1645,1,Very Low,0.9692,0.0218,0.0042,0.004,0.0007,443.94,102,10
-100517,Ankara,Bilinmeyen İlçe,Çamlıca Mahallesi,0.2107,1,Low,0.9226,0.0533,0.0086,0.0131,0.0023,436.21,10535,844
-100518,Ankara,Bilinmeyen İlçe,Yeni Mahalle,0.1768,1,Very Low,0.7042,0.1664,0.0857,0.0415,0.0022,456.39,102,10
-100519,Ankara,Bilinmeyen İlçe,Zafer Mahallesi,0.1585,1,Very Low,0.9887,0.008,0.0013,0.0015,0.0005,520.9,11466,1153
-100520,Ankara,Bilinmeyen İlçe,Esentepe Mahallesi,0.242,1,Medium,0.9183,0.0336,0.0159,0.0266,0.0057,321.0,102,179
-100521,Ankara,Bilinmeyen İlçe,Gülveren Mahallesi,0.1848,1,Low,0.9455,0.0365,0.0074,0.0098,0.0008,411.48,102,99
-100522,Ankara,Bilinmeyen İlçe,Fatih Mahallesi,0.1753,1,Very Low,0.9721,0.0169,0.0051,0.0051,0.0007,422.37,8044,466
-100523,Ankara,Bilinmeyen İlçe,Şehitlik Mahallesi,0.1251,1,Very Low,0.9925,0.0044,0.001,0.0017,0.0003,560.73,102,525
-100524,Ankara,Bilinmeyen İlçe,Kurtuluş Mahallesi,0.2234,1,Low,0.6156,0.1855,0.1257,0.0431,0.0301,446.25,32934,2689
-100525,Ankara,Bilinmeyen İlçe,Cumhuriyet Mahallesi,0.231,1,Medium,0.8859,0.0688,0.0201,0.0214,0.0038,342.82,102,226
-100526,Ankara,Bilinmeyen İlçe,Gazi Mahallesi,0.1932,1,Low,0.9098,0.0615,0.0111,0.0136,0.0039,454.67,20888,1727
-100527,Ankara,Bilinmeyen İlçe,Mehmetakif Mahallesi,0.1868,1,Low,0.7916,0.1058,0.0756,0.0249,0.0022,425.31,1506,516
-100528,Ankara,Bilinmeyen İlçe,Yeşilkent Mahallesi,0.1261,1,Very Low,0.9943,0.0033,0.0008,0.0013,0.0002,572.15,1991,509
-100529,Ankara,Bilinmeyen İlçe,Aktaş Mahallesi,0.1822,1,Low,0.9377,0.0466,0.0093,0.0046,0.0019,490.14,11319,922
-100530,Ankara,Bilinmeyen İlçe,Yiğitli Mahallesi,0.2063,1,Low,0.9111,0.0579,0.0157,0.0096,0.0058,497.38,21207,1702
-100531,Ankara,Bilinmeyen İlçe,Kavaklı Mahallesi,0.1924,1,Low,0.9325,0.0581,0.0052,0.003,0.0012,532.78,11150,747
-100532,Ankara,Bilinmeyen İlçe,Yukarı Obruk mahallesi,0.2083,1,Low,0.7358,0.1636,0.073,0.0235,0.0042,417.3,10869,947
-100533,Ankara,Bilinmeyen İlçe,Aşağı Obruk mahallesi,0.1907,1,Low,0.9701,0.0137,0.004,0.0075,0.0047,482.41,21899,1723
-100534,Ankara,Bilinmeyen İlçe,Durhasan mahallesi,0.2295,1,Low,0.7653,0.2107,0.0149,0.0075,0.0017,438.02,13537,768
-100535,Ankara,Bilinmeyen İlçe,Yaylak mahallesi,0.2723,1,Medium,0.6007,0.1695,0.152,0.0696,0.0082,337.35,9849,653
-100536,Ankara,Bilinmeyen İlçe,Yıldırımevci mahallesi,0.2203,1,Low,0.861,0.1026,0.0125,0.02,0.0038,407.12,16220,1589
-100537,Ankara,Bilinmeyen İlçe,Yenice Mahallesi,0.1629,1,Very Low,0.9845,0.0113,0.002,0.0015,0.0007,619.01,20675,1358
-100538,Ankara,Bilinmeyen İlçe,İsmetpaşa Mahallesi,0.1853,1,Low,0.9231,0.0567,0.0064,0.0105,0.0033,521.0,13971,763
-100539,Ankara,Bilinmeyen İlçe,Gümüşpala Mahallesi,0.1765,1,Very Low,0.9441,0.0396,0.0059,0.0097,0.0007,436.34,5384,368
-100540,Ankara,Bilinmeyen İlçe,İkipınar Mahallesi,0.2037,1,Low,0.9471,0.0292,0.0081,0.0118,0.0038,430.73,19565,1634
-100541,Ankara,Bilinmeyen İlçe,Melikşah Mahallesi,0.2425,1,Medium,0.8196,0.0992,0.0293,0.0474,0.0044,315.17,5324,748
-100542,Ankara,Bilinmeyen İlçe,Kızılca Mahallesi,0.1757,1,Very Low,0.9524,0.0369,0.0055,0.0043,0.0009,470.96,158,10
-100543,Ankara,Bilinmeyen İlçe,Dumlupınar Mahallesi,0.2324,1,Medium,0.8258,0.083,0.044,0.0253,0.022,415.68,27534,1890
-100544,Ankara,Bilinmeyen İlçe,Yenice Mahallesi,0.1699,1,Very Low,0.9626,0.0222,0.0099,0.0045,0.0008,464.03,7822,236
-100545,Ankara,Bilinmeyen İlçe,Semer Mahallesi,0.2019,1,Low,0.9541,0.0367,0.0034,0.0046,0.0012,507.66,13518,1453
-100546,Ankara,Bilinmeyen İlçe,Ortaköy Mahallesi,0.2382,1,Medium,0.7557,0.1926,0.0149,0.0286,0.0083,386.77,3687,618
-100547,Ankara,Bilinmeyen İlçe,Yıldırımçatak Mahallesi,0.1743,1,Very Low,0.9741,0.0141,0.0034,0.0037,0.0047,531.05,22467,1814
-100548,Ankara,Bilinmeyen İlçe,Olucak Mahallesi,0.1617,1,Very Low,0.9683,0.0222,0.0036,0.0049,0.001,496.87,167,10
-100549,Ankara,Bilinmeyen İlçe,Yıldırımören Mahallesi,0.2564,1,Medium,0.6842,0.2475,0.0431,0.0186,0.0065,418.96,10505,998
-100550,Ankara,Bilinmeyen İlçe,Yıldırım Hacılar Mahallesi,0.2188,1,Low,0.8751,0.086,0.0183,0.0079,0.0127,483.6,23328,2415
-100551,Ankara,Bilinmeyen İlçe,Yıldırım Aydoğan Mahallesi,0.1416,1,Very Low,0.9896,0.0079,0.0012,0.0011,0.0002,573.84,1225,377
-100552,Ankara,Bilinmeyen İlçe,Yıldırım Elören Mahallesi,0.2338,1,Medium,0.8851,0.0779,0.0165,0.0169,0.0037,373.96,9530,773
-100553,Ankara,Bilinmeyen İlçe,Uluağaç Mahallesi,0.2578,1,Medium,0.8674,0.0632,0.0276,0.0188,0.023,390.68,25324,2380
-100554,Ankara,Bilinmeyen İlçe,Ömercik Mahallesi,0.1984,1,Low,0.9628,0.0194,0.0057,0.0104,0.0016,426.78,20142,1638
-100555,Ankara,Bilinmeyen İlçe,Akkuzulu Mahallesi,0.1994,1,Low,0.9592,0.023,0.0049,0.0104,0.0024,437.96,19924,1661
-100556,Ankara,Bilinmeyen İlçe,Kargın Mahallesi,0.2068,1,Low,0.8686,0.0923,0.0138,0.0121,0.0131,506.81,29385,2231
-100557,Ankara,Bilinmeyen İlçe,Kapaklı Mahallesi,0.1986,1,Low,0.8912,0.0597,0.0088,0.004,0.0363,517.45,25832,2019
-100558,Ankara,Bilinmeyen İlçe,Mutlu Mahallesi,0.2073,1,Low,0.9081,0.0575,0.0177,0.0059,0.0108,477.17,27784,2322
-100559,Ankara,Bilinmeyen İlçe,Kızılöz Mahallesi,0.1364,1,Very Low,0.9853,0.0113,0.0014,0.0017,0.0003,653.34,3309,95
-100560,Ankara,Bilinmeyen İlçe,Tohumlar Mahallesi,0.1478,1,Very Low,0.9873,0.0081,0.0017,0.0025,0.0004,518.31,102,246
-100561,Ankara,Bilinmeyen İlçe,Karataş Mahallesi,0.2239,1,Low,0.9195,0.0556,0.0109,0.0093,0.0046,401.92,18509,1170
-100562,Ankara,Bilinmeyen İlçe,Otacı Mahallesi,0.1962,1,Low,0.9533,0.0321,0.0057,0.0067,0.0022,466.64,13755,994
-100563,Ankara,Bilinmeyen İlçe,Karaçam Mahallesi,0.1792,1,Very Low,0.9801,0.0143,0.0021,0.0028,0.0008,490.53,16996,1485
-100564,Ankara,Bilinmeyen İlçe,Yeşilkent Mahallesi,0.2662,2,Medium,0.3256,0.5517,0.0857,0.0349,0.0021,382.74,3496,282
-100565,Ankara,Bilinmeyen İlçe,Çatokçular Mahallesi,0.182,1,Low,0.9186,0.0606,0.0078,0.0065,0.0066,537.33,28908,2160
-100566,Ankara,Bilinmeyen İlçe,Nusratlar Mahallesi,0.1382,1,Very Low,0.9863,0.01,0.0014,0.0019,0.0003,529.04,7089,458
-100567,Ankara,Bilinmeyen İlçe,Kızılören Mahallesi,0.1785,1,Very Low,0.967,0.0233,0.0047,0.0036,0.0015,488.28,5967,10
-100568,Ankara,Bilinmeyen İlçe,Hacılar Mahallesi,0.1445,1,Very Low,0.9716,0.0237,0.0024,0.0018,0.0005,560.36,885,10
-100569,Ankara,Bilinmeyen İlçe,Yukarı Çavundur Mahallesi,0.224,1,Low,0.8014,0.1371,0.025,0.0304,0.0062,421.35,19815,1665
-100570,Ankara,Bilinmeyen İlçe,Kösrelik Mahallesi,0.2055,1,Low,0.9265,0.0512,0.0089,0.0114,0.002,422.32,12800,967
-100571,Ankara,Bilinmeyen İlçe,Sarısu Mahallesi,0.2007,1,Low,0.8424,0.0771,0.0163,0.0177,0.0465,526.3,37492,3103
-100572,Ankara,Bilinmeyen İlçe,Meşeli Mahallesi,0.1552,1,Very Low,0.9829,0.0132,0.0014,0.0019,0.0007,530.34,9738,697
-100573,Ankara,Bilinmeyen İlçe,Dalyasan Mahallesi,0.1636,1,Very Low,0.9225,0.0409,0.0127,0.0219,0.002,415.57,102,14
-100574,Ankara,Bilinmeyen İlçe,Demirci Mahallesi,0.1835,1,Low,0.9737,0.0189,0.0038,0.0027,0.0008,493.52,13293,1021
-100575,Ankara,Bilinmeyen İlçe,Oymiğde Mahallesi,0.1873,1,Low,0.9149,0.062,0.013,0.0083,0.0018,408.57,266,144
-100576,Ankara,Bilinmeyen İlçe,Camili Mahallesi,0.2056,1,Low,0.9717,0.0149,0.0053,0.0075,0.0005,378.94,3027,313
-100577,Ankara,Bilinmeyen İlçe,Kuyumcu Mahallesi,0.268,1,Medium,0.707,0.2057,0.0472,0.032,0.0081,374.72,13804,1440
-100578,Ankara,Bilinmeyen İlçe,İmam Hüseyin Mahallesi,0.1417,1,Very Low,0.9902,0.0055,0.0014,0.0026,0.0003,519.57,102,88
-100579,Ankara,Bilinmeyen İlçe,Küçükali Mahallesi,0.1796,1,Very Low,0.8476,0.0557,0.0379,0.0315,0.0272,460.53,11796,818
-100580,Ankara,Bilinmeyen İlçe,Cücük Mahallesi,0.2149,1,Low,0.8848,0.0882,0.0088,0.0092,0.009,500.56,32008,2209
-100581,Ankara,Bilinmeyen İlçe,Eskiçöte Mahallesi,0.1646,1,Very Low,0.9581,0.0246,0.0065,0.0096,0.0012,428.84,102,56
-100582,Ankara,Bilinmeyen İlçe,Boğaziçi Mahallesi,0.2085,1,Low,0.6458,0.2039,0.1292,0.0183,0.0028,420.39,3020,333
-100583,Ankara,Bilinmeyen İlçe,Kale Mahallesi,0.1849,1,Low,0.9461,0.0428,0.0038,0.0056,0.0017,508.58,17588,1623
-100584,Ankara,Bilinmeyen İlçe,Sarıkaya Mahallesi,0.2033,1,Low,0.9394,0.0424,0.0072,0.0051,0.0059,489.48,21725,1819
-100585,Ankara,Bilinmeyen İlçe,Sanayi Mahallesi,0.2763,1,Medium,0.78,0.0782,0.0325,0.0828,0.0265,376.39,33580,2482
-100586,Ankara,Bilinmeyen İlçe,Mustafacık Mahallesi,0.1931,1,Low,0.7037,0.2582,0.0237,0.0112,0.0033,500.19,13003,723
-100587,Ankara,Bilinmeyen İlçe,Emek Mahallesi,0.1661,1,Very Low,0.9773,0.0155,0.0028,0.0038,0.0005,502.82,4481,511
-100588,Ankara,Bilinmeyen İlçe,Akbayır Mahallesi,0.2279,1,Low,0.8402,0.0876,0.0271,0.0244,0.0206,496.56,46478,3487
-100589,Ankara,Bilinmeyen İlçe,Hacıbektaşlı Mahallesi,0.2227,1,Low,0.9427,0.038,0.0065,0.007,0.0057,527.79,26458,2123
-100590,Ankara,Bilinmeyen İlçe,Şeyh Kuyusu Mahallesi,0.2453,1,Medium,0.8728,0.0884,0.0182,0.0173,0.0033,373.05,12610,1281
-100591,Ankara,Bilinmeyen İlçe,Mehmet Akif Ersoy Mahallesi,0.2399,1,Medium,0.7321,0.1854,0.0323,0.047,0.0032,334.65,102,310
-100592,Ankara,Bilinmeyen İlçe,Akseki Mahallesi,0.1562,1,Very Low,0.9805,0.0137,0.0021,0.0033,0.0004,512.87,4992,469
-100593,Ankara,Bilinmeyen İlçe,Cumhuriyet Mahallesi,0.1819,1,Low,0.9692,0.0246,0.0028,0.0025,0.0009,497.14,14540,1032
-100594,Ankara,Bilinmeyen İlçe,Karadana Mahallesi,0.1751,1,Very Low,0.9752,0.0176,0.0029,0.0035,0.0008,441.1,10043,651
-100595,Ankara,Bilinmeyen İlçe,Dedeler Mahallesi,0.1464,1,Very Low,0.9782,0.0161,0.0022,0.0031,0.0004,579.14,102,118
-100596,Ankara,Bilinmeyen İlçe,Yukarı Emirler Mahallesi,0.1855,1,Low,0.9645,0.0157,0.0074,0.0074,0.0049,625.89,50051,3947
-100597,Ankara,Bilinmeyen İlçe,Dağkalfat Mahallesi,0.2428,1,Medium,0.6341,0.1427,0.1219,0.0959,0.0054,339.43,102,187
-100598,Ankara,Bilinmeyen İlçe,Susuz Mahallesi,0.1721,1,Very Low,0.949,0.0293,0.0087,0.0121,0.0009,422.6,102,10
-100599,Ankara,Bilinmeyen İlçe,Okçular Mahallesi,0.1898,1,Low,0.7327,0.1715,0.0765,0.0141,0.0052,412.6,7937,562
-100600,Ankara,Bilinmeyen İlçe,Mahmutoğlan Mahallesi,0.2664,1,Medium,0.8723,0.0398,0.0226,0.0416,0.0237,373.42,32160,2721
-100601,Ankara,Bilinmeyen İlçe,Çitköy Mahallesi,0.2257,1,Low,0.5452,0.3509,0.0677,0.0212,0.015,421.09,12808,956
-100602,Ankara,Bilinmeyen İlçe,Saraycık Mahallesi,0.2215,1,Low,0.853,0.0744,0.0325,0.0109,0.0293,451.93,29755,2879
-100603,Ankara,Bilinmeyen İlçe,Sarıkoz Mahallesi,0.1626,1,Very Low,0.9667,0.0259,0.0023,0.0038,0.0012,535.71,15579,1348
-100604,Ankara,Bilinmeyen İlçe,Sele Mahallesi,0.1701,1,Very Low,0.9576,0.0283,0.0068,0.0066,0.0008,450.01,102,10
-100605,Ankara,Bilinmeyen İlçe,Yazlıca Mahallesi,0.1893,1,Low,0.9693,0.0196,0.0032,0.005,0.0029,491.5,15889,1532
-100606,Ankara,Bilinmeyen İlçe,Karaman Mahallesi,0.2063,1,Low,0.7762,0.1339,0.056,0.0167,0.0171,460.61,28760,2488
-100607,Ankara,Bilinmeyen İlçe,Karaağaç Mahallesi,0.3077,1,High,0.5632,0.0828,0.058,0.1146,0.1814,309.64,40069,3504
-100608,Ankara,Bilinmeyen İlçe,Tahtayazı Mahallesi,0.207,1,Low,0.9294,0.0387,0.0105,0.0126,0.0088,509.94,37448,2866
-100609,Ankara,Bilinmeyen İlçe,Aşağı Çavundur Mahallesi,0.1542,1,Very Low,0.9752,0.0172,0.0029,0.004,0.0007,465.17,8127,745
-100610,Ankara,Bilinmeyen İlçe,Gökçedere Mahallesi,0.1585,1,Very Low,0.9836,0.0106,0.003,0.0025,0.0004,459.23,4404,458
-100611,Ankara,Bilinmeyen İlçe,Sığırlıhacı Mahallesi,0.2348,1,Medium,0.8646,0.053,0.0308,0.035,0.0167,418.16,35902,3043
-100612,Ankara,Bilinmeyen İlçe,Kutuören Mahallesi,0.2241,1,Low,0.9109,0.0468,0.0193,0.0216,0.0014,365.87,4526,530
-100613,Ankara,Bilinmeyen İlçe,Tuğla Mahallesi,0.1748,1,Very Low,0.9795,0.014,0.0024,0.0025,0.0016,520.04,12041,957
-100614,Ankara,Bilinmeyen İlçe,Gümüşyayla Mahallesi,0.1532,1,Very Low,0.9781,0.0109,0.004,0.006,0.0011,452.11,102,10
-100615,Ankara,Bilinmeyen İlçe,Yakuphasan Mahallesi,0.1981,1,Low,0.7299,0.1766,0.0623,0.0269,0.0042,458.85,14836,1061
-100616,Ankara,Bilinmeyen İlçe,Yılmaz Mahallesi,0.2076,1,Low,0.9029,0.0571,0.0181,0.0177,0.0041,460.52,15366,1231
-100617,Ankara,Bilinmeyen İlçe,Karataş Mahallesi,0.1583,1,Very Low,0.952,0.0327,0.0095,0.0049,0.0009,520.27,102,10
-100618,Ankara,Bilinmeyen İlçe,Özlüce Mahallesi,0.1745,1,Very Low,0.9495,0.0397,0.0052,0.0047,0.0009,488.13,102,49
-100619,Ankara,Bilinmeyen İlçe,Teberik Mahallesi,0.1566,1,Very Low,0.9786,0.0139,0.0026,0.0043,0.0005,507.63,779,13
-100620,Ankara,Bilinmeyen İlçe,Hançılı Mahallesi,0.1746,1,Very Low,0.9697,0.0221,0.0029,0.0041,0.0012,537.1,102,10
-100621,Ankara,Bilinmeyen İlçe,Karatepe Mahallesi,0.3129,1,High,0.533,0.1298,0.0813,0.1653,0.0906,221.51,41215,3417
-100622,Ankara,Bilinmeyen İlçe,Demirtaş Mahallesi,0.1676,1,Very Low,0.9543,0.0259,0.0076,0.0111,0.0012,423.68,1064,10
-100623,Ankara,Bilinmeyen İlçe,Kınık Mahallesi,0.1852,1,Low,0.914,0.0544,0.0078,0.0086,0.0152,508.78,14693,1076
-100624,Ankara,Bilinmeyen İlçe,Satılar Mahallesi,0.2684,1,Medium,0.6961,0.2039,0.0404,0.0432,0.0164,355.13,7963,1063
-100625,Ankara,Bilinmeyen İlçe,Mahmutlar Mahallesi,0.1692,1,Very Low,0.9806,0.0098,0.0035,0.0024,0.0037,612.53,27317,2143
-100626,Ankara,Bilinmeyen İlçe,Elmapınar Mahallesi,0.225,1,Low,0.9157,0.0381,0.0237,0.0135,0.009,408.86,22840,1669
-100627,Ankara,Bilinmeyen İlçe,Afşar Mahallesi,0.3219,1,High,0.5521,0.1472,0.123,0.112,0.0656,362.13,25396,1967
-100628,Ankara,Bilinmeyen İlçe,Yurtyenice Mahallesi,0.2342,1,Medium,0.908,0.0705,0.0106,0.004,0.0069,508.0,22417,2292
-100629,Ankara,Bilinmeyen İlçe,Uyarca Mahallesi,0.1674,1,Very Low,0.9609,0.0295,0.0046,0.0043,0.0006,462.39,102,10
-100630,Ankara,Bilinmeyen İlçe,Kargın Mahallesi,0.1421,1,Very Low,0.9388,0.0445,0.0099,0.0061,0.0007,564.17,102,10
-100631,Ankara,Bilinmeyen İlçe,Akkuzulu Mahallesi,0.2601,1,Medium,0.8125,0.0964,0.0285,0.029,0.0337,395.53,25454,2179
-100632,Ankara,Bilinmeyen İlçe,Buğra Mahallesi,0.2035,1,Low,0.7892,0.1494,0.0464,0.0119,0.0031,477.28,12612,1059
-100633,Ankara,Bilinmeyen İlçe,Gökçeören Mahallesi,0.2064,1,Low,0.8886,0.0836,0.0143,0.0104,0.0031,443.07,19890,1416
-100634,Ankara,Bilinmeyen İlçe,Alibeyli Mahallesi,0.2081,1,Low,0.9496,0.0265,0.0078,0.0106,0.0055,426.3,22096,1827
-100635,Ankara,Bilinmeyen İlçe,Karalar Mahallesi,0.1767,1,Very Low,0.9485,0.043,0.0052,0.0026,0.0006,478.47,3716,53
-100636,Ankara,Bilinmeyen İlçe,Gökdere Mahallesi,0.273,1,Medium,0.5811,0.181,0.0747,0.1093,0.0539,335.15,16035,1386
-100637,Ankara,Bilinmeyen İlçe,Samanlık Mahallesi,0.177,1,Very Low,0.9296,0.0465,0.0106,0.0123,0.001,419.33,102,61
-100638,Ankara,Bilinmeyen İlçe,Yalım Mahallesi,0.1819,1,Low,0.955,0.0289,0.0042,0.011,0.0009,430.13,5799,813
-100639,Ankara,Bilinmeyen İlçe,Gölköy Mahallesi,0.1677,1,Very Low,0.958,0.0316,0.0047,0.004,0.0017,494.83,14142,995
-100640,Ankara,Bilinmeyen İlçe,Şeyhmahmut Mahallesi,0.1864,1,Low,0.9189,0.0436,0.0101,0.0089,0.0185,474.93,12327,699
-100641,Ankara,Bilinmeyen İlçe,Ahikemal Şenyurt Mahallesi,0.2246,1,Low,0.9225,0.051,0.0071,0.0133,0.0061,414.46,10605,1185
-100642,Ankara,Bilinmeyen İlçe,Halilağa Tabakhane Mahallesi,0.2606,1,Medium,0.7777,0.0974,0.0495,0.0174,0.058,395.49,26893,2641
-100643,Ankara,Bilinmeyen İlçe,Çanşa Kale Mahallesi,0.3807,1,High,0.4454,0.1425,0.2463,0.1487,0.0171,346.38,18802,1795
-100644,Ankara,Bilinmeyen İlçe,Ahiler Yenice Mahallesi,0.189,1,Low,0.9754,0.0143,0.0031,0.0035,0.0035,517.23,23050,1903
-100645,Ankara,Bilinmeyen İlçe,Cumasaray Mahallesi,0.1729,1,Very Low,0.9699,0.025,0.0021,0.0021,0.0009,515.77,7276,642
-100646,Ankara,Bilinmeyen İlçe,Halitcevriaslangil Mahallesi,0.2523,1,Medium,0.8302,0.0742,0.0271,0.0338,0.0347,396.49,24234,2037
-100647,Ankara,Bilinmeyen İlçe,Yenidoğan Yeşilyurt Mahallesi,0.1884,1,Low,0.8904,0.0879,0.0078,0.0102,0.0037,486.43,102,10
-100648,Ankara,Bilinmeyen İlçe,Gümüşpınar Mahallesi,0.162,1,Very Low,0.9394,0.0499,0.0039,0.0061,0.0007,529.13,102,11
-100649,Ankara,Bilinmeyen İlçe,Aktepe Mahallesi,0.1735,1,Very Low,0.9463,0.0436,0.005,0.004,0.0011,464.99,102,95
-100650,Ankara,Bilinmeyen İlçe,Tilkiköy Mahallesi,0.1679,1,Very Low,0.9781,0.0144,0.0035,0.003,0.001,475.16,9002,596
-100651,Ankara,Bilinmeyen İlçe,Arkbürk Mahallesi,0.224,1,Low,0.5752,0.1716,0.1131,0.063,0.0771,491.67,46306,3905
-100652,Ankara,Bilinmeyen İlçe,Eskiköy Mahallesi,0.2179,1,Low,0.8741,0.0523,0.028,0.0228,0.0227,512.18,44664,3663
-100653,Ankara,Bilinmeyen İlçe,Çiftlikköy Mahallesi,0.1358,1,Very Low,0.9864,0.0079,0.0019,0.0034,0.0004,546.43,102,10
-100654,Ankara,Bilinmeyen İlçe,Kızılkaya Mahallesi,0.2242,1,Low,0.8266,0.0633,0.0428,0.0572,0.0101,427.59,18395,1880
-100655,Ankara,Bilinmeyen İlçe,Akkaynak Mahallesi,0.1972,1,Low,0.8319,0.1317,0.0168,0.0137,0.0059,501.8,19170,1553
-100656,Ankara,Bilinmeyen İlçe,Karahüyük Mahallesi,0.1896,1,Low,0.6997,0.1911,0.0769,0.0281,0.0043,477.81,102,10
-100657,Ankara,Bilinmeyen İlçe,Kılçak Mahallesi,0.2061,1,Low,0.9264,0.0513,0.0095,0.008,0.0049,434.49,15161,1039
-100658,Ankara,Bilinmeyen İlçe,Keklicek Mahallesi,0.2978,2,Medium,0.2484,0.6877,0.0373,0.0173,0.0093,452.34,18734,1521
-100659,Ankara,Bilinmeyen İlçe,Hacıköy Mahallesi,0.1984,1,Low,0.7765,0.1296,0.0404,0.0127,0.0408,483.13,16866,1684
-100660,Ankara,Bilinmeyen İlçe,Değirmenkaya Mahallesi,0.2396,1,Medium,0.8547,0.1135,0.0168,0.0101,0.0049,435.64,18639,1376
-100661,Ankara,Bilinmeyen İlçe,Akçataş Mahallesi,0.2806,1,Medium,0.6947,0.1663,0.0638,0.0649,0.0103,307.13,10705,851
-100662,Ankara,Bilinmeyen İlçe,Yılanlı Mahallesi,0.2244,1,Low,0.8719,0.0651,0.0298,0.0171,0.0161,448.41,39133,3089
-100663,Ankara,Bilinmeyen İlçe,Hasayaz Mahallesi,0.1753,1,Very Low,0.9545,0.0378,0.0026,0.0041,0.001,513.41,13811,1434
-100664,Ankara,Bilinmeyen İlçe,Yeniçöte Mahallesi,0.1357,1,Very Low,0.9739,0.016,0.0044,0.0053,0.0005,541.48,1050,219
-100665,Ankara,Bilinmeyen İlçe,Yeşilöz Mahallesi,0.1734,1,Very Low,0.8975,0.0468,0.041,0.0133,0.0014,472.58,4981,232
-100666,Ankara,Bilinmeyen İlçe,Tavşancık Mahallesi,0.2316,1,Medium,0.9,0.0408,0.0231,0.0209,0.0152,404.9,28469,2589
-100667,Ankara,Bilinmeyen İlçe,Dağdemir Mahallesi,0.2025,1,Low,0.9044,0.0705,0.0123,0.0088,0.004,473.43,12758,1191
-100668,Ankara,Bilinmeyen İlçe,Çandır Mahallesi,0.2162,1,Low,0.9229,0.0321,0.019,0.0106,0.0154,430.06,28290,2660
-100669,Ankara,Bilinmeyen İlçe,Çaykaya Mahallesi,0.1868,1,Low,0.9624,0.0241,0.0053,0.0046,0.0035,457.22,16646,1421
-100670,Ankara,Bilinmeyen İlçe,Yüzbey Mahallesi,0.214,1,Low,0.7401,0.179,0.0346,0.0296,0.0168,444.38,30611,2419
-100671,Ankara,Bilinmeyen İlçe,Altıntaş Mahallesi,0.2351,1,Medium,0.8174,0.1384,0.0172,0.0189,0.0082,397.88,10213,1054
-100672,Ankara,Bilinmeyen İlçe,Beykavağı Mahallesi,0.2023,1,Low,0.9064,0.0553,0.0152,0.0095,0.0136,475.0,34932,2968
-100673,Ankara,Bilinmeyen İlçe,Şemsettin Mahallesi,0.17,1,Very Low,0.9557,0.0282,0.0064,0.0079,0.0017,447.36,102,134
-100674,Ankara,Bilinmeyen İlçe,Koyunbaba Mahallesi,0.1807,1,Low,0.9741,0.0124,0.0039,0.0077,0.0019,488.31,20966,2062
-100675,Ankara,Bilinmeyen İlçe,Kuyucak Mahallesi,0.1901,1,Low,0.959,0.0332,0.0038,0.0025,0.0014,455.79,6707,589
-100676,Ankara,Bilinmeyen İlçe,Eşmedere Mahallesi,0.1725,1,Very Low,0.9848,0.0072,0.0033,0.0042,0.0005,408.86,3950,10
-100677,Ankara,Bilinmeyen İlçe,Ahmetadil Mahallesi,0.2049,1,Low,0.8457,0.1286,0.0131,0.0089,0.0037,470.02,17796,1440
-100678,Ankara,Bilinmeyen İlçe,Kozayağı Mahallesi,0.2175,1,Low,0.8802,0.0745,0.016,0.0094,0.0199,473.07,22585,1679
-100679,Ankara,Bilinmeyen İlçe,Karacakaya Mahallesi,0.2048,1,Low,0.8704,0.0852,0.0167,0.0165,0.0112,551.63,32069,2556
-100680,Ankara,Bilinmeyen İlçe,Haydar Mahallesi,0.1969,1,Low,0.9321,0.044,0.0118,0.0088,0.0032,445.0,18309,1118
-100681,Ankara,Bilinmeyen İlçe,Elecik Mahallesi,0.1839,1,Low,0.9477,0.0397,0.0063,0.0053,0.001,443.34,1817,120
-100682,Ankara,Bilinmeyen İlçe,Çınar Mahallesi,0.1643,1,Very Low,0.9719,0.0204,0.0027,0.0045,0.0006,472.36,5765,692
-100683,Ankara,Bilinmeyen İlçe,Balıkhisar Mahallesi,0.1846,1,Low,0.9706,0.0171,0.0043,0.007,0.001,478.92,14527,1257
-100684,Ankara,Bilinmeyen İlçe,Güzelhisar Mahallesi,0.1614,1,Very Low,0.978,0.0154,0.003,0.0032,0.0004,464.76,8005,674
-100685,Ankara,Bilinmeyen İlçe,Saracalar Mahallesi,0.1918,1,Low,0.9204,0.0709,0.0047,0.0026,0.0015,478.76,10250,852
-100686,Ankara,Bilinmeyen İlçe,Peçenek Mahallesi,0.2692,1,Medium,0.8371,0.0794,0.0302,0.032,0.0213,381.83,26191,1738
-100687,Ankara,Bilinmeyen İlçe,Altınova Mahallesi,0.2349,1,Medium,0.7706,0.1065,0.0416,0.0294,0.052,446.47,38922,3614
-100688,Ankara,Bilinmeyen İlçe,Yıldırım Beyazıt Mahallesi,0.211,1,Low,0.6721,0.2312,0.0704,0.0216,0.0047,433.73,13058,976
-100689,Ankara,Bilinmeyen İlçe,Yeni Karaköy Mahallesi,0.215,1,Low,0.8788,0.0694,0.0222,0.0157,0.0139,518.92,36409,3113
-100690,Ankara,Bilinmeyen İlçe,Saray Osmangazi Mahallesi,0.1749,1,Very Low,0.9197,0.0556,0.0135,0.0094,0.0019,505.02,12581,1172
-100691,Ankara,Bilinmeyen İlçe,Saray Fatih Mahallesi,0.2643,1,Medium,0.6921,0.1621,0.0735,0.0341,0.0382,397.02,29380,2364
-100692,Ankara,Bilinmeyen İlçe,Saray Cumhuriyet Mahallesi,0.2223,1,Low,0.914,0.047,0.0144,0.0095,0.015,436.52,24972,2177
-100693,Ankara,Bilinmeyen İlçe,Saray Gümüşoluk Mahallesi,0.1722,1,Very Low,0.9577,0.026,0.0062,0.0089,0.0012,470.99,102,10
-100694,Ankara,Bilinmeyen İlçe,Kösrelikkızığı Mahallesi,0.228,1,Low,0.8605,0.0782,0.0302,0.0173,0.0139,409.86,22440,1805
-100695,Ankara,Bilinmeyen İlçe,Abadan Mahallesi,0.1614,1,Very Low,0.9779,0.012,0.0032,0.0056,0.0013,491.96,102,10
-100696,Ankara,Bilinmeyen İlçe,Karşıyaka Mahallesi,0.1756,1,Very Low,0.8812,0.0839,0.0267,0.0068,0.0014,440.4,7908,501
-100697,Ankara,Bilinmeyen İlçe,Sirkeli Yeşilova Mahallesi,0.1735,1,Very Low,0.9754,0.013,0.0024,0.0075,0.0017,513.21,19972,1780
-100698,Ankara,Bilinmeyen İlçe,Tekirler Mahallesi,0.2238,1,Low,0.5225,0.362,0.0943,0.0128,0.0084,412.21,11827,651
-100699,Ankara,Bilinmeyen İlçe,Nebioğlu Mahallesi,0.2035,1,Low,0.9498,0.0296,0.0079,0.0117,0.0011,397.33,102,10
-100700,Ankara,Bilinmeyen İlçe,Yuva Mahallesi,0.3627,2,High,0.0657,0.5272,0.2949,0.0791,0.0331,403.69,14558,1105
-100701,Ankara,Bilinmeyen İlçe,Yusufuşağı Mahallesi,0.244,1,Medium,0.7939,0.0954,0.0588,0.048,0.0038,293.3,2742,24
-100702,Ankara,Bilinmeyen İlçe,İnebeyli Mahallesi,0.1528,1,Very Low,0.9813,0.0143,0.0018,0.0022,0.0004,523.86,5413,384
-100703,Ankara,Bilinmeyen İlçe,Demirayak Mahallesi,0.1435,1,Very Low,0.9792,0.0146,0.0023,0.0035,0.0005,573.0,102,90
-100704,Ankara,Bilinmeyen İlçe,Altınbaşak Mahallesi,0.2828,1,Medium,0.661,0.1505,0.0747,0.0743,0.0394,353.86,23575,2192
-100705,Ankara,Bilinmeyen İlçe,Sirkeli Yeşilyurt Mahallesi,0.1722,1,Very Low,0.8992,0.0796,0.0104,0.0089,0.0019,427.18,5398,223
-100706,Ankara,Bilinmeyen İlçe,Balcılar Mahallesi,0.1487,1,Very Low,0.9869,0.0094,0.0018,0.0016,0.0003,485.37,3915,499
-100707,Ankara,Bilinmeyen İlçe,Pazar Başören Mahallesi,0.2379,1,Medium,0.6085,0.1728,0.1203,0.0473,0.0512,419.74,24080,2032
-100708,Ankara,Bilinmeyen İlçe,Danişment Mahallesi,0.2242,1,Low,0.8106,0.0991,0.038,0.0121,0.0401,452.66,30719,2820
-100709,Ankara,Bilinmeyen İlçe,Yenice Mahallesi,0.164,1,Very Low,0.9096,0.0512,0.0074,0.0233,0.0085,486.72,7686,543
-100710,Ankara,Bilinmeyen İlçe,Uzunöz Mahallesi,0.2153,1,Low,0.8867,0.0676,0.0208,0.0085,0.0163,447.17,25397,2258
-100711,Ankara,Bilinmeyen İlçe,Yıldırımyağlıca Mahallesi,0.1616,1,Very Low,0.9686,0.022,0.0037,0.0046,0.0011,492.29,102,10
-100712,Ankara,Bilinmeyen İlçe,Yıldırımdemirciler Mahallesi,0.1752,1,Very Low,0.9363,0.0424,0.0067,0.013,0.0017,476.85,4829,599
-100713,Ankara,Bilinmeyen İlçe,Bayır Mahallesi,0.2096,1,Low,0.9368,0.0378,0.009,0.0069,0.0096,438.16,25521,2080
-100714,Ankara,Bilinmeyen İlçe,Çukurca Mahallesi,0.171,1,Very Low,0.9362,0.0535,0.0058,0.0032,0.0012,455.01,2328,104
-100715,Ankara,Bilinmeyen İlçe,Fasıl Mahallesi,0.2259,1,Low,0.3651,0.361,0.2113,0.0218,0.0409,446.74,26457,1918
-100716,Ankara,Bilinmeyen İlçe,Harmancık Mahallesi,0.2288,1,Low,0.6214,0.1188,0.1199,0.0567,0.0831,412.86,30849,2169
-100717,Ankara,Bilinmeyen İlçe,Kömürcü Mahallesi,0.2713,1,Medium,0.5438,0.279,0.1249,0.0404,0.0119,368.9,19451,1517
-100718,Ankara,Bilinmeyen İlçe,Yakupabdal Mahallesi,0.1999,1,Low,0.9239,0.0505,0.0115,0.0049,0.0092,503.28,27399,1992
-100719,Ankara,Bilinmeyen İlçe,Eğerlibaşköy Mahallesi,0.1688,1,Very Low,0.9011,0.0623,0.0086,0.0269,0.0011,429.87,102,10
-100720,Ankara,Bilinmeyen İlçe,Aksak Mahallesi,0.1635,1,Very Low,0.9524,0.0298,0.0085,0.0078,0.0014,516.94,8928,654
-100721,Ankara,Bilinmeyen İlçe,Eğerlidereköy Mahallesi,0.1688,1,Very Low,0.9411,0.0368,0.0075,0.0138,0.0008,415.38,102,357
-100722,Ankara,Bilinmeyen İlçe,Yayla Mahallesi,0.3128,2,High,0.2554,0.6411,0.0582,0.0344,0.011,410.95,19468,1729
-100723,Ankara,Bilinmeyen İlçe,Çavuşlu Mahallesi,0.1696,1,Very Low,0.9594,0.0337,0.0037,0.0025,0.0007,489.11,7366,445
-100724,Ankara,Bilinmeyen İlçe,Karahasanlı Mahallesi,0.1827,1,Low,0.9562,0.0304,0.0044,0.0082,0.0008,511.06,102,10
-100725,Ankara,Bilinmeyen İlçe,Akarlar Mahallesi,0.2736,1,Medium,0.735,0.1279,0.0608,0.0644,0.0119,329.42,17088,1527
-100726,Ankara,Bilinmeyen İlçe,Evciler Mahallesi,0.2371,1,Medium,0.7528,0.169,0.0419,0.013,0.0233,410.39,13288,1292
-100727,Ankara,Bilinmeyen İlçe,Kayabükü Mahallesi,0.1715,1,Very Low,0.9738,0.0155,0.0047,0.0055,0.0006,427.09,4924,27
-100728,Ankara,Bilinmeyen İlçe,Avcıova Mahallesi,0.184,1,Low,0.9531,0.0357,0.0055,0.0042,0.0015,470.16,19503,1337
-100729,Ankara,Bilinmeyen İlçe,Yukarıulucak Mahallesi,0.1972,1,Low,0.9616,0.0241,0.0052,0.0077,0.0013,417.34,10598,1177
-100730,Ankara,Bilinmeyen İlçe,Yağcıhüseyin Mahallesi,0.161,1,Very Low,0.9804,0.0118,0.0034,0.0036,0.0008,456.12,9451,735
-100731,Ankara,Bilinmeyen İlçe,Belpınar Mahallesi,0.1902,1,Low,0.8578,0.0962,0.0306,0.0128,0.0026,433.49,10923,957
-100732,Ankara,Bilinmeyen İlçe,Salın Mahallesi,0.1612,1,Very Low,0.9243,0.044,0.0204,0.0099,0.0014,492.41,102,10
-100733,Ankara,Bilinmeyen İlçe,Beşkonak Mahallesi,0.1679,1,Very Low,0.9367,0.0477,0.0082,0.0058,0.0016,452.46,5363,395
-100734,Ankara,Bilinmeyen İlçe,Eğerlikozören Mahallesi,0.1643,1,Very Low,0.984,0.0103,0.0016,0.0033,0.0008,527.5,13282,1220
-100735,Ankara,Bilinmeyen İlçe,Eğerlialören Mahallesi,0.2186,1,Low,0.909,0.055,0.0118,0.0229,0.0014,376.44,102,144
-100736,Ankara,Bilinmeyen İlçe,Yukarıçanlı Mahallesi,0.1778,1,Very Low,0.9427,0.0461,0.0057,0.004,0.0015,454.57,1551,67
-100737,Ankara,Bilinmeyen İlçe,Yukarıkese Mahallesi,0.2035,1,Low,0.9427,0.0331,0.0086,0.0135,0.0021,428.02,19092,1354
-100738,Ankara,Bilinmeyen İlçe,Kasımlar Mahallesi,0.2141,1,Low,0.8968,0.0542,0.0291,0.0182,0.0017,389.13,5119,450
-100739,Ankara,Bilinmeyen İlçe,Hıdırlar Mahallesi,0.2272,1,Low,0.7108,0.1465,0.0612,0.0693,0.0122,436.47,14717,1581
-100740,Ankara,Bilinmeyen İlçe,İğceler Mahallesi,0.2374,1,Medium,0.7269,0.1282,0.0356,0.027,0.0823,426.65,22847,1959
-100741,Ankara,Bilinmeyen İlçe,Süleler Mahallesi,0.2237,1,Low,0.8553,0.0797,0.0314,0.0184,0.0152,464.72,30760,2613
-100742,Ankara,Bilinmeyen İlçe,Berçinçatak Mahallesi,0.2691,1,Medium,0.7403,0.141,0.058,0.0502,0.0105,328.64,13730,1330
-100743,Ankara,Bilinmeyen İlçe,Üyücek Mahallesi,0.217,1,Low,0.8123,0.0582,0.0281,0.0573,0.0441,419.65,21415,1692
-100744,Ankara,Bilinmeyen İlçe,Gebeler Mahallesi,0.1423,1,Very Low,0.9711,0.0191,0.0059,0.0034,0.0005,585.9,5512,383
-100745,Ankara,Bilinmeyen İlçe,Berçinyayalar Mahallesi,0.1547,1,Very Low,0.9766,0.0182,0.0023,0.0023,0.0005,459.37,6253,617
-100746,Ankara,Bilinmeyen İlçe,Şahinler,0.1946,1,Low,0.9719,0.0166,0.0042,0.0056,0.0017,486.66,19740,1724
-100747,Ankara,Bilinmeyen İlçe,Avdan Mahallesi,0.1631,1,Very Low,0.9656,0.0239,0.0051,0.0048,0.0006,452.1,102,10
-100748,Ankara,Bilinmeyen İlçe,Gökbel Mahallesi,0.1944,1,Low,0.9535,0.032,0.0069,0.0059,0.0017,445.92,18923,1340
-100749,Ankara,Bilinmeyen İlçe,Dereneci Mahallesi,0.1807,1,Low,0.8499,0.0896,0.0471,0.0111,0.0023,468.02,2124,10
-100750,Ankara,Bilinmeyen İlçe,Kavaközü Mahallesi,0.1859,1,Low,0.9414,0.0434,0.0058,0.0034,0.0059,539.63,23184,1976
-100751,Ankara,Bilinmeyen İlçe,Karaağaç Mahallesi,0.1558,1,Very Low,0.9756,0.0174,0.0032,0.0032,0.0005,457.27,102,219
-100752,Ankara,Bilinmeyen İlçe,Bulak Mahallesi,0.1793,1,Very Low,0.8783,0.1039,0.0086,0.0078,0.0013,408.39,102,326
-100753,Ankara,Bilinmeyen İlçe,Ayvacık Mahallesi,0.2584,1,Medium,0.8384,0.0951,0.0208,0.0255,0.0202,400.41,23260,1964
-100754,Ankara,Bilinmeyen İlçe,Güvem Mahallesi,0.1668,1,Very Low,0.9699,0.019,0.0035,0.0061,0.0015,550.91,20855,1673
-100755,Ankara,Bilinmeyen İlçe,Semeler Mahallesi,0.2535,1,Medium,0.9174,0.0253,0.0148,0.0309,0.0115,392.95,34077,2629
-100756,Ankara,Bilinmeyen İlçe,Saray Mahallesi,0.2149,1,Low,0.9001,0.0645,0.0147,0.0114,0.0093,455.52,21990,1638
-100757,Ankara,Bilinmeyen İlçe,Çukurören Mahallesi,0.1636,1,Very Low,0.9678,0.0191,0.0055,0.0071,0.0006,418.17,2519,145
-100758,Ankara,Bilinmeyen İlçe,Oğlakçı Mahallesi,0.28,1,Medium,0.4911,0.2387,0.2031,0.0367,0.0304,389.25,22658,1878
-100759,Ankara,Bilinmeyen İlçe,Yanık Özbekler Mahallesi,0.1532,1,Very Low,0.9673,0.0208,0.0039,0.0071,0.001,504.42,102,10
-100760,Ankara,Bilinmeyen İlçe,Kızılcaören Mahallesi,0.1823,1,Low,0.9512,0.0343,0.0057,0.0078,0.0009,404.15,8143,697
-100761,Ankara,Bilinmeyen İlçe,Ciğirler Mahallesi,0.2455,1,Medium,0.7022,0.1847,0.0495,0.0601,0.0036,359.47,4385,213
-100762,Ankara,Bilinmeyen İlçe,Gazi Mustafa Kemalpaşa Mahallesi,0.1868,1,Low,0.9709,0.0162,0.0037,0.0082,0.0011,427.67,14513,1126
-100763,Ankara,Bilinmeyen İlçe,Yenice Mahallesi,0.1746,1,Very Low,0.9715,0.0158,0.0047,0.0044,0.0037,585.03,30069,2601
-100764,Ankara,Bilinmeyen İlçe,Akçay Mahallesi,0.1594,1,Very Low,0.991,0.0055,0.0012,0.0018,0.0006,495.3,10096,1155
-100765,Ankara,Bilinmeyen İlçe,Karşıyaka Mahallesi,0.1629,1,Very Low,0.938,0.0546,0.003,0.0034,0.001,578.09,10245,954
-100766,Ankara,Bilinmeyen İlçe,Karacaören Mahallesi,0.2058,1,Low,0.9477,0.035,0.0074,0.0074,0.0025,437.46,20999,1408
-100767,Ankara,Bilinmeyen İlçe,Sazak Mahallesi,0.2047,1,Low,0.8371,0.1111,0.012,0.0384,0.0015,381.99,102,10
-100768,Ankara,Bilinmeyen İlçe,Oltan Mahallesi,0.1561,1,Very Low,0.9821,0.0111,0.0029,0.0034,0.0005,456.51,102,10
-100769,Ankara,Bilinmeyen İlçe,Yeni Mahallesi,0.3001,2,High,0.2484,0.3738,0.1907,0.1508,0.0363,304.07,15417,1251
-100770,Ankara,Bilinmeyen İlçe,Seyran Mahallesi,0.1878,1,Low,0.9026,0.0716,0.0137,0.0079,0.0042,494.08,19070,1975
-100771,Ankara,Bilinmeyen İlçe,Kayabaşı Mahallesi,0.1687,1,Very Low,0.9637,0.0293,0.003,0.0031,0.0009,519.84,404,10
-100772,Ankara,Bilinmeyen İlçe,Medrese Mahallesi,0.1404,1,Very Low,0.9876,0.0093,0.0014,0.0013,0.0004,520.77,3939,354
-100773,Ankara,Bilinmeyen İlçe,Çaldağ Mahallesi,0.286,1,Medium,0.4659,0.1952,0.1447,0.1053,0.0888,329.29,29274,2375
-100774,Ankara,Bilinmeyen İlçe,Kargalı Mahallesi,0.185,1,Low,0.9605,0.026,0.0056,0.0052,0.0027,475.13,15435,882
-100775,Ankara,Bilinmeyen İlçe,Eski Polatlı Mahallesi,0.1944,1,Low,0.9075,0.0642,0.0097,0.0111,0.0075,455.65,21858,2089
-100776,Ankara,Bilinmeyen İlçe,Gündoğan Mahallesi,0.1733,1,Very Low,0.9547,0.0344,0.0051,0.0048,0.001,438.64,851,77
-100777,Ankara,Bilinmeyen İlçe,Türkkarsak Mahallesi,0.1649,1,Very Low,0.8999,0.0506,0.0373,0.0109,0.0014,458.12,102,228
-100778,Ankara,Bilinmeyen İlçe,Cumhuriyet Mahallesi,0.2857,1,Medium,0.7753,0.1002,0.0561,0.0567,0.0117,311.42,13003,1018
-100779,Ankara,Bilinmeyen İlçe,Çakırlar Mahallesi,0.2119,1,Low,0.9488,0.023,0.0098,0.0103,0.008,421.98,22186,1837
-100780,Ankara,Bilinmeyen İlçe,Ahi Evran OSB Mahallesi,0.2618,1,Medium,0.814,0.1086,0.0287,0.0279,0.0208,398.16,22774,1903
-100781,Ankara,Bilinmeyen İlçe,Yaylabağ Mahallesi,0.2245,1,Low,0.9114,0.0577,0.0142,0.0143,0.0025,393.68,10785,630
-100782,Ankara,Bilinmeyen İlçe,Eymir Mahallesi,0.1766,1,Very Low,0.9832,0.011,0.0019,0.003,0.0009,508.33,19901,1506
-100783,Ankara,Bilinmeyen İlçe,Örencik Mahallesi,0.1868,1,Low,0.976,0.0173,0.0022,0.0034,0.0011,490.61,19257,1599
-100784,Ankara,Bilinmeyen İlçe,Yurtbeyi Mahallesi,0.171,1,Very Low,0.9597,0.0294,0.0053,0.0048,0.0007,474.51,1234,57
-100785,Ankara,Bilinmeyen İlçe,Seğmenler Mahallesi,0.1713,1,Very Low,0.9429,0.0411,0.0065,0.0087,0.0008,434.09,102,28
+100000,Ankara,Bilinmeyen İlçe,Subaşı Mahallesi,0.2022,1,Low,0.9299,0.0506,0.0135,0.0004,0.0056,493.76,19503,1554
+100001,Ankara,Bilinmeyen İlçe,Akçaali Mahallesi,0.1829,1,Low,0.9565,0.0392,0.0033,0.0001,0.0009,504.0,106,209
+100002,Ankara,Bilinmeyen İlçe,Akkoyunlu Mahallesi,0.2269,1,Low,0.8242,0.1374,0.0018,0.0170,0.0196,417.97,111,89
+100003,Ankara,Bilinmeyen İlçe,Davdanlı Mahallesi,0.2754,2,Medium,0.0315,0.7129,0.0850,0.0719,0.0987,393.17,15767,1470
+100004,Ankara,Bilinmeyen İlçe,Kayadibi Mahallesi,0.2517,2,Medium,0.0115,0.9488,0.0262,0.0056,0.0079,441.86,25843,2149
+100005,Ankara,Bilinmeyen İlçe,Süleymanlı Mahallesi,0.4083,3,High,0.0245,0.0007,0.9331,0.0152,0.0265,545.22,27113,2260
+100006,Ankara,Bilinmeyen İlçe,Tekke Mahallesi,0.2059,1,Low,0.8305,0.1426,0.0123,0.0044,0.0102,405.35,33081,2680
+100007,Ankara,Bilinmeyen İlçe,Gökler,0.3463,2,Medium,0.0707,0.7038,0.1168,0.0284,0.0803,293.24,30426,2387
+100008,Ankara,Bilinmeyen İlçe,Aydıncık Mahallesi,0.1751,1,Low,0.9047,0.0874,0.0050,0.0014,0.0015,460.65,105,10
+100009,Ankara,Bilinmeyen İlçe,Baraj Mahallesi,0.1597,1,Low,0.8773,0.0940,0.0183,0.0045,0.0059,539.6,24030,1707
+100010,Ankara,Bilinmeyen İlçe,Beşikkaya Mahallesi,0.1623,1,Low,0.8445,0.0966,0.0308,0.0121,0.0161,398.62,111,108
+100011,Ankara,Bilinmeyen İlçe,Feridun Çelik Mahallesi,0.1339,1,Very Low,0.9340,0.0433,0.0134,0.0015,0.0079,533.32,107,256
+100012,Ankara,Bilinmeyen İlçe,Gicik Mahallesi,0.1756,1,Low,0.9154,0.0794,0.0036,0.0001,0.0015,501.18,1602,10
+100013,Ankara,Bilinmeyen İlçe,Karacaören Mahallesi,0.1617,1,Low,0.9886,0.0095,0.0015,0.0001,0.0004,455.22,16380,1498
+100014,Ankara,Bilinmeyen İlçe,Karapürçek Mahallesi,0.1692,1,Low,0.8571,0.0857,0.0442,0.0036,0.0094,427.33,277,10
+100015,Ankara,Bilinmeyen İlçe,Kavaklı Mahallesi,0.2362,1,Low,0.8977,0.0849,0.0124,0.0004,0.0046,396.21,24577,2238
+100016,Ankara,Bilinmeyen İlçe,Peçenek Mahallesi,0.2700,2,Medium,0.0497,0.8708,0.0327,0.0143,0.0325,435.29,26446,2279
+100017,Ankara,Bilinmeyen İlçe,Tatlar Mahallesi,0.1518,1,Low,0.9319,0.0397,0.0094,0.0048,0.0142,549.16,105,10
+100018,Ankara,Bilinmeyen İlçe,Hacettepe Mahallesi,0.2197,1,Low,0.9748,0.0192,0.0007,0.0003,0.0051,407.58,6147,131
+100019,Ankara,Bilinmeyen İlçe,Hacı Bayram Mahallesi,0.1134,1,Very Low,0.9434,0.0371,0.0104,0.0026,0.0066,531.35,107,10
+100020,Ankara,Bilinmeyen İlçe,Kale Mahallesi,0.2558,2,Medium,0.1020,0.7828,0.0182,0.0041,0.0929,446.64,34373,3103
+100021,Ankara,Bilinmeyen İlçe,Zübeyde Hanım Mahallesi,0.1655,1,Low,0.8946,0.0895,0.0107,0.0025,0.0028,583.93,35396,2527
+100022,Ankara,Bilinmeyen İlçe,Boyalık Mahallesi,0.1609,1,Low,0.9216,0.0430,0.0205,0.0052,0.0097,509.05,17746,1300
+100023,Ankara,Bilinmeyen İlçe,Dikilitaş Mahallesi,0.1900,1,Low,0.9350,0.0602,0.0038,0.0004,0.0006,441.22,20140,1625
+100024,Ankara,Bilinmeyen İlçe,İkizce Mahallesi,0.2775,2,Medium,0.1416,0.7433,0.0128,0.0470,0.0553,345.64,39805,3526
+100025,Ankara,Bilinmeyen İlçe,Beştepe Mahallesi,0.1363,1,Very Low,0.8951,0.0561,0.0140,0.0103,0.0246,479.5,592,10
+100026,Ankara,Bilinmeyen İlçe,Ata Mahallesi,0.2694,2,Medium,0.0265,0.9047,0.0055,0.0089,0.0545,330.76,2872,531
+100027,Ankara,Bilinmeyen İlçe,Aşağıemirler Mahallesi,0.1740,1,Low,0.9946,0.0039,0.0011,0.0002,0.0003,468.04,21982,1690
+100028,Ankara,Bilinmeyen İlçe,Cumhuriyet Mahallesi,0.2831,2,Medium,0.0113,0.9347,0.0275,0.0052,0.0213,366.23,11002,1064
+100029,Ankara,Bilinmeyen İlçe,Selametli Şehit Emrah Mahallesi,0.1635,1,Low,0.8609,0.1000,0.0176,0.0020,0.0196,449.97,22593,1776
+100030,Ankara,Bilinmeyen İlçe,Bezirhane Mahallesi,0.2210,1,Low,0.8124,0.1162,0.0544,0.0027,0.0143,427.11,12855,1037
+100031,Ankara,Bilinmeyen İlçe,Gümüşdere Mahallesi,0.2901,2,Medium,0.1239,0.7749,0.0462,0.0174,0.0376,526.03,33852,2771
+100032,Ankara,Bilinmeyen İlçe,Kavacık Subayevleri Mahallesi,0.1420,1,Very Low,0.8922,0.0786,0.0017,0.0119,0.0155,438.08,106,10
+100033,Ankara,Bilinmeyen İlçe,Hasköy Mahallesi,0.2619,2,Medium,0.0061,0.9748,0.0023,0.0003,0.0166,446.97,28020,1954
+100034,Ankara,Bilinmeyen İlçe,Şefkat Mahallesi,0.2831,2,Medium,0.0052,0.9704,0.0184,0.0002,0.0057,420.82,11098,644
+100035,Ankara,Bilinmeyen İlçe,Kalaba Mahallesi,0.2841,2,Medium,0.0216,0.9633,0.0105,0.0005,0.0041,362.45,8359,195
+100036,Ankara,Bilinmeyen İlçe,Güçlükaya Mahallesi,0.2011,1,Low,0.8132,0.1037,0.0167,0.0212,0.0452,443.09,777,10
+100037,Ankara,Bilinmeyen İlçe,Bağlarbaşı Mahallesi,0.2610,2,Medium,0.0603,0.7313,0.1641,0.0126,0.0316,427.69,46970,3899
+100038,Ankara,Bilinmeyen İlçe,Yakacık Mahallesi,0.2053,1,Low,0.8906,0.0873,0.0173,0.0004,0.0044,431.25,5827,338
+100039,Ankara,Bilinmeyen İlçe,Tepebaşı Mahallesi,0.2072,1,Low,0.8617,0.0744,0.0193,0.0052,0.0395,353.09,13721,1278
+100040,Ankara,Bilinmeyen İlçe,Çiçekli Mahallesi,0.1142,1,Very Low,0.8053,0.1478,0.0007,0.0021,0.0440,623.44,105,65
+100041,Ankara,Bilinmeyen İlçe,Karargahtepe Mahallesi,0.2425,1,Low,0.9382,0.0573,0.0003,0.0011,0.0032,476.97,21095,1673
+100042,Ankara,Bilinmeyen İlçe,Basınevleri Mahallesi,0.3330,2,Medium,0.0662,0.8671,0.0477,0.0020,0.0171,320.38,19928,1868
+100043,Ankara,Bilinmeyen İlçe,Emrah Mahallesi,0.1869,1,Low,0.9843,0.0081,0.0052,0.0010,0.0013,504.79,16636,1308
+100044,Ankara,Bilinmeyen İlçe,Aşağı Eğlence Mahallesi,0.1503,1,Low,0.9455,0.0384,0.0013,0.0065,0.0083,504.84,5940,298
+100045,Ankara,Bilinmeyen İlçe,İncirli Mahallesi,0.1575,1,Low,0.9139,0.0729,0.0032,0.0009,0.0091,512.95,6309,388
+100046,Ankara,Bilinmeyen İlçe,19 Mayıs Mahallesi,0.2186,1,Low,0.9035,0.0632,0.0183,0.0070,0.0080,442.12,15362,1814
+100047,Ankara,Bilinmeyen İlçe,Kuşcağız Mahallesi,0.1211,1,Very Low,0.8636,0.1274,0.0023,0.0023,0.0044,608.56,10862,1090
+100048,Ankara,Bilinmeyen İlçe,Pınarbaşı Mahallesi,0.2285,1,Low,0.9742,0.0138,0.0028,0.0026,0.0066,386.11,110,10
+100049,Ankara,Bilinmeyen İlçe,Şenlik Mahallesi,0.1670,1,Low,0.9799,0.0154,0.0026,0.0009,0.0011,454.48,943,41
+100050,Ankara,Bilinmeyen İlçe,Atapark Mahallesi,0.1524,1,Low,0.9843,0.0138,0.0007,0.0004,0.0008,438.95,2190,200
+100051,Ankara,Bilinmeyen İlçe,Ufuktepe Mahallesi,0.1508,1,Low,0.8111,0.0973,0.0441,0.0093,0.0383,483.9,7329,570
+100052,Ankara,Bilinmeyen İlçe,Osmangazi Mahallesi,0.1799,1,Low,0.9054,0.0830,0.0020,0.0030,0.0066,497.6,9066,666
+100053,Ankara,Bilinmeyen İlçe,Kamil Ocak Mahallesi,0.1418,1,Very Low,0.9250,0.0678,0.0029,0.0021,0.0023,534.31,111,10
+100054,Ankara,Bilinmeyen İlçe,Çaldıran Mahallesi,0.1965,1,Low,0.9042,0.0806,0.0057,0.0014,0.0081,432.36,13620,1198
+100055,Ankara,Bilinmeyen İlçe,Yeşiltepe Mahallesi,0.2422,1,Low,0.9052,0.0695,0.0100,0.0038,0.0114,479.22,14818,1042
+100056,Ankara,Bilinmeyen İlçe,Yeşilöz Mahallesi,0.1867,1,Low,0.9253,0.0537,0.0125,0.0017,0.0068,433.31,18399,954
+100057,Ankara,Bilinmeyen İlçe,Aktepe Mahallesi,0.2599,2,Medium,0.0016,0.9333,0.0041,0.0225,0.0386,402.32,18941,1613
+100058,Ankara,Bilinmeyen İlçe,Adnan Menderes Mahallesi,0.3129,2,Medium,0.0110,0.9050,0.0460,0.0020,0.0360,359.85,40353,3267
+100059,Ankara,Bilinmeyen İlçe,Güzelyurt Mahallesi,0.1655,1,Low,0.8280,0.1492,0.0138,0.0022,0.0067,477.52,14654,946
+100060,Ankara,Bilinmeyen İlçe,Şenyuva Mahallesi,0.1381,1,Very Low,0.9227,0.0431,0.0030,0.0011,0.0301,522.98,19225,1440
+100061,Ankara,Bilinmeyen İlçe,23 Nisan Mahallesi,0.1663,1,Low,0.8295,0.1598,0.0074,0.0011,0.0021,507.12,2995,461
+100062,Ankara,Bilinmeyen İlçe,Köşk Mahallesi,0.1202,1,Very Low,0.9583,0.0267,0.0112,0.0002,0.0035,550.33,6146,776
+100063,Ankara,Bilinmeyen İlçe,Uyanış Mahallesi,0.1933,1,Low,0.8698,0.0921,0.0286,0.0043,0.0051,444.37,105,152
+100064,Ankara,Bilinmeyen İlçe,Bademlik Mahallesi,0.1060,1,Very Low,0.9096,0.0829,0.0040,0.0007,0.0027,540.67,3249,519
+100065,Ankara,Bilinmeyen İlçe,Kanuni Mahallesi,0.1456,1,Very Low,0.8179,0.1321,0.0232,0.0116,0.0151,487.43,7314,702
+100066,Ankara,Bilinmeyen İlçe,Karşıyaka Mahallesi,0.1662,1,Low,0.9956,0.0041,0.0000,0.0000,0.0002,607.84,11976,1230
+100067,Ankara,Bilinmeyen İlçe,Karakaya Mahallesi,0.1610,1,Low,0.9275,0.0621,0.0054,0.0017,0.0033,538.34,26726,2528
+100068,Ankara,Bilinmeyen İlçe,Kafkas Mahallesi,0.1613,1,Low,0.9062,0.0503,0.0015,0.0104,0.0316,493.62,109,162
+100069,Ankara,Bilinmeyen İlçe,Hisar Mahallesi,0.2558,2,Medium,0.0316,0.9425,0.0198,0.0013,0.0049,462.51,28197,1979
+100070,Ankara,Bilinmeyen İlçe,Ovacık Mahallesi,0.2695,2,Medium,0.0465,0.9218,0.0048,0.0104,0.0165,392.44,18437,1398
+100071,Ankara,Bilinmeyen İlçe,Yükseltepe Mahallesi,0.2533,2,Medium,0.0177,0.9486,0.0216,0.0043,0.0078,411.28,24529,2025
+100072,Ankara,Bilinmeyen İlçe,Esertepe Mahallesi,0.2039,1,Low,0.8407,0.1288,0.0002,0.0049,0.0254,493.45,20340,1797
+100073,Ankara,Bilinmeyen İlçe,Etlik Mahallesi,0.1742,1,Low,0.9123,0.0750,0.0049,0.0033,0.0045,415.91,108,125
+100074,Ankara,Bilinmeyen İlçe,Ayvalı Mahallesi,0.1487,1,Very Low,0.8362,0.1037,0.0028,0.0208,0.0365,454.22,107,10
+100075,Ankara,Bilinmeyen İlçe,Yayla Mahallesi,0.2050,1,Low,0.8813,0.1025,0.0068,0.0041,0.0053,466.3,9982,640
+100076,Ankara,Bilinmeyen İlçe,Sancaktepe Mahallesi,0.1895,1,Low,0.9492,0.0387,0.0094,0.0001,0.0025,419.26,17729,1620
+100077,Ankara,Bilinmeyen İlçe,Şehit Kubilay Mahallesi,0.1305,1,Very Low,0.9568,0.0376,0.0038,0.0006,0.0013,634.44,20623,1971
+100078,Ankara,Bilinmeyen İlçe,Kösrelik Mahallesi,0.2333,1,Low,0.9801,0.0111,0.0040,0.0017,0.0031,425.1,18538,1629
+100079,Ankara,Bilinmeyen İlçe,Sarıbeyler Mahallesi,0.1796,1,Low,0.9567,0.0398,0.0020,0.0001,0.0014,486.78,23983,1920
+100080,Ankara,Bilinmeyen İlçe,Çalseki Mahallesi,0.1964,1,Low,0.8239,0.1465,0.0133,0.0070,0.0093,524.18,22714,1301
+100081,Ankara,Bilinmeyen İlçe,Bağlum Güzelyurt Mahallesi,0.3619,2,High,0.1054,0.7858,0.0036,0.0412,0.0639,359.94,27357,2088
+100082,Ankara,Bilinmeyen İlçe,Emniyet Mahallesi,0.1493,1,Very Low,0.8588,0.1212,0.0122,0.0018,0.0059,457.37,7954,510
+100083,Ankara,Bilinmeyen İlçe,Gazi Mahallesi,0.2237,1,Low,0.8233,0.1151,0.0018,0.0046,0.0552,581.22,26341,1594
+100084,Ankara,Bilinmeyen İlçe,Macun Mahallesi,0.2013,1,Low,0.9495,0.0405,0.0045,0.0017,0.0037,600.34,14320,1237
+100085,Ankara,Bilinmeyen İlçe,25 Mart Mahallesi,0.1835,1,Low,0.8201,0.1282,0.0106,0.0080,0.0330,475.11,26569,2136
+100086,Ankara,Bilinmeyen İlçe,Çamlıca Mahallesi,0.2218,1,Low,0.8965,0.0935,0.0034,0.0005,0.0061,387.88,9844,804
+100087,Ankara,Bilinmeyen İlçe,Gayret Mahallesi,0.2339,1,Low,0.8473,0.1234,0.0220,0.0032,0.0042,317.89,27206,2600
+100088,Ankara,Bilinmeyen İlçe,Demetgül Mahallesi,0.2118,1,Low,0.9630,0.0234,0.0089,0.0003,0.0045,490.54,31677,2738
+100089,Ankara,Bilinmeyen İlçe,Varlık Mahallesi,0.3439,2,Medium,0.0245,0.7618,0.0981,0.0294,0.0862,338.35,26473,2028
+100090,Ankara,Bilinmeyen İlçe,Işınlar Mahallesi,0.1262,1,Very Low,0.8870,0.0850,0.0006,0.0049,0.0225,539.27,14297,1004
+100091,Ankara,Bilinmeyen İlçe,Demetlale Mahallesi,0.2678,2,Medium,0.0327,0.9106,0.0164,0.0165,0.0238,437.72,29236,2301
+100092,Ankara,Bilinmeyen İlçe,Barış Mahallesi,0.1655,1,Low,0.9223,0.0419,0.0253,0.0033,0.0072,492.91,106,72
+100093,Ankara,Bilinmeyen İlçe,Ragıp Tüzün Mahallesi,0.1660,1,Low,0.8830,0.0914,0.0043,0.0097,0.0117,479.6,17281,1404
+100094,Ankara,Bilinmeyen İlçe,Yeniçağ Mahallesi,0.1629,1,Low,0.8567,0.0765,0.0220,0.0009,0.0439,415.02,4009,111
+100095,Ankara,Bilinmeyen İlçe,Yunus Emre Mahallesi,0.2393,1,Low,0.8781,0.0745,0.0253,0.0105,0.0116,438.62,22687,2245
+100096,Ankara,Bilinmeyen İlçe,Çarşı Mahallesi,0.2807,2,Medium,0.0334,0.9426,0.0136,0.0016,0.0088,388.12,28376,2355
+100097,Ankara,Bilinmeyen İlçe,Tepealtı Mahallesi,0.1999,1,Low,0.8011,0.1543,0.0162,0.0073,0.0211,411.68,109,10
+100098,Ankara,Bilinmeyen İlçe,Esentepe Mahallesi,0.2125,1,Low,0.8926,0.0557,0.0326,0.0075,0.0116,510.23,13116,1080
+100099,Ankara,Bilinmeyen İlçe,Ergenekon Mahallesi,0.2221,1,Low,0.9142,0.0540,0.0190,0.0019,0.0108,440.77,13506,1096
+100100,Ankara,Bilinmeyen İlçe,Anadolu Mahallesi,0.1948,1,Low,0.8665,0.0908,0.0179,0.0029,0.0219,450.15,12758,1215
+100101,Ankara,Bilinmeyen İlçe,Karşıyaka Mahallesi,0.2080,1,Low,0.9511,0.0324,0.0071,0.0018,0.0076,417.2,14888,1082
+100102,Ankara,Bilinmeyen İlçe,Demetevler Mahallesi,0.1392,1,Very Low,0.9395,0.0315,0.0174,0.0037,0.0079,446.63,107,10
+100103,Ankara,Bilinmeyen İlçe,Mehmet Akif Ersoy Mahallesi,0.1846,1,Low,0.8283,0.0986,0.0115,0.0170,0.0447,364.65,4646,442
+100104,Ankara,Bilinmeyen İlçe,Özevler Mahallesi,0.2564,2,Medium,0.0001,0.8196,0.0121,0.0291,0.1390,314.64,30015,2187
+100105,Ankara,Bilinmeyen İlçe,Yeşilevler Mahallesi,0.2066,1,Low,0.9708,0.0240,0.0012,0.0002,0.0038,499.49,42376,3342
+100106,Ankara,Bilinmeyen İlçe,Güzelyaka Mahallesi,0.1701,1,Low,0.9257,0.0598,0.0032,0.0055,0.0059,405.72,16240,1211
+100107,Ankara,Bilinmeyen İlçe,Pamuklar Mahallesi,0.3600,2,High,0.0005,0.9332,0.0392,0.0087,0.0184,368.12,26836,2043
+100108,Ankara,Bilinmeyen İlçe,Güventepe Mahallesi,0.2401,1,Low,0.8346,0.0889,0.0159,0.0164,0.0443,402.6,22822,2002
+100109,Ankara,Bilinmeyen İlçe,Burç Mahallesi,0.2510,2,Medium,0.0693,0.8808,0.0033,0.0082,0.0384,373.05,15700,1197
+100110,Ankara,Bilinmeyen İlçe,Barıştepe Mahallesi,0.1650,1,Low,0.8420,0.1301,0.0128,0.0000,0.0150,448.71,16927,1393
+100111,Ankara,Bilinmeyen İlçe,Kayalar Mahallesi,0.1943,1,Low,0.8298,0.1325,0.0259,0.0052,0.0066,500.17,20354,1285
+100112,Ankara,Bilinmeyen İlçe,Çiğdemtepe Mahallesi,0.1448,1,Very Low,0.9711,0.0209,0.0012,0.0005,0.0063,527.08,110,104
+100113,Ankara,Bilinmeyen İlçe,Yıldırım Beyazıt Mahallesi,0.1384,1,Very Low,0.9468,0.0472,0.0031,0.0005,0.0024,490.2,711,10
+100114,Ankara,Bilinmeyen İlçe,Aşağı Yahyalar Mahallesi,0.1650,1,Low,0.9452,0.0515,0.0007,0.0005,0.0021,548.06,4236,388
+100115,Ankara,Bilinmeyen İlçe,Yukarı Yahyalar Mahallesi,0.3757,2,High,0.0074,0.9288,0.0233,0.0095,0.0309,286.05,25141,2275
+100116,Ankara,Bilinmeyen İlçe,Kaletepe Mahallesi,0.1276,1,Very Low,0.8626,0.1152,0.0118,0.0024,0.0081,524.09,7245,668
+100117,Ankara,Bilinmeyen İlçe,Avcılar Mahallesi,0.1800,1,Low,0.9478,0.0283,0.0007,0.0061,0.0172,426.14,16926,1330
+100118,Ankara,Bilinmeyen İlçe,İvedikköy Mahallesi,0.1812,1,Low,0.8715,0.0832,0.0017,0.0059,0.0376,478.43,18010,1155
+100119,Ankara,Bilinmeyen İlçe,Serhat Mahallesi,0.1632,1,Low,0.9438,0.0528,0.0026,0.0001,0.0007,453.14,34507,2741
+100120,Ankara,Bilinmeyen İlçe,Uğur Mumcu Mahallesi,0.1883,1,Low,0.8415,0.1020,0.0182,0.0041,0.0341,472.26,24079,1639
+100121,Ankara,Bilinmeyen İlçe,Ostim OSB Mahallesi,0.2092,1,Low,0.8626,0.1280,0.0037,0.0023,0.0034,465.15,19024,1644
+100122,Ankara,Bilinmeyen İlçe,İlkyerleşim Mahallesi,0.1283,1,Very Low,0.8922,0.0668,0.0018,0.0151,0.0240,539.26,2269,198
+100123,Ankara,Bilinmeyen İlçe,Yuvaköy Mahallesi,0.1966,1,Low,0.8051,0.1241,0.0016,0.0173,0.0520,436.72,16438,1309
+100124,Ankara,Bilinmeyen İlçe,Yakacık Mahallesi,0.1777,1,Low,0.8337,0.1448,0.0167,0.0023,0.0026,568.16,25801,1964
+100125,Ankara,Bilinmeyen İlçe,Kuzey Yıldızı Mahallesi,0.1450,1,Very Low,0.8304,0.1114,0.0408,0.0080,0.0094,579.65,105,100
+100126,Ankara,Bilinmeyen İlçe,Memlik Mahallesi,0.2081,1,Low,0.9970,0.0021,0.0003,0.0000,0.0005,466.24,20889,1732
+100127,Ankara,Bilinmeyen İlçe,Turgut Özal Mahallesi,0.1632,1,Low,0.8236,0.1444,0.0034,0.0110,0.0175,424.18,11381,415
+100128,Ankara,Bilinmeyen İlçe,Kardelen Mahallesi,0.2009,1,Low,0.9024,0.0666,0.0038,0.0058,0.0214,456.74,10668,1160
+100129,Ankara,Bilinmeyen İlçe,İnönü Mahallesi,0.1274,1,Very Low,0.8767,0.0668,0.0331,0.0110,0.0123,516.89,107,35
+100130,Ankara,Bilinmeyen İlçe,Kentkoop Mahallesi,0.2936,2,Medium,0.0027,0.7903,0.0443,0.0305,0.1322,322.53,28428,2256
+100131,Ankara,Bilinmeyen İlçe,Şirintepe Mahallesi,0.1596,1,Low,0.8126,0.1114,0.0114,0.0255,0.0391,494.47,24470,1960
+100132,Ankara,Bilinmeyen İlçe,Misket Mahallesi,0.1717,1,Low,0.8293,0.1294,0.0309,0.0017,0.0087,448.09,26526,2512
+100133,Ankara,Bilinmeyen İlçe,Malazgirt Mahallesi,0.2111,1,Low,0.8109,0.1094,0.0036,0.0188,0.0574,485.47,3064,10
+100134,Ankara,Bilinmeyen İlçe,Tandoğan Mahallesi,0.1728,1,Low,0.8179,0.1244,0.0286,0.0064,0.0227,480.19,8958,198
+100135,Ankara,Bilinmeyen İlçe,Fatih Mahallesi,0.1860,1,Low,0.8073,0.1731,0.0032,0.0024,0.0140,369.06,6130,356
+100136,Ankara,Bilinmeyen İlçe,Atatürk Mahallesi,0.1495,1,Very Low,0.9923,0.0059,0.0012,0.0002,0.0004,467.38,9827,942
+100137,Ankara,Bilinmeyen İlçe,Satıkadın Mahallesi,0.1866,1,Low,0.9909,0.0062,0.0016,0.0003,0.0010,470.65,108,10
+100138,Ankara,Bilinmeyen İlçe,Kanuni Sultan Süleyman Mahallesi,0.1699,1,Low,0.9060,0.0820,0.0062,0.0020,0.0037,546.8,105,10
+100139,Ankara,Bilinmeyen İlçe,Örencik Mahallesi,0.2275,1,Low,0.8148,0.1035,0.0255,0.0279,0.0284,417.25,26096,2166
+100140,Ankara,Bilinmeyen İlçe,Ciğir Mahallesi,0.2816,2,Medium,0.0096,0.7478,0.0879,0.0499,0.1048,483.03,23806,2298
+100141,Ankara,Bilinmeyen İlçe,Günbaşı Mahallesi,0.2060,1,Low,0.8823,0.0779,0.0194,0.0037,0.0167,533.62,22958,1566
+100142,Ankara,Bilinmeyen İlçe,Kayı Mahallesi,0.2355,1,Low,0.9945,0.0036,0.0009,0.0002,0.0008,352.23,4417,316
+100143,Ankara,Bilinmeyen İlçe,Alpagut Mahallesi,0.2500,2,Medium,0.0927,0.7858,0.0574,0.0249,0.0391,427.94,20799,1663
+100144,Ankara,Bilinmeyen İlçe,Güvenç Mahallesi,0.3177,2,Medium,0.0034,0.7047,0.0346,0.0759,0.1814,360.96,15786,1511
+100145,Ankara,Bilinmeyen İlçe,Yıldırımbeyazıt Mahallesi,0.1862,1,Low,0.9009,0.0866,0.0029,0.0016,0.0081,458.14,110,10
+100146,Ankara,Bilinmeyen İlçe,Kumpınar Mahallesi,0.3719,2,High,0.0033,0.9391,0.0056,0.0035,0.0485,426.19,108,116
+100147,Ankara,Bilinmeyen İlçe,Yavuz Sultan Selim Mahallesi,0.1600,1,Low,0.8981,0.0535,0.0295,0.0020,0.0168,446.87,2925,415
+100148,Ankara,Bilinmeyen İlçe,Yassıören Mahallesi,0.1477,1,Very Low,0.9334,0.0383,0.0045,0.0068,0.0170,518.55,106,683
+100149,Ankara,Bilinmeyen İlçe,Sarıayak Mahallesi,0.2134,1,Low,0.8645,0.0684,0.0211,0.0081,0.0379,596.08,10461,1048
+100150,Ankara,Bilinmeyen İlçe,Soğucak Mahallesi,0.2656,2,Medium,0.1559,0.7287,0.0922,0.0100,0.0132,498.45,26195,2247
+100151,Ankara,Bilinmeyen İlçe,Tekke Mahallesi,0.1883,1,Low,0.9521,0.0265,0.0022,0.0027,0.0165,413.44,10163,648
+100152,Ankara,Bilinmeyen İlçe,Dutözü Mahallesi,0.1589,1,Low,0.9349,0.0388,0.0152,0.0006,0.0106,504.79,1416,10
+100153,Ankara,Bilinmeyen İlçe,İçören Mahallesi,0.1436,1,Very Low,0.9969,0.0028,0.0001,0.0000,0.0002,587.24,12186,1220
+100154,Ankara,Bilinmeyen İlçe,Akçaören Mahallesi,0.2051,1,Low,0.9903,0.0059,0.0015,0.0006,0.0017,343.13,1858,334
+100155,Ankara,Bilinmeyen İlçe,Aşağıkaraören Mahallesi,0.2113,1,Low,0.9358,0.0481,0.0073,0.0039,0.0049,372.73,3004,181
+100156,Ankara,Bilinmeyen İlçe,Uçarı Mahallesi,0.1801,1,Low,0.8127,0.1387,0.0185,0.0023,0.0278,486.14,34330,2486
+100157,Ankara,Bilinmeyen İlçe,İnceğiz Mahallesi,0.1759,1,Low,0.8409,0.0807,0.0039,0.0324,0.0421,366.92,107,11
+100158,Ankara,Bilinmeyen İlçe,Saraç Mahallesi,0.2194,1,Low,0.8562,0.0969,0.0371,0.0039,0.0058,409.39,26227,2541
+100159,Ankara,Bilinmeyen İlçe,Yayalar Mahallesi,0.1646,1,Low,0.9052,0.0826,0.0052,0.0019,0.0051,456.92,4716,342
+100160,Ankara,Bilinmeyen İlçe,Yakupderviş Maallesi,0.1351,1,Very Low,0.8913,0.0905,0.0129,0.0008,0.0045,576.94,20269,1658
+100161,Ankara,Bilinmeyen İlçe,Ahi Mahallesi,0.1314,1,Very Low,0.8441,0.1398,0.0042,0.0048,0.0070,464.44,105,10
+100162,Ankara,Bilinmeyen İlçe,Sancar Mahallesi,0.1941,1,Low,0.9312,0.0466,0.0147,0.0029,0.0047,412.24,35706,2901
+100163,Ankara,Bilinmeyen İlçe,Peçenek Mahallesi,0.1933,1,Low,0.9637,0.0242,0.0002,0.0039,0.0080,484.68,108,62
+100164,Ankara,Bilinmeyen İlçe,Kılıçlar Mahallesi,0.1463,1,Very Low,0.8530,0.1376,0.0006,0.0033,0.0055,456.73,110,10
+100165,Ankara,Bilinmeyen İlçe,Atatürk Mahallesi,0.2018,1,Low,0.9207,0.0425,0.0154,0.0056,0.0158,428.38,106,10
+100166,Ankara,Bilinmeyen İlçe,Maraşal Çakmak Mahallesi,0.1436,1,Very Low,0.9657,0.0314,0.0003,0.0012,0.0013,563.98,3219,354
+100167,Ankara,Bilinmeyen İlçe,Andiçen Mahallesi,0.1994,1,Low,0.8549,0.0931,0.0207,0.0024,0.0289,412.2,20931,1457
+100168,Ankara,Bilinmeyen İlçe,Osmanlı Mahallesi,0.1539,1,Low,0.9321,0.0405,0.0111,0.0081,0.0083,469.46,111,10
+100169,Ankara,Bilinmeyen İlçe,Pınarbaşı Mahallesi,0.2409,1,Low,0.9916,0.0045,0.0001,0.0011,0.0027,429.72,12860,815
+100170,Ankara,Bilinmeyen İlçe,Ertuğrulgazi Mahallesi,0.2793,2,Medium,0.0266,0.7584,0.0891,0.0083,0.1175,432.52,32064,2593
+100171,Ankara,Bilinmeyen İlçe,Selçuklu Mahallesi,0.1771,1,Low,0.8356,0.1315,0.0122,0.0058,0.0149,529.46,18669,1575
+100172,Ankara,Bilinmeyen İlçe,Plevne Mahallesi,0.1956,1,Low,0.8415,0.0950,0.0341,0.0124,0.0170,391.91,1877,10
+100173,Ankara,Bilinmeyen İlçe,Akşemsettin Mahallesi,0.2395,1,Low,0.9363,0.0598,0.0006,0.0002,0.0031,418.1,33899,2322
+100174,Ankara,Bilinmeyen İlçe,İstasyon Mahallesi,0.3590,2,High,0.0069,0.9648,0.0100,0.0077,0.0106,431.12,27012,1994
+100175,Ankara,Bilinmeyen İlçe,Ahi Evran Mahallesi,0.1706,1,Low,0.9481,0.0366,0.0121,0.0007,0.0025,505.37,22541,1833
+100176,Ankara,Bilinmeyen İlçe,Yunus Emre Mahallesi,0.2362,1,Low,0.9987,0.0011,0.0000,0.0000,0.0002,436.59,22852,1997
+100177,Ankara,Bilinmeyen İlçe,Ulubatlı Hasan Mahallesi,0.2063,1,Low,0.8490,0.0903,0.0090,0.0040,0.0476,469.23,8805,796
+100178,Ankara,Bilinmeyen İlçe,Fatih Mahallesi,0.2662,2,Medium,0.0075,0.9776,0.0050,0.0002,0.0098,393.57,13376,969
+100179,Ankara,Bilinmeyen İlçe,Gökçek Mahallesi,0.2071,1,Low,0.8465,0.1254,0.0187,0.0001,0.0093,487.28,6045,458
+100180,Ankara,Bilinmeyen İlçe,Gazi Osmanpaşa Mahallesi,0.1364,1,Very Low,0.9320,0.0497,0.0093,0.0028,0.0062,456.43,16924,1357
+100181,Ankara,Bilinmeyen İlçe,Mevlana Mahallesi,0.1278,1,Very Low,0.8161,0.0982,0.0397,0.0040,0.0420,512.01,107,10
+100182,Ankara,Bilinmeyen İlçe,Törekent Mahallesi,0.1475,1,Very Low,0.8428,0.0849,0.0239,0.0086,0.0398,494.24,107,202
+100183,Ankara,Bilinmeyen İlçe,Mustafa Kemal Mahallesi,0.1837,1,Low,0.9487,0.0264,0.0108,0.0009,0.0132,522.69,20725,1647
+100184,Ankara,Bilinmeyen İlçe,Menderes Mahallesi,0.2107,1,Low,0.8605,0.0713,0.0435,0.0079,0.0167,375.98,37279,3384
+100185,Ankara,Bilinmeyen İlçe,29 Ekim Mahallesi,0.2680,2,Medium,0.0068,0.9316,0.0332,0.0002,0.0281,479.2,35120,3071
+100186,Ankara,Bilinmeyen İlçe,Fevzi Çakmak Mahallesi,0.2034,1,Low,0.9155,0.0684,0.0106,0.0007,0.0048,406.72,26927,2786
+100187,Ankara,Bilinmeyen İlçe,Çoğlu Mahallesi,0.1699,1,Low,0.9257,0.0494,0.0024,0.0034,0.0191,430.93,4551,564
+100188,Ankara,Bilinmeyen İlçe,Atakent Mahallesi,0.2766,2,Medium,0.0028,0.7136,0.0571,0.0309,0.1956,489.08,23116,1953
+100189,Ankara,Bilinmeyen İlçe,Topçu Mahallesi,0.1935,1,Low,0.8223,0.0987,0.0094,0.0346,0.0350,384.89,2756,431
+100190,Ankara,Bilinmeyen İlçe,Oğuzlar Mahallesi,0.1933,1,Low,0.8241,0.1320,0.0029,0.0109,0.0301,387.47,6860,876
+100191,Ankara,Bilinmeyen İlçe,Ayyıldız Mahallesi,0.1639,1,Low,0.9478,0.0281,0.0121,0.0051,0.0069,601.76,9351,697
+100192,Ankara,Bilinmeyen İlçe,Ahi Mesut Mahallesi,0.1324,1,Very Low,0.9972,0.0025,0.0001,0.0000,0.0002,516.07,12490,736
+100193,Ankara,Bilinmeyen İlçe,Elvan Mahallesi,0.2297,1,Low,0.8110,0.1638,0.0090,0.0069,0.0092,456.76,24428,1904
+100194,Ankara,Bilinmeyen İlçe,Piyade Mahallesi,0.3183,2,Medium,0.0832,0.7368,0.0231,0.0097,0.1472,327.81,17817,1533
+100195,Ankara,Bilinmeyen İlçe,Süvari Mahallesi,0.1907,1,Low,0.8103,0.1698,0.0085,0.0033,0.0082,505.94,12139,970
+100196,Ankara,Bilinmeyen İlçe,Kazım Karabekir Mahallesi,0.1928,1,Low,0.8205,0.1453,0.0133,0.0049,0.0159,561.39,9957,662
+100197,Ankara,Bilinmeyen İlçe,İstasyon Mahallesi,0.2101,1,Low,0.9424,0.0337,0.0047,0.0084,0.0108,459.52,22818,1997
+100198,Ankara,Bilinmeyen İlçe,Alsancak Mahallesi,0.2081,1,Low,0.8626,0.1095,0.0146,0.0026,0.0108,567.63,24264,2037
+100199,Ankara,Bilinmeyen İlçe,Bağlıca Mahallesi,0.2138,1,Low,0.8185,0.1230,0.0367,0.0104,0.0114,399.33,12623,1230
+100200,Ankara,Bilinmeyen İlçe,Örnek Mahallesi,0.1795,1,Low,0.9019,0.0630,0.0016,0.0050,0.0286,482.56,20964,1508
+100201,Ankara,Bilinmeyen İlçe,Ergazi Mahallesi,0.1628,1,Low,0.8325,0.0969,0.0186,0.0213,0.0307,434.24,5657,463
+100202,Ankara,Bilinmeyen İlçe,Batı Sitesi Mahallesi,0.1813,1,Low,0.9323,0.0374,0.0044,0.0063,0.0196,476.81,28545,2175
+100203,Ankara,Bilinmeyen İlçe,Yeni Batı Mahallesi,0.2022,1,Low,0.8917,0.0882,0.0037,0.0079,0.0086,513.13,27776,2703
+100204,Ankara,Bilinmeyen İlçe,Şeker Mahallesi,0.2470,1,Low,0.8056,0.1114,0.0001,0.0284,0.0544,418.47,20927,1953
+100205,Ankara,Bilinmeyen İlçe,Şehit Osman Avcı Mahallesi,0.2265,1,Low,0.8584,0.0762,0.0204,0.0015,0.0435,488.61,30254,2768
+100206,Ankara,Bilinmeyen İlçe,Altay Mahallesi,0.2350,1,Low,0.8100,0.1414,0.0316,0.0065,0.0106,477.89,15958,1035
+100207,Ankara,Bilinmeyen İlçe,Göksu Mahallesi,0.1706,1,Low,0.9783,0.0124,0.0020,0.0001,0.0072,480.47,17258,1573
+100208,Ankara,Bilinmeyen İlçe,Şeyh Şamil Mahallesi,0.1563,1,Low,0.8294,0.1321,0.0223,0.0001,0.0162,443.7,9512,625
+100209,Ankara,Bilinmeyen İlçe,Tunahan Mahallesi,0.1900,1,Low,0.9495,0.0399,0.0066,0.0018,0.0022,431.27,112,10
+100210,Ankara,Bilinmeyen İlçe,Güzelkent Mahallesi,0.2270,1,Low,0.8764,0.0864,0.0034,0.0092,0.0246,432.6,20904,1283
+100211,Ankara,Bilinmeyen İlçe,Eryaman Mahallesi,0.1864,1,Low,0.8557,0.0782,0.0336,0.0096,0.0229,487.33,111,10
+100212,Ankara,Bilinmeyen İlçe,Yavuz Selim Mahallesi,0.1490,1,Very Low,0.9691,0.0235,0.0040,0.0008,0.0027,530.13,11656,1307
+100213,Ankara,Bilinmeyen İlçe,Yeşilova Mahallesi,0.1910,1,Low,0.8654,0.1010,0.0124,0.0103,0.0109,379.56,7513,1193
+100214,Ankara,Bilinmeyen İlçe,Etiler Mahallesi,0.2167,1,Low,0.8689,0.0686,0.0054,0.0163,0.0407,387.36,4421,557
+100215,Ankara,Bilinmeyen İlçe,Erler Mahallesi,0.2569,2,Medium,0.0094,0.8782,0.0192,0.0240,0.0692,403.52,18804,1423
+100216,Ankara,Bilinmeyen İlçe,30 Ağustos Mahallesi,0.1549,1,Low,0.9971,0.0021,0.0004,0.0001,0.0003,450.21,2945,87
+100217,Ankara,Bilinmeyen İlçe,Ayyıldız Mahallesi,0.2548,2,Medium,0.0180,0.9381,0.0186,0.0042,0.0211,501.07,14685,718
+100218,Ankara,Bilinmeyen İlçe,Bahçekapı Mahallesi,0.2090,1,Low,0.8723,0.1049,0.0067,0.0014,0.0147,404.98,15902,1103
+100219,Ankara,Bilinmeyen İlçe,Başpınar Mahallesi,0.1657,1,Low,0.8264,0.1616,0.0088,0.0008,0.0024,460.39,10163,925
+100220,Ankara,Bilinmeyen İlçe,Doğantepe Mahallesi,0.2292,1,Low,0.9943,0.0034,0.0005,0.0007,0.0012,400.45,25040,1921
+100221,Ankara,Bilinmeyen İlçe,Solfasol Mahallesi,0.1512,1,Low,0.9921,0.0063,0.0004,0.0002,0.0009,451.08,109,73
+100222,Ankara,Bilinmeyen İlçe,Yıldıztepe Mahallesi,0.1757,1,Low,0.9794,0.0153,0.0012,0.0004,0.0036,523.38,25168,1995
+100223,Ankara,Bilinmeyen İlçe,Güneşevler Mahallesi,0.1797,1,Low,0.9230,0.0518,0.0090,0.0068,0.0094,501.81,11703,537
+100224,Ankara,Bilinmeyen İlçe,Aydınlıkevler Mahallesi,0.1379,1,Very Low,0.8754,0.0747,0.0389,0.0001,0.0110,482.77,9509,959
+100225,Ankara,Bilinmeyen İlçe,Ulubey Mahallesi,0.1701,1,Low,0.9569,0.0230,0.0103,0.0039,0.0059,450.43,106,134
+100226,Ankara,Bilinmeyen İlçe,Önder Mahallesi,0.2577,2,Medium,0.0846,0.8577,0.0130,0.0065,0.0382,323.04,18385,1623
+100227,Ankara,Bilinmeyen İlçe,Gültepe Mahallesi,0.2432,1,Low,0.9763,0.0182,0.0028,0.0009,0.0018,429.46,30108,2335
+100228,Ankara,Bilinmeyen İlçe,Atıfbey Mahallesi,0.1925,1,Low,0.9290,0.0582,0.0078,0.0018,0.0033,559.07,14576,1235
+100229,Ankara,Bilinmeyen İlçe,Bostancık Mahallesi,0.1844,1,Low,0.9008,0.0854,0.0024,0.0003,0.0112,480.27,28597,2322
+100230,Ankara,Bilinmeyen İlçe,Ekin Mahallesi,0.1954,1,Low,0.8309,0.1178,0.0269,0.0003,0.0242,448.76,16908,1273
+100231,Ankara,Bilinmeyen İlçe,Başak Mahallesi,0.1635,1,Low,0.8209,0.1074,0.0043,0.0126,0.0548,501.49,1951,544
+100232,Ankara,Bilinmeyen İlçe,Karaağaç Mahallesi,0.2628,2,Medium,0.1183,0.7600,0.0700,0.0075,0.0441,344.07,106,37
+100233,Ankara,Bilinmeyen İlçe,Altıağaç Mahallesi,0.2029,1,Low,0.9134,0.0676,0.0008,0.0043,0.0139,410.14,35635,3154
+100234,Ankara,Bilinmeyen İlçe,Bahçeleriçi Mahallesi,0.2586,2,Medium,0.0047,0.9748,0.0061,0.0057,0.0087,385.67,380,10
+100235,Ankara,Bilinmeyen İlçe,Hüseyingazi Mahallesi,0.2880,2,Medium,0.0208,0.9086,0.0224,0.0059,0.0424,349.33,11337,878
+100236,Ankara,Bilinmeyen İlçe,Harman Mahallesi,0.2098,1,Low,0.9217,0.0437,0.0162,0.0085,0.0099,418.57,30338,2413
+100237,Ankara,Bilinmeyen İlçe,Çiğiltepe Mahallesi,0.2336,1,Low,0.9482,0.0275,0.0102,0.0042,0.0100,379.31,108,10
+100238,Ankara,Bilinmeyen İlçe,Altınevler Mahallesi,0.1773,1,Low,0.8075,0.1200,0.0453,0.0125,0.0146,486.32,34600,2645
+100239,Ankara,Bilinmeyen İlçe,Gülveren Mahallesi,0.3629,2,High,0.0066,0.9769,0.0036,0.0007,0.0122,387.43,26871,2201
+100240,Ankara,Bilinmeyen İlçe,Bahçelerüstü Mahallesi,0.1390,1,Very Low,0.8276,0.0899,0.0231,0.0181,0.0412,497.7,106,10
+100241,Ankara,Bilinmeyen İlçe,Erzurum Mahallesi,0.2039,1,Low,0.8107,0.1656,0.0010,0.0014,0.0214,509.1,1327,284
+100242,Ankara,Çankaya,Cebeci Mahallesi,0.1543,1,Low,0.9954,0.0025,0.0014,0.0001,0.0006,491.99,23382,1605
+100243,Ankara,Mamak,Abidinpaşa Mahallesi,0.1665,1,Low,0.8588,0.1146,0.0181,0.0041,0.0043,459.04,9863,737
+100244,Ankara,Mamak,Balkiraz Mahallesi,0.2316,1,Low,0.8774,0.0741,0.0295,0.0072,0.0119,353.13,12823,1611
+100245,Ankara,Bilinmeyen İlçe,Hürel Mahallesi,0.2045,1,Low,0.9065,0.0784,0.0047,0.0040,0.0065,494.06,10721,951
+100246,Ankara,Bilinmeyen İlçe,Şafaktepe Mahallesi,0.1785,1,Low,0.8212,0.0967,0.0245,0.0005,0.0571,507.94,9207,561
+100247,Ankara,Bilinmeyen İlçe,Demirlibahçe Mahallesi,0.3258,2,Medium,0.0281,0.9519,0.0034,0.0065,0.0101,370.11,32969,2322
+100248,Ankara,Bilinmeyen İlçe,Mehtap Mahallesi,0.1892,1,Low,0.9570,0.0254,0.0069,0.0011,0.0096,527.65,711,10
+100249,Ankara,Mamak,Saimekadın Mahallesi,0.2772,2,Medium,0.1148,0.7007,0.0079,0.0400,0.1366,426.54,22998,2134
+100250,Ankara,Bilinmeyen İlçe,Kartaltepe Mahallesi,0.1227,1,Very Low,0.8774,0.0857,0.0237,0.0057,0.0075,521.45,106,61
+100251,Ankara,Bilinmeyen İlçe,Çağlayan Mahallesi,0.1656,1,Low,0.8974,0.0712,0.0217,0.0048,0.0049,490.78,4812,879
+100252,Ankara,Bilinmeyen İlçe,Tuzluçayır Mahallesi,0.1472,1,Very Low,0.8466,0.1059,0.0220,0.0040,0.0215,495.65,8312,1027
+100253,Ankara,Mamak,Aşık Veysel Mahallesi,0.2065,1,Low,0.9799,0.0143,0.0000,0.0003,0.0054,398.11,109,10
+100254,Ankara,Bilinmeyen İlçe,Peyami Safa Mahallesi,0.1540,1,Low,0.9988,0.0009,0.0000,0.0000,0.0003,542.52,11380,663
+100255,Ankara,Bilinmeyen İlçe,General Zeki Doğan Mahallesi,0.3388,2,Medium,0.0046,0.9245,0.0486,0.0044,0.0179,342.36,26643,2262
+100256,Ankara,Bilinmeyen İlçe,Şahintepe Mahallesi,0.2100,1,Low,0.8448,0.1419,0.0064,0.0002,0.0067,485.13,39990,2978
+100257,Ankara,Bilinmeyen İlçe,Mutlu Mahallesi,0.1788,1,Low,0.9688,0.0263,0.0007,0.0017,0.0025,614.32,11188,776
+100258,Ankara,Bilinmeyen İlçe,Kutlu Mahallesi,0.1747,1,Low,0.9922,0.0063,0.0009,0.0000,0.0005,505.47,4461,343
+100259,Ankara,Bilinmeyen İlçe,Kazım Orbay Mahallesi,0.1805,1,Low,0.8612,0.0972,0.0149,0.0015,0.0252,529.78,31101,2543
+100260,Ankara,Bilinmeyen İlçe,Türközü Mahallesi,0.1654,1,Low,0.8888,0.0614,0.0148,0.0054,0.0296,418.46,109,35
+100261,Ankara,Mamak,Akdere Mahallesi,0.1856,1,Low,0.8532,0.1323,0.0021,0.0050,0.0074,455.58,27195,2151
+100262,Ankara,Mamak,Şehit Cengiz Topel Mahallesi,0.2406,1,Low,0.8606,0.1061,0.0194,0.0043,0.0097,457.61,10897,898
+100263,Ankara,Bilinmeyen İlçe,Fahri Korutürk Mahallesi,0.2562,2,Medium,0.1029,0.8161,0.0052,0.0194,0.0564,398.83,13509,1254
+100264,Ankara,Bilinmeyen İlçe,Durali Alıç Mahallesi,0.2181,1,Low,0.9865,0.0101,0.0001,0.0011,0.0021,424.32,20060,1541
+100265,Ankara,Bilinmeyen İlçe,Boğaziçi Mahallesi,0.1267,1,Very Low,0.8506,0.0948,0.0302,0.0019,0.0225,532.11,1037,175
+100266,Ankara,Bilinmeyen İlçe,Akşemsettin Mahallesi,0.2882,2,Medium,0.0404,0.9276,0.0183,0.0048,0.0089,448.16,34321,3204
+100267,Ankara,Mamak,Cengizhan Mahallesi,0.2689,2,Medium,0.1070,0.7436,0.0664,0.0326,0.0504,496.15,32590,2631
+100268,Ankara,Bilinmeyen İlçe,Dutluk Mahallesi,0.2631,2,Medium,0.0708,0.8294,0.0163,0.0307,0.0528,458.33,26436,2019
+100269,Ankara,Bilinmeyen İlçe,Derbent Mahallesi,0.2088,1,Low,0.8371,0.1157,0.0128,0.0166,0.0179,549.07,29374,2527
+100270,Ankara,Bilinmeyen İlçe,Araplar Mahallesi,0.2085,1,Low,0.8828,0.0678,0.0172,0.0032,0.0290,458.76,40550,3023
+100271,Ankara,Bilinmeyen İlçe,Dostlar Mahallesi,0.2203,1,Low,0.9878,0.0095,0.0004,0.0004,0.0019,395.34,30847,2654
+100272,Ankara,Bilinmeyen İlçe,Köstence Mahallesi,0.1522,1,Low,0.9711,0.0261,0.0009,0.0004,0.0015,488.41,847,10
+100273,Ankara,Mamak,Üreğil Mahallesi,0.2422,1,Low,0.8806,0.0633,0.0412,0.0030,0.0119,334.34,107,81
+100274,Ankara,Bilinmeyen İlçe,Tepecik Mahallesi,0.2521,2,Medium,0.0363,0.8769,0.0064,0.0053,0.0752,362.87,31247,2387
+100275,Ankara,Bilinmeyen İlçe,Kayaş Mahallesi,0.2669,2,Medium,0.0904,0.8281,0.0266,0.0120,0.0430,385.57,17012,1460
+100276,Ankara,Mamak,Şahap Gürler Mahallesi,0.1723,1,Low,0.8096,0.1564,0.0111,0.0102,0.0127,504.03,29339,2519
+100277,Ankara,Mamak,Yeşilbayır Mahallesi,0.2635,2,Medium,0.0033,0.9538,0.0311,0.0049,0.0069,386.47,28626,2407
+100278,Ankara,Bilinmeyen İlçe,Küçük Kayaş Mahallesi,0.1565,1,Low,0.8013,0.1624,0.0162,0.0035,0.0167,483.15,3984,392
+100279,Ankara,Bilinmeyen İlçe,Mimar Sinan Mahallesi,0.1665,1,Low,0.8149,0.1209,0.0427,0.0056,0.0158,514.93,107,173
+100280,Ankara,Bilinmeyen İlçe,Yunus Emre Mahallesi,0.2236,1,Low,0.8717,0.0838,0.0055,0.0037,0.0352,651.32,26064,2183
+100281,Ankara,Bilinmeyen İlçe,Merkez Mahallesi,0.1642,1,Low,0.9807,0.0127,0.0032,0.0001,0.0033,506.52,109,10
+100282,Ankara,Bilinmeyen İlçe,Fatih Mahallesi,0.1928,1,Low,0.9591,0.0245,0.0129,0.0000,0.0035,463.51,19565,1668
+100283,Ankara,Bilinmeyen İlçe,Tevfik İleri Mahallesi,0.1190,1,Very Low,0.9001,0.0581,0.0133,0.0085,0.0200,570.05,4161,563
+100284,Ankara,Çankaya,Ertuğrulgazi Mahallesi,0.1323,1,Very Low,0.9622,0.0344,0.0005,0.0003,0.0026,494.79,105,289
+100285,Ankara,Çankaya,Fakülteler Mahallesi,0.2225,1,Low,0.8245,0.1070,0.0498,0.0011,0.0177,410.59,12351,1148
+100286,Ankara,Bilinmeyen İlçe,Çamlıtepe Mahallesi,0.1426,1,Very Low,0.9723,0.0260,0.0011,0.0001,0.0005,442.12,900,91
+100287,Ankara,Bilinmeyen İlçe,İleri Mahallesi,0.1140,1,Very Low,0.9492,0.0453,0.0018,0.0011,0.0026,456.54,108,119
+100288,Ankara,Bilinmeyen İlçe,Ön Cebeci Mahallesi,0.2019,1,Low,0.8921,0.0591,0.0178,0.0068,0.0242,488.27,10716,963
+100289,Ankara,Bilinmeyen İlçe,İncesu Mahallesi,0.1618,1,Low,0.9592,0.0264,0.0052,0.0023,0.0069,517.33,9464,659
+100290,Ankara,Çankaya,Topraklık Mahallesi,0.3130,2,Medium,0.0126,0.8011,0.0616,0.0030,0.1218,394.62,28321,2762
+100291,Ankara,Çankaya,Dilekler Mahallesi,0.2440,1,Low,0.9127,0.0509,0.0096,0.0117,0.0151,417.76,14337,1059
+100292,Ankara,Çankaya,50. Yıl Mahallesi,0.2250,1,Low,0.8357,0.1501,0.0085,0.0027,0.0030,370.03,14739,1371
+100293,Ankara,Bilinmeyen İlçe,Fidanlık Mahallesi,0.1815,1,Low,0.8527,0.0773,0.0076,0.0149,0.0475,445.75,23046,1714
+100294,Ankara,Bilinmeyen İlçe,Sağlık Mahallesi,0.1621,1,Low,0.9944,0.0045,0.0006,0.0001,0.0004,430.57,952,10
+100295,Ankara,Çankaya,Arka Topraklık Mahallsi,0.2634,2,Medium,0.0137,0.9448,0.0161,0.0045,0.0209,385.5,1759,409
+100296,Ankara,Bilinmeyen İlçe,Zafertepe Mahallesi,0.1541,1,Low,0.9894,0.0055,0.0028,0.0008,0.0015,567.08,26016,2102
+100297,Ankara,Bilinmeyen İlçe,Göktürk Mahallesi,0.2671,2,Medium,0.0244,0.9420,0.0122,0.0099,0.0116,341.49,33176,2873
+100298,Ankara,Bilinmeyen İlçe,Mimar Sinan Mahallesi,0.2268,1,Low,0.9498,0.0288,0.0138,0.0019,0.0057,437.44,20318,1695
+100299,Ankara,Bilinmeyen İlçe,Metin Oktay Mahallesi,0.2100,1,Low,0.8052,0.1041,0.0328,0.0029,0.0550,490.17,17794,1685
+100300,Ankara,Bilinmeyen İlçe,Aşıkpaşa Mahallesi,0.1576,1,Low,0.9129,0.0673,0.0037,0.0011,0.0151,475.53,6897,315
+100301,Ankara,Bilinmeyen İlçe,Bayraktar Mahallesi,0.1710,1,Low,0.9846,0.0085,0.0053,0.0005,0.0011,488.02,16242,851
+100302,Ankara,Bilinmeyen İlçe,Büyükesat Mahallesi,0.1832,1,Low,0.8241,0.0990,0.0370,0.0080,0.0319,490.67,11773,866
+100303,Ankara,Bilinmeyen İlçe,Kazım Özalp Mahallesi,0.1241,1,Very Low,0.8345,0.1183,0.0234,0.0038,0.0199,455.81,5442,568
+100304,Ankara,Bilinmeyen İlçe,100. Yıl Mahallesi,0.2902,2,Medium,0.0996,0.7962,0.0175,0.0270,0.0596,379.44,36775,3357
+100305,Ankara,Bilinmeyen İlçe,Umut Mahallesi,0.2752,2,Medium,0.0036,0.9655,0.0091,0.0001,0.0217,395.94,34562,2936
+100306,Ankara,Bilinmeyen İlçe,Murat Mahallesi,0.2567,2,Medium,0.0606,0.8471,0.0437,0.0047,0.0439,468.72,31864,2239
+100307,Ankara,Bilinmeyen İlçe,Küçükesat Mahallesi,0.1972,1,Low,0.9656,0.0212,0.0044,0.0013,0.0074,500.8,6821,391
+100308,Ankara,Bilinmeyen İlçe,Doğuş Mahallesi,0.2031,1,Low,0.8044,0.1607,0.0279,0.0006,0.0066,492.9,6764,488
+100309,Ankara,Bilinmeyen İlçe,Esatoğlu Mahallesi,0.1982,1,Low,0.8937,0.0775,0.0003,0.0050,0.0234,488.35,14643,1276
+100310,Ankara,Bilinmeyen İlçe,Muhsin Ertuğrul Mahallesi,0.1641,1,Low,0.9362,0.0448,0.0122,0.0030,0.0038,450.63,31260,2688
+100311,Ankara,Bilinmeyen İlçe,Kavaklıdere Mahallesi,0.1835,1,Low,0.8042,0.1451,0.0340,0.0022,0.0146,445.62,365,185
+100312,Ankara,Bilinmeyen İlçe,Tınaztepe Mahallesi,0.2071,1,Low,0.8092,0.1040,0.0040,0.0151,0.0677,462.7,35971,2769
+100313,Ankara,Bilinmeyen İlçe,Seyranbağları Mahallesi,0.1598,1,Low,0.8603,0.1128,0.0106,0.0044,0.0120,478.01,109,10
+100314,Ankara,Bilinmeyen İlçe,Barbaros Mahallesi,0.3116,2,Medium,0.0739,0.8149,0.0469,0.0296,0.0347,341.4,15745,1514
+100315,Ankara,Bilinmeyen İlçe,Gaziosmanpaşa Mahallesi,0.2996,2,Medium,0.0364,0.8881,0.0189,0.0175,0.0391,373.74,18457,1483
+100316,Ankara,Bilinmeyen İlçe,Birlik Mahallesi,0.1661,1,Low,0.8791,0.0800,0.0092,0.0072,0.0245,532.39,18190,1544
+100317,Ankara,Bilinmeyen İlçe,Kırkkonaklar Mahallesi,0.1448,1,Very Low,0.8907,0.0564,0.0246,0.0110,0.0173,406.24,2636,10
+100318,Ankara,Bilinmeyen İlçe,Bağcılar Mahallesi,0.1316,1,Very Low,0.8347,0.1068,0.0138,0.0044,0.0403,567.15,12657,1207
+100319,Ankara,Bilinmeyen İlçe,Bademlidere Mahallesi,0.1398,1,Very Low,0.8216,0.1239,0.0088,0.0128,0.0328,532.54,14788,1558
+100320,Ankara,Bilinmeyen İlçe,Boztepe Mahallesi,0.2448,1,Low,0.9422,0.0452,0.0050,0.0036,0.0040,350.19,1521,10
+100321,Ankara,Bilinmeyen İlçe,Güvenevler Mahallesi,0.2073,1,Low,0.8635,0.1029,0.0057,0.0010,0.0269,515.0,10902,705
+100322,Ankara,Bilinmeyen İlçe,Aziziye Mahallesi,0.2273,1,Low,0.9189,0.0437,0.0052,0.0159,0.0163,331.69,110,10
+100323,Ankara,Bilinmeyen İlçe,Güzeltepe Mahallesi,0.1785,1,Low,0.9396,0.0385,0.0030,0.0070,0.0119,426.65,1257,139
+100324,Ankara,Bilinmeyen İlçe,Yıldızevler Mahallesi,0.2421,1,Low,0.9796,0.0183,0.0009,0.0000,0.0012,431.23,23558,2468
+100325,Ankara,Bilinmeyen İlçe,Hilal Mahallesi,0.1533,1,Low,0.8308,0.1440,0.0010,0.0097,0.0145,457.13,9686,671
+100326,Ankara,Bilinmeyen İlçe,İlkbahar Mahallesi,0.1679,1,Low,0.9633,0.0285,0.0051,0.0011,0.0020,511.32,27771,2440
+100327,Ankara,Bilinmeyen İlçe,Sancak Mahallesi,0.2071,1,Low,0.8026,0.1329,0.0069,0.0071,0.0504,506.69,9522,394
+100328,Ankara,Bilinmeyen İlçe,Çankaya Mahallesi,0.1494,1,Very Low,0.8413,0.1502,0.0027,0.0014,0.0044,478.97,8625,360
+100329,Ankara,Bilinmeyen İlçe,Orta İmrahor Mahallesi,0.1694,1,Low,0.8215,0.0963,0.0589,0.0080,0.0152,413.61,4971,401
+100330,Ankara,Bilinmeyen İlçe,Remzi Oğuz Arık Mahallesi,0.1152,1,Very Low,0.9644,0.0218,0.0094,0.0022,0.0023,508.39,105,10
+100331,Ankara,Bilinmeyen İlçe,Ayrancı Mahallesi,0.2448,1,Low,0.9695,0.0215,0.0058,0.0002,0.0030,369.61,107,211
+100332,Ankara,Bilinmeyen İlçe,Kültür Mahallesi,0.1649,1,Low,0.8592,0.1107,0.0008,0.0014,0.0279,487.27,10988,811
+100333,Ankara,Bilinmeyen İlçe,Kocatepe Mahallesi,0.3110,2,Medium,0.0841,0.8552,0.0403,0.0025,0.0179,321.42,11119,985
+100334,Ankara,Bilinmeyen İlçe,Meşrutiyet Mahallesi,0.1824,1,Low,0.9206,0.0447,0.0044,0.0071,0.0233,405.71,10299,1070
+100335,Ankara,Bilinmeyen İlçe,Cumhuriyet Mahallesi,0.2610,2,Medium,0.0346,0.8912,0.0395,0.0162,0.0185,401.12,107,10
+100336,Ankara,Bilinmeyen İlçe,Kızılay Mahallesi,0.1296,1,Very Low,0.9104,0.0634,0.0036,0.0051,0.0175,520.89,4817,599
+100337,Ankara,Bilinmeyen İlçe,Korkutreis Mahallesi,0.1643,1,Low,0.8364,0.1058,0.0053,0.0189,0.0336,474.05,14067,1190
+100338,Ankara,Bilinmeyen İlçe,Eti Mahallesi,0.1798,1,Low,0.9075,0.0670,0.0005,0.0116,0.0134,452.37,307,141
+100339,Ankara,Bilinmeyen İlçe,Maltepe Mahallesi,0.2024,1,Low,0.9666,0.0292,0.0008,0.0016,0.0018,423.61,32321,2773
+100340,Ankara,Bilinmeyen İlçe,Namık Kemal Mahallesi,0.2305,1,Low,0.9717,0.0214,0.0025,0.0015,0.0030,494.37,22519,1908
+100341,Ankara,Bilinmeyen İlçe,Yücetepe Mahallesi,0.1292,1,Very Low,0.9146,0.0534,0.0104,0.0095,0.0120,484.57,5482,660
+100342,Ankara,Bilinmeyen İlçe,Anıttepe Mahallesi,0.2645,2,Medium,0.0087,0.9734,0.0075,0.0041,0.0063,467.59,22436,1756
+100343,Ankara,Bilinmeyen İlçe,Mebusevleri Mahallesi,0.1316,1,Very Low,0.8875,0.0911,0.0110,0.0002,0.0102,479.36,10829,869
+100344,Ankara,Bilinmeyen İlçe,Bahçelievler Mahallesi,0.2137,1,Low,0.8201,0.1389,0.0293,0.0052,0.0066,400.02,105,364
+100345,Ankara,Bilinmeyen İlçe,Yukarı Bahçelievler Mahallesi,0.1871,1,Low,0.9163,0.0458,0.0023,0.0157,0.0199,427.19,8459,579
+100346,Ankara,Bilinmeyen İlçe,Emek Mahallesi,0.1727,1,Low,0.8145,0.0930,0.0520,0.0097,0.0309,443.01,12123,1168
+100347,Ankara,Bilinmeyen İlçe,Balgat Mahallesi,0.1821,1,Low,0.8544,0.1286,0.0132,0.0002,0.0037,537.9,30925,2538
+100348,Ankara,Bilinmeyen İlçe,Nasuh Akar Mahallesi,0.1393,1,Very Low,0.8760,0.0912,0.0242,0.0003,0.0083,458.55,22101,1599
+100349,Ankara,Bilinmeyen İlçe,Devlet Mahallesi,0.1814,1,Low,0.8864,0.0831,0.0117,0.0064,0.0124,495.21,36481,2795
+100350,Ankara,Bilinmeyen İlçe,Oğuzlar Mahallesi,0.1548,1,Low,0.9763,0.0132,0.0075,0.0007,0.0023,486.2,2670,10
+100351,Ankara,Bilinmeyen İlçe,Ehlibeyt Mahallesi,0.1474,1,Very Low,0.8510,0.0971,0.0397,0.0002,0.0119,439.34,110,10
+100352,Ankara,Bilinmeyen İlçe,Yukarı Öveçler Mahallesi,0.1724,1,Low,0.9553,0.0317,0.0078,0.0016,0.0036,434.8,2517,354
+100353,Ankara,Bilinmeyen İlçe,Cevizlidere Mahallesi,0.1901,1,Low,0.8569,0.1201,0.0073,0.0042,0.0114,496.49,23818,1783
+100354,Ankara,Bilinmeyen İlçe,Huzur Mahallesi,0.1766,1,Low,0.8944,0.0846,0.0040,0.0058,0.0111,449.41,107,10
+100355,Ankara,Bilinmeyen İlçe,Gökkuşağı Mahallesi,0.2571,2,Medium,0.0089,0.8097,0.1141,0.0214,0.0458,430.25,30469,2365
+100356,Ankara,Bilinmeyen İlçe,Akpınar Mahallesi,0.1475,1,Very Low,0.9538,0.0365,0.0026,0.0017,0.0054,599.43,13849,1071
+100357,Ankara,Bilinmeyen İlçe,Karapınar Mahallesi,0.1809,1,Low,0.9492,0.0327,0.0026,0.0015,0.0140,449.08,12537,1477
+100358,Ankara,Bilinmeyen İlçe,Ata Mahallesi,0.3450,2,Medium,0.1043,0.7651,0.0418,0.0159,0.0730,266.26,23624,1720
+100359,Ankara,Bilinmeyen İlçe,Şehit Cengiz Karaca Mahallesi,0.2106,1,Low,0.9723,0.0262,0.0005,0.0004,0.0006,363.54,4773,443
+100360,Ankara,Bilinmeyen İlçe,Aydınlar Mahallesi,0.1341,1,Very Low,0.9348,0.0373,0.0185,0.0044,0.0050,484.6,9784,563
+100361,Ankara,Bilinmeyen İlçe,Şehit Cevdet Özdemir Mahallesi,0.1357,1,Very Low,0.9331,0.0547,0.0041,0.0025,0.0056,527.81,111,10
+100362,Ankara,Bilinmeyen İlçe,Öveçler Mahallesi,0.2488,1,Low,0.8387,0.0928,0.0128,0.0218,0.0340,339.58,108,10
+100363,Ankara,Bilinmeyen İlçe,Sokullu Mehmet Paşa Mahallesi,0.2151,1,Low,0.8190,0.1492,0.0073,0.0049,0.0195,494.64,34047,2712
+100364,Ankara,Bilinmeyen İlçe,Harbiye Mahallesi,0.2142,1,Low,0.8703,0.0859,0.0345,0.0007,0.0087,397.39,7374,794
+100365,Ankara,Bilinmeyen İlçe,Aşağı Öveçler Mahallesi,0.1939,1,Low,0.9277,0.0665,0.0037,0.0008,0.0013,405.23,13468,1360
+100366,Ankara,Bilinmeyen İlçe,İlkadım Mahallesi,0.2079,1,Low,0.8769,0.0703,0.0207,0.0027,0.0294,472.4,779,10
+100367,Ankara,Bilinmeyen İlçe,Naci Çakır Mahallesi,0.2261,1,Low,0.8868,0.0962,0.0115,0.0006,0.0050,425.55,14307,1098
+100368,Ankara,Bilinmeyen İlçe,Osman Temiz Mahallesi,0.1816,1,Low,0.9408,0.0297,0.0083,0.0017,0.0195,611.93,13266,1299
+100369,Ankara,Bilinmeyen İlçe,Malazgirt Mahallesi,0.1624,1,Low,0.8280,0.1377,0.0267,0.0017,0.0059,481.46,1704,52
+100370,Ankara,Bilinmeyen İlçe,Keklik Pınarı Mahallesi,0.2613,2,Medium,0.0691,0.7033,0.1192,0.0453,0.0632,412.34,22493,1861
+100371,Ankara,Bilinmeyen İlçe,Mürsel Uluç Mahallesi,0.1961,1,Low,0.9668,0.0204,0.0008,0.0043,0.0078,392.06,6728,336
+100372,Ankara,Bilinmeyen İlçe,Metin Akkuş Mahallesi,0.1767,1,Low,0.8155,0.1427,0.0159,0.0097,0.0162,428.85,14020,1295
+100373,Ankara,Bilinmeyen İlçe,İlker Mahallesi,0.2362,1,Low,0.8126,0.1301,0.0364,0.0017,0.0192,449.88,22217,1999
+100374,Ankara,Bilinmeyen İlçe,Sakarya Mahallesi,0.2239,1,Low,0.9370,0.0456,0.0048,0.0009,0.0116,478.06,9933,821
+100375,Ankara,Bilinmeyen İlçe,Or-An Mahallesi,0.1889,1,Low,0.9256,0.0609,0.0013,0.0059,0.0062,547.25,19554,1478
+100376,Ankara,Bilinmeyen İlçe,Kızılırmak Mahallesi,0.2658,2,Medium,0.0482,0.8528,0.0637,0.0089,0.0263,414.63,10870,901
+100377,Ankara,Bilinmeyen İlçe,Çukurambar Mahallesi,0.2550,2,Medium,0.0342,0.7345,0.1764,0.0264,0.0285,423.43,19075,1063
+100378,Ankara,Bilinmeyen İlçe,Söğütözü Mahallesi,0.2979,2,Medium,0.0047,0.7171,0.2058,0.0310,0.0415,326.98,15403,1741
+100379,Ankara,Bilinmeyen İlçe,İşçi Blokları Mahallesi,0.2083,1,Low,0.9736,0.0178,0.0009,0.0026,0.0051,394.87,9650,531
+100380,Ankara,Bilinmeyen İlçe,Çiğdem Mahallesi,0.2060,1,Low,0.9493,0.0411,0.0019,0.0001,0.0076,457.03,23218,1960
+100381,Ankara,Bilinmeyen İlçe,Üniversiteler Mahallesi,0.1396,1,Very Low,0.9276,0.0514,0.0085,0.0014,0.0111,532.63,111,10
+100382,Ankara,Bilinmeyen İlçe,Mustafa Kemal Mahallesi,0.2810,2,Medium,0.0045,0.9138,0.0381,0.0175,0.0261,401.39,25984,2474
+100383,Ankara,Bilinmeyen İlçe,Mutlukent Mahallesi,0.1655,1,Low,0.8673,0.1140,0.0047,0.0034,0.0106,475.18,22975,1884
+100384,Ankara,Bilinmeyen İlçe,Ümit Mahallesi,0.1803,1,Low,0.8014,0.1836,0.0040,0.0031,0.0079,456.34,22681,1848
+100385,Ankara,Bilinmeyen İlçe,Çayyolu Mahallesi,0.2819,2,Medium,0.0229,0.7137,0.0794,0.0626,0.1215,349.2,36988,3471
+100386,Ankara,Bilinmeyen İlçe,Koru Mahallesi,0.2055,1,Low,0.9286,0.0478,0.0140,0.0022,0.0074,447.45,105,376
+100387,Ankara,Bilinmeyen İlçe,Konutkent Mahallesi,0.2918,2,Medium,0.0405,0.8442,0.0269,0.0053,0.0831,469.41,13204,894
+100388,Ankara,Bilinmeyen İlçe,Yaşamkent Mahallesi,0.2145,1,Low,0.9310,0.0503,0.0054,0.0035,0.0098,414.95,7626,428
+100389,Ankara,Bilinmeyen İlçe,Alacaatlı Mahallesi,0.2471,1,Low,0.9167,0.0473,0.0203,0.0010,0.0147,412.4,19417,1692
+100390,Ankara,Bilinmeyen İlçe,Dodurga Mahallesi,0.1455,1,Very Low,0.8346,0.1504,0.0047,0.0000,0.0103,592.6,23730,1902
+100391,Ankara,Bilinmeyen İlçe,Prof. Dr. Ahmet Taner Kışlalı Mahallesi,0.2707,2,Medium,0.1316,0.7381,0.0285,0.0388,0.0630,400.92,47573,4219
+100392,Ankara,Bilinmeyen İlçe,Fatih Sultan Mahallesi,0.1713,1,Low,0.9233,0.0413,0.0089,0.0130,0.0136,467.71,10254,862
+100393,Ankara,Bilinmeyen İlçe,Beytepe Mahallesi,0.2471,1,Low,0.9510,0.0456,0.0018,0.0008,0.0008,342.33,20845,1544
+100394,Ankara,Bilinmeyen İlçe,Karacakaya Mahallesi,0.2572,2,Medium,0.1273,0.7423,0.0584,0.0034,0.0687,392.15,29401,2246
+100395,Ankara,Bilinmeyen İlçe,Yeniçimşit Mahallesi,0.1529,1,Low,0.9114,0.0756,0.0048,0.0004,0.0078,419.56,12972,550
+100396,Ankara,Bilinmeyen İlçe,Saraycık Mahallesi,0.1960,1,Low,0.9312,0.0627,0.0001,0.0009,0.0052,588.75,18414,1316
+100397,Ankara,Bilinmeyen İlçe,Osmaniye Mahallesi,0.1671,1,Low,0.8575,0.1014,0.0124,0.0010,0.0278,473.24,24893,1997
+100398,Ankara,Bilinmeyen İlçe,İncek Mahallesi,0.1517,1,Low,0.9211,0.0422,0.0223,0.0035,0.0110,530.48,107,440
+100399,Ankara,Bilinmeyen İlçe,Kızılcaşar Mahallesi,0.1312,1,Very Low,0.8738,0.0804,0.0252,0.0069,0.0136,582.8,17088,1091
+100400,Ankara,Bilinmeyen İlçe,Taşpınar Mahallesi,0.2343,1,Low,0.8362,0.1232,0.0161,0.0091,0.0154,552.71,26702,2323
+100401,Ankara,Bilinmeyen İlçe,Ahlatlıbel Mahallesi,0.1857,1,Low,0.8257,0.1558,0.0093,0.0045,0.0047,500.85,42348,3519
+100402,Ankara,Bilinmeyen İlçe,Ege Mahallesi,0.1924,1,Low,0.8097,0.1033,0.0061,0.0014,0.0794,414.57,849,108
+100403,Ankara,Bilinmeyen İlçe,Kızılca Mahallesi,0.1731,1,Low,0.8935,0.0723,0.0258,0.0015,0.0069,423.0,14935,1256
+100404,Ankara,Bilinmeyen İlçe,Adalet Mahallesi,0.2361,1,Low,0.8866,0.0902,0.0110,0.0027,0.0096,433.36,5206,243
+100405,Ankara,Bilinmeyen İlçe,Karşıyaka Mahallesi,0.1443,1,Very Low,0.9364,0.0473,0.0007,0.0038,0.0119,491.7,109,15
+100406,Ankara,Bilinmeyen İlçe,Gaziosmanpaşa Mahallesi,0.1534,1,Low,0.8365,0.1258,0.0047,0.0003,0.0327,440.1,2464,207
+100407,Ankara,Bilinmeyen İlçe,Şafak Mahallesi,0.1928,1,Low,0.9933,0.0034,0.0006,0.0013,0.0014,610.58,18364,1627
+100408,Ankara,Bilinmeyen İlçe,Bahçelievler Mahallesi,0.2836,2,Medium,0.0412,0.7269,0.1276,0.0485,0.0557,373.65,31230,2232
+100409,Ankara,Bilinmeyen İlçe,Muhsin Yazıcıoğlu Mahallesi,0.1648,1,Low,0.9899,0.0086,0.0002,0.0005,0.0007,486.88,110,10
+100410,Ankara,Bilinmeyen İlçe,Dumlupınar Mahallesi,0.2294,1,Low,0.9004,0.0588,0.0005,0.0001,0.0402,415.93,25554,1913
+100411,Ankara,Bilinmeyen İlçe,Hasanoğlan Bahçelievler Mahallesi,0.1896,1,Low,0.8387,0.1467,0.0076,0.0028,0.0042,412.78,1370,10
+100412,Ankara,Bilinmeyen İlçe,Hasanoğlan Havuzbaşı Mahallesi,0.1913,1,Low,0.8411,0.1193,0.0034,0.0172,0.0189,467.5,6370,292
+100413,Ankara,Bilinmeyen İlçe,Muzaffer Ekşi Mahallesi,0.2967,2,Medium,0.0090,0.8439,0.0335,0.0497,0.0638,334.28,10114,640
+100414,Ankara,Bilinmeyen İlçe,Hasanoğlan Fatih Mahallesi,0.1843,1,Low,0.8421,0.1081,0.0229,0.0037,0.0231,444.12,7149,453
+100415,Ankara,Bilinmeyen İlçe,İstasyon Mahallesi,0.1395,1,Very Low,0.8353,0.1301,0.0058,0.0108,0.0180,539.87,109,215
+100416,Ankara,Bilinmeyen İlçe,Şehitlik Mahallesi,0.2411,1,Low,0.8555,0.0873,0.0104,0.0027,0.0440,425.07,14683,928
+100417,Ankara,Bilinmeyen İlçe,Yeşiltepe Mahallesi,0.1660,1,Low,0.8439,0.1162,0.0224,0.0046,0.0128,412.83,18551,1400
+100418,Ankara,Bilinmeyen İlçe,Beyazıt Mahallesi,0.1248,1,Very Low,0.9404,0.0562,0.0025,0.0001,0.0008,532.87,10042,792
+100419,Ankara,Bilinmeyen İlçe,Timurhan Mahallesi,0.2925,2,Medium,0.0789,0.7455,0.0352,0.0168,0.1236,432.26,30472,2387
+100420,Ankara,Bilinmeyen İlçe,Büğdüz Mahallesi,0.1705,1,Low,0.9963,0.0027,0.0004,0.0001,0.0005,452.66,13628,1320
+100421,Ankara,Bilinmeyen İlçe,Şeyhler Mahallesi,0.2071,1,Low,0.9892,0.0079,0.0023,0.0002,0.0004,433.55,12514,867
+100422,Ankara,Bilinmeyen İlçe,Yıldırım Mahallesi,0.2334,1,Low,0.8966,0.0686,0.0222,0.0040,0.0086,431.25,387,286
+100423,Ankara,Bilinmeyen İlçe,Atatürk Mahallesi,0.1857,1,Low,0.9417,0.0475,0.0029,0.0014,0.0065,461.32,18103,1441
+100424,Ankara,Bilinmeyen İlçe,Kızık Mahallesi,0.2055,1,Low,0.9958,0.0034,0.0005,0.0001,0.0002,506.46,15017,1117
+100425,Ankara,Bilinmeyen İlçe,Karacalar Mahallesi,0.1697,1,Low,0.9818,0.0135,0.0029,0.0007,0.0011,397.37,8041,256
+100426,Ankara,Bilinmeyen İlçe,Çardakbağı Mahallesi,0.2722,2,Medium,0.0796,0.8664,0.0412,0.0036,0.0092,406.92,14776,1211
+100427,Ankara,Bilinmeyen İlçe,Kalaba Mahallesi,0.1886,1,Low,0.9067,0.0882,0.0005,0.0008,0.0038,562.05,34497,3000
+100428,Ankara,Bilinmeyen İlçe,Uzunlar Mahallesi,0.2052,1,Low,0.8515,0.0765,0.0407,0.0150,0.0163,411.62,15724,1289
+100429,Ankara,Bilinmeyen İlçe,Çam Mahallesi,0.2606,2,Medium,0.0159,0.9026,0.0168,0.0110,0.0536,532.39,29655,2857
+100430,Ankara,Bilinmeyen İlçe,Karayatak Mahallesi,0.1237,1,Very Low,0.9833,0.0111,0.0001,0.0011,0.0045,530.63,4440,33
+100431,Ankara,Bilinmeyen İlçe,Samut Mahallesi,0.1386,1,Very Low,0.9968,0.0026,0.0005,0.0001,0.0001,492.63,4678,295
+100432,Ankara,Bilinmeyen İlçe,Ovacık Mahallesi,0.1590,1,Low,0.8861,0.1046,0.0028,0.0016,0.0050,459.72,1298,503
+100433,Ankara,Bilinmeyen İlçe,Eğriekin Mahallesi,0.1601,1,Low,0.8492,0.1146,0.0242,0.0056,0.0065,488.89,106,10
+100434,Ankara,Bilinmeyen İlçe,Güldarpı Mahallesi,0.1211,1,Very Low,0.8267,0.1018,0.0506,0.0040,0.0169,489.61,4188,276
+100435,Ankara,Bilinmeyen İlçe,Aliağa Mahallesi,0.2987,2,Medium,0.0827,0.8125,0.0633,0.0142,0.0274,378.87,19336,1735
+100436,Ankara,Bilinmeyen İlçe,İbrahimbeyli Mahallesi,0.2351,1,Low,0.8956,0.0635,0.0086,0.0114,0.0209,418.83,106,63
+100437,Ankara,Bilinmeyen İlçe,Eskitorunobası Mahallesi,0.1781,1,Low,0.8052,0.1567,0.0276,0.0052,0.0053,481.88,16841,1118
+100438,Ankara,Bilinmeyen İlçe,Cebirli Mahallesi,0.2292,1,Low,0.8463,0.1410,0.0016,0.0042,0.0070,355.75,111,28
+100439,Ankara,Bilinmeyen İlçe,Kuruçay Mahallesi,0.2014,1,Low,0.9859,0.0096,0.0016,0.0006,0.0023,450.32,39740,2694
+100440,Ankara,Bilinmeyen İlçe,Kışlacık Mahallesi,0.1345,1,Very Low,0.8804,0.0817,0.0231,0.0065,0.0083,549.03,13028,915
+100441,Ankara,Bilinmeyen İlçe,Rüstempaşa Mahallesi,0.1823,1,Low,0.9144,0.0588,0.0099,0.0046,0.0123,473.48,109,71
+100442,Ankara,Bilinmeyen İlçe,İstiklal Mahallesi,0.1459,1,Very Low,0.8705,0.1072,0.0164,0.0014,0.0045,450.83,106,10
+100443,Ankara,Bilinmeyen İlçe,Zafer Mahallesi,0.1424,1,Very Low,0.9930,0.0039,0.0014,0.0005,0.0011,529.92,7828,531
+100444,Ankara,Bilinmeyen İlçe,Kurtuluş Mahallesi,0.1666,1,Low,0.8196,0.1564,0.0073,0.0045,0.0123,484.07,110,269
+100445,Ankara,Bilinmeyen İlçe,Beytepe Mahallesi,0.1888,1,Low,0.9322,0.0547,0.0002,0.0038,0.0090,316.86,1838,10
+100446,Ankara,Bilinmeyen İlçe,Cumhuriyet Mahallesi,0.1599,1,Low,0.8448,0.1195,0.0265,0.0007,0.0084,445.21,11150,393
+100447,Ankara,Bilinmeyen İlçe,Başağaç Mahallesi,0.2306,1,Low,0.8345,0.0997,0.0146,0.0060,0.0452,354.12,10681,882
+100448,Ankara,Bilinmeyen İlçe,Hacıkara Mahallesi,0.1854,1,Low,0.9152,0.0737,0.0079,0.0006,0.0026,514.88,10894,997
+100449,Ankara,Bilinmeyen İlçe,Ayvaşık Mahallesi,0.1810,1,Low,0.9849,0.0134,0.0004,0.0005,0.0008,528.93,36754,3068
+100450,Ankara,Bilinmeyen İlçe,Yeşilağaç Mahallesi,0.1626,1,Low,0.9655,0.0196,0.0075,0.0029,0.0045,462.73,110,10
+100451,Ankara,Bilinmeyen İlçe,Gazipaşa Mahallesi,0.1285,1,Very Low,0.8131,0.1464,0.0241,0.0038,0.0126,537.49,12590,745
+100452,Ankara,Bilinmeyen İlçe,Yazı Mahallesi,0.2216,1,Low,0.9255,0.0386,0.0012,0.0171,0.0176,554.81,19117,1356
+100453,Ankara,Bilinmeyen İlçe,Karaköy Mahallesi,0.2011,1,Low,0.9067,0.0515,0.0241,0.0005,0.0173,511.42,19152,1779
+100454,Ankara,Bilinmeyen İlçe,Atatürk Mahallesi,0.2140,1,Low,0.9014,0.0871,0.0072,0.0018,0.0025,338.62,109,10
+100455,Ankara,Bilinmeyen İlçe,Akdere Mahallesi,0.2774,2,Medium,0.0963,0.7974,0.0153,0.0352,0.0559,355.14,11087,1252
+100456,Ankara,Bilinmeyen İlçe,Hacıbey Mahallesi,0.2258,1,Low,0.8504,0.0922,0.0033,0.0153,0.0388,367.81,19409,1405
+100457,Ankara,Bilinmeyen İlçe,100. Yıl Mahallesi,0.2295,1,Low,0.8245,0.1046,0.0173,0.0052,0.0484,318.39,30760,2643
+100458,Ankara,Bilinmeyen İlçe,Yeni Bağlıca Mahallesi,0.2174,1,Low,0.8628,0.0909,0.0358,0.0017,0.0088,457.43,51350,4248
+100459,Ankara,Bilinmeyen İlçe,Devlet Mahallesi,0.2923,2,Medium,0.0163,0.7495,0.0361,0.0333,0.1647,403.78,22446,1781
+100460,Ankara,Bilinmeyen İlçe,Fatih Mahallesi,0.2545,2,Medium,0.0772,0.7224,0.0239,0.0632,0.1134,448.66,29329,2515
+100461,Ankara,Bilinmeyen İlçe,Yazır Mahallesi,0.1875,1,Low,0.8453,0.0850,0.0372,0.0089,0.0235,554.38,21804,1808
+100462,Ankara,Bilinmeyen İlçe,Yeşilova Mahallesi,0.2385,1,Low,0.8936,0.0958,0.0016,0.0014,0.0075,486.87,46299,3557
+100463,Ankara,Bilinmeyen İlçe,Hürriyet Mahallesi,0.2084,1,Low,0.8614,0.1226,0.0060,0.0034,0.0066,442.1,18927,1262
+100464,Ankara,Bilinmeyen İlçe,Yeni Mahalle,0.2553,2,Medium,0.0334,0.8399,0.0323,0.0313,0.0631,456.16,107,10
+100465,Ankara,Bilinmeyen İlçe,Yeni Mahalle,0.1626,1,Low,0.8594,0.1141,0.0021,0.0065,0.0178,498.42,1325,10
+100466,Ankara,Bilinmeyen İlçe,Kusunlar Mahallesi,0.1497,1,Very Low,0.8282,0.0918,0.0427,0.0155,0.0218,497.61,6992,944
+100467,Ankara,Bilinmeyen İlçe,Zirvekent Mahallesi,0.1901,1,Low,0.8905,0.0591,0.0084,0.0143,0.0277,522.61,30299,2499
+100468,Ankara,Bilinmeyen İlçe,Kıbrısköy Mahallesi,0.2370,1,Low,0.8506,0.1216,0.0009,0.0110,0.0159,420.91,8264,593
+100469,Ankara,Bilinmeyen İlçe,Lalahan Mahallesi,0.2103,1,Low,0.8478,0.0856,0.0120,0.0083,0.0463,356.98,5336,544
+100470,Ankara,Bilinmeyen İlçe,Nasuhpaşa Mahallesi,0.2563,2,Medium,0.1056,0.7604,0.0418,0.0064,0.0859,410.43,15012,1446
+100471,Ankara,Bilinmeyen İlçe,Fatih Mahallesi,0.1029,1,Very Low,0.8810,0.1051,0.0030,0.0010,0.0098,535.33,9096,557
+100472,Ankara,Bilinmeyen İlçe,Bayındır Mahallesi,0.2791,2,Medium,0.0449,0.7772,0.1337,0.0151,0.0291,319.13,110,240
+100473,Ankara,Bilinmeyen İlçe,Ortaköy Mahallesi,0.1734,1,Low,0.8533,0.0802,0.0498,0.0065,0.0103,513.15,13236,1314
+100474,Ankara,Bilinmeyen İlçe,Kutludüğün Mahallesi,0.2035,1,Low,0.8167,0.1406,0.0174,0.0077,0.0176,456.65,107,99
+100475,Ankara,Bilinmeyen İlçe,Yeni Bayındır Mahallesi,0.1219,1,Very Low,0.9597,0.0209,0.0007,0.0013,0.0174,485.13,8871,1064
+100476,Ankara,Bilinmeyen İlçe,Gökçeyurt Mahallesi,0.1683,1,Low,0.8619,0.0786,0.0211,0.0134,0.0250,417.02,17065,1275
+100477,Ankara,Bilinmeyen İlçe,Karşıyaka Mahallesi,0.1919,1,Low,0.9457,0.0321,0.0088,0.0019,0.0116,521.3,108,138
+100478,Ankara,Bilinmeyen İlçe,Yukarı İmrohor Mahallesi,0.1416,1,Very Low,0.9325,0.0487,0.0101,0.0043,0.0044,538.94,4871,538
+100479,Ankara,Bilinmeyen İlçe,Diriliş Mahallesi,0.1193,1,Very Low,0.9319,0.0453,0.0111,0.0043,0.0074,472.62,6259,891
+100480,Ankara,Bilinmeyen İlçe,Gençali Mahallesi,0.1664,1,Low,0.9867,0.0094,0.0022,0.0006,0.0011,584.71,111,10
+100481,Ankara,Bilinmeyen İlçe,Yeşildere Fatih Mahallesi,0.1837,1,Low,0.8976,0.0949,0.0031,0.0012,0.0032,438.71,648,10
+100482,Ankara,Bilinmeyen İlçe,Seyitcemali Mahallesi,0.3203,2,Medium,0.0041,0.9795,0.0037,0.0008,0.0119,377.52,30408,2520
+100483,Ankara,Bilinmeyen İlçe,Ostim Mahallesi,0.1760,1,Low,0.9339,0.0413,0.0107,0.0003,0.0138,507.86,14045,860
+100484,Ankara,Bilinmeyen İlçe,Susuz Mahallesi,0.2249,1,Low,0.8377,0.0940,0.0420,0.0129,0.0134,344.93,18375,1538
+100485,Ankara,Bilinmeyen İlçe,Battalgazi Mahallesi,0.2604,2,Medium,0.0229,0.9511,0.0001,0.0058,0.0201,368.41,20803,1484
+100486,Ankara,Bilinmeyen İlçe,Aşağı İmrahor Mahallesi,0.2161,1,Low,0.9876,0.0107,0.0008,0.0001,0.0007,512.51,11493,1259
+100487,Ankara,Bilinmeyen İlçe,Tuzla Mahallesi,0.2279,1,Low,0.9132,0.0460,0.0195,0.0015,0.0198,362.97,111,10
+100488,Ankara,Bilinmeyen İlçe,İstiklal Mahallesi,0.1852,1,Low,0.8259,0.1202,0.0355,0.0064,0.0119,486.65,240,10
+100489,Ankara,Bilinmeyen İlçe,Hacıenbiya Mahallesi,0.2557,2,Medium,0.0150,0.8612,0.0253,0.0163,0.0822,329.14,8506,813
+100490,Ankara,Bilinmeyen İlçe,Ekici Mahallesi,0.2438,1,Low,0.8052,0.1125,0.0574,0.0058,0.0191,392.14,25864,2317
+100491,Ankara,Bilinmeyen İlçe,Akkaya Mahallesi,0.1602,1,Low,0.9326,0.0530,0.0031,0.0055,0.0059,429.17,108,376
+100492,Ankara,Bilinmeyen İlçe,Taşpınar Mahallesi,0.2253,1,Low,0.9808,0.0131,0.0019,0.0013,0.0028,341.67,12923,1472
+100493,Ankara,Bilinmeyen İlçe,Sünlü Mahallesi,0.1890,1,Low,0.8519,0.0871,0.0167,0.0177,0.0266,440.93,17165,1634
+100494,Ankara,Bilinmeyen İlçe,Ağılcık Mahallesi,0.1911,1,Low,0.9554,0.0360,0.0038,0.0020,0.0028,459.44,105,10
+100495,Ankara,Bilinmeyen İlçe,Atatürk Mahallesi,0.2097,1,Low,0.8074,0.1211,0.0535,0.0021,0.0159,445.95,2188,151
+100496,Ankara,Bilinmeyen İlçe,Barbaros Mahallesi,0.1900,1,Low,0.9167,0.0444,0.0010,0.0119,0.0260,467.69,33708,2688
+100497,Ankara,Bilinmeyen İlçe,Yavuz Selim Mahallesi,0.1721,1,Low,0.9898,0.0087,0.0010,0.0002,0.0003,477.17,2978,250
+100498,Ankara,Bilinmeyen İlçe,Esenboğa Mahallesi,0.2347,1,Low,0.8426,0.1375,0.0116,0.0014,0.0068,385.15,20087,1891
+100499,Ankara,Bilinmeyen İlçe,Güneyce Mahallesi,0.2241,1,Low,0.9928,0.0055,0.0001,0.0001,0.0014,466.84,25690,1731
+100500,Ankara,Bilinmeyen İlçe,Yazıbeyli Mahallesi,0.1856,1,Low,0.8707,0.0864,0.0105,0.0149,0.0175,458.14,106,418
+100501,Ankara,Bilinmeyen İlçe,Yapracık Mahallesi,0.2214,1,Low,0.8442,0.0901,0.0416,0.0040,0.0201,408.27,6888,396
+100502,Ankara,Bilinmeyen İlçe,Hacılar Mahallesi,0.1316,1,Very Low,0.8741,0.0833,0.0028,0.0197,0.0200,492.25,109,10
+100503,Ankara,Bilinmeyen İlçe,Hacıhasan Mahallesi,0.1986,1,Low,0.8952,0.0757,0.0176,0.0009,0.0107,505.01,10738,922
+100504,Ankara,Bilinmeyen İlçe,Tulumtaş Mahallesi,0.2293,1,Low,0.9891,0.0086,0.0015,0.0001,0.0007,464.01,14261,1139
+100505,Ankara,Bilinmeyen İlçe,Orhun Mahallesi,0.1523,1,Low,0.9555,0.0309,0.0071,0.0021,0.0044,423.11,12657,1032
+100506,Ankara,Bilinmeyen İlçe,Yukarıyurtçu Mahallesi,0.2016,1,Low,0.8028,0.1335,0.0329,0.0024,0.0284,449.54,109,249
+100507,Ankara,Bilinmeyen İlçe,Aşağıyurtçu Mahallesi,0.1541,1,Low,0.9399,0.0542,0.0025,0.0001,0.0033,541.51,27092,2583
+100508,Ankara,Bilinmeyen İlçe,Atayurt Mahallesi,0.2336,1,Low,0.9309,0.0355,0.0185,0.0045,0.0106,405.41,5185,695
+100509,Ankara,Bilinmeyen İlçe,Turkuaz Mahallesi,0.1365,1,Very Low,0.9832,0.0094,0.0026,0.0014,0.0034,504.49,11928,1160
+100510,Ankara,Bilinmeyen İlçe,Balıkuyumcu Mahallesi,0.1617,1,Low,0.8786,0.1123,0.0012,0.0039,0.0040,508.72,5267,380
+100511,Ankara,Bilinmeyen İlçe,Şehitali Mahallesi,0.2430,1,Low,0.8193,0.1442,0.0061,0.0018,0.0286,469.01,12124,1001
+100512,Ankara,Bilinmeyen İlçe,Fevziye Mahallesi,0.1571,1,Low,0.9141,0.0588,0.0123,0.0003,0.0144,507.38,105,178
+100513,Ankara,Bilinmeyen İlçe,Oyaca Akarsu Mahallesi,0.3066,2,Medium,0.0286,0.9386,0.0047,0.0040,0.0240,356.02,27602,2570
+100514,Ankara,Bilinmeyen İlçe,Oyaca Yeşilçam Mahallesi,0.1856,1,Low,0.9802,0.0173,0.0015,0.0000,0.0011,401.98,108,358
+100515,Ankara,Bilinmeyen İlçe,Şentepe Mahallesi,0.2044,1,Low,0.8058,0.1287,0.0430,0.0110,0.0116,443.84,5521,384
+100516,Ankara,Bilinmeyen İlçe,İstiklal Mahallesi,0.1686,1,Low,0.8958,0.0830,0.0102,0.0037,0.0072,443.94,106,10
+100517,Ankara,Bilinmeyen İlçe,Çamlıca Mahallesi,0.2552,2,Medium,0.0185,0.8068,0.1277,0.0002,0.0467,436.21,11196,876
+100518,Ankara,Bilinmeyen İlçe,Yeni Mahalle,0.2112,1,Low,0.9785,0.0180,0.0010,0.0005,0.0019,456.39,107,10
+100519,Ankara,Bilinmeyen İlçe,Zafer Mahallesi,0.1826,1,Low,0.9801,0.0109,0.0002,0.0001,0.0087,520.9,12195,1177
+100520,Ankara,Bilinmeyen İlçe,Esentepe Mahallesi,0.2684,2,Medium,0.0227,0.9617,0.0077,0.0037,0.0042,321.0,105,189
+100521,Ankara,Bilinmeyen İlçe,Gülveren Mahallesi,0.1760,1,Low,0.8843,0.0674,0.0182,0.0061,0.0240,411.48,110,101
+100522,Ankara,Bilinmeyen İlçe,Fatih Mahallesi,0.1396,1,Very Low,0.9132,0.0615,0.0029,0.0108,0.0116,422.37,8320,479
+100523,Ankara,Bilinmeyen İlçe,Şehitlik Mahallesi,0.1237,1,Very Low,0.9496,0.0428,0.0039,0.0010,0.0027,560.73,105,543
+100524,Ankara,Bilinmeyen İlçe,Kurtuluş Mahallesi,0.2419,1,Low,0.9837,0.0105,0.0019,0.0004,0.0036,446.25,34814,2787
+100525,Ankara,Bilinmeyen İlçe,Cumhuriyet Mahallesi,0.2069,1,Low,0.9037,0.0504,0.0035,0.0021,0.0402,342.82,105,242
+100526,Ankara,Bilinmeyen İlçe,Gazi Mahallesi,0.2046,1,Low,0.9216,0.0532,0.0031,0.0005,0.0215,454.67,22313,1802
+100527,Ankara,Bilinmeyen İlçe,Mehmetakif Mahallesi,0.1978,1,Low,0.8778,0.0949,0.0182,0.0015,0.0077,425.31,1584,539
+100528,Ankara,Bilinmeyen İlçe,Yeşilkent Mahallesi,0.1280,1,Very Low,0.9177,0.0746,0.0035,0.0015,0.0027,572.15,2104,545
+100529,Ankara,Bilinmeyen İlçe,Aktaş Mahallesi,0.2032,1,Low,0.8939,0.0679,0.0062,0.0084,0.0235,490.14,12129,968
+100530,Ankara,Bilinmeyen İlçe,Yiğitli Mahallesi,0.2033,1,Low,0.9865,0.0069,0.0025,0.0014,0.0028,497.38,22364,1788
+100531,Ankara,Bilinmeyen İlçe,Kavaklı Mahallesi,0.2224,1,Low,0.9720,0.0198,0.0003,0.0037,0.0043,532.78,11577,764
+100532,Ankara,Bilinmeyen İlçe,Yukarı Obruk mahallesi,0.2538,2,Medium,0.0074,0.8998,0.0213,0.0102,0.0613,417.3,11436,1009
+100533,Ankara,Bilinmeyen İlçe,Aşağı Obruk mahallesi,0.1644,1,Low,0.9940,0.0047,0.0004,0.0003,0.0007,482.41,22811,1811
+100534,Ankara,Bilinmeyen İlçe,Durhasan mahallesi,0.2786,2,Medium,0.0522,0.8239,0.0895,0.0164,0.0179,438.02,13967,788
+100535,Ankara,Bilinmeyen İlçe,Yaylak mahallesi,0.3345,2,Medium,0.0194,0.9574,0.0071,0.0066,0.0094,337.35,10530,699
+100536,Ankara,Bilinmeyen İlçe,Yıldırımevci mahallesi,0.1913,1,Low,0.8151,0.1470,0.0034,0.0095,0.0249,407.12,17453,1626
+100537,Ankara,Bilinmeyen İlçe,Yenice Mahallesi,0.1618,1,Low,0.8654,0.0720,0.0111,0.0072,0.0443,619.01,22306,1402
+100538,Ankara,Bilinmeyen İlçe,İsmetpaşa Mahallesi,0.1848,1,Low,0.8894,0.0555,0.0236,0.0049,0.0266,521.0,14417,780
+100539,Ankara,Bilinmeyen İlçe,Gümüşpala Mahallesi,0.1730,1,Low,0.8839,0.0865,0.0003,0.0038,0.0254,436.34,5832,386
+100540,Ankara,Bilinmeyen İlçe,İkipınar Mahallesi,0.2459,1,Low,0.8760,0.0886,0.0111,0.0033,0.0209,430.73,21482,1736
+100541,Ankara,Bilinmeyen İlçe,Melikşah Mahallesi,0.2612,2,Medium,0.0080,0.9525,0.0193,0.0018,0.0185,315.17,5591,779
+100542,Ankara,Bilinmeyen İlçe,Kızılca Mahallesi,0.1908,1,Low,0.9101,0.0459,0.0171,0.0034,0.0235,470.96,168,10
+100543,Ankara,Bilinmeyen İlçe,Dumlupınar Mahallesi,0.2717,2,Medium,0.0381,0.9196,0.0290,0.0030,0.0103,415.68,28883,2026
+100544,Ankara,Bilinmeyen İlçe,Yenice Mahallesi,0.1483,1,Very Low,0.8171,0.1490,0.0221,0.0048,0.0070,464.03,8414,252
+100545,Ankara,Bilinmeyen İlçe,Semer Mahallesi,0.2081,1,Low,0.8934,0.0562,0.0334,0.0042,0.0128,507.66,14346,1496
+100546,Ankara,Bilinmeyen İlçe,Ortaköy Mahallesi,0.1897,1,Low,0.9257,0.0417,0.0075,0.0034,0.0216,386.77,3971,637
+100547,Ankara,Bilinmeyen İlçe,Yıldırımçatak Mahallesi,0.1414,1,Very Low,0.9983,0.0013,0.0001,0.0001,0.0002,531.05,24407,1941
+100548,Ankara,Bilinmeyen İlçe,Olucak Mahallesi,0.1668,1,Low,0.9712,0.0170,0.0093,0.0002,0.0022,496.87,172,10
+100549,Ankara,Bilinmeyen İlçe,Yıldırımören Mahallesi,0.2258,1,Low,0.9251,0.0706,0.0027,0.0005,0.0011,418.96,11208,1023
+100550,Ankara,Bilinmeyen İlçe,Yıldırım Hacılar Mahallesi,0.2059,1,Low,0.9001,0.0584,0.0004,0.0084,0.0327,483.6,25222,2540
+100551,Ankara,Bilinmeyen İlçe,Yıldırım Aydoğan Mahallesi,0.1232,1,Very Low,0.9143,0.0552,0.0111,0.0021,0.0173,573.84,1288,393
+100552,Ankara,Bilinmeyen İlçe,Yıldırım Elören Mahallesi,0.2509,2,Medium,0.0073,0.9541,0.0251,0.0055,0.0080,373.96,10133,800
+100553,Ankara,Bilinmeyen İlçe,Uluağaç Mahallesi,0.2470,1,Low,0.8091,0.1494,0.0179,0.0004,0.0232,390.68,27824,2490
+100554,Ankara,Bilinmeyen İlçe,Ömercik Mahallesi,0.2189,1,Low,0.8912,0.0634,0.0350,0.0017,0.0087,426.78,21622,1674
+100555,Ankara,Bilinmeyen İlçe,Akkuzulu Mahallesi,0.2430,1,Low,0.8016,0.1048,0.0625,0.0030,0.0280,437.96,21390,1769
+100556,Ankara,Bilinmeyen İlçe,Kargın Mahallesi,0.1768,1,Low,0.8016,0.1203,0.0496,0.0105,0.0179,506.81,31500,2360
+100557,Ankara,Bilinmeyen İlçe,Kapaklı Mahallesi,0.1781,1,Low,0.8835,0.0605,0.0242,0.0138,0.0180,517.45,27599,2080
+100558,Ankara,Bilinmeyen İlçe,Mutlu Mahallesi,0.2239,1,Low,0.8737,0.0910,0.0133,0.0031,0.0189,477.17,30053,2446
+100559,Ankara,Bilinmeyen İlçe,Kızılöz Mahallesi,0.1336,1,Very Low,0.8383,0.0893,0.0379,0.0133,0.0212,653.34,3417,98
+100560,Ankara,Bilinmeyen İlçe,Tohumlar Mahallesi,0.1423,1,Very Low,0.8282,0.1179,0.0075,0.0057,0.0407,518.31,107,257
+100561,Ankara,Bilinmeyen İlçe,Karataş Mahallesi,0.1731,1,Low,0.8174,0.1558,0.0021,0.0048,0.0198,401.92,19913,1195
+100562,Ankara,Bilinmeyen İlçe,Otacı Mahallesi,0.2141,1,Low,0.9524,0.0359,0.0032,0.0036,0.0049,466.64,14993,1051
+100563,Ankara,Bilinmeyen İlçe,Karaçam Mahallesi,0.1779,1,Low,0.8169,0.1306,0.0114,0.0153,0.0258,490.53,18675,1586
+100564,Ankara,Bilinmeyen İlçe,Yeşilkent Mahallesi,0.2761,2,Medium,0.0402,0.8918,0.0363,0.0018,0.0300,382.74,3700,301
+100565,Ankara,Bilinmeyen İlçe,Çatokçular Mahallesi,0.1439,1,Very Low,0.8516,0.0940,0.0099,0.0156,0.0290,537.33,30519,2231
+100566,Ankara,Bilinmeyen İlçe,Nusratlar Mahallesi,0.1088,1,Very Low,0.9471,0.0463,0.0011,0.0016,0.0039,529.04,7391,481
+100567,Ankara,Bilinmeyen İlçe,Kızılören Mahallesi,0.1422,1,Very Low,0.8326,0.0906,0.0407,0.0028,0.0333,488.28,6461,10
+100568,Ankara,Bilinmeyen İlçe,Hacılar Mahallesi,0.1748,1,Low,0.8335,0.1480,0.0032,0.0025,0.0128,560.36,947,10
+100569,Ankara,Bilinmeyen İlçe,Yukarı Çavundur Mahallesi,0.2294,1,Low,0.9708,0.0151,0.0006,0.0038,0.0097,421.35,21570,1786
+100570,Ankara,Bilinmeyen İlçe,Kösrelik Mahallesi,0.1889,1,Low,0.9046,0.0584,0.0079,0.0076,0.0214,422.32,13513,1036
+100571,Ankara,Bilinmeyen İlçe,Sarısu Mahallesi,0.2506,2,Medium,0.0043,0.8156,0.1314,0.0015,0.0472,526.3,39715,3195
+100572,Ankara,Bilinmeyen İlçe,Meşeli Mahallesi,0.1746,1,Low,0.9292,0.0542,0.0093,0.0013,0.0059,530.34,10670,737
+100573,Ankara,Bilinmeyen İlçe,Dalyasan Mahallesi,0.1456,1,Very Low,0.8430,0.1047,0.0140,0.0050,0.0334,415.57,105,14
+100574,Ankara,Bilinmeyen İlçe,Demirci Mahallesi,0.1488,1,Very Low,0.9769,0.0124,0.0077,0.0008,0.0021,493.52,14571,1063
+100575,Ankara,Bilinmeyen İlçe,Oymiğde Mahallesi,0.2054,1,Low,0.9852,0.0097,0.0027,0.0001,0.0022,408.57,291,150
+100576,Ankara,Bilinmeyen İlçe,Camili Mahallesi,0.2437,1,Low,0.9323,0.0366,0.0128,0.0037,0.0147,378.94,3198,325
+100577,Ankara,Bilinmeyen İlçe,Kuyumcu Mahallesi,0.2707,2,Medium,0.0113,0.7388,0.1923,0.0221,0.0355,374.72,14893,1551
+100578,Ankara,Bilinmeyen İlçe,İmam Hüseyin Mahallesi,0.1516,1,Low,0.8132,0.1380,0.0244,0.0055,0.0190,519.57,111,91
+100579,Ankara,Bilinmeyen İlçe,Küçükali Mahallesi,0.1918,1,Low,0.9610,0.0229,0.0002,0.0040,0.0120,460.53,12902,834
+100580,Ankara,Bilinmeyen İlçe,Cücük Mahallesi,0.2427,1,Low,0.8897,0.0706,0.0130,0.0093,0.0172,500.56,33181,2322
+100581,Ankara,Bilinmeyen İlçe,Eskiçöte Mahallesi,0.1586,1,Low,0.8105,0.1289,0.0450,0.0016,0.0139,428.84,108,59
+100582,Ankara,Bilinmeyen İlçe,Boğaziçi Mahallesi,0.1813,1,Low,0.8185,0.1191,0.0188,0.0023,0.0412,420.39,3163,344
+100583,Ankara,Bilinmeyen İlçe,Kale Mahallesi,0.2307,1,Low,0.8950,0.0829,0.0099,0.0058,0.0064,508.58,19128,1726
+100584,Ankara,Bilinmeyen İlçe,Sarıkaya Mahallesi,0.2216,1,Low,0.9031,0.0877,0.0046,0.0009,0.0037,489.48,23058,1880
+100585,Ankara,Bilinmeyen İlçe,Sanayi Mahallesi,0.2962,2,Medium,0.0053,0.9752,0.0112,0.0025,0.0057,376.39,36203,2589
+100586,Ankara,Bilinmeyen İlçe,Mustafacık Mahallesi,0.1817,1,Low,0.9879,0.0064,0.0028,0.0001,0.0028,500.19,14212,743
+100587,Ankara,Bilinmeyen İlçe,Emek Mahallesi,0.1941,1,Low,0.9685,0.0293,0.0002,0.0009,0.0012,502.82,4729,545
+100588,Ankara,Bilinmeyen İlçe,Akbayır Mahallesi,0.1817,1,Low,0.8698,0.0876,0.0116,0.0146,0.0164,496.56,50573,3571
+100589,Ankara,Bilinmeyen İlçe,Hacıbektaşlı Mahallesi,0.2106,1,Low,0.9154,0.0462,0.0112,0.0069,0.0202,527.79,27830,2205
+100590,Ankara,Bilinmeyen İlçe,Şeyh Kuyusu Mahallesi,0.2055,1,Low,0.8820,0.0952,0.0039,0.0084,0.0104,373.05,13620,1315
+100591,Ankara,Bilinmeyen İlçe,Mehmet Akif Ersoy Mahallesi,0.2083,1,Low,0.9739,0.0219,0.0011,0.0013,0.0018,334.65,105,319
+100592,Ankara,Bilinmeyen İlçe,Akseki Mahallesi,0.1769,1,Low,0.8253,0.0879,0.0351,0.0119,0.0398,512.87,5325,485
+100593,Ankara,Bilinmeyen İlçe,Cumhuriyet Mahallesi,0.2255,1,Low,0.9213,0.0426,0.0168,0.0013,0.0181,497.14,14996,1097
+100594,Ankara,Bilinmeyen İlçe,Karadana Mahallesi,0.1908,1,Low,0.9219,0.0404,0.0161,0.0098,0.0119,441.1,10407,694
+100595,Ankara,Bilinmeyen İlçe,Dedeler Mahallesi,0.1613,1,Low,0.8249,0.1066,0.0038,0.0046,0.0601,579.14,111,124
+100596,Ankara,Bilinmeyen İlçe,Yukarı Emirler Mahallesi,0.1784,1,Low,0.9855,0.0131,0.0009,0.0001,0.0005,625.89,52824,4115
+100597,Ankara,Bilinmeyen İlçe,Dağkalfat Mahallesi,0.2674,2,Medium,0.0999,0.7681,0.0341,0.0452,0.0527,339.43,111,199
+100598,Ankara,Bilinmeyen İlçe,Susuz Mahallesi,0.1853,1,Low,0.9126,0.0520,0.0231,0.0008,0.0114,422.6,105,10
+100599,Ankara,Bilinmeyen İlçe,Okçular Mahallesi,0.2226,1,Low,0.8796,0.0638,0.0366,0.0054,0.0146,412.6,8629,589
+100600,Ankara,Bilinmeyen İlçe,Mahmutoğlan Mahallesi,0.2904,2,Medium,0.0180,0.8547,0.0111,0.0431,0.0731,373.42,34439,2894
+100601,Ankara,Bilinmeyen İlçe,Çitköy Mahallesi,0.2239,1,Low,0.9692,0.0181,0.0084,0.0002,0.0041,421.09,13675,1023
+100602,Ankara,Bilinmeyen İlçe,Saraycık Mahallesi,0.2237,1,Low,0.9335,0.0374,0.0230,0.0017,0.0044,451.93,31357,2966
+100603,Ankara,Bilinmeyen İlçe,Sarıkoz Mahallesi,0.1940,1,Low,0.9856,0.0099,0.0027,0.0000,0.0018,535.71,16955,1395
+100604,Ankara,Bilinmeyen İlçe,Sele Mahallesi,0.2031,1,Low,0.9730,0.0200,0.0047,0.0010,0.0012,450.01,109,10
+100605,Ankara,Bilinmeyen İlçe,Yazlıca Mahallesi,0.1533,1,Low,0.8301,0.1156,0.0135,0.0185,0.0223,491.5,17380,1605
+100606,Ankara,Bilinmeyen İlçe,Karaman Mahallesi,0.2535,2,Medium,0.0284,0.9316,0.0253,0.0018,0.0129,460.61,31607,2580
+100607,Ankara,Bilinmeyen İlçe,Karaağaç Mahallesi,0.2923,2,Medium,0.0079,0.9257,0.0054,0.0127,0.0483,309.64,43367,3651
+100608,Ankara,Bilinmeyen İlçe,Tahtayazı Mahallesi,0.2017,1,Low,0.8441,0.1151,0.0100,0.0082,0.0226,509.94,38947,3042
+100609,Ankara,Bilinmeyen İlçe,Aşağı Çavundur Mahallesi,0.1905,1,Low,0.9411,0.0522,0.0021,0.0019,0.0026,465.17,8490,792
+100610,Ankara,Bilinmeyen İlçe,Gökçedere Mahallesi,0.1753,1,Low,0.8771,0.0919,0.0124,0.0022,0.0165,459.23,4589,469
+100611,Ankara,Bilinmeyen İlçe,Sığırlıhacı Mahallesi,0.2876,2,Medium,0.0211,0.8383,0.0501,0.0149,0.0756,418.16,39304,3160
+100612,Ankara,Bilinmeyen İlçe,Kutuören Mahallesi,0.1807,1,Low,0.9561,0.0232,0.0036,0.0041,0.0130,365.87,4801,565
+100613,Ankara,Bilinmeyen İlçe,Tuğla Mahallesi,0.2126,1,Low,0.9410,0.0343,0.0156,0.0026,0.0065,520.04,12810,1009
+100614,Ankara,Bilinmeyen İlçe,Gümüşyayla Mahallesi,0.1906,1,Low,0.8140,0.1695,0.0025,0.0048,0.0093,452.11,110,10
+100615,Ankara,Bilinmeyen İlçe,Yakuphasan Mahallesi,0.2461,1,Low,0.9265,0.0409,0.0025,0.0098,0.0203,458.85,16285,1090
+100616,Ankara,Bilinmeyen İlçe,Yılmaz Mahallesi,0.1718,1,Low,0.9027,0.0815,0.0046,0.0053,0.0059,460.52,16128,1264
+100617,Ankara,Bilinmeyen İlçe,Karataş Mahallesi,0.1273,1,Very Low,0.9974,0.0024,0.0000,0.0001,0.0001,520.27,110,10
+100618,Ankara,Bilinmeyen İlçe,Özlüce Mahallesi,0.2118,1,Low,0.9282,0.0374,0.0031,0.0099,0.0213,488.13,110,50
+100619,Ankara,Bilinmeyen İlçe,Teberik Mahallesi,0.1752,1,Low,0.8230,0.1618,0.0044,0.0030,0.0077,507.63,849,13
+100620,Ankara,Bilinmeyen İlçe,Hançılı Mahallesi,0.1440,1,Very Low,0.8655,0.0830,0.0158,0.0005,0.0352,537.1,111,10
+100621,Ankara,Bilinmeyen İlçe,Karatepe Mahallesi,0.3097,2,Medium,0.0798,0.7753,0.0013,0.0162,0.1274,221.51,45060,3664
+100622,Ankara,Bilinmeyen İlçe,Demirtaş Mahallesi,0.1721,1,Low,0.8980,0.0630,0.0112,0.0098,0.0180,423.68,1117,10
+100623,Ankara,Bilinmeyen İlçe,Kınık Mahallesi,0.2022,1,Low,0.8117,0.1531,0.0207,0.0029,0.0115,508.78,15547,1156
+100624,Ankara,Bilinmeyen İlçe,Satılar Mahallesi,0.2724,2,Medium,0.0302,0.8975,0.0526,0.0045,0.0150,355.13,8451,1096
+100625,Ankara,Bilinmeyen İlçe,Mahmutlar Mahallesi,0.1549,1,Low,0.9944,0.0040,0.0011,0.0001,0.0004,612.53,28819,2193
+100626,Ankara,Bilinmeyen İlçe,Elmapınar Mahallesi,0.1815,1,Low,0.9937,0.0048,0.0005,0.0000,0.0010,408.86,24803,1786
+100627,Ankara,Bilinmeyen İlçe,Afşar Mahallesi,0.2822,2,Medium,0.0110,0.8364,0.0953,0.0279,0.0294,362.13,27927,2117
+100628,Ankara,Bilinmeyen İlçe,Yurtyenice Mahallesi,0.2233,1,Low,0.8533,0.1221,0.0027,0.0020,0.0199,508.0,23553,2383
+100629,Ankara,Bilinmeyen İlçe,Uyarca Mahallesi,0.1891,1,Low,0.9187,0.0698,0.0064,0.0007,0.0044,462.39,108,10
+100630,Ankara,Bilinmeyen İlçe,Kargın Mahallesi,0.1198,1,Very Low,0.8467,0.1182,0.0141,0.0005,0.0205,564.17,108,10
+100631,Ankara,Bilinmeyen İlçe,Akkuzulu Mahallesi,0.2533,2,Medium,0.0411,0.7107,0.1093,0.0254,0.1136,395.53,26902,2327
+100632,Ankara,Bilinmeyen İlçe,Buğra Mahallesi,0.1917,1,Low,0.9169,0.0566,0.0076,0.0067,0.0122,477.28,13224,1101
+100633,Ankara,Bilinmeyen İlçe,Gökçeören Mahallesi,0.2262,1,Low,0.9340,0.0545,0.0065,0.0013,0.0038,443.07,21547,1490
+100634,Ankara,Bilinmeyen İlçe,Alibeyli Mahallesi,0.2356,1,Low,0.8016,0.1345,0.0213,0.0153,0.0272,426.3,23771,1922
+100635,Ankara,Bilinmeyen İlçe,Karalar Mahallesi,0.1519,1,Low,0.9484,0.0275,0.0186,0.0019,0.0035,478.47,3886,55
+100636,Ankara,Bilinmeyen İlçe,Gökdere Mahallesi,0.2955,2,Medium,0.0338,0.7557,0.0096,0.1002,0.1007,335.15,16761,1439
+100637,Ankara,Bilinmeyen İlçe,Samanlık Mahallesi,0.1417,1,Very Low,0.9504,0.0256,0.0059,0.0073,0.0108,419.33,107,63
+100638,Ankara,Bilinmeyen İlçe,Yalım Mahallesi,0.1474,1,Very Low,0.9241,0.0498,0.0194,0.0017,0.0050,430.13,6328,856
+100639,Ankara,Bilinmeyen İlçe,Gölköy Mahallesi,0.1468,1,Very Low,0.9841,0.0141,0.0014,0.0001,0.0003,494.83,15243,1060
+100640,Ankara,Bilinmeyen İlçe,Şeyhmahmut Mahallesi,0.2137,1,Low,0.8278,0.1415,0.0229,0.0003,0.0075,474.93,13448,744
+100641,Ankara,Bilinmeyen İlçe,Ahikemal Şenyurt Mahallesi,0.2038,1,Low,0.9964,0.0033,0.0001,0.0000,0.0002,414.46,11516,1270
+100642,Ankara,Bilinmeyen İlçe,Halilağa Tabakhane Mahallesi,0.2708,2,Medium,0.0355,0.8595,0.0835,0.0072,0.0143,395.49,27961,2803
+100643,Ankara,Bilinmeyen İlçe,Çanşa Kale Mahallesi,0.4742,4,Very High,0.0309,0.0039,0.0267,0.9249,0.0136,346.38,20121,1920
+100644,Ankara,Bilinmeyen İlçe,Ahiler Yenice Mahallesi,0.1476,1,Very Low,0.9642,0.0302,0.0009,0.0006,0.0042,517.23,24088,1955
+100645,Ankara,Bilinmeyen İlçe,Cumasaray Mahallesi,0.1653,1,Low,0.8224,0.1478,0.0065,0.0068,0.0165,515.77,7836,684
+100646,Ankara,Bilinmeyen İlçe,Halitcevriaslangil Mahallesi,0.2739,2,Medium,0.0100,0.7325,0.1235,0.0601,0.0739,396.49,25311,2167
+100647,Ankara,Bilinmeyen İlçe,Yenidoğan Yeşilyurt Mahallesi,0.1448,1,Very Low,0.9073,0.0520,0.0289,0.0022,0.0095,486.43,106,10
+100648,Ankara,Bilinmeyen İlçe,Gümüşpınar Mahallesi,0.1392,1,Very Low,0.8105,0.1054,0.0401,0.0016,0.0424,529.13,105,11
+100649,Ankara,Bilinmeyen İlçe,Aktepe Mahallesi,0.1530,1,Low,0.9950,0.0037,0.0003,0.0003,0.0007,464.99,108,102
+100650,Ankara,Bilinmeyen İlçe,Tilkiköy Mahallesi,0.2010,1,Low,0.8721,0.0899,0.0252,0.0020,0.0108,475.16,9756,621
+100651,Ankara,Bilinmeyen İlçe,Arkbürk Mahallesi,0.2306,1,Low,0.9167,0.0733,0.0075,0.0001,0.0024,491.67,49137,4165
+100652,Ankara,Bilinmeyen İlçe,Eskiköy Mahallesi,0.2649,2,Medium,0.0109,0.9640,0.0001,0.0055,0.0194,512.18,47167,3823
+100653,Ankara,Bilinmeyen İlçe,Çiftlikköy Mahallesi,0.1237,1,Very Low,0.9677,0.0265,0.0027,0.0012,0.0019,546.43,105,10
+100654,Ankara,Bilinmeyen İlçe,Kızılkaya Mahallesi,0.2769,2,Medium,0.0104,0.9480,0.0319,0.0005,0.0092,427.59,20086,2012
+100655,Ankara,Bilinmeyen İlçe,Akkaynak Mahallesi,0.2136,1,Low,0.9336,0.0531,0.0026,0.0011,0.0096,501.8,20281,1584
+100656,Ankara,Bilinmeyen İlçe,Karahüyük Mahallesi,0.1540,1,Low,0.9173,0.0728,0.0002,0.0031,0.0065,477.81,110,10
+100657,Ankara,Bilinmeyen İlçe,Kılçak Mahallesi,0.1684,1,Low,0.9371,0.0405,0.0068,0.0035,0.0120,434.49,15734,1064
+100658,Ankara,Bilinmeyen İlçe,Keklicek Mahallesi,0.3433,2,Medium,0.0114,0.9684,0.0007,0.0096,0.0098,452.34,19987,1570
+100659,Ankara,Bilinmeyen İlçe,Hacıköy Mahallesi,0.2407,1,Low,0.9926,0.0063,0.0009,0.0001,0.0002,483.13,17443,1749
+100660,Ankara,Bilinmeyen İlçe,Değirmenkaya Mahallesi,0.1911,1,Low,0.8028,0.1632,0.0083,0.0053,0.0203,435.64,20079,1474
+100661,Ankara,Bilinmeyen İlçe,Akçataş Mahallesi,0.2490,1,Low,0.8927,0.0759,0.0110,0.0007,0.0197,307.13,11651,908
+100662,Ankara,Bilinmeyen İlçe,Yılanlı Mahallesi,0.2475,1,Low,0.8708,0.1191,0.0032,0.0017,0.0052,448.41,42488,3249
+100663,Ankara,Bilinmeyen İlçe,Hasayaz Mahallesi,0.1499,1,Very Low,0.9704,0.0150,0.0060,0.0007,0.0079,513.41,14318,1499
+100664,Ankara,Bilinmeyen İlçe,Yeniçöte Mahallesi,0.1264,1,Very Low,0.9601,0.0272,0.0084,0.0000,0.0042,541.48,1142,224
+100665,Ankara,Bilinmeyen İlçe,Yeşilöz Mahallesi,0.1677,1,Low,0.9377,0.0344,0.0171,0.0003,0.0104,472.58,5317,250
+100666,Ankara,Bilinmeyen İlçe,Tavşancık Mahallesi,0.2105,1,Low,0.8336,0.0959,0.0240,0.0021,0.0443,404.9,30529,2702
+100667,Ankara,Bilinmeyen İlçe,Dağdemir Mahallesi,0.2009,1,Low,0.9591,0.0367,0.0018,0.0008,0.0015,473.43,13422,1282
+100668,Ankara,Bilinmeyen İlçe,Çandır Mahallesi,0.2521,2,Medium,0.0002,0.7739,0.0847,0.0642,0.0769,430.06,30040,2753
+100669,Ankara,Bilinmeyen İlçe,Çaykaya Mahallesi,0.1979,1,Low,0.9271,0.0533,0.0115,0.0038,0.0044,457.22,17927,1518
+100670,Ankara,Bilinmeyen İlçe,Yüzbey Mahallesi,0.2209,1,Low,0.9122,0.0716,0.0105,0.0025,0.0033,444.38,31727,2475
+100671,Ankara,Bilinmeyen İlçe,Altıntaş Mahallesi,0.2661,2,Medium,0.1245,0.7122,0.0040,0.0782,0.0811,397.88,10815,1107
+100672,Ankara,Bilinmeyen İlçe,Beykavağı Mahallesi,0.1704,1,Low,0.9750,0.0213,0.0011,0.0008,0.0018,475.0,38207,3029
+100673,Ankara,Bilinmeyen İlçe,Şemsettin Mahallesi,0.1727,1,Low,0.9680,0.0261,0.0025,0.0012,0.0023,447.36,105,142
+100674,Ankara,Bilinmeyen İlçe,Koyunbaba Mahallesi,0.1887,1,Low,0.8693,0.0786,0.0198,0.0085,0.0238,488.31,21753,2166
+100675,Ankara,Bilinmeyen İlçe,Kuyucak Mahallesi,0.1965,1,Low,0.8632,0.1177,0.0121,0.0015,0.0055,455.79,6955,612
+100676,Ankara,Bilinmeyen İlçe,Eşmedere Mahallesi,0.1363,1,Very Low,0.9905,0.0082,0.0002,0.0004,0.0008,408.86,4237,10
+100677,Ankara,Bilinmeyen İlçe,Ahmetadil Mahallesi,0.1916,1,Low,0.9877,0.0099,0.0004,0.0001,0.0019,470.02,18607,1484
+100678,Ankara,Bilinmeyen İlçe,Kozayağı Mahallesi,0.2494,1,Low,0.9569,0.0353,0.0057,0.0004,0.0016,473.07,24525,1756
+100679,Ankara,Bilinmeyen İlçe,Karacakaya Mahallesi,0.1742,1,Low,0.9611,0.0195,0.0037,0.0004,0.0152,551.63,34956,2687
+100680,Ankara,Bilinmeyen İlçe,Haydar Mahallesi,0.2127,1,Low,0.9472,0.0463,0.0010,0.0019,0.0036,445.0,19913,1142
+100681,Ankara,Bilinmeyen İlçe,Elecik Mahallesi,0.1784,1,Low,0.9051,0.0825,0.0024,0.0009,0.0091,443.34,1892,124
+100682,Ankara,Bilinmeyen İlçe,Çınar Mahallesi,0.1785,1,Low,0.9034,0.0755,0.0150,0.0022,0.0039,472.36,6111,742
+100683,Ankara,Bilinmeyen İlçe,Balıkhisar Mahallesi,0.1598,1,Low,0.9990,0.0006,0.0002,0.0000,0.0002,478.92,15166,1327
+100684,Ankara,Bilinmeyen İlçe,Güzelhisar Mahallesi,0.1740,1,Low,0.8232,0.1494,0.0066,0.0030,0.0178,464.76,8319,704
+100685,Ankara,Bilinmeyen İlçe,Saracalar Mahallesi,0.2069,1,Low,0.9000,0.0816,0.0008,0.0070,0.0106,478.76,10896,916
+100686,Ankara,Bilinmeyen İlçe,Peçenek Mahallesi,0.2587,2,Medium,0.0401,0.7512,0.0905,0.0083,0.1098,381.83,27050,1835
+100687,Ankara,Bilinmeyen İlçe,Altınova Mahallesi,0.1900,1,Low,0.9049,0.0574,0.0182,0.0001,0.0194,446.47,40517,3868
+100688,Ankara,Bilinmeyen İlçe,Yıldırım Beyazıt Mahallesi,0.2579,2,Medium,0.0226,0.8890,0.0513,0.0100,0.0272,433.73,13940,997
+100689,Ankara,Bilinmeyen İlçe,Yeni Karaköy Mahallesi,0.2013,1,Low,0.8831,0.0758,0.0074,0.0138,0.0200,518.92,38854,3235
+100690,Ankara,Bilinmeyen İlçe,Saray Osmangazi Mahallesi,0.1604,1,Low,0.8294,0.1045,0.0177,0.0002,0.0482,505.02,13519,1210
+100691,Ankara,Bilinmeyen İlçe,Saray Fatih Mahallesi,0.2169,1,Low,0.8989,0.0532,0.0096,0.0092,0.0290,397.02,30469,2518
+100692,Ankara,Bilinmeyen İlçe,Saray Cumhuriyet Mahallesi,0.2054,1,Low,0.8415,0.1348,0.0188,0.0017,0.0033,436.52,27376,2313
+100693,Ankara,Bilinmeyen İlçe,Saray Gümüşoluk Mahallesi,0.1450,1,Very Low,0.8850,0.0670,0.0281,0.0047,0.0152,470.99,111,10
+100694,Ankara,Bilinmeyen İlçe,Kösrelikkızığı Mahallesi,0.2310,1,Low,0.9505,0.0466,0.0015,0.0001,0.0013,409.86,23762,1885
+100695,Ankara,Bilinmeyen İlçe,Abadan Mahallesi,0.1361,1,Very Low,0.9963,0.0035,0.0000,0.0001,0.0001,491.96,108,10
+100696,Ankara,Bilinmeyen İlçe,Karşıyaka Mahallesi,0.1626,1,Low,0.8737,0.0705,0.0117,0.0025,0.0416,440.4,8607,526
+100697,Ankara,Bilinmeyen İlçe,Sirkeli Yeşilova Mahallesi,0.2148,1,Low,0.8369,0.0883,0.0372,0.0070,0.0306,513.21,20896,1830
+100698,Ankara,Bilinmeyen İlçe,Tekirler Mahallesi,0.1927,1,Low,0.8795,0.0705,0.0127,0.0049,0.0323,412.21,12259,694
+100699,Ankara,Bilinmeyen İlçe,Nebioğlu Mahallesi,0.2143,1,Low,0.8967,0.0790,0.0147,0.0020,0.0076,397.33,105,10
+100700,Ankara,Bilinmeyen İlçe,Yuva Mahallesi,0.4258,3,High,0.0023,0.0679,0.8531,0.0267,0.0500,403.69,15443,1191
+100701,Ankara,Bilinmeyen İlçe,Yusufuşağı Mahallesi,0.2862,2,Medium,0.1401,0.7564,0.0614,0.0190,0.0232,293.3,2910,24
+100702,Ankara,Bilinmeyen İlçe,İnebeyli Mahallesi,0.1248,1,Very Low,0.8182,0.1030,0.0090,0.0055,0.0644,523.86,5819,392
+100703,Ankara,Bilinmeyen İlçe,Demirayak Mahallesi,0.1333,1,Very Low,0.9862,0.0111,0.0012,0.0000,0.0015,573.0,106,94
+100704,Ankara,Bilinmeyen İlçe,Altınbaşak Mahallesi,0.3217,2,Medium,0.0175,0.9580,0.0100,0.0043,0.0102,353.86,24847,2292
+100705,Ankara,Bilinmeyen İlçe,Sirkeli Yeşilyurt Mahallesi,0.1401,1,Very Low,0.8807,0.1111,0.0055,0.0001,0.0026,427.18,5629,232
+100706,Ankara,Bilinmeyen İlçe,Balcılar Mahallesi,0.1304,1,Very Low,0.8143,0.0962,0.0408,0.0028,0.0459,485.37,4120,520
+100707,Ankara,Bilinmeyen İlçe,Pazar Başören Mahallesi,0.2333,1,Low,0.9227,0.0416,0.0099,0.0050,0.0210,419.74,24926,2161
+100708,Ankara,Bilinmeyen İlçe,Danişment Mahallesi,0.1930,1,Low,0.8046,0.1510,0.0334,0.0049,0.0060,452.66,32128,3037
+100709,Ankara,Bilinmeyen İlçe,Yenice Mahallesi,0.1551,1,Low,0.9649,0.0316,0.0002,0.0009,0.0024,486.72,8307,573
+100710,Ankara,Bilinmeyen İlçe,Uzunöz Mahallesi,0.2477,1,Low,0.8422,0.0852,0.0576,0.0004,0.0145,447.17,26918,2329
+100711,Ankara,Bilinmeyen İlçe,Yıldırımyağlıca Mahallesi,0.1501,1,Low,0.8212,0.1321,0.0194,0.0091,0.0182,492.29,109,10
+100712,Ankara,Bilinmeyen İlçe,Yıldırımdemirciler Mahallesi,0.1871,1,Low,0.8691,0.0666,0.0359,0.0043,0.0242,476.85,5216,629
+100713,Ankara,Bilinmeyen İlçe,Bayır Mahallesi,0.2523,2,Medium,0.0209,0.8293,0.1111,0.0121,0.0265,438.16,26572,2128
+100714,Ankara,Bilinmeyen İlçe,Çukurca Mahallesi,0.1769,1,Low,0.8482,0.1117,0.0206,0.0061,0.0134,455.01,2420,110
+100715,Ankara,Bilinmeyen İlçe,Fasıl Mahallesi,0.1858,1,Low,0.9141,0.0811,0.0028,0.0004,0.0016,446.74,27464,1964
+100716,Ankara,Bilinmeyen İlçe,Harmancık Mahallesi,0.2608,2,Medium,0.0044,0.9586,0.0047,0.0088,0.0235,412.86,32896,2303
+100717,Ankara,Bilinmeyen İlçe,Kömürcü Mahallesi,0.3287,2,Medium,0.0210,0.7336,0.1619,0.0282,0.0554,368.9,21317,1610
+100718,Ankara,Bilinmeyen İlçe,Yakupabdal Mahallesi,0.2196,1,Low,0.8568,0.1096,0.0264,0.0023,0.0050,503.28,28645,2119
+100719,Ankara,Bilinmeyen İlçe,Eğerlibaşköy Mahallesi,0.1612,1,Low,0.8082,0.1471,0.0107,0.0038,0.0302,429.87,106,10
+100720,Ankara,Bilinmeyen İlçe,Aksak Mahallesi,0.1747,1,Low,0.9303,0.0656,0.0022,0.0005,0.0014,516.94,9467,699
+100721,Ankara,Bilinmeyen İlçe,Eğerlidereköy Mahallesi,0.1292,1,Very Low,0.9335,0.0530,0.0072,0.0019,0.0045,415.38,111,365
+100722,Ankara,Bilinmeyen İlçe,Yayla Mahallesi,0.3633,2,High,0.0276,0.7088,0.0570,0.0039,0.2028,410.95,20114,1771
+100723,Ankara,Bilinmeyen İlçe,Çavuşlu Mahallesi,0.1434,1,Very Low,0.8444,0.1398,0.0053,0.0046,0.0059,489.11,7995,458
+100724,Ankara,Bilinmeyen İlçe,Karahasanlı Mahallesi,0.1631,1,Low,0.9892,0.0065,0.0028,0.0008,0.0009,511.06,107,10
+100725,Ankara,Bilinmeyen İlçe,Akarlar Mahallesi,0.2450,1,Low,0.8998,0.0646,0.0202,0.0005,0.0148,329.42,17975,1568
+100726,Ankara,Bilinmeyen İlçe,Evciler Mahallesi,0.2836,2,Medium,0.0258,0.9433,0.0202,0.0010,0.0097,410.39,14484,1332
+100727,Ankara,Bilinmeyen İlçe,Kayabükü Mahallesi,0.1868,1,Low,0.9551,0.0399,0.0012,0.0009,0.0029,427.09,5250,29
+100728,Ankara,Bilinmeyen İlçe,Avcıova Mahallesi,0.1606,1,Low,0.8315,0.1526,0.0038,0.0024,0.0097,470.16,20831,1389
+100729,Ankara,Bilinmeyen İlçe,Yukarıulucak Mahallesi,0.1550,1,Low,0.9518,0.0439,0.0011,0.0014,0.0018,417.34,10998,1213
+100730,Ankara,Bilinmeyen İlçe,Yağcıhüseyin Mahallesi,0.1360,1,Very Low,0.9179,0.0676,0.0031,0.0050,0.0064,456.12,9738,777
+100731,Ankara,Bilinmeyen İlçe,Belpınar Mahallesi,0.1853,1,Low,0.8452,0.1186,0.0130,0.0097,0.0135,433.49,11654,989
+100732,Ankara,Bilinmeyen İlçe,Salın Mahallesi,0.1511,1,Low,0.8372,0.1041,0.0392,0.0034,0.0160,492.41,106,10
+100733,Ankara,Bilinmeyen İlçe,Beşkonak Mahallesi,0.1733,1,Low,0.8307,0.1333,0.0054,0.0135,0.0170,452.46,5585,425
+100734,Ankara,Bilinmeyen İlçe,Eğerlikozören Mahallesi,0.1758,1,Low,0.9339,0.0446,0.0154,0.0029,0.0033,527.5,13967,1251
+100735,Ankara,Bilinmeyen İlçe,Eğerlialören Mahallesi,0.2702,2,Medium,0.0792,0.8422,0.0288,0.0145,0.0354,376.44,107,148
+100736,Ankara,Bilinmeyen İlçe,Yukarıçanlı Mahallesi,0.1701,1,Low,0.8625,0.0877,0.0336,0.0031,0.0131,454.57,1628,71
+100737,Ankara,Bilinmeyen İlçe,Yukarıkese Mahallesi,0.2240,1,Low,0.8793,0.0800,0.0159,0.0079,0.0169,428.02,20223,1424
+100738,Ankara,Bilinmeyen İlçe,Kasımlar Mahallesi,0.2148,1,Low,0.8784,0.0847,0.0014,0.0122,0.0233,389.13,5587,474
+100739,Ankara,Bilinmeyen İlçe,Hıdırlar Mahallesi,0.2274,1,Low,0.9829,0.0152,0.0014,0.0002,0.0004,436.47,15985,1704
+100740,Ankara,Bilinmeyen İlçe,İğceler Mahallesi,0.2195,1,Low,0.8085,0.1267,0.0140,0.0124,0.0384,426.65,23888,2109
+100741,Ankara,Bilinmeyen İlçe,Süleler Mahallesi,0.2260,1,Low,0.9420,0.0448,0.0019,0.0010,0.0103,464.72,33346,2804
+100742,Ankara,Bilinmeyen İlçe,Berçinçatak Mahallesi,0.2278,1,Low,0.8882,0.0574,0.0259,0.0101,0.0183,328.64,14169,1378
+100743,Ankara,Bilinmeyen İlçe,Üyücek Mahallesi,0.2290,1,Low,0.9396,0.0429,0.0072,0.0038,0.0065,419.65,23438,1734
+100744,Ankara,Bilinmeyen İlçe,Gebeler Mahallesi,0.1428,1,Very Low,0.9346,0.0410,0.0006,0.0000,0.0237,585.9,5973,411
+100745,Ankara,Bilinmeyen İlçe,Berçinyayalar Mahallesi,0.1903,1,Low,0.9906,0.0058,0.0004,0.0005,0.0027,459.37,6552,658
+100746,Ankara,Bilinmeyen İlçe,Şahinler,0.1921,1,Low,0.8966,0.0751,0.0081,0.0096,0.0107,486.66,20462,1771
+100747,Ankara,Bilinmeyen İlçe,Avdan Mahallesi,0.1555,1,Low,0.9422,0.0411,0.0131,0.0006,0.0030,452.1,108,10
+100748,Ankara,Bilinmeyen İlçe,Gökbel Mahallesi,0.1800,1,Low,0.9504,0.0433,0.0035,0.0011,0.0018,445.92,19735,1430
+100749,Ankara,Bilinmeyen İlçe,Dereneci Mahallesi,0.1409,1,Very Low,0.9698,0.0269,0.0016,0.0001,0.0017,468.02,2310,10
+100750,Ankara,Bilinmeyen İlçe,Kavaközü Mahallesi,0.1641,1,Low,0.8526,0.1194,0.0137,0.0026,0.0117,539.63,24579,2061
+100751,Ankara,Bilinmeyen İlçe,Karaağaç Mahallesi,0.1719,1,Low,0.9748,0.0132,0.0027,0.0034,0.0060,457.27,106,227
+100752,Ankara,Bilinmeyen İlçe,Bulak Mahallesi,0.1536,1,Low,0.9956,0.0025,0.0009,0.0004,0.0006,408.39,110,351
+100753,Ankara,Bilinmeyen İlçe,Ayvacık Mahallesi,0.2301,1,Low,0.8171,0.1455,0.0121,0.0038,0.0214,400.41,25525,2110
+100754,Ankara,Bilinmeyen İlçe,Güvem Mahallesi,0.1685,1,Low,0.8518,0.1308,0.0134,0.0005,0.0035,550.91,22638,1762
+100755,Ankara,Bilinmeyen İlçe,Semeler Mahallesi,0.3044,2,Medium,0.0364,0.8843,0.0280,0.0175,0.0338,392.95,35202,2793
+100756,Ankara,Bilinmeyen İlçe,Saray Mahallesi,0.1976,1,Low,0.8688,0.0788,0.0063,0.0032,0.0429,455.52,23050,1739
+100757,Ankara,Bilinmeyen İlçe,Çukurören Mahallesi,0.1428,1,Very Low,0.8332,0.0920,0.0097,0.0304,0.0347,418.17,2667,149
+100758,Ankara,Bilinmeyen İlçe,Oğlakçı Mahallesi,0.2391,1,Low,0.8592,0.0996,0.0177,0.0042,0.0192,389.25,23377,2014
+100759,Ankara,Bilinmeyen İlçe,Yanık Özbekler Mahallesi,0.1796,1,Low,0.8643,0.1285,0.0006,0.0024,0.0042,504.42,110,10
+100760,Ankara,Bilinmeyen İlçe,Kızılcaören Mahallesi,0.1450,1,Very Low,0.9946,0.0032,0.0006,0.0001,0.0015,404.15,8602,747
+100761,Ankara,Bilinmeyen İlçe,Ciğirler Mahallesi,0.2714,2,Medium,0.1102,0.8088,0.0573,0.0101,0.0137,359.47,4696,217
+100762,Ankara,Bilinmeyen İlçe,Gazi Mustafa Kemalpaşa Mahallesi,0.1815,1,Low,0.9689,0.0271,0.0020,0.0004,0.0017,427.67,15935,1175
+100763,Ankara,Bilinmeyen İlçe,Yenice Mahallesi,0.1575,1,Low,0.8272,0.1515,0.0116,0.0031,0.0066,585.03,31200,2701
+100764,Ankara,Bilinmeyen İlçe,Akçay Mahallesi,0.1837,1,Low,0.8203,0.1649,0.0040,0.0001,0.0107,495.3,10855,1241
+100765,Ankara,Bilinmeyen İlçe,Karşıyaka Mahallesi,0.1963,1,Low,0.8538,0.0797,0.0257,0.0114,0.0295,578.09,11207,1023
+100766,Ankara,Bilinmeyen İlçe,Karacaören Mahallesi,0.2143,1,Low,0.9142,0.0659,0.0144,0.0010,0.0046,437.46,22430,1478
+100767,Ankara,Bilinmeyen İlçe,Sazak Mahallesi,0.2333,1,Low,0.8518,0.1303,0.0119,0.0002,0.0057,381.99,111,10
+100768,Ankara,Bilinmeyen İlçe,Oltan Mahallesi,0.1516,1,Low,0.8026,0.1706,0.0172,0.0034,0.0062,456.51,107,10
+100769,Ankara,Bilinmeyen İlçe,Yeni Mahallesi,0.2858,2,Medium,0.0532,0.8165,0.0153,0.0075,0.1074,304.07,16460,1342
+100770,Ankara,Bilinmeyen İlçe,Seyran Mahallesi,0.1983,1,Low,0.9739,0.0222,0.0017,0.0002,0.0020,494.08,20302,2014
+100771,Ankara,Bilinmeyen İlçe,Kayabaşı Mahallesi,0.1745,1,Low,0.8679,0.0886,0.0134,0.0039,0.0262,519.84,421,10
+100772,Ankara,Bilinmeyen İlçe,Medrese Mahallesi,0.1061,1,Very Low,0.8592,0.1194,0.0044,0.0038,0.0131,520.77,4305,370
+100773,Ankara,Bilinmeyen İlçe,Çaldağ Mahallesi,0.2387,1,Low,0.8483,0.1027,0.0153,0.0125,0.0212,329.29,31456,2550
+100774,Ankara,Bilinmeyen İlçe,Kargalı Mahallesi,0.1420,1,Very Low,0.9181,0.0510,0.0171,0.0061,0.0077,475.13,16131,927
+100775,Ankara,Bilinmeyen İlçe,Eski Polatlı Mahallesi,0.2287,1,Low,0.8218,0.1021,0.0453,0.0054,0.0255,455.65,23662,2237
+100776,Ankara,Bilinmeyen İlçe,Gündoğan Mahallesi,0.1494,1,Very Low,0.9863,0.0091,0.0022,0.0004,0.0019,438.64,901,81
+100777,Ankara,Bilinmeyen İlçe,Türkkarsak Mahallesi,0.1557,1,Low,0.9269,0.0473,0.0116,0.0022,0.0121,458.12,106,237
+100778,Ankara,Bilinmeyen İlçe,Cumhuriyet Mahallesi,0.2640,2,Medium,0.0578,0.7846,0.0277,0.0237,0.1062,311.42,13916,1053
+100779,Ankara,Bilinmeyen İlçe,Çakırlar Mahallesi,0.2612,2,Medium,0.0817,0.8253,0.0031,0.0129,0.0770,421.98,23000,1877
+100780,Ankara,Bilinmeyen İlçe,Ahi Evran OSB Mahallesi,0.2123,1,Low,0.8384,0.1228,0.0126,0.0057,0.0204,398.16,23919,1980
+100781,Ankara,Bilinmeyen İlçe,Yaylabağ Mahallesi,0.2553,2,Medium,0.0537,0.8671,0.0503,0.0029,0.0261,393.68,11459,668
+100782,Ankara,Bilinmeyen İlçe,Eymir Mahallesi,0.1445,1,Very Low,0.9450,0.0411,0.0001,0.0041,0.0096,508.33,21046,1545
+100783,Ankara,Bilinmeyen İlçe,Örencik Mahallesi,0.1753,1,Low,0.8166,0.0970,0.0153,0.0350,0.0361,490.61,20610,1656
+100784,Ankara,Bilinmeyen İlçe,Yurtbeyi Mahallesi,0.1342,1,Very Low,0.8522,0.0906,0.0200,0.0128,0.0245,474.51,1306,59
+100785,Ankara,Bilinmeyen İlçe,Seğmenler Mahallesi,0.1723,1,Low,0.9909,0.0072,0.0010,0.0004,0.0006,434.09,109,30
