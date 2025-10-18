@@ -3,14 +3,13 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { useMapState } from '@/stores/useMapState';
 import { t } from '@/lib/i18n';
 
-interface MetricCardsProps {
-  totalDistricts: number;
-  averageRisk: number;
-  highRiskCount: number;
-}
-
-export function MetricCards({ totalDistricts, averageRisk, highRiskCount }: MetricCardsProps) {
+export function MetricCards() {
   const { language } = useMapState();
+
+  // Demo data - replace with real calculations when GeoJSON is loaded
+  const totalDistricts = 2;
+  const averageRisk = 0.30;
+  const highRiskCount = 0;
 
   const cards = [
     {
