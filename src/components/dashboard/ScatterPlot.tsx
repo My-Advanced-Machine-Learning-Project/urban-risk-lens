@@ -11,6 +11,7 @@ import {
 import { useMapState } from '@/stores/useMapState';
 import { t } from '@/lib/i18n';
 import { getRiskClass, getRiskColor } from '@/lib/riskColors';
+import { toNum, calculateDomain } from '@/lib/scatterUtils';
 
 const SCATTER_MODES = [
   { value: 'vs30_risk', labelKey: 'scatterMode1', xLabel: 'VS30 (m/s)', yLabel: 'Risk Skoru' },
@@ -133,45 +134,41 @@ export function ScatterPlot() {
       
       let x = 0, y = 0, size = 1000;
       
-      // Validate data exists and is not NaN
-      const hasValidData = (val: any) => val != null && !isNaN(Number(val)) && Number(val) > 0;
-      
+      // Convert to proper numbers using utility
       switch (scatterMode) {
         case 'vs30_risk':
-          if (!hasValidData(mah.vs30_mean) || !hasValidData(mah.risk_score)) return;
-          x = Number(mah.vs30_mean);
-          y = Number(mah.risk_score);
-          size = Number(mah.toplam_bina) || 1000;
+          x = toNum(mah.vs30_mean);
+          y = toNum(mah.risk_score);
+          size = toNum(mah.toplam_bina) || 1000;
           break;
           
         case 'population_risk':
-          if (!hasValidData(mah.toplam_nufus) || !hasValidData(mah.risk_score)) return;
-          x = Number(mah.toplam_nufus);
-          y = Number(mah.risk_score);
-          size = Number(mah.toplam_bina) || 1000;
+          x = toNum(mah.toplam_nufus);
+          y = toNum(mah.risk_score);
+          size = toNum(mah.toplam_bina) || 1000;
           break;
           
         case 'buildings_risk':
-          if (!hasValidData(mah.toplam_bina) || !hasValidData(mah.risk_score)) return;
-          x = Number(mah.toplam_bina);
-          y = Number(mah.risk_score);
-          size = Number(mah.toplam_nufus) || 5000;
+          x = toNum(mah.toplam_bina);
+          y = toNum(mah.risk_score);
+          size = toNum(mah.toplam_nufus) || 5000;
           break;
           
         case 'vs30_buildings':
-          if (!hasValidData(mah.vs30_mean) || !hasValidData(mah.toplam_bina)) return;
-          x = Number(mah.vs30_mean);
-          y = Number(mah.toplam_bina);
-          size = (Number(mah.risk_score) || 0.2) * 5000;
+          x = toNum(mah.vs30_mean);
+          y = toNum(mah.toplam_bina);
+          size = (toNum(mah.risk_score) || 0.2) * 5000;
           break;
           
         case 'risk_class':
-          if (!hasValidData(mah.risk_score) || !hasValidData(mah.risk_class_5)) return;
-          x = Number(mah.risk_score);
-          y = Number(mah.risk_class_5);
-          size = Number(mah.toplam_bina) || 1000;
+          x = toNum(mah.risk_score);
+          y = toNum(mah.risk_class_5);
+          size = toNum(mah.toplam_bina) || 1000;
           break;
       }
+      
+      // Skip if values are invalid
+      if (!Number.isFinite(x) || !Number.isFinite(y)) return;
       
       data.push({
         id: id.toString(),
@@ -179,7 +176,7 @@ export function ScatterPlot() {
         y,
         size,
         label: mah.mahalle_adi || 'N/A',
-        riskClass: getRiskClass(mah.risk_score || 0),
+        riskClass: getRiskClass(toNum(mah.risk_score) || 0),
         isSelected: selectedMah.has(id.toString())
       });
     });
@@ -192,7 +189,7 @@ export function ScatterPlot() {
     return data;
   }, [mahData, selectedMah, scatterMode]);
 
-  // Calculate scales based on mode
+  // Calculate scales based on mode with proper domain
   const { xMin, xMax, yMin, yMax } = useMemo(() => {
     if (scatterMode === 'city_comparison') {
       return { xMin: 0, xMax: 2, yMin: 0, yMax: 0.6 };
@@ -202,22 +199,15 @@ export function ScatterPlot() {
       return { xMin: 0, xMax: 100, yMin: 0, yMax: 100 };
     }
     
-    const xValues = scatterData.map(d => d.x);
-    const yValues = scatterData.map(d => d.y);
+    const xValues = scatterData.map(d => d.x).filter(v => Number.isFinite(v));
+    const yValues = scatterData.map(d => d.y).filter(v => Number.isFinite(v));
     
-    let xMin = Math.min(...xValues);
-    let xMax = Math.max(...xValues);
-    let yMin = Math.min(...yValues);
-    let yMax = Math.max(...yValues);
+    if (xValues.length === 0 || yValues.length === 0) {
+      return { xMin: 0, xMax: 100, yMin: 0, yMax: 100 };
+    }
     
-    // Add padding
-    const xPadding = (xMax - xMin) * 0.1;
-    const yPadding = (yMax - yMin) * 0.1;
-    
-    xMin -= xPadding;
-    xMax += xPadding;
-    yMin = Math.max(0, yMin - yPadding);
-    yMax += yPadding;
+    const [xMin, xMax] = calculateDomain(xValues, 0.1);
+    const [yMin, yMax] = calculateDomain(yValues, 0.1);
     
     return { xMin, xMax, yMin, yMax };
   }, [scatterData, scatterMode]);
@@ -244,26 +234,36 @@ export function ScatterPlot() {
     return 3 + ((Math.min(value, max) - min) / (max - min)) * 10;
   };
 
-  // Generate ticks
+  // Generate ticks with better distribution
   const xTicks = useMemo(() => {
     if (scatterMode === 'city_comparison') return [];
     const range = xMax - xMin;
+    if (range === 0) return [xMin];
+    
     const step = Math.pow(10, Math.floor(Math.log10(range / 5)));
+    const niceStep = step * Math.ceil((range / 5) / step);
     const ticks = [];
-    for (let i = Math.ceil(xMin / step) * step; i <= xMax; i += step) {
-      ticks.push(i);
+    
+    for (let i = Math.ceil(xMin / niceStep) * niceStep; i <= xMax; i += niceStep) {
+      if (ticks.length < 8) ticks.push(i);
     }
-    return ticks.slice(0, 7);
+    
+    return ticks.length > 0 ? ticks : [xMin, (xMin + xMax) / 2, xMax];
   }, [xMin, xMax, scatterMode]);
 
   const yTicks = useMemo(() => {
     const range = yMax - yMin;
+    if (range === 0) return [yMin];
+    
     const step = Math.pow(10, Math.floor(Math.log10(range / 5)));
+    const niceStep = step * Math.ceil((range / 5) / step);
     const ticks = [];
-    for (let i = Math.ceil(yMin / step) * step; i <= yMax; i += step) {
-      ticks.push(i);
+    
+    for (let i = Math.ceil(yMin / niceStep) * niceStep; i <= yMax; i += niceStep) {
+      if (ticks.length < 8) ticks.push(i);
     }
-    return ticks.slice(0, 7);
+    
+    return ticks.length > 0 ? ticks : [yMin, (yMin + yMax) / 2, yMax];
   }, [yMin, yMax]);
 
   const handlePointClick = (point: { id: string; label: string; x: number; y: number }, event: React.MouseEvent<SVGCircleElement>) => {
