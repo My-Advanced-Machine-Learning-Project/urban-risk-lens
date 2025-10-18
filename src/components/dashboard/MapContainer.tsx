@@ -260,6 +260,12 @@ export function MapContainer() {
     setAllFeatures(allNormalizedFeatures);
     setCityIndex(combinedCityIndex);
     
+    console.info('[MapContainer] ✅ City index updated:', {
+      cities: [...combinedCityIndex.keys()],
+      totalDistricts: [...combinedCityIndex.values()].reduce((sum, c) => sum + c.districts.size, 0),
+      totalNeighborhoods: allNormalizedFeatures.length
+    });
+    
     addLayers();
     fitToSelectedCities(cities);
     
@@ -282,8 +288,8 @@ export function MapContainer() {
       console.info(`[MapContainer] Processing ${cityName}: ${cityData.features.length} features`);
       
       cityData.features.forEach((f: any) => {
-        // Ensure stable feature ID for feature-state support
-        const fid = String(f.properties?.mah_id ?? f.properties?.fid ?? '');
+        // IDs are already prefixed with city name in dataLoader (e.g., "istanbul-12345")
+        const fid = String(f.properties?.mah_id ?? f.properties?.fid ?? f.id ?? '');
         if (fid) {
           f.id = fid;
           mahDataMap.set(fid, f.properties);

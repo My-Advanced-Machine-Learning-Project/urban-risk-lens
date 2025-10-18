@@ -214,18 +214,36 @@ export async function loadCityData(cityName: string, year: number = 2025): Promi
         props.toplam_bina = getNum((matchingRow as any).toplam_bina) ?? props.toplam_bina ?? 0;
         props.vs30_mean = getNum((matchingRow as any).vs30_mean) ?? getNum((matchingRow as any).vs30) ?? props.vs30_mean ?? -1;
         
-        // District/city names with aliases
-        if ((matchingRow as any).ilce_adi || (matchingRow as any).ilce || (matchingRow as any).district) {
-          props.ilce_adi = (matchingRow as any).ilce_adi ?? (matchingRow as any).ilce ?? (matchingRow as any).district;
+        // City/district names with all variant field names
+        const ilceValue = (matchingRow as any).ilce_adi ?? (matchingRow as any).ilce ?? (matchingRow as any).district;
+        if (ilceValue) {
+          props.ilce_adi = ilceValue;
+          props.ilce = ilceValue;  // Duplicate for compatibility
+          props.district = ilceValue;
         }
-        if ((matchingRow as any).il_adi || (matchingRow as any).sehir || (matchingRow as any).city) {
-          props.il_adi = (matchingRow as any).il_adi ?? (matchingRow as any).sehir ?? (matchingRow as any).city;
+        
+        const ilValue = (matchingRow as any).il_adi ?? (matchingRow as any).sehir ?? (matchingRow as any).city ?? normalizedKey;
+        if (ilValue) {
+          props.il_adi = ilValue;
+          props.il = ilValue;  // Duplicate for compatibility
+          props.city = ilValue;
         }
       }
       
+      // Ensure city/district are set even if no CSV match (use normalized city name as fallback)
+      if (!props.il_adi && !props.il && !props.city) {
+        props.il_adi = normalizedKey;
+        props.il = normalizedKey;
+        props.city = normalizedKey;
+      }
+      
       // Ensure stable feature ID for feature-state support
+      // Prefix with city to avoid ID collisions between cities
       const fid = String(props.mah_id ?? props.fid ?? feature.id ?? '');
-      if (fid) feature.id = fid;
+      if (fid) {
+        feature.id = `${normalizedKey.toLowerCase()}-${fid}`;
+        props.mah_id = feature.id;  // Update property to match
+      }
     });
     
     // Verify join and data quality

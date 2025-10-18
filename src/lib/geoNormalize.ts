@@ -45,10 +45,10 @@ export interface NormalizedFeature {
 export function normalizeFeature(feature: any): NormalizedFeature {
   const p = feature.properties ?? {};
   
-  // Extract city, district, name
-  const cityRaw = get(p, ['city', 'il', 'province', 'sehir', 'şehir']);
-  const districtRaw = get(p, ['district', 'ilce', 'ilce_adi', 'county']);
-  const nameRaw = get(p, ['name', 'mahalle', 'mahalle_adi', 'neighborhood']);
+  // Extract city, district, name - include all possible field name variants
+  const cityRaw = get(p, ['city', 'il_adi', 'il', 'province', 'sehir', 'şehir']);
+  const districtRaw = get(p, ['district', 'ilce_adi', 'ilce', 'county']);
+  const nameRaw = get(p, ['name', 'mahalle_adi', 'mahalle', 'neighborhood']);
   
   const city = String(cityRaw).trim();
   const district = String(districtRaw).trim();
