@@ -194,6 +194,26 @@ export function MapContainer() {
     loadInitialData();
   }, [year]);
 
+  // Helper: build features for current year with coalesced year-specific columns
+  function buildFeaturesForYear(dataMap: Map<string, CityData>) {
+    const all: any[] = [];
+    dataMap.forEach((cd) => {
+      cd.features.forEach((f: any) => {
+        const pr = f.properties || {};
+        // Coalesce year-specific columns with fallback to common column names
+        pr.risk_score   = pr[`risk_score_${year}`]   != null ? +pr[`risk_score_${year}`]   : (pr.risk_score   != null ? +pr.risk_score   : null);
+        pr.vs30_mean    = pr[`vs30_mean_${year}`]    != null ? +pr[`vs30_mean_${year}`]    : (pr.vs30_mean    != null ? +pr.vs30_mean    : (pr.vs30 != null ? +pr.vs30 : null));
+        pr.toplam_nufus = pr[`toplam_nufus_${year}`] != null ? +pr[`toplam_nufus_${year}`] : (pr.toplam_nufus != null ? +pr.toplam_nufus : null);
+        pr.toplam_bina  = pr[`toplam_bina_${year}`]  != null ? +pr[`toplam_bina_${year}`]  : (pr.toplam_bina  != null ? +pr.toplam_bina  : null);
+
+        const fid = String(pr.mah_id ?? pr.fid ?? f.id ?? '');
+        if (fid) f.id = fid;
+        all.push(f);
+      });
+    });
+    return all;
+  }
+
   // Load initial data - with caching for instant year transitions
   async function loadInitialData() {
     if (!map.current) return;
@@ -217,6 +237,11 @@ export function MapContainer() {
     ).join(', ');
     console.info(`[MapContainer] ✓ Data loaded for year ${y}:`, citySizes);
     citiesData.current = dataMap;
+    
+    // Build year-specific features with coalesced values
+    const allFeatures = buildFeaturesForYear(dataMap);
+    featuresRef.current = allFeatures as GeoJSON.Feature[];
+    currentGeoJSON.current = { type: 'FeatureCollection', features: allFeatures };
   
     // Build mahData for sidebar and collect normalized data
     const mahDataMap = new Map();
@@ -272,8 +297,8 @@ export function MapContainer() {
     });
     
     // 3) Update map with new data (setData for instant transition)
-    const src = map.current.getSource('mahalle') as maplibregl.GeoJSONSource;
-    if (src && currentGeoJSON.current.features.length > 0) {
+    const src = map.current.getSource('mahalle') as maplibregl.GeoJSONSource | undefined;
+    if (src) {
       // Source exists - update data without removing layers
       src.setData(currentGeoJSON.current as any);
       // Update choropleth colors for the new year's data
@@ -284,7 +309,8 @@ export function MapContainer() {
       }
       console.info('[MapContainer] ✓ Map data updated via setData()');
     } else {
-      // First time - add layers
+      // First time - add source and layers
+      map.current.addSource('mahalle', { type: 'geojson', data: currentGeoJSON.current as any });
       addLayers();
       fitToSelectedCities(cities);
     }
@@ -440,18 +466,20 @@ export function MapContainer() {
     // YIL-BAĞIMLI: her zaman güncel store'dan oku
     const p = mahData.get(mahId) ?? props0;
     
+    // Year-aware value extraction with fallback
+    const riskScore = Number(p[`risk_score_${year}`] ?? p.risk_score) || 0;
+    const population = Number(p[`toplam_nufus_${year}`] ?? p.toplam_nufus) || 0;
+    const buildings = Number(p[`toplam_bina_${year}`] ?? p.toplam_bina) || 0;
+    
     // Debug: log what data is actually available
     console.log('[Popup Debug] Using data from store:', {
       mahalle: p.mahalle_adi,
       id: mahId,
-      risk_score: p.risk_score,
-      population: p.toplam_nufus,
-      buildings: p.toplam_bina,
-      vs30: p.vs30_mean,
+      risk_score: riskScore,
+      population,
+      buildings,
       year
     });
-    
-    const riskScore = Number(p.risk_score) || 0;
     const riskClass = getRiskClass(riskScore);
     const riskColor = getRiskColor(riskClass);
     const riskLabel = t(riskClass as any, language);
@@ -488,11 +516,11 @@ export function MapContainer() {
           </div>
           <div style="display:flex;justify-content:space-between;margin:4px 0;">
             <span style="color:${labelColor};">${t('population', language)}</span>
-            <span style="font-weight:500;color:${valueColor};">${(p.toplam_nufus ?? 0).toLocaleString()}</span>
+            <span style="font-weight:500;color:${valueColor};">${population.toLocaleString()}</span>
           </div>
           <div style="display:flex;justify-content:space-between;margin:4px 0;">
             <span style="color:${labelColor};">${t('buildings', language)}</span>
-            <span style="font-weight:500;color:${valueColor};">${(p.toplam_bina ?? 0).toLocaleString()}</span>
+            <span style="font-weight:500;color:${valueColor};">${buildings.toLocaleString()}</span>
           </div>
         </div>
 
@@ -592,7 +620,11 @@ export function MapContainer() {
         setTimeout(() => {
           const mah = mahData.get(mahId.toString());
           if (mah && map.current) {
-            const riskScore = mah.risk_score || 0;
+            // Year-aware value extraction
+            const riskScore = Number(mah[`risk_score_${year}`] ?? mah.risk_score) || 0;
+            const population = Number(mah[`toplam_nufus_${year}`] ?? mah.toplam_nufus) || 0;
+            const buildings = Number(mah[`toplam_bina_${year}`] ?? mah.toplam_bina) || 0;
+            
             const riskClass = getRiskClass(riskScore);
             const riskColor = getRiskColor(riskClass);
             const riskLabel = t(riskClass as any, language);
@@ -629,11 +661,11 @@ export function MapContainer() {
                   </div>
                   <div style="display:flex;justify-content:space-between;margin:4px 0;">
                     <span style="color:${labelColor};">${t('population', language)}</span>
-                    <span style="font-weight:500;color:${valueColor};">${(mah.toplam_nufus || 0).toLocaleString()}</span>
+                    <span style="font-weight:500;color:${valueColor};">${population.toLocaleString()}</span>
                   </div>
                   <div style="display:flex;justify-content:space-between;margin:4px 0;">
                     <span style="color:${labelColor};">${t('buildings', language)}</span>
-                    <span style="font-weight:500;color:${valueColor};">${(mah.toplam_bina || 0).toLocaleString()}</span>
+                    <span style="font-weight:500;color:${valueColor};">${buildings.toLocaleString()}</span>
                   </div>
                 </div>
 
