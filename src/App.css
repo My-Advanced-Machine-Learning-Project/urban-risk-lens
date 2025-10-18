@@ -40,3 +40,47 @@
 .read-the-docs {
   color: #888;
 }
+
+/* ---- Map Legend (collapsible) ---- */
+.map-legend .legend-card{
+  background: rgba(17, 24, 39, 0.9); /* dark card */
+  color: #e5e7eb;
+  backdrop-filter: blur(8px);
+  border-radius: 14px;
+  padding: 10px 12px;
+  max-width: 280px;
+  box-shadow: 0 6px 20px rgba(0,0,0,.35);
+}
+.map-legend .legend-header{
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 8px; margin-bottom: 6px;
+}
+.map-legend .legend-title{ font-weight: 700; font-size: 15px; }
+.map-legend .legend-toggle{
+  width: 28px; height: 28px; border-radius: 8px; border: 1px solid #334155;
+  color:#e5e7eb; background: rgba(51,65,85,.35); cursor: pointer;
+}
+.map-legend .legend-item{ display:flex; align-items:center; gap:10px; margin: 6px 0; }
+.map-legend .legend-swatch{ width:22px; height:14px; border-radius: 4px; border: 1px solid rgba(255,255,255,.5); }
+.map-legend .legend-label{ font-size: 13px; }
+.map-legend .legend-sub{ font-size: 12px; opacity: .8; margin-top: 4px; }
+
+/* Mobilde kartı biraz daha küçült */
+@media (max-width: 768px){
+  .map-legend .legend-card{ padding: 8px 10px; max-width: 240px; }
+  .map-legend .legend-title{ font-size: 14px; }
+  .map-legend .legend-item{ margin: 4px 0; }
+}
+
+/* ---- Scatter Legend (right, compact) ---- */
+.scatter-legend-vertical{
+  display: flex; flex-direction: column; gap: 8px;
+  padding: 6px 8px;
+}
+.scatter-legend-vertical .legend-item{
+  display: flex; align-items: center; gap: 8px; font-size: 12px;
+}
+.scatter-legend-vertical .legend-swatch{
+  width: 14px; height: 14px; border-radius: 50%; border: 1px solid rgba(0,0,0,.2);
+}
+.scatter-legend-vertical .legend-label{ white-space: nowrap; }
