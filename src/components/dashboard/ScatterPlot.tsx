@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useMemo, useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import {
@@ -31,8 +31,20 @@ interface TooltipData {
 }
 
 export function ScatterPlot() {
-  const { language, mahData, selectedMah, toggleMah, clearMah, scatterMode, setScatterMode } = useMapState();
+  const { language, mahData, scatterSelectedId, setScatterSelectedId, scatterMode, setScatterMode } = useMapState();
   const [hoveredPoint, setHoveredPoint] = useState<TooltipData | null>(null);
+  
+  // Clear selection on Escape key
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setScatterSelectedId(null);
+        setHoveredPoint(null);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [setScatterSelectedId]);
 
   const currentMode = SCATTER_MODES.find(m => m.value === scatterMode) || SCATTER_MODES[0];
 
@@ -147,7 +159,7 @@ export function ScatterPlot() {
         size,
         label: mah.mahalle_adi || 'N/A',
         riskClass: getRiskClass(mah.risk_score || 0),
-        isSelected: selectedMah.has(id.toString())
+        isSelected: scatterSelectedId === id.toString()
       });
     });
     
@@ -157,7 +169,7 @@ export function ScatterPlot() {
     }
     
     return data;
-  }, [mahData, selectedMah, scatterMode]);
+  }, [mahData, scatterSelectedId, scatterMode]);
 
   // Calculate scales based on mode
   const { xMin, xMax, yMin, yMax } = useMemo(() => {
@@ -236,6 +248,23 @@ export function ScatterPlot() {
   const handlePointClick = (point: { id: string; label: string; x: number; y: number }, event: React.MouseEvent<SVGCircleElement>) => {
     if (scatterMode === 'city_comparison') return;
     
+    event.stopPropagation();
+    
+    // Single selection: set this point as the only selected one
+    setScatterSelectedId(point.id);
+    
+    // Fly to neighborhood with popup
+    if (typeof window !== 'undefined') {
+      (window as any).flyToNeighborhood?.(point.id, { openPopup: true });
+    }
+    
+    // Close tooltip if open
+    setHoveredPoint(null);
+  };
+  
+  const handlePointHover = (point: { id: string; label: string; x: number; y: number }, event: React.MouseEvent<SVGCircleElement>) => {
+    if (scatterMode === 'city_comparison') return;
+    
     const svg = event.currentTarget.ownerSVGElement;
     if (!svg) return;
     
@@ -251,24 +280,6 @@ export function ScatterPlot() {
       posX: x,
       posY: y,
     });
-  };
-  
-  const handleSelect = () => {
-    if (hoveredPoint) {
-      // Single selection: clear previous selection first
-      if (!selectedMah.has(hoveredPoint.id)) {
-        clearMah();
-      }
-      toggleMah(hoveredPoint.id);
-      setHoveredPoint(null);
-    }
-  };
-  
-  const handleZoom = () => {
-    if (hoveredPoint && typeof window !== 'undefined') {
-      (window as any).scatterZoomToMah?.(hoveredPoint.id);
-      setHoveredPoint(null);
-    }
   };
 
   return (
@@ -405,15 +416,16 @@ export function ScatterPlot() {
             
             return (
               <g key={d.id}>
+                {/* Highlight ring for selected point */}
                 {d.isSelected && (
                   <circle
                     cx={cx}
                     cy={cy}
-                    r={r + 4}
+                    r={r + 5}
                     fill="none"
-                    stroke="#ffffff"
-                    strokeWidth="2"
-                    opacity={0.8}
+                    stroke="#38bdf8"
+                    strokeWidth="2.5"
+                    opacity={1}
                   />
                 )}
                 
@@ -422,9 +434,11 @@ export function ScatterPlot() {
                   cy={cy}
                   r={r}
                   fill={color}
-                  opacity={d.isSelected ? 1 : 0.6}
-                  className="cursor-pointer hover:opacity-100 transition-opacity"
+                  opacity={d.isSelected ? 1 : 0.7}
+                  className="cursor-pointer hover:opacity-100 transition-all"
                   onClick={(e) => handlePointClick({ id: d.id, label: d.label, x: d.x, y: d.y }, e)}
+                  onMouseEnter={(e) => handlePointHover({ id: d.id, label: d.label, x: d.x, y: d.y }, e)}
+                  onMouseLeave={() => setHoveredPoint(null)}
                   style={{ cursor: scatterMode !== 'city_comparison' ? 'pointer' : 'default' }}
                 />
               </g>
@@ -445,41 +459,22 @@ export function ScatterPlot() {
           ))}
         </div>
         
-        {/* Tooltip for point interaction */}
+        {/* Hover tooltip - shows on hover, not blocking click */}
         {hoveredPoint && (
           <div
-            className="absolute z-50 bg-card border rounded-lg shadow-lg p-3 min-w-[200px]"
+            className="absolute z-50 bg-card border rounded-lg shadow-lg p-3 pointer-events-none"
             style={{
               left: `${hoveredPoint.posX + 10}px`,
-              top: `${hoveredPoint.posY - 60}px`,
-              pointerEvents: 'auto',
+              top: `${hoveredPoint.posY - 40}px`,
             }}
-            onMouseLeave={() => setHoveredPoint(null)}
           >
-            <div className="text-sm font-semibold mb-2">{hoveredPoint.label}</div>
-            <div className="text-xs text-muted-foreground mb-3">
+            <div className="text-sm font-semibold mb-1">{hoveredPoint.label}</div>
+            <div className="text-xs text-muted-foreground">
               <div>{currentMode.xLabel}: {hoveredPoint.x.toFixed(scatterMode.includes('risk') || scatterMode === 'city_comparison' ? 3 : 0)}</div>
               <div>{currentMode.yLabel}: {hoveredPoint.y.toFixed(scatterMode.includes('risk') || scatterMode === 'city_comparison' ? 3 : 0)}</div>
             </div>
-            <div className="flex gap-2">
-              <Button
-                size="sm"
-                onClick={handleSelect}
-                className="flex-1"
-              >
-                {selectedMah.has(hoveredPoint.id) 
-                  ? (language === 'tr' ? 'Seçimi Kaldır' : 'Deselect')
-                  : (language === 'tr' ? 'Seç' : 'Select')
-                }
-              </Button>
-              <Button
-                size="sm"
-                variant="outline"
-                onClick={handleZoom}
-                className="flex-1"
-              >
-                {language === 'tr' ? 'Zoom' : 'Zoom'}
-              </Button>
+            <div className="text-xs text-muted-foreground mt-2 italic">
+              {language === 'tr' ? 'Seçmek için tıklayın' : 'Click to select'}
             </div>
           </div>
         )}

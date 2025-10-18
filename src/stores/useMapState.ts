@@ -23,6 +23,7 @@ interface MapState {
   selectedCities: Set<string>;
   selectedDistricts: Set<string>;
   selectedMah: Set<string>;
+  scatterSelectedId: string | null;
   
   // Data
   mahData: Map<string, any>; // mahalle verisi cache
@@ -47,6 +48,7 @@ interface MapState {
   setMahData: (data: Map<string, any>) => void;
   setCityIndex: (index: Map<string, CityInfo>) => void;
   setAllFeatures: (features: NormalizedFeature[]) => void;
+  setScatterSelectedId: (id: string | null) => void;
 }
 
 export const useMapState = create<MapState>((set) => ({
@@ -61,6 +63,7 @@ export const useMapState = create<MapState>((set) => ({
   selectedCities: new Set(['İstanbul', 'Ankara']),
   selectedDistricts: new Set(),
   selectedMah: new Set(),
+  scatterSelectedId: null,
   mahData: new Map(),
   cityIndex: new Map(),
   allFeatures: [],
@@ -125,4 +128,13 @@ export const useMapState = create<MapState>((set) => ({
   setCityIndex: (cityIndex) => set({ cityIndex }),
   
   setAllFeatures: (allFeatures) => set({ allFeatures }),
+  
+  setScatterSelectedId: (id) => set(() => {
+    // Single selection: update selectedMah to contain only this id
+    const newSelectedMah: Set<string> = id ? new Set([id]) : new Set();
+    return { 
+      scatterSelectedId: id,
+      selectedMah: newSelectedMah
+    };
+  }),
 }));

@@ -100,7 +100,9 @@ export function MapContainer() {
     setMahData,
     setCityIndex,
     setAllFeatures,
-    toggleMah
+    toggleMah,
+    mahData,
+    allFeatures
   } = useMapState();
   
   const citiesData = useRef<Map<string, CityData>>(new Map());
@@ -354,11 +356,79 @@ export function MapContainer() {
       zoomToMah(mahId);
     };
     
+    // Fly to neighborhood with optional popup (for scatter plot)
+    (window as any).flyToNeighborhood = (mahId: string, opts?: { openPopup?: boolean }) => {
+      const feature = allFeatures.find(f => f.id.toString() === mahId.toString());
+      if (!feature || !map.current) return;
+      
+      // Calculate center from bbox or use raw geometry
+      let center: [number, number];
+      if (feature.bbox) {
+        center = [
+          (feature.bbox[0] + feature.bbox[2]) / 2,
+          (feature.bbox[1] + feature.bbox[3]) / 2
+        ];
+      } else if (feature._raw?.geometry?.coordinates) {
+        // Simple centroid calculation for polygon
+        const coords = feature._raw.geometry.coordinates[0];
+        if (coords && coords.length > 0) {
+          const sum = coords.reduce((acc: [number, number], c: number[]) => [acc[0] + c[0], acc[1] + c[1]], [0, 0]);
+          center = [sum[0] / coords.length, sum[1] / coords.length];
+        } else {
+          return;
+        }
+      } else {
+        return;
+      }
+      
+      map.current.flyTo({
+        center,
+        zoom: 13,
+        speed: 0.8,
+        essential: true
+      });
+      
+      if (opts?.openPopup) {
+        setTimeout(() => {
+          const mah = mahData.get(mahId.toString());
+          if (mah && map.current) {
+            const html = `
+              <div style="min-width: 180px;">
+                <div style="font-weight: 600; margin-bottom: 8px; font-size: 13px;">${mah.mahalle_adi || 'N/A'}</div>
+                <div style="font-size: 12px; color: #666; margin-bottom: 4px;">
+                  <strong>${t('district', language)}:</strong> ${mah.ilce_adi || 'N/A'}
+                </div>
+                <div style="font-size: 12px; color: #666; margin-bottom: 4px;">
+                  <strong>${t('city', language)}:</strong> ${mah.il_adi || 'N/A'}
+                </div>
+                <div style="font-size: 12px; color: #666; margin-bottom: 8px;">
+                  <strong>${t('riskScore', language)}:</strong> ${(mah.risk_score || 0).toFixed(3)}
+                </div>
+                <button 
+                  onclick="window.selectAndZoom('${mahId}')" 
+                  style="width: 100%; padding: 6px; background: #3b82f6; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 12px;"
+                >
+                  ${language === 'tr' ? 'Seç ve Yakınlaştır' : 'Select & Zoom'}
+                </button>
+              </div>
+            `;
+            
+            if (popup.current) popup.current.remove();
+            popup.current = new maplibregl.Popup({ closeButton: true, closeOnClick: false })
+              .setLngLat(center)
+              .setHTML(html)
+              .addTo(map.current);
+          }
+        }, 500);
+      }
+    };
+    
     return () => {
       delete (window as any).selectAndZoom;
       delete (window as any).scatterZoomToMah;
+      delete (window as any).flyToNeighborhood;
     };
-  }, [toggleMah]);
+  }, [toggleMah, allFeatures, mahData, language]);
 
   // Zoom to mahalle
   function zoomToMah(mahId: string) {
