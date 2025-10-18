@@ -348,6 +348,16 @@ export function MapContainer() {
       zoomToMah(mahId);
       if (popup.current) popup.current.remove();
     };
+    
+    // Scatter plot zoom function (without select)
+    (window as any).scatterZoomToMah = (mahId: string) => {
+      zoomToMah(mahId);
+    };
+    
+    return () => {
+      delete (window as any).selectAndZoom;
+      delete (window as any).scatterZoomToMah;
+    };
   }, [toggleMah]);
 
   // Zoom to mahalle

@@ -1,5 +1,6 @@
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
 import {
   Select,
   SelectContent,
@@ -20,8 +21,18 @@ const SCATTER_MODES = [
   { value: 'city_comparison', labelKey: 'scatterMode6', xLabel: 'Şehir', yLabel: 'Ortalama Risk' },
 ];
 
+interface TooltipData {
+  id: string;
+  label: string;
+  x: number;
+  y: number;
+  posX: number;
+  posY: number;
+}
+
 export function ScatterPlot() {
   const { language, mahData, selectedMah, toggleMah, scatterMode, setScatterMode } = useMapState();
+  const [hoveredPoint, setHoveredPoint] = useState<TooltipData | null>(null);
 
   const currentMode = SCATTER_MODES.find(m => m.value === scatterMode) || SCATTER_MODES[0];
 
@@ -222,9 +233,37 @@ export function ScatterPlot() {
     return ticks.slice(0, 7);
   }, [yMin, yMax]);
 
-  const handlePointClick = (mahId: string) => {
-    if (scatterMode !== 'city_comparison') {
-      toggleMah(mahId);
+  const handlePointClick = (point: { id: string; label: string; x: number; y: number }, event: React.MouseEvent<SVGCircleElement>) => {
+    if (scatterMode === 'city_comparison') return;
+    
+    const svg = event.currentTarget.ownerSVGElement;
+    if (!svg) return;
+    
+    const rect = svg.getBoundingClientRect();
+    const x = event.clientX - rect.left;
+    const y = event.clientY - rect.top;
+    
+    setHoveredPoint({
+      id: point.id,
+      label: point.label,
+      x: point.x,
+      y: point.y,
+      posX: x,
+      posY: y,
+    });
+  };
+  
+  const handleSelect = () => {
+    if (hoveredPoint) {
+      toggleMah(hoveredPoint.id);
+      setHoveredPoint(null);
+    }
+  };
+  
+  const handleZoom = () => {
+    if (hoveredPoint && typeof window !== 'undefined') {
+      (window as any).scatterZoomToMah?.(hoveredPoint.id);
+      setHoveredPoint(null);
     }
   };
 
@@ -249,8 +288,10 @@ export function ScatterPlot() {
           </Select>
         </div>
       </CardHeader>
-      <CardContent>
-        <svg width={width} height={height} className="w-full h-auto">
+      <CardContent className="relative">
+        <svg width={width} height={height} className="w-full h-auto"
+          onClick={() => setHoveredPoint(null)}
+        >
           {/* X-axis */}
           <line
             x1={margin.left}
@@ -379,15 +420,9 @@ export function ScatterPlot() {
                   fill={color}
                   opacity={d.isSelected ? 1 : 0.6}
                   className="cursor-pointer hover:opacity-100 transition-opacity"
-                  onClick={() => handlePointClick(d.id)}
+                  onClick={(e) => handlePointClick({ id: d.id, label: d.label, x: d.x, y: d.y }, e)}
                   style={{ cursor: scatterMode !== 'city_comparison' ? 'pointer' : 'default' }}
-                >
-                  <title>
-                    {d.label}
-{'\n'}{currentMode.xLabel}: {d.x.toFixed(scatterMode === 'city_comparison' || scatterMode.includes('risk') ? 3 : 0)}
-{'\n'}{currentMode.yLabel}: {d.y.toFixed(scatterMode === 'city_comparison' || scatterMode.includes('risk') ? 3 : 0)}
-                  </title>
-                </circle>
+                />
               </g>
             );
           })}
@@ -405,6 +440,45 @@ export function ScatterPlot() {
             </div>
           ))}
         </div>
+        
+        {/* Tooltip for point interaction */}
+        {hoveredPoint && (
+          <div
+            className="absolute z-50 bg-card border rounded-lg shadow-lg p-3 min-w-[200px]"
+            style={{
+              left: `${hoveredPoint.posX + 10}px`,
+              top: `${hoveredPoint.posY - 60}px`,
+              pointerEvents: 'auto',
+            }}
+            onMouseLeave={() => setHoveredPoint(null)}
+          >
+            <div className="text-sm font-semibold mb-2">{hoveredPoint.label}</div>
+            <div className="text-xs text-muted-foreground mb-3">
+              <div>{currentMode.xLabel}: {hoveredPoint.x.toFixed(scatterMode.includes('risk') || scatterMode === 'city_comparison' ? 3 : 0)}</div>
+              <div>{currentMode.yLabel}: {hoveredPoint.y.toFixed(scatterMode.includes('risk') || scatterMode === 'city_comparison' ? 3 : 0)}</div>
+            </div>
+            <div className="flex gap-2">
+              <Button
+                size="sm"
+                onClick={handleSelect}
+                className="flex-1"
+              >
+                {selectedMah.has(hoveredPoint.id) 
+                  ? (language === 'tr' ? 'Seçimi Kaldır' : 'Deselect')
+                  : (language === 'tr' ? 'Seç' : 'Select')
+                }
+              </Button>
+              <Button
+                size="sm"
+                variant="outline"
+                onClick={handleZoom}
+                className="flex-1"
+              >
+                {language === 'tr' ? 'Zoom' : 'Zoom'}
+              </Button>
+            </div>
+          </div>
+        )}
       </CardContent>
     </Card>
   );
