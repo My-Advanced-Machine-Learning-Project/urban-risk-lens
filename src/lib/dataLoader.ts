@@ -153,7 +153,10 @@ export async function loadCityData(cityName: string, year: number = 2025): Promi
     
     const geojson = await geoResponse.json();
     const csvText = await csvResponse.text();
-    const csvData = parseCSV(csvText);
+    const csvData = parseCSV(csvText).map(row => ({
+      ...row,
+      city: cityName
+    }));
     
     console.info(`[DataLoader] ${cityName} - Raw data:`, {
       geoFeatures: geojson.features?.length,
