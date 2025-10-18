@@ -39,23 +39,28 @@ export function HeaderBar() {
       {/* Right: Year, Language & Theme */}
       <div className="flex items-center gap-2">
         {/* Year Toggle */}
-        <div className="flex gap-1 bg-muted rounded-lg p-1">
-          <Button
-            variant={year === 2025 ? 'secondary' : 'ghost'}
-            size="sm"
-            onClick={() => setYear(2025)}
-            className="h-8 px-3"
-          >
-            2025
-          </Button>
-          <Button
-            variant={year === 2026 ? 'secondary' : 'ghost'}
-            size="sm"
-            onClick={() => setYear(2026)}
-            className="h-8 px-3"
-          >
-            2026
-          </Button>
+        <div className="flex items-center gap-2">
+          <span className="text-xs text-muted-foreground hidden sm:inline">
+            {language === 'tr' ? 'Yıl' : 'Year'}:
+          </span>
+          <div className="flex gap-1 bg-muted rounded-lg p-1">
+            <Button
+              variant={year === 2025 ? 'default' : 'ghost'}
+              size="sm"
+              onClick={() => setYear(2025)}
+              className="h-8 px-3 text-xs font-medium transition-all"
+            >
+              2025
+            </Button>
+            <Button
+              variant={year === 2026 ? 'default' : 'ghost'}
+              size="sm"
+              onClick={() => setYear(2026)}
+              className="h-8 px-3 text-xs font-medium transition-all"
+            >
+              2026
+            </Button>
+          </div>
         </div>
 
         {/* Language Toggle */}

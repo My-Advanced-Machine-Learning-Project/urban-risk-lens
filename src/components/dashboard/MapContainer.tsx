@@ -252,6 +252,13 @@ export function MapContainer() {
     
     addLayers();
     fitToSelectedCities(cities);
+    
+    // Trigger viewport stats recalculation after data loads
+    setTimeout(() => {
+      if (map.current) {
+        map.current.fire('moveend');
+      }
+    }, 100);
   }
 
   // Add layers
