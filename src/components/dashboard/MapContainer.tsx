@@ -199,10 +199,8 @@ export function MapContainer() {
   async function loadInitialData() {
     if (!map.current) return;
     
-    // Always load both cities to ensure data availability
-    const cities = selectedCities.size > 0 
-      ? Array.from(selectedCities) 
-      : ['İstanbul', 'Ankara'];
+    // Always load both cities regardless of selection
+    const cities = ['İstanbul', 'Ankara'];
     
     console.info('[MapContainer] Loading cities:', cities, 'year:', year);
     
