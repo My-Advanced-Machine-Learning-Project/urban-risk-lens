@@ -102,6 +102,10 @@ export function MapContainer() {
   // Feature cache for safe access
   const featuresRef = useRef<GeoJSON.Feature[]>([]);
   
+  // Year cache for instant transitions
+  const cityCache = useRef<Map<number, Map<string, CityData>>>(new Map());
+  const currentGeoJSON = useRef<GeoJSON.FeatureCollection>({ type: 'FeatureCollection', features: [] });
+  
   // Safe feature access helper - use featuresRef directly
   function getAllFeatures(): GeoJSON.Feature[] {
     return featuresRef.current;
@@ -153,6 +157,19 @@ export function MapContainer() {
     map.current.on('load', () => {
       console.info('[MapContainer] Map loaded');
       loadInitialData();
+      
+      // Prefetch both years in background for instant switching
+      (async () => {
+        const years = [2025, 2026];
+        const cities = ['İstanbul', 'Ankara'];
+        for (const y of years) {
+          if (!cityCache.current.get(y)) {
+            const dataMap = await loadCitiesData(cities, y);
+            cityCache.current.set(y, dataMap);
+            console.info(`[MapContainer] ✓ Prefetched year ${y}`);
+          }
+        }
+      })();
     });
 
     return () => {
@@ -176,50 +193,36 @@ export function MapContainer() {
     return () => clearTimeout(timer);
   }, [sidebarOpen]);
 
-  // Reload data when year changes - full cleanup
+  // Reload data when year changes - instant update without removing layers
   useEffect(() => {
     if (!map.current || !map.current.isStyleLoaded()) return;
     
-    console.info('[MapContainer] Year changed to:', year, '- reloading all data');
-    
-    // Kesin temizle - stale veri ihtimalini sıfırla
-    featuresRef.current = [];
-    allBBoxes.current = {};
-    setMahData(new Map());
-    setAllFeatures([]);
-    
-    // Clear map layers before reloading
-    ['mahalle-selected', 'mahalle-line', 'mahalle-fill'].forEach(id => {
-      if (map.current!.getLayer(id)) map.current!.removeLayer(id);
-    });
-    if (map.current.getSource('mahalle')) {
-      map.current.removeSource('mahalle');
-    }
-    
-    // Reload data with new year
+    console.info('[MapContainer] Year changed to:', year, '- updating data instantly');
     loadInitialData();
   }, [year]);
 
-  // Load initial data
+  // Load initial data - with caching for instant year transitions
   async function loadInitialData() {
     if (!map.current) return;
     
-    // Always load both cities regardless of selection
+    const y = year;
     const cities = ['İstanbul', 'Ankara'];
     
-    console.info('[MapContainer] Loading cities:', cities, 'year:', year);
+    console.info('[MapContainer] Loading cities:', cities, 'year:', y);
     
-    // Clear previous data to prevent stale data
-    featuresRef.current = [];
-    allBBoxes.current = {};
-    
-    const dataMap = await loadCitiesData(cities, year);
+    // 1) Check cache first (instant display)
+    let dataMap = cityCache.current.get(y);
+    if (!dataMap) {
+      // Not in cache - load it
+      dataMap = await loadCitiesData(cities, y);
+      cityCache.current.set(y, dataMap);
+    }
     
     // Debug: Log per-city feature counts
     const citySizes = [...dataMap.entries()].map(([name, cityData]) => 
       `${name}=${cityData.features.length}`
     ).join(', ');
-    console.info(`[MapContainer] ✓ Data loaded for year ${year}:`, citySizes);
+    console.info(`[MapContainer] ✓ Data loaded for year ${y}:`, citySizes);
     citiesData.current = dataMap;
   
     // Build mahData for sidebar and collect normalized data
@@ -275,8 +278,23 @@ export function MapContainer() {
       totalNeighborhoods: allNormalizedFeatures.length
     });
     
-    addLayers();
-    fitToSelectedCities(cities);
+    // 3) Update map with new data (setData for instant transition)
+    const src = map.current.getSource('mahalle') as maplibregl.GeoJSONSource;
+    if (src && currentGeoJSON.current.features.length > 0) {
+      // Source exists - update data without removing layers
+      src.setData(currentGeoJSON.current as any);
+      // Update choropleth colors for the new year's data
+      if (map.current.getLayer('mahalle-fill')) {
+        map.current.setPaintProperty('mahalle-fill', 'fill-color', getMetricPaint(metric));
+        // Smooth cross-fade transition
+        map.current.setPaintProperty('mahalle-fill', 'fill-opacity-transition', { duration: 250 });
+      }
+      console.info('[MapContainer] ✓ Map data updated via setData()');
+    } else {
+      // First time - add layers
+      addLayers();
+      fitToSelectedCities(cities);
+    }
     
     // Trigger viewport stats recalculation after data loads
     setTimeout(() => {
@@ -328,14 +346,17 @@ export function MapContainer() {
     
     // Store mahData for sidebar
     setMahData(mahDataMap);
+    
+    // Update currentGeoJSON for setData operations
+    currentGeoJSON.current = {
+      type: 'FeatureCollection',
+      features: allFeatures
+    };
 
     if (!map.current.getSource('mahalle')) {
       map.current.addSource('mahalle', {
         type: 'geojson',
-        data: {
-          type: 'FeatureCollection',
-          features: allFeatures
-        }
+        data: currentGeoJSON.current
       });
     }
 
@@ -448,26 +469,44 @@ export function MapContainer() {
     if (p.il_adi) locParts.push(p.il_adi);
     const locationStr = locParts.join(' • ') || '—';
     
+    // Theme-aware popup colors
+    const isDark = theme === 'dark';
+    const bgColor = isDark ? 'rgba(22,27,34,0.95)' : 'rgba(255,255,255,0.95)';
+    const titleColor = isDark ? '#fff' : '#111';
+    const subtitleColor = isDark ? '#c9d1d9' : '#666';
+    const labelColor = isDark ? '#8b949e' : '#6b7280';
+    const valueColor = isDark ? '#fff' : '#111';
+    const buttonBg = isDark ? '#2563eb' : '#3b82f6';
+    const buttonHoverBg = isDark ? '#1d4ed8' : '#2563eb';
+    
     const html = `
-      <div class="space-y-1">
-        <div class="font-semibold text-black text-base leading-5">${p.mahalle_adi || '—'}</div>
-        <div class="text-xs text-gray-600">${locationStr}</div>
+      <div style="padding:12px;max-width:280px;background:${bgColor};backdrop-filter:blur(8px);border-radius:12px;">
+        <h3 style="margin:0 0 6px;font-weight:700;font-size:16px;color:${titleColor};line-height:1.3;">${p.mahalle_adi || '—'}</h3>
+        <p style="margin:0 0 10px;font-size:13px;color:${subtitleColor};">${locationStr}</p>
 
-        <div class="mt-2 grid grid-cols-2 gap-x-3 text-xs">
-          <div class="text-gray-600">Risk</div>
-          <div class="justify-self-end font-semibold">${riskScore.toFixed(3)}</div>
-          <div class="text-gray-600">Sınıf</div>
-          <div class="justify-self-end">
-            <span style="background:${riskColor}" class="px-2 py-0.5 rounded text-white">${riskLabel}</span>
+        <div style="font-size:13px;color:${valueColor};">
+          <div style="display:flex;justify-content:space-between;margin:4px 0;">
+            <span style="color:${labelColor};">Risk</span>
+            <span style="font-weight:600;color:${valueColor};">${riskScore.toFixed(3)}</span>
           </div>
-          <div class="text-gray-600">${t('population', language)}</div>
-          <div class="justify-self-end font-medium">${(p.toplam_nufus ?? 0).toLocaleString()}</div>
-          <div class="text-gray-600">${t('buildings', language)}</div>
-          <div class="justify-self-end font-medium">${(p.toplam_bina ?? 0).toLocaleString()}</div>
+          <div style="display:flex;justify-content:space-between;margin:4px 0;">
+            <span style="color:${labelColor};">Sınıf</span>
+            <span style="padding:2px 10px;border-radius:8px;font-weight:600;color:#111;background:${riskColor};">${riskLabel}</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;margin:4px 0;">
+            <span style="color:${labelColor};">${t('population', language)}</span>
+            <span style="font-weight:500;color:${valueColor};">${(p.toplam_nufus ?? 0).toLocaleString()}</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;margin:4px 0;">
+            <span style="color:${labelColor};">${t('buildings', language)}</span>
+            <span style="font-weight:500;color:${valueColor};">${(p.toplam_bina ?? 0).toLocaleString()}</span>
+          </div>
         </div>
 
         <button onclick="window.selectAndZoom('${mahId}')" 
-                class="mt-2 w-full text-xs px-3 py-1.5 bg-blue-500 hover:bg-blue-600 text-white rounded">
+                style="width:100%;margin-top:8px;padding:6px 12px;background:${buttonBg};color:white;border:none;border-radius:8px;cursor:pointer;font-weight:500;font-size:12px;transition:background 0.2s;"
+                onmouseover="this.style.background='${buttonHoverBg}'" 
+                onmouseout="this.style.background='${buttonBg}'">
           ${t('zoom', language)}
         </button>
       </div>
@@ -571,30 +610,44 @@ export function MapContainer() {
             if (mah.il_adi) locationParts.push(mah.il_adi);
             const locationStr = locationParts.join(' • ') || '—';
             
+            // Theme-aware popup colors
+            const isDark = theme === 'dark';
+            const bgColor = isDark ? 'rgba(22,27,34,0.95)' : 'rgba(255,255,255,0.95)';
+            const titleColor = isDark ? '#fff' : '#111';
+            const subtitleColor = isDark ? '#c9d1d9' : '#666';
+            const labelColor = isDark ? '#8b949e' : '#6b7280';
+            const valueColor = isDark ? '#fff' : '#111';
+            const buttonBg = isDark ? '#2563eb' : '#3b82f6';
+            const buttonHoverBg = isDark ? '#1d4ed8' : '#2563eb';
+            
             const html = `
-              <div style="display: flex; flex-direction: column; gap: 4px;">
-                <div style="font-weight: 600; font-size: 16px; color: #000; line-height: 1.3;">${mah.mahalle_adi || '—'}</div>
-                <div style="font-size: 12px; color: #666;">${locationStr}</div>
+              <div style="padding:12px;max-width:280px;background:${bgColor};backdrop-filter:blur(8px);border-radius:12px;">
+                <h3 style="margin:0 0 6px;font-weight:700;font-size:16px;color:${titleColor};line-height:1.3;">${mah.mahalle_adi || '—'}</h3>
+                <p style="margin:0 0 10px;font-size:13px;color:${subtitleColor};">${locationStr}</p>
 
-                <div style="margin-top: 8px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; font-size: 12px;">
-                  <div style="color: #666;">Risk</div>
-                  <div style="text-align: right; font-weight: 600;">${riskScore.toFixed(3)}</div>
-                  <div style="color: #666;">Sınıf</div>
-                  <div style="text-align: right;">
-                    <span style="background: ${riskColor}; padding: 2px 8px; border-radius: 4px; color: white;">${riskLabel}</span>
+                <div style="font-size:13px;color:${valueColor};">
+                  <div style="display:flex;justify-content:space-between;margin:4px 0;">
+                    <span style="color:${labelColor};">Risk</span>
+                    <span style="font-weight:600;color:${valueColor};">${riskScore.toFixed(3)}</span>
                   </div>
-                  <div style="color: #666;">${t('population', language)}</div>
-                  <div style="text-align: right; font-weight: 500;">${(mah.toplam_nufus || 0).toLocaleString()}</div>
-                  <div style="color: #666;">${t('buildings', language)}</div>
-                  <div style="text-align: right; font-weight: 500;">${(mah.toplam_bina || 0).toLocaleString()}</div>
+                  <div style="display:flex;justify-content:space-between;margin:4px 0;">
+                    <span style="color:${labelColor};">Sınıf</span>
+                    <span style="padding:2px 10px;border-radius:8px;font-weight:600;color:#111;background:${riskColor};">${riskLabel}</span>
+                  </div>
+                  <div style="display:flex;justify-content:space-between;margin:4px 0;">
+                    <span style="color:${labelColor};">${t('population', language)}</span>
+                    <span style="font-weight:500;color:${valueColor};">${(mah.toplam_nufus || 0).toLocaleString()}</span>
+                  </div>
+                  <div style="display:flex;justify-content:space-between;margin:4px 0;">
+                    <span style="color:${labelColor};">${t('buildings', language)}</span>
+                    <span style="font-weight:500;color:${valueColor};">${(mah.toplam_bina || 0).toLocaleString()}</span>
+                  </div>
                 </div>
 
-                <button 
-                  onclick="window.selectAndZoom('${mahId}')" 
-                  style="width: 100%; margin-top: 8px; padding: 6px 12px; background: #3b82f6; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: 500; font-size: 12px; transition: background 0.2s;"
-                  onmouseover="this.style.background='#2563eb'" 
-                  onmouseout="this.style.background='#3b82f6'"
-                >
+                <button onclick="window.selectAndZoom('${mahId}')" 
+                        style="width:100%;margin-top:8px;padding:6px 12px;background:${buttonBg};color:white;border:none;border-radius:8px;cursor:pointer;font-weight:500;font-size:12px;transition:background 0.2s;"
+                        onmouseover="this.style.background='${buttonHoverBg}'" 
+                        onmouseout="this.style.background='${buttonBg}'">
                   ${t('zoom', language)}
                 </button>
               </div>
