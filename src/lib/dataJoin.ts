@@ -178,6 +178,7 @@ export function joinData(
         ...feature,
         properties: {
           ...props,
+          city: csvRow.city || csvRow.il || csvRow.sehir || csvRow.şehir || props.city || props.il || '',
           risk_score: Number(csvRow.risk_score || csvRow.risk || csvRow.score || 0),
           risk_class_5: Number(csvRow.risk_class_5 || csvRow.risk_class || csvRow.risk_label || 3),
           toplam_nufus: Number(csvRow.toplam_nufus || csvRow.population || csvRow.nufus || 0),

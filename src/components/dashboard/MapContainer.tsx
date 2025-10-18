@@ -645,11 +645,12 @@ export function MapContainer() {
     // Reset all
     citiesData.current.forEach((cityData) => {
       cityData.features.forEach((f: any) => {
-        const mahId = String(f.properties.mah_id || f.properties.fid);
-        map.current?.setFeatureState(
-          { source: 'mahalle', id: f.id },
-          { selected: false }
-        );
+        if (f.id != null) {
+          map.current?.setFeatureState(
+            { source: 'mahalle', id: f.id },
+            { selected: false }
+          );
+        }
       });
     });
 
@@ -659,7 +660,7 @@ export function MapContainer() {
         const feature = cityData.features.find((f: any) => 
           String(f.properties.mah_id || f.properties.fid) === mahId
         );
-        if (feature) {
+        if (feature && (feature as any).id != null) {
           map.current?.setFeatureState(
             { source: 'mahalle', id: (feature as any).id },
             { selected: true }
