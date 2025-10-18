@@ -47,8 +47,10 @@ export function Sidebar() {
     console.log('[Sidebar DIAG] cityIndex keys:', [...cityIndex.keys()]);
     console.log('[Sidebar DIAG] selectedCities:', [...selectedCities]);
     
-    // Process each selected city
-    selectedCities.forEach(cityLabel => {
+    // Always process all available cities (İstanbul and Ankara), regardless of selection
+    const allCityLabels = ['İstanbul', 'Ankara'];
+    
+    allCityLabels.forEach(cityLabel => {
       const cityKey = toKey(cityLabel);
       const cityInfo = cityIndex.get(cityKey);
       
@@ -71,7 +73,7 @@ export function Sidebar() {
     console.log('[Sidebar DIAG] grouped data:', Object.keys(result), Object.values(result).map(d => Object.keys(d).length));
     
     return result;
-  }, [cityIndex, selectedCities]);
+  }, [cityIndex]);
 
   // Filter data based on search
   const filteredData = useMemo(() => {
