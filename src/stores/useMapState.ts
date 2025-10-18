@@ -48,6 +48,7 @@ interface MapState {
   toggleCity: (city: string) => void;
   toggleDistrict: (district: string) => void;
   toggleMah: (id: string) => void;
+  setSelectedMah: (ids: Set<string>) => void;
   clearCities: () => void;
   clearDistricts: () => void;
   clearMah: () => void;
@@ -123,6 +124,8 @@ export const useMapState = create<MapState>((set) => ({
     }
     return { selectedMah: newSet };
   }),
+  
+  setSelectedMah: (selectedMah) => set({ selectedMah }),
   
   clearCities: () => set({ selectedCities: new Set() }),
   

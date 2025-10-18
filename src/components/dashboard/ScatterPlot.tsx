@@ -31,20 +31,21 @@ interface TooltipData {
 }
 
 export function ScatterPlot() {
-  const { language, mahData, scatterSelectedId, setScatterSelectedId, scatterMode, setScatterMode, toggleMah, selectedMah } = useMapState();
+  const { language, mahData, scatterSelectedId, setScatterSelectedId, scatterMode, setScatterMode, selectedMah, setSelectedMah } = useMapState();
   const [hoveredPoint, setHoveredPoint] = useState<TooltipData | null>(null);
   
   // Clear selection on Escape key
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
+        setSelectedMah(new Set());
         setScatterSelectedId(null);
         setHoveredPoint(null);
       }
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [setScatterSelectedId]);
+  }, [setSelectedMah, setScatterSelectedId]);
 
   const currentMode = SCATTER_MODES.find(m => m.value === scatterMode) || SCATTER_MODES[0];
 
@@ -251,9 +252,9 @@ export function ScatterPlot() {
     
     event.stopPropagation();
     
-    // Multi-selection: toggle this point
-    toggleMah(point.id);
-    setScatterSelectedId(point.id); // Just for visual tracking
+    // Single selection: set only this point as selected
+    setSelectedMah(new Set([point.id]));
+    setScatterSelectedId(point.id);
     
     // Fly to neighborhood with popup
     if (typeof window !== 'undefined') {
