@@ -52,95 +52,15 @@ export interface CityData {
   cityInfo?: CityInfo;
 }
 
-const CITY_CONFIG: Record<string, { geo: string }> = {
-  'istanbul': {
-    geo: '/data/ISTANBUL_MAHALLE_956_FINAL.geojson'
-  },
-  'ankara': {
-    geo: '/data/ankara_mahalle_risk.geojson'
-  }
+// Year-specific prediction files
+const CITY_CONFIG: Record<string, (year: number) => string> = {
+  'istanbul': (year) => `/data/${year}_istanbul_risk_predictions.geojson`,
+  'ankara': (year) => `/data/${year}_ankara_risk_predictions.geojson`
 };
 
-// Try multiple CSV filename patterns
-async function resolveCityCsv(year: number, cityKey: string): Promise<string> {
-  const candidates = [
-    `/data/${year}_${cityKey}.csv`,
-    `/data/${cityKey}_${year}.csv`,
-    `/data/${year}/${cityKey}.csv`
-  ];
-  
-  for (const url of candidates) {
-    try {
-      const res = await fetch(url, { cache: 'no-store' });
-      if (res.ok) {
-        console.info(`[DataLoader] ✓ Found CSV: ${url}`);
-        return await res.text();
-      }
-    } catch (e) {
-      // Try next candidate
-    }
-  }
-  
-  console.warn(`[DataLoader] ⚠ CSV not found for ${cityKey} ${year}, tried:`, candidates);
-  return ''; // Return empty instead of throwing
-}
+// No longer needed - data comes from GeoJSON files
 
-// Parse CSV text to array of objects (handles quoted values)
-function parseCSV(text: string): Record<string, any>[] {
-  const lines = text.trim().split('\n');
-  if (lines.length < 2) return [];
-  
-  // Parse CSV line considering quotes
-  const parseLine = (line: string): string[] => {
-    const values: string[] = [];
-    let current = '';
-    let inQuotes = false;
-    
-    for (let i = 0; i < line.length; i++) {
-      const char = line[i];
-      
-      if (char === '"') {
-        inQuotes = !inQuotes;
-      } else if (char === ',' && !inQuotes) {
-        values.push(current.trim());
-        current = '';
-      } else {
-        current += char;
-      }
-    }
-    values.push(current.trim());
-    return values;
-  };
-  
-  const headers = parseLine(lines[0]);
-  const data: Record<string, any>[] = [];
-  
-  for (let i = 1; i < lines.length; i++) {
-    const values = parseLine(lines[i]);
-    if (values.length !== headers.length) continue;
-    
-    const row: Record<string, any> = {};
-    headers.forEach((header, idx) => {
-      let value = values[idx];
-      // Remove quotes if present
-      if (value.startsWith('"') && value.endsWith('"')) {
-        value = value.slice(1, -1);
-      }
-      // Try to parse as number, handle Turkish comma decimals
-      const normalizedValue = value.replace(',', '.');
-      const num = parseFloat(normalizedValue);
-      row[header] = isNaN(num) ? value : num;
-    });
-    data.push(row);
-  }
-  
-  console.info(`[CSV Parse] Parsed ${data.length} rows with headers:`, headers.slice(0, 10));
-  if (data.length > 0) {
-    console.info('[CSV Parse] Sample row:', data[0]);
-  }
-  
-  return data;
-}
+// No longer needed - data comes from GeoJSON files
 
 // Calculate bbox for a feature
 function calculateFeatureBBox(feature: MahalleFeature): [number, number, number, number] {
@@ -163,79 +83,62 @@ function calculateFeatureBBox(feature: MahalleFeature): [number, number, number,
   return [minX, minY, maxX, maxY];
 }
 
-// Load data for a specific city
+// Load data for a specific city from year-specific GeoJSON
 export async function loadCityData(cityName: string, year: number = 2025): Promise<CityData | null> {
-  // Normalize city name for lookup
   const normalizedKey = cityKeyFromName(cityName);
-  const cityConfig = CITY_CONFIG[normalizedKey];
+  const getGeoPath = CITY_CONFIG[normalizedKey];
   
-  if (!cityConfig) {
+  if (!getGeoPath) {
     console.warn(`[DataLoader] No data config for city: ${cityName} (normalized: ${normalizedKey})`);
     return null;
   }
   
   try {
-    // Fetch GeoJSON and CSV with flexible path resolution
-    const [geoResponse, csvText] = await Promise.all([
-      fetch(cityConfig.geo, { cache: 'no-store' }),
-      resolveCityCsv(year, normalizedKey)
-    ]);
+    const geoPath = getGeoPath(year);
+    console.info(`[DataLoader] Loading ${normalizedKey} year ${year} from: ${geoPath}`);
+    
+    const geoResponse = await fetch(geoPath, { cache: 'no-store' });
     
     if (!geoResponse.ok) {
-      throw new Error(`Failed to fetch GeoJSON: ${cityConfig.geo}`);
+      console.warn(`[DataLoader] ⚠ Failed to fetch ${geoPath} - status ${geoResponse.status}`);
+      return null;
     }
     
     const geojson = await geoResponse.json();
-    const csvData: any[] = csvText ? parseCSV(csvText).map(row => ({
-      ...row,
-      city: normalizedKey
-    })) : [];
     
-    console.info(`[DataLoader] ${normalizedKey} - Raw data:`, {
-      geoFeatures: geojson.features?.length,
-      csvRows: csvData.length,
-      sampleGeoId: geojson.features?.[0]?.properties?.mah_id || geojson.features?.[0]?.properties?.fid,
-      sampleCsvKeys: csvData[0] ? Object.keys(csvData[0]).slice(0, 10) : []
-    });
+    if (!geojson.features || geojson.features.length === 0) {
+      console.warn(`[DataLoader] ⚠ No features in ${geoPath}`);
+      return null;
+    }
     
-    // Join data - KEEP ALL FEATURES, never drop any
-    const { features: joinedFeatures } = joinData(csvData, geojson.features);
+    console.info(`[DataLoader] ${normalizedKey} - Loaded ${geojson.features.length} features from ${geoPath}`);
     
-    // Build CSV lookup by mah_id for safe data merging
-    const csvByMahId = new Map<string, any>();
-    csvData.forEach(row => {
-      const id = String(row.mah_id || row.MAH_ID || row.id || '').trim();
-      if (id) csvByMahId.set(id, row);
-    });
-    
-    // Enhance ALL features with safe defaults (never drop features without CSV match)
-    joinedFeatures.forEach((feature: any) => {
+    // Process features - data already in GeoJSON with risk_score_pred, risk_label_pred
+    const features = geojson.features.map((feature: any) => {
       const props = feature.properties || {};
-      const mahId = String(props.mah_id || props.fid || '').trim();
-      const matchingRow = mahId ? csvByMahId.get(mahId) : null;
       
-      // Always set properties with safe defaults
+      // Normalize city key
       props.city_key = normalizedKey;
-      props.risk_score = getNum(matchingRow?.risk_score) ?? props.risk_score ?? 0;
-      props.toplam_nufus = getNum(matchingRow?.toplam_nufus) ?? props.toplam_nufus ?? 0;
-      props.toplam_bina = getNum(matchingRow?.toplam_bina) ?? props.toplam_bina ?? 0;
-      props.vs30_mean = getNum(matchingRow?.vs30_mean) ?? getNum(matchingRow?.vs30) ?? props.vs30_mean;
       
-      // City/district names with all variant field names
-      const ilceValue = matchingRow?.ilce_adi ?? matchingRow?.ilce ?? matchingRow?.district ?? props.ilce_adi;
-      if (ilceValue) {
-        props.ilce_adi = ilceValue;
-        props.ilce = ilceValue;
-        props.district = ilceValue;
-      }
+      // Map prediction properties to standard names for compatibility
+      props.risk_score = getNum(props.risk_score_pred) ?? 0;
+      props.risk_label = props.risk_label_pred || 'unknown';
       
-      const ilValue = matchingRow?.il_adi ?? matchingRow?.sehir ?? matchingRow?.city ?? normalizedKey;
-      props.il_adi = ilValue;
-      props.il = ilValue;
-      props.city = ilValue;
+      // Keep original prediction properties
+      props.risk_score_pred = getNum(props.risk_score_pred) ?? 0;
+      props.risk_label_pred = props.risk_label_pred || 'unknown';
       
-      // Ensure stable feature ID for feature-state support
-      // Prefix with city to avoid ID collisions between cities
+      // Parse other numeric fields
+      props.toplam_nufus = getNum(props.toplam_nufus) ?? 0;
+      props.toplam_bina = getNum(props.toplam_bina) ?? 0;
+      props.vs30_mean = getNum(props.vs30_mean) ?? getNum(props.vs30) ?? 0;
+      
+      // Ensure city/district names
+      props.il_adi = props.il_adi || normalizedKey;
+      props.il = props.il || normalizedKey;
+      props.city = props.city || normalizedKey;
+      
+      // Stable feature ID with city prefix
       const fid = String(props.mah_id || props.fid || feature.id || '').trim();
       if (fid) {
         feature.id = `${normalizedKey}-${fid}`;
@@ -243,73 +146,67 @@ export async function loadCityData(cityName: string, year: number = 2025): Promi
       }
       
       feature.properties = props;
+      return feature;
     });
     
-    // Verify data quality (but keep ALL features regardless)
-    const withScore = joinedFeatures.filter(f => (f.properties?.risk_score ?? 0) > 0).length;
-    const withId = joinedFeatures.filter(f => f.id != null).length;
+    // Data quality check
+    const withScore = features.filter(f => (f.properties?.risk_score_pred ?? 0) > 0).length;
+    const withLabel = features.filter(f => f.properties?.risk_label_pred).length;
+    const withId = features.filter(f => f.id != null).length;
+    
     console.info(`[DataLoader] ${normalizedKey} year ${year}:`, {
-      total: joinedFeatures.length,
-      withScore: withScore,
-      withId: withId,
-      csvRows: csvData.length,
-      geoFile: cityConfig.geo
+      total: features.length,
+      withScore,
+      withLabel,
+      withId,
+      geoFile: geoPath
     });
     
-    if (joinedFeatures.length === 0) {
-      console.warn(`[DataLoader] ⚠ WARNING: ${normalizedKey} loaded ZERO features!`);
-    }
-    
-    if (csvData.length === 0) {
-      console.warn(`[DataLoader] ⚠ No CSV data for ${normalizedKey} year ${year} - features will have default values`);
-    }
-    
-    // Sample feature check
-    if (joinedFeatures.length > 0) {
-      const sample = joinedFeatures[Math.floor(Math.random() * joinedFeatures.length)];
-      console.info(`[DataLoader] ${normalizedKey} - Sample feature:`, {
+    // Sample feature
+    if (features.length > 0) {
+      const sample = features[Math.floor(Math.random() * features.length)];
+      console.info(`[DataLoader] Sample feature:`, {
         id: sample.id,
         mahalle: sample.properties?.mahalle_adi,
         ilce: sample.properties?.ilce_adi,
-        il: sample.properties?.il_adi,
-        risk_score: sample.properties?.risk_score,
+        risk_score_pred: sample.properties?.risk_score_pred,
+        risk_label_pred: sample.properties?.risk_label_pred,
         population: sample.properties?.toplam_nufus,
-        buildings: sample.properties?.toplam_bina,
-        vs30: sample.properties?.vs30_mean
+        buildings: sample.properties?.toplam_bina
       });
     }
     
     // Reconstruct GeoJSON
-    const joinedGeoJSON = {
+    const processedGeoJSON = {
       ...geojson,
-      features: joinedFeatures
+      features
     };
     
     // Build normalized index
-    const { normalized, cityIndex } = buildCityIndex(joinedFeatures);
+    const { normalized, cityIndex } = buildCityIndex(features);
     
     // Calculate bboxes
     const bboxes: Record<string, [number, number, number, number]> = {};
-    joinedGeoJSON.features.forEach((feature: MahalleFeature) => {
+    features.forEach((feature: MahalleFeature) => {
       const mahId = String(feature.properties.mah_id || feature.properties.fid);
       bboxes[mahId] = calculateFeatureBBox(feature);
     });
     
-    console.info(`[DataLoader] ✅ Loaded ${normalizedKey}: ${joinedGeoJSON.features.length} features`);
+    console.info(`[DataLoader] ✅ Loaded ${normalizedKey}: ${features.length} features`);
     
-    // Get the city info for this specific city
-    const cityKey = [...cityIndex.keys()][0]; // Should only be one city per load
+    // Get city info
+    const cityKey = [...cityIndex.keys()][0];
     const cityInfo = cityIndex.get(cityKey);
     
     return {
-      geojson: joinedGeoJSON,
-      features: joinedGeoJSON.features,
+      geojson: processedGeoJSON,
+      features,
       bboxes,
       normalized,
       cityInfo,
     };
   } catch (error) {
-    console.error(`[DataLoader] ❌ Error loading ${normalizedKey}:`, error);
+    console.error(`[DataLoader] ❌ Error loading ${normalizedKey} year ${year}:`, error);
     return null;
   }
 }

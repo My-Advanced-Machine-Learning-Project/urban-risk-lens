@@ -26,15 +26,13 @@ function getStyleUrl(theme: 'light' | 'dark'): string {
     : `https://api.maptiler.com/maps/streets-v2/style.json?key=${MAPTILER_KEY}`;
 }
 
-// Metric paint expressions with year-aware coalescing - colors matching reference app
+// Metric paint expressions - use risk_score_pred from GeoJSON
 function getMetricPaint(metric: string, year: number): any {
-  const Y = String(year);
-  
   if (metric === 'risk_score') {
     // Yellow to dark red gradient (Very Low to Very High)
     return [
       'step',
-      ['coalesce', ['get', `risk_score_${Y}`], ['get', 'risk_score'], -1],
+      ['coalesce', ['get', 'risk_score_pred'], ['get', 'risk_score'], -1],
       '#6b7280', // default gray for missing data
       0, '#f5ebb8',      // 0.00-0.18: Very Low (pale yellow)
       0.18, '#f0c96c',   // 0.18-0.23: Low (yellow)
@@ -46,7 +44,7 @@ function getMetricPaint(metric: string, year: number): any {
     // Blue gradient (higher VS30 = better soil = darker blue)
     return [
       'step',
-      ['coalesce', ['get', `vs30_mean_${Y}`], ['get', 'vs30_mean'], ['get', 'vs30'], -1],
+      ['coalesce', ['get', 'vs30_mean'], ['get', 'vs30'], -1],
       '#6b7280', // default gray
       0, '#e8f0f7',      // 222-376: Very light blue
       222, '#e8f0f7',
@@ -59,7 +57,7 @@ function getMetricPaint(metric: string, year: number): any {
     // Teal/green gradient
     return [
       'step',
-      ['coalesce', ['get', `toplam_nufus_${Y}`], ['get', 'toplam_nufus'], -1],
+      ['coalesce', ['get', 'toplam_nufus'], -1],
       '#6b7280', // default gray
       0, '#d9f0ed',      // 13-1,398: Very light teal
       13, '#d9f0ed',
@@ -72,7 +70,7 @@ function getMetricPaint(metric: string, year: number): any {
     // Purple gradient
     return [
       'step',
-      ['coalesce', ['get', `toplam_bina_${Y}`], ['get', 'toplam_bina'], -1],
+      ['coalesce', ['get', 'toplam_bina'], -1],
       '#6b7280', // default gray
       0, '#e8d9f5',      // 10-341: Very light purple
       10, '#e8d9f5',
@@ -207,17 +205,22 @@ export function MapContainer() {
     loadInitialData();
   }, [year]);
 
-  // Helper: build features for current year with coalesced year-specific columns
+  // Helper: build features for current year (data already year-specific from GeoJSON)
   function buildFeaturesForYear(dataMap: Map<string, CityData>) {
     const all: any[] = [];
     dataMap.forEach((cd) => {
       cd.features.forEach((f: any) => {
         const pr = f.properties || {};
-        // Coalesce year-specific columns with fallback to common column names
-        pr.risk_score   = pr[`risk_score_${year}`]   != null ? +pr[`risk_score_${year}`]   : (pr.risk_score   != null ? +pr.risk_score   : null);
-        pr.vs30_mean    = pr[`vs30_mean_${year}`]    != null ? +pr[`vs30_mean_${year}`]    : (pr.vs30_mean    != null ? +pr.vs30_mean    : (pr.vs30 != null ? +pr.vs30 : null));
-        pr.toplam_nufus = pr[`toplam_nufus_${year}`] != null ? +pr[`toplam_nufus_${year}`] : (pr.toplam_nufus != null ? +pr.toplam_nufus : null);
-        pr.toplam_bina  = pr[`toplam_bina_${year}`]  != null ? +pr[`toplam_bina_${year}`]  : (pr.toplam_bina  != null ? +pr.toplam_bina  : null);
+        
+        // Data is already year-specific from the loaded GeoJSON
+        // Ensure numeric types
+        pr.risk_score = pr.risk_score_pred != null ? +pr.risk_score_pred : (pr.risk_score != null ? +pr.risk_score : 0);
+        pr.risk_score_pred = pr.risk_score;
+        pr.risk_label_pred = pr.risk_label_pred || pr.risk_label || 'unknown';
+        
+        pr.vs30_mean = pr.vs30_mean != null ? +pr.vs30_mean : (pr.vs30 != null ? +pr.vs30 : 0);
+        pr.toplam_nufus = pr.toplam_nufus != null ? +pr.toplam_nufus : 0;
+        pr.toplam_bina = pr.toplam_bina != null ? +pr.toplam_bina : 0;
 
         const fid = String(pr.mah_id ?? pr.fid ?? f.id ?? '');
         if (fid) f.id = fid;
@@ -476,13 +479,14 @@ export function MapContainer() {
     // Consistent ID resolution
     const mahId = String(props0.mah_id ?? props0.fid ?? feature.id ?? '');
     
-    // YIL-BAĞIMLI: her zaman güncel store'dan oku
+    // Get current data from store
     const p = mahData.get(mahId) ?? props0;
     
-    // Year-aware value extraction with fallback
-    const riskScore = Number(p[`risk_score_${year}`] ?? p.risk_score) || 0;
-    const population = Number(p[`toplam_nufus_${year}`] ?? p.toplam_nufus) || 0;
-    const buildings = Number(p[`toplam_bina_${year}`] ?? p.toplam_bina) || 0;
+    // Extract prediction values
+    const riskScore = Number(p.risk_score_pred ?? p.risk_score) || 0;
+    const riskLabel = p.risk_label_pred || p.risk_label || 'unknown';
+    const population = Number(p.toplam_nufus) || 0;
+    const buildings = Number(p.toplam_bina) || 0;
     
     // Debug: log what data is actually available
     console.log('[Popup Debug] Using data from store:', {
@@ -493,9 +497,10 @@ export function MapContainer() {
       buildings,
       year
     });
-    const riskClass = getRiskClass(riskScore);
+    // Use risk_label_pred directly or fallback to calculated class
+    const riskClass = riskLabel !== 'unknown' ? riskLabel : getRiskClass(riskScore);
     const riskColor = getRiskColor(riskClass);
-    const riskLabel = t(riskClass as any, language);
+    const translatedLabel = t(riskClass as any, language);
     
     const { int: fmtInt, float: fmtFloat, proper } = makeFormatters(language);
     
@@ -527,7 +532,7 @@ export function MapContainer() {
           </div>
           <div style="display:flex;justify-content:space-between;margin:4px 0;">
             <span style="color:${labelColor};">Sınıf</span>
-            <span style="padding:2px 10px;border-radius:8px;font-weight:600;color:#fff;background:${riskColor};">${riskLabel}</span>
+            <span style="padding:2px 10px;border-radius:8px;font-weight:600;color:#fff;background:${riskColor};">${translatedLabel}</span>
           </div>
           <div style="display:flex;justify-content:space-between;margin:4px 0;">
             <span style="color:${labelColor};">${t('population', language)}</span>
@@ -635,14 +640,15 @@ export function MapContainer() {
         setTimeout(() => {
           const mah = mahData.get(mahId.toString());
           if (mah && map.current) {
-            // Year-aware value extraction
-            const riskScore = Number(mah[`risk_score_${year}`] ?? mah.risk_score) || 0;
-            const population = Number(mah[`toplam_nufus_${year}`] ?? mah.toplam_nufus) || 0;
-            const buildings = Number(mah[`toplam_bina_${year}`] ?? mah.toplam_bina) || 0;
+            // Extract prediction values
+            const riskScore = Number(mah.risk_score_pred ?? mah.risk_score) || 0;
+            const riskLabelPred = mah.risk_label_pred || mah.risk_label || 'unknown';
+            const population = Number(mah.toplam_nufus) || 0;
+            const buildings = Number(mah.toplam_bina) || 0;
             
-            const riskClass = getRiskClass(riskScore);
+            const riskClass = riskLabelPred !== 'unknown' ? riskLabelPred : getRiskClass(riskScore);
             const riskColor = getRiskColor(riskClass);
-            const riskLabel = t(riskClass as any, language);
+            const translatedLabel = t(riskClass as any, language);
             
             const { int: fmtInt, float: fmtFloat, proper } = makeFormatters(language);
             
@@ -674,7 +680,7 @@ export function MapContainer() {
                   </div>
                   <div style="display:flex;justify-content:space-between;margin:4px 0;">
                     <span style="color:${labelColor};">Sınıf</span>
-                    <span style="padding:2px 10px;border-radius:8px;font-weight:600;color:#fff;background:${riskColor};">${riskLabel}</span>
+                    <span style="padding:2px 10px;border-radius:8px;font-weight:600;color:#fff;background:${riskColor};">${translatedLabel}</span>
                   </div>
                   <div style="display:flex;justify-content:space-between;margin:4px 0;">
                     <span style="color:${labelColor};">${t('population', language)}</span>
