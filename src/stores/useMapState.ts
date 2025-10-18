@@ -138,14 +138,7 @@ export const useMapState = create<MapState>((set) => ({
   
   setAllFeatures: (allFeatures) => set({ allFeatures }),
   
-  setScatterSelectedId: (id) => set(() => {
-    // Single selection: update selectedMah to contain only this id
-    const newSelectedMah: Set<string> = id ? new Set([id]) : new Set();
-    return { 
-      scatterSelectedId: id,
-      selectedMah: newSelectedMah
-    };
-  }),
+  setScatterSelectedId: (id) => set({ scatterSelectedId: id }),
   
   setViewportStats: (viewportStats) => set({ viewportStats }),
 }));

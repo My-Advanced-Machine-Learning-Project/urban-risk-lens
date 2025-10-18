@@ -31,7 +31,7 @@ interface TooltipData {
 }
 
 export function ScatterPlot() {
-  const { language, mahData, scatterSelectedId, setScatterSelectedId, scatterMode, setScatterMode } = useMapState();
+  const { language, mahData, scatterSelectedId, setScatterSelectedId, scatterMode, setScatterMode, toggleMah, selectedMah } = useMapState();
   const [hoveredPoint, setHoveredPoint] = useState<TooltipData | null>(null);
   
   // Clear selection on Escape key
@@ -159,7 +159,7 @@ export function ScatterPlot() {
         size,
         label: mah.mahalle_adi || 'N/A',
         riskClass: getRiskClass(mah.risk_score || 0),
-        isSelected: scatterSelectedId === id.toString()
+        isSelected: selectedMah.has(id.toString())
       });
     });
     
@@ -169,7 +169,7 @@ export function ScatterPlot() {
     }
     
     return data;
-  }, [mahData, scatterSelectedId, scatterMode]);
+  }, [mahData, selectedMah, scatterMode]);
 
   // Calculate scales based on mode
   const { xMin, xMax, yMin, yMax } = useMemo(() => {
@@ -201,8 +201,9 @@ export function ScatterPlot() {
     return { xMin, xMax, yMin, yMax };
   }, [scatterData, scatterMode]);
 
-  // SVG dimensions
-  const width = 700;
+  // SVG dimensions - responsive
+  const containerWidth = typeof window !== 'undefined' ? Math.min(window.innerWidth - 40, 1200) : 1200;
+  const width = containerWidth;
   const height = 400;
   const margin = { top: 20, right: 20, bottom: 70, left: 80 };
   const innerWidth = width - margin.left - margin.right;
@@ -250,8 +251,9 @@ export function ScatterPlot() {
     
     event.stopPropagation();
     
-    // Single selection: set this point as the only selected one
-    setScatterSelectedId(point.id);
+    // Multi-selection: toggle this point
+    toggleMah(point.id);
+    setScatterSelectedId(point.id); // Just for visual tracking
     
     // Fly to neighborhood with popup
     if (typeof window !== 'undefined') {
@@ -303,10 +305,11 @@ export function ScatterPlot() {
           </Select>
         </div>
       </CardHeader>
-      <CardContent className="relative">
-        <svg width={width} height={height} className="w-full h-auto"
-          onClick={() => setHoveredPoint(null)}
-        >
+      <CardContent className="relative overflow-x-auto">
+        <div className="min-w-[700px]">
+          <svg width={width} height={height} className="w-full h-auto"
+            onClick={() => setHoveredPoint(null)}
+          >
           {/* X-axis */}
           <line
             x1={margin.left}
@@ -448,6 +451,7 @@ export function ScatterPlot() {
             );
           })}
         </svg>
+        </div>
         
         {/* Legend */}
         <div className="mt-4 flex flex-wrap gap-3 justify-center text-xs">
