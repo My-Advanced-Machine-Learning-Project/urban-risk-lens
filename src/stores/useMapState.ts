@@ -12,6 +12,13 @@ interface MapState {
   theme: 'light' | 'dark';
   language: Language;
   sidebarOpen: boolean;
+  viewportStats: {
+    totalMah: number;
+    totalPop: number;
+    totalBld: number;
+    meanRisk: number;
+    zoom: number;
+  } | null;
   
   // Map State
   viewMode: ViewMode;
@@ -49,6 +56,7 @@ interface MapState {
   setCityIndex: (index: Map<string, CityInfo>) => void;
   setAllFeatures: (features: NormalizedFeature[]) => void;
   setScatterSelectedId: (id: string | null) => void;
+  setViewportStats: (stats: { totalMah: number; totalPop: number; totalBld: number; meanRisk: number; zoom: number } | null) => void;
 }
 
 export const useMapState = create<MapState>((set) => ({
@@ -56,6 +64,7 @@ export const useMapState = create<MapState>((set) => ({
   theme: 'dark',
   language: 'tr',
   sidebarOpen: false,
+  viewportStats: null,
   viewMode: 'choropleth',
   metric: 'risk_score',
   year: 2025,
@@ -137,4 +146,6 @@ export const useMapState = create<MapState>((set) => ({
       selectedMah: newSelectedMah
     };
   }),
+  
+  setViewportStats: (viewportStats) => set({ viewportStats }),
 }));

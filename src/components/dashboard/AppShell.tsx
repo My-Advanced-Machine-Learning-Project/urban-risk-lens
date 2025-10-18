@@ -4,31 +4,30 @@ import { MapContainer } from './MapContainer';
 import { Legend } from './Legend';
 import { MetricCards } from './MetricCards';
 import { ScatterPlot } from './ScatterPlot';
+import { CompactStats } from './CompactStats';
 
 export function AppShell() {
   return (
-    <div className="h-screen w-full flex flex-col overflow-hidden">
+    <div className="h-screen w-full flex flex-col overflow-hidden relative">
       {/* Header */}
       <HeaderBar />
 
-      {/* Main Content */}
-      <div className="flex-1 flex w-full overflow-hidden relative">
-        {/* Sidebar */}
-        <Sidebar />
+      {/* Sidebar Overlay */}
+      <Sidebar />
 
-        {/* Right Panel */}
-        <div className="flex-1 flex flex-col overflow-hidden">
-          {/* Map Container */}
-          <div className="flex-1 relative">
-            <MapContainer />
-            <Legend />
-          </div>
+      {/* Main Content - Full Width */}
+      <div className="flex-1 flex flex-col w-full overflow-hidden">
+        {/* Map Container */}
+        <div className="flex-1 relative">
+          <MapContainer />
+          <Legend />
+          <CompactStats />
+        </div>
 
-          {/* Bottom Panel: Metrics & Analytics */}
-          <div className="border-t bg-background p-4 space-y-4 max-h-[45vh] overflow-y-auto">
-            <MetricCards />
-            <ScatterPlot />
-          </div>
+        {/* Bottom Panel: Metrics & Analytics */}
+        <div className="border-t bg-background p-4 space-y-4 max-h-[45vh] overflow-y-auto">
+          <MetricCards />
+          <ScatterPlot />
         </div>
       </div>
     </div>

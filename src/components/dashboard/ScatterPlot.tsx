@@ -421,7 +421,7 @@ export function ScatterPlot() {
                   <circle
                     cx={cx}
                     cy={cy}
-                    r={r + 5}
+                    r={r + 6}
                     fill="none"
                     stroke="#38bdf8"
                     strokeWidth="2.5"
@@ -429,12 +429,15 @@ export function ScatterPlot() {
                   />
                 )}
                 
+                {/* Main dot with white outline */}
                 <circle
                   cx={cx}
                   cy={cy}
                   r={r}
                   fill={color}
-                  opacity={d.isSelected ? 1 : 0.7}
+                  stroke="#ffffff"
+                  strokeWidth="1.5"
+                  opacity={d.isSelected ? 1 : 0.85}
                   className="cursor-pointer hover:opacity-100 transition-all"
                   onClick={(e) => handlePointClick({ id: d.id, label: d.label, x: d.x, y: d.y }, e)}
                   onMouseEnter={(e) => handlePointHover({ id: d.id, label: d.label, x: d.x, y: d.y }, e)}

@@ -117,7 +117,9 @@ export function MapContainer() {
     setCityIndex,
     setAllFeatures,
     toggleMah,
-    mahData
+    mahData,
+    sidebarOpen,
+    setViewportStats
   } = useMapState();
   
   const citiesData = useRef<Map<string, CityData>>(new Map());
@@ -552,6 +554,66 @@ export function MapContainer() {
     console.info('[MapContainer] Updating metric paint:', metric);
     map.current.setPaintProperty('mahalle-fill', 'fill-color', getMetricPaint(metric));
   }, [metric]);
+
+  // Handle sidebar toggle - resize map
+  useEffect(() => {
+    if (!map.current) return;
+    const timer = setTimeout(() => {
+      map.current?.resize();
+    }, 320); // Match sidebar animation duration
+    return () => clearTimeout(timer);
+  }, [sidebarOpen]);
+
+  // Compute viewport stats
+  useEffect(() => {
+    if (!map.current || !map.current.isStyleLoaded()) return;
+    
+    const computeStats = () => {
+      if (!map.current) return;
+      
+      const bounds = map.current.getBounds();
+      const zoom = map.current.getZoom();
+      
+      const visible = getAllFeatures().filter((f: any) => {
+        // Simple bbox check
+        const geom = f.geometry;
+        if (!geom) return false;
+        
+        // Get approximate center
+        let lng = 0, lat = 0;
+        if (geom.type === 'Polygon' && geom.coordinates?.[0]?.[0]) {
+          lng = geom.coordinates[0][0][0];
+          lat = geom.coordinates[0][0][1];
+        } else if (geom.type === 'MultiPolygon' && geom.coordinates?.[0]?.[0]?.[0]) {
+          lng = geom.coordinates[0][0][0][0];
+          lat = geom.coordinates[0][0][0][1];
+        }
+        
+        return lng >= bounds.getWest() && lng <= bounds.getEast() &&
+               lat >= bounds.getSouth() && lat <= bounds.getNorth();
+      });
+      
+      const totalMah = visible.length;
+      const totalPop = visible.reduce((s, f: any) => s + (f.properties?.toplam_nufus ?? 0), 0);
+      const totalBld = visible.reduce((s, f: any) => s + (f.properties?.toplam_bina ?? 0), 0);
+      const sumRisk = visible.reduce((s, f: any) => s + (f.properties?.risk_score ?? 0), 0);
+      const meanRisk = totalMah ? sumRisk / totalMah : 0;
+      
+      setViewportStats({ totalMah, totalPop, totalBld, meanRisk, zoom });
+    };
+    
+    // Initial compute
+    computeStats();
+    
+    // Listen to map movements
+    map.current.on('moveend', computeStats);
+    map.current.on('zoomend', computeStats);
+    
+    return () => {
+      map.current?.off('moveend', computeStats);
+      map.current?.off('zoomend', computeStats);
+    };
+  }, [setViewportStats]);
 
   // Handle selection changes
   useEffect(() => {
