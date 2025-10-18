@@ -31,7 +31,7 @@ interface TooltipData {
 }
 
 export function ScatterPlot() {
-  const { language, mahData, selectedMah, toggleMah, scatterMode, setScatterMode } = useMapState();
+  const { language, mahData, selectedMah, toggleMah, clearMah, scatterMode, setScatterMode } = useMapState();
   const [hoveredPoint, setHoveredPoint] = useState<TooltipData | null>(null);
 
   const currentMode = SCATTER_MODES.find(m => m.value === scatterMode) || SCATTER_MODES[0];
@@ -255,6 +255,10 @@ export function ScatterPlot() {
   
   const handleSelect = () => {
     if (hoveredPoint) {
+      // Single selection: clear previous selection first
+      if (!selectedMah.has(hoveredPoint.id)) {
+        clearMah();
+      }
       toggleMah(hoveredPoint.id);
       setHoveredPoint(null);
     }
