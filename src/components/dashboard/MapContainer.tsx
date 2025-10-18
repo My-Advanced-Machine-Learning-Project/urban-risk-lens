@@ -18,51 +18,58 @@ function getStyleUrl(theme: 'light' | 'dark'): string {
     : `https://api.maptiler.com/maps/streets-v2/style.json?key=${MAPTILER_KEY}`;
 }
 
-// Metric paint expressions with null safety
+// Metric paint expressions with null safety - colors matching reference app
 function getMetricPaint(metric: string): any {
   if (metric === 'risk_score') {
+    // Yellow to dark red gradient (Very Low to Very High)
     return [
       'step',
       ['coalesce', ['get', 'risk_score'], -1],
       '#6b7280', // default gray for missing data
-      0, '#f1f5f9',
-      0.18, '#fde68a',
-      0.23, '#fbbf24',
-      0.30, '#ef4444',
-      0.43, '#7f1d1d'
+      0, '#f5ebb8',      // 0.00-0.18: Very Low (pale yellow)
+      0.18, '#f0c96c',   // 0.18-0.23: Low (yellow)
+      0.23, '#e69344',   // 0.23-0.30: Medium (orange)
+      0.30, '#b94843',   // 0.30-0.43: High (dark red)
+      0.43, '#6b2527'    // 0.43-1.00: Very High (very dark red)
     ];
   } else if (metric === 'vs30') {
+    // Blue gradient (higher VS30 = better soil = darker blue)
     return [
       'step',
       ['coalesce', ['get', 'vs30_mean'], -1],
-      '#6b7280',
-      0, '#7f1d1d',
-      300, '#ef4444',
-      400, '#fbbf24',
-      500, '#fde68a',
-      600, '#f1f5f9'
+      '#6b7280', // default gray
+      0, '#e8f0f7',      // 222-376: Very light blue
+      222, '#e8f0f7',
+      376, '#aac9e3',    // 376-412: Light blue
+      412, '#6ba3d0',    // 412-446: Medium blue
+      446, '#3d7eb8',    // 446-489: Blue
+      489, '#1e4d8b'     // 489-653: Dark blue
     ];
   } else if (metric === 'population') {
+    // Teal/green gradient
     return [
       'step',
       ['coalesce', ['get', 'toplam_nufus'], -1],
-      '#6b7280',
-      0, '#f1f5f9',
-      5000, '#fde68a',
-      10000, '#fbbf24',
-      20000, '#ef4444',
-      40000, '#7f1d1d'
+      '#6b7280', // default gray
+      0, '#d9f0ed',      // 13-1,398: Very light teal
+      13, '#d9f0ed',
+      1398, '#8dd4c7',   // 1,398-8,557: Light teal
+      8557, '#4eb3a1',   // 8,557-15,642: Medium teal
+      15642, '#2a8c7a',  // 15,642-25,496: Dark teal
+      25496, '#1a5d52'   // 25,496+: Very dark teal
     ];
   } else if (metric === 'buildings') {
+    // Purple gradient
     return [
       'step',
       ['coalesce', ['get', 'toplam_bina'], -1],
-      '#6b7280',
-      0, '#f1f5f9',
-      500, '#fde68a',
-      1000, '#fbbf24',
-      2000, '#ef4444',
-      4000, '#7f1d1d'
+      '#6b7280', // default gray
+      0, '#e8d9f5',      // 10-341: Very light purple
+      10, '#e8d9f5',
+      341, '#c5a3e3',    // 341-790: Light purple
+      790, '#9d6dc7',    // 790-1,263: Medium purple
+      1263, '#7541a8',   // 1,263-1,861: Dark purple
+      1861, '#4d2670'    // 1,861+: Very dark purple
     ];
   }
   
@@ -71,11 +78,11 @@ function getMetricPaint(metric: string): any {
     'step',
     ['coalesce', ['get', 'risk_score'], -1],
     '#6b7280',
-    0, '#f1f5f9',
-    0.18, '#fde68a',
-    0.23, '#fbbf24',
-    0.30, '#ef4444',
-    0.43, '#7f1d1d'
+    0, '#f5ebb8',
+    0.18, '#f0c96c',
+    0.23, '#e69344',
+    0.30, '#b94843',
+    0.43, '#6b2527'
   ];
 }
 

@@ -47,6 +47,12 @@ export const translations = {
     // Common
     city: 'Şehir',
     districts: 'ilçe',
+    
+    // Descriptions
+    riskScoreDesc: 'Risk Skoru (0-1 arası)',
+    vs30Desc: 'VS30 zemin hızı (m/s)',
+    populationDesc: 'Toplam nüfus',
+    buildingsDesc: 'Toplam bina sayısı',
   },
   en: {
     // Sidebar
@@ -96,6 +102,12 @@ export const translations = {
     // Common
     city: 'City',
     districts: 'districts',
+    
+    // Descriptions
+    riskScoreDesc: 'Risk Score (0-1 range)',
+    vs30Desc: 'VS30 soil velocity (m/s)',
+    populationDesc: 'Total population',
+    buildingsDesc: 'Total building count',
   },
 };
 
