@@ -219,7 +219,7 @@ export function ScatterPlot() {
 
   // SVG dimensions - responsive (reacts to window resize)
   const width = containerWidth;
-  const height = 400;
+  const height = typeof window !== "undefined" && window.innerWidth <= 768 ? 260 : 400;
   const margin = { top: 20, right: 20, bottom: 70, left: 80 };
   const innerWidth = width - margin.left - margin.right;
   const innerHeight = height - margin.top - margin.bottom;
@@ -478,15 +478,15 @@ export function ScatterPlot() {
         </svg>
         </div>
         
-        {/* Legend */}
-        <div className="mt-4 flex flex-wrap gap-3 justify-center text-xs">
+        {/* Legend - Right side, vertical */}
+        <div className="absolute right-4 top-1/2 transform -translate-y-1/2 scatter-legend-vertical">
           {['veryLow', 'low', 'medium', 'high', 'veryHigh'].map(riskClass => (
-            <div key={riskClass} className="flex items-center gap-1.5">
+            <div key={riskClass} className="legend-item">
               <div
-                className="w-3 h-3 rounded-full"
+                className="legend-swatch"
                 style={{ backgroundColor: getRiskColor(riskClass) }}
               />
-              <span>{t(riskClass as any, language)}</span>
+              <span className="legend-label">{t(riskClass as any, language)}</span>
             </div>
           ))}
         </div>
