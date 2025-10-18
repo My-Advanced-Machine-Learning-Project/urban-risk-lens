@@ -118,3 +118,12 @@ All colors MUST be HSL.
     @apply bg-background text-foreground;
   }
 }
+
+/* MapLibre popup styling */
+.maplibregl-popup.map-popup .maplibregl-popup-content {
+  padding: 10px 12px;
+  border-radius: 12px;
+}
+.maplibregl-popup.map-popup .maplibregl-popup-tip {
+  filter: drop-shadow(0 1px 2px rgba(0,0,0,.15));
+}

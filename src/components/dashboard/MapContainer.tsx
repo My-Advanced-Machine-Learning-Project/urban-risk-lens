@@ -9,12 +9,12 @@ import { t } from '@/lib/i18n';
 const MAPTILER_KEY = import.meta.env.VITE_MAPTILER_KEY || '';
 
 // UI constants for popup positioning and zoom behavior
-const UI_PADDING = { top: 96, right: 24, bottom: 24, left: 24 }; // header için pay
-const TARGET_ZOOM = 13.5; // Target zoom level for neighborhood focus
-
-// popup'ın üst barda kırpılmaması için
-const HEADER_PX = 96;      // header yüksekliği
-const POPUP_CLEAR = 140;   // popup + boşluk için ek marj
+const HEADER_PX   = 72;   // üst bar
+const FOOTER_PX   = 180;  // alttaki istatistik kartları
+const SIDE_PAD    = 12;   // sağ/sol kenar
+const POPUP_CLEAR = 12;   // popup-kenar aralığı
+const TARGET_ZOOM = 13.5;
+const UI_PADDING  = { top: HEADER_PX, right: 24, bottom: FOOTER_PX, left: 24 };
 
 function getStyleUrl(theme: 'light' | 'dark'): string {
   if (!MAPTILER_KEY) {
@@ -142,11 +142,12 @@ export function MapContainer() {
     map.current.addControl(new maplibregl.NavigationControl(), 'top-right');
     
     popup.current = new maplibregl.Popup({
-      closeButton: false,     // No X button
-      closeOnClick: true,     // Close when clicking elsewhere on map
-      closeOnMove: true,      // Close during movement to reopen cleanly
-      maxWidth: '320px',
-      offset: [0, 12]        // Offset below the pin
+      closeButton: false,
+      closeOnClick: true,
+      closeOnMove: true,
+      maxWidth: '260px',          // küçük ve sabit
+      offset: [0, 8],
+      className: 'map-popup'      // css ile daha da inceltmek için
     });
 
     map.current.on('load', () => {
@@ -387,15 +388,22 @@ export function MapContainer() {
     console.info('[MapContainer] Layers added:', allFeatures.length);
   }
 
-  // Helper to place popup safely (avoid clipping with header)
+  // Helper to place popup safely (avoid clipping with header and footer)
   function placePopupSafely(lngLat: [number, number]) {
     if (!map.current || !popup.current) return;
-    // piksele çevir
-    const pt = map.current.project(lngLat);
-    // üstten min boşluğu koru
-    const minY = HEADER_PX + POPUP_CLEAR;
-    const safePt = new maplibregl.Point(pt.x, Math.max(pt.y, minY));
-    const safeLL = map.current.unproject(safePt);
+
+    const canvas = map.current.getCanvas();
+    const w = canvas.clientWidth;
+    const h = canvas.clientHeight;
+
+    // lngLat → piksel
+    const p = map.current.project(lngLat);
+
+    // x'i ve y'yi güvenli aralığa sıkıştır
+    const safeX = Math.min(Math.max(p.x, SIDE_PAD + POPUP_CLEAR), w - SIDE_PAD - POPUP_CLEAR);
+    const safeY = Math.min(Math.max(p.y, HEADER_PX + POPUP_CLEAR), h - FOOTER_PX - POPUP_CLEAR);
+
+    const safeLL = map.current.unproject(new maplibregl.Point(safeX, safeY));
     popup.current.setLngLat(safeLL);
   }
 
@@ -431,35 +439,25 @@ export function MapContainer() {
     const locationStr = locParts.join(' • ') || '—';
     
     const html = `
-      <div class="p-4 bg-white/95 backdrop-blur-md rounded-xl shadow-lg">
-        <h3 class="font-bold text-lg text-black mb-1">${props.mahalle_adi || '—'}</h3>
-        <p class="text-sm text-gray-600 mb-3">${locationStr}</p>
-        
-        <div class="text-sm space-y-2 mb-3">
-          <div class="flex items-center justify-between">
-            <span class="text-gray-600">${t('riskClass', language)}:</span>
-            <span class="px-3 py-1 rounded-lg font-medium text-white text-sm" style="background-color: ${riskColor}">
-              ${riskLabel}
-            </span>
+      <div class="space-y-1">
+        <div class="font-semibold text-black text-base leading-5">${props.mahalle_adi || '—'}</div>
+        <div class="text-xs text-gray-600">${locationStr}</div>
+
+        <div class="mt-2 grid grid-cols-2 gap-x-3 text-xs">
+          <div class="text-gray-600">Risk</div>
+          <div class="justify-self-end font-semibold">${riskScore.toFixed(3)}</div>
+          <div class="text-gray-600">Sınıf</div>
+          <div class="justify-self-end">
+            <span style="background:${riskColor}" class="px-2 py-0.5 rounded text-white">${riskLabel}</span>
           </div>
-          <div class="flex justify-between">
-            <span class="text-gray-600">${t('riskScore', language)}:</span>
-            <span class="font-semibold text-black">${riskScore.toFixed(3)}</span>
-          </div>
-          <div class="flex justify-between">
-            <span class="text-gray-600">${t('population', language)}:</span>
-            <span class="font-medium text-black">${props.toplam_nufus?.toLocaleString() || 'N/A'}</span>
-          </div>
-          <div class="flex justify-between">
-            <span class="text-gray-600">${t('buildings', language)}:</span>
-            <span class="font-medium text-black">${props.toplam_bina?.toLocaleString() || 'N/A'}</span>
-          </div>
+          <div class="text-gray-600">${t('population', language)}</div>
+          <div class="justify-self-end font-medium">${props.toplam_nufus?.toLocaleString() || '—'}</div>
+          <div class="text-gray-600">${t('buildings', language)}</div>
+          <div class="justify-self-end font-medium">${props.toplam_bina?.toLocaleString() || '—'}</div>
         </div>
-        
-        <button 
-          onclick="window.selectAndZoom('${mahId}')"
-          class="w-full px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white font-medium rounded-xl transition-colors"
-        >
+
+        <button onclick="window.selectAndZoom('${mahId}')" 
+                class="mt-2 w-full text-xs px-3 py-1.5 bg-blue-500 hover:bg-blue-600 text-white rounded">
           ${t('zoom', language)}
         </button>
       </div>
@@ -471,17 +469,17 @@ export function MapContainer() {
     // asla zoom-out yapma
     const currentZoom = map.current!.getZoom();
     const targetZoom = Math.max(TARGET_ZOOM, currentZoom);
-    map.current!.easeTo({ center, zoom: targetZoom, padding: UI_PADDING, duration: 700 });
+    map.current!.easeTo({ center, zoom: targetZoom, padding: UI_PADDING, duration: 600 });
 
     // hareket bitince popup'ı ekranda garanti konuma yerleştirerek aç
-    const openPopup = () => {
+    const open = () => {
       if (!popup.current) return;
       popup.current.setHTML(html);
       placePopupSafely(center);
       popup.current.addTo(map.current!);
-      map.current!.off('moveend', openPopup);
+      map.current!.off('moveend', open);
     };
-    map.current!.on('moveend', openPopup);
+    map.current!.on('moveend', open);
   }
 
   // Global function for popup button
@@ -564,34 +562,26 @@ export function MapContainer() {
             const locationStr = locationParts.join(' • ') || '—';
             
             const html = `
-              <div style="padding: 16px; background: rgba(255,255,255,0.95); backdrop-filter: blur(12px); border-radius: 12px; min-width: 200px;">
-                <h3 style="font-weight: bold; font-size: 18px; color: #000; margin-bottom: 4px;">${mah.mahalle_adi || '—'}</h3>
-                <p style="font-size: 14px; color: #666; margin-bottom: 12px;">${locationStr}</p>
-                
-                <div style="margin-bottom: 12px;">
-                  <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
-                    <span style="color: #666; font-size: 14px;">${t('riskClass', language)}:</span>
-                    <span style="padding: 4px 12px; border-radius: 8px; font-weight: 500; color: white; font-size: 14px; background-color: ${riskColor}">
-                      ${riskLabel}
-                    </span>
+              <div style="display: flex; flex-direction: column; gap: 4px;">
+                <div style="font-weight: 600; font-size: 16px; color: #000; line-height: 1.3;">${mah.mahalle_adi || '—'}</div>
+                <div style="font-size: 12px; color: #666;">${locationStr}</div>
+
+                <div style="margin-top: 8px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; font-size: 12px;">
+                  <div style="color: #666;">Risk</div>
+                  <div style="text-align: right; font-weight: 600;">${riskScore.toFixed(3)}</div>
+                  <div style="color: #666;">Sınıf</div>
+                  <div style="text-align: right;">
+                    <span style="background: ${riskColor}; padding: 2px 8px; border-radius: 4px; color: white;">${riskLabel}</span>
                   </div>
-                  <div style="display: flex; justify-content: space-between; margin-bottom: 6px;">
-                    <span style="color: #666; font-size: 14px;">${t('riskScore', language)}:</span>
-                    <span style="font-weight: 600; color: #000; font-size: 14px;">${riskScore.toFixed(3)}</span>
-                  </div>
-                  <div style="display: flex; justify-content: space-between; margin-bottom: 6px;">
-                    <span style="color: #666; font-size: 14px;">${t('population', language)}:</span>
-                    <span style="font-weight: 500; color: #000; font-size: 14px;">${(mah.toplam_nufus || 0).toLocaleString()}</span>
-                  </div>
-                  <div style="display: flex; justify-content: space-between;">
-                    <span style="color: #666; font-size: 14px;">${t('buildings', language)}:</span>
-                    <span style="font-weight: 500; color: #000; font-size: 14px;">${(mah.toplam_bina || 0).toLocaleString()}</span>
-                  </div>
+                  <div style="color: #666;">${t('population', language)}</div>
+                  <div style="text-align: right; font-weight: 500;">${(mah.toplam_nufus || 0).toLocaleString()}</div>
+                  <div style="color: #666;">${t('buildings', language)}</div>
+                  <div style="text-align: right; font-weight: 500;">${(mah.toplam_bina || 0).toLocaleString()}</div>
                 </div>
-                
+
                 <button 
                   onclick="window.selectAndZoom('${mahId}')" 
-                  style="width: 100%; padding: 8px 16px; background: #3b82f6; color: white; border: none; border-radius: 12px; cursor: pointer; font-weight: 500; font-size: 14px; transition: background 0.2s;"
+                  style="width: 100%; margin-top: 8px; padding: 6px 12px; background: #3b82f6; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: 500; font-size: 12px; transition: background 0.2s;"
                   onmouseover="this.style.background='#2563eb'" 
                   onmouseout="this.style.background='#3b82f6'"
                 >
@@ -605,7 +595,9 @@ export function MapContainer() {
               closeButton: false,
               closeOnClick: true,
               closeOnMove: true,
-              offset: [0, 12]
+              maxWidth: '260px',
+              offset: [0, 8],
+              className: 'map-popup'
             });
             popup.current.setHTML(html);
             placePopupSafely(center);
