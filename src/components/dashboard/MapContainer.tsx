@@ -142,8 +142,11 @@ export function MapContainer() {
     
     popup.current = new maplibregl.Popup({
       closeButton: true,
-      closeOnClick: false,
-      maxWidth: '320px'
+      closeOnClick: true,  // Close when clicking elsewhere on map
+      closeOnMove: false,
+      maxWidth: '320px',
+      offset: 15,  // Offset to ensure full visibility
+      anchor: 'bottom'
     });
 
     map.current.on('load', () => {
@@ -179,11 +182,14 @@ export function MapContainer() {
     console.info('[MapContainer] Year changed to:', year, '- reloading all data');
     
     // Clear map layers before reloading
-    if (map.current.getLayer('mahalle-fill')) {
-      map.current.removeLayer('mahalle-fill');
+    if (map.current.getLayer('mahalle-border')) {
+      map.current.removeLayer('mahalle-border');
     }
     if (map.current.getLayer('mahalle-line')) {
       map.current.removeLayer('mahalle-line');
+    }
+    if (map.current.getLayer('mahalle-fill')) {
+      map.current.removeLayer('mahalle-fill');
     }
     if (map.current.getSource('mahalle')) {
       map.current.removeSource('mahalle');
@@ -357,6 +363,30 @@ export function MapContainer() {
       });
     }
 
+    // Add highlighted border layer for selected neighborhoods
+    if (!map.current.getLayer('mahalle-border')) {
+      map.current.addLayer({
+        id: 'mahalle-border',
+        type: 'line',
+        source: 'mahalle',
+        paint: {
+          'line-color': '#ffffff',
+          'line-width': [
+            'case',
+            ['boolean', ['feature-state', 'selected'], false],
+            4,  // Thicker border for selected
+            0   // No extra border for unselected
+          ],
+          'line-opacity': [
+            'case',
+            ['boolean', ['feature-state', 'selected'], false],
+            1,
+            0
+          ]
+        }
+      });
+    }
+
     map.current.on('click', 'mahalle-fill', handleFeatureClick as any);
     map.current.on('mouseenter', 'mahalle-fill', () => {
       if (map.current) map.current.getCanvas().style.cursor = 'pointer';
@@ -434,7 +464,11 @@ export function MapContainer() {
     `;
     
     if (popup.current) {
-      popup.current.setLngLat(e.lngLat).setHTML(html).addTo(map.current!);
+      popup.current
+        .setLngLat(e.lngLat)
+        .setHTML(html)
+        .setMaxWidth('320px')
+        .addTo(map.current!);
     }
   }
 
@@ -551,7 +585,12 @@ export function MapContainer() {
             `;
             
             if (popup.current) popup.current.remove();
-            popup.current = new maplibregl.Popup({ closeButton: true, closeOnClick: false })
+            popup.current = new maplibregl.Popup({ 
+              closeButton: true, 
+              closeOnClick: true,
+              offset: 15,
+              anchor: 'bottom'
+            })
               .setLngLat(center)
               .setHTML(html)
               .addTo(map.current);
@@ -567,15 +606,24 @@ export function MapContainer() {
     };
   }, [toggleMah, mahData, language]);
 
-  // Zoom to mahalle
+  // Zoom to mahalle - zoom IN to the neighborhood
   function zoomToMah(mahId: string) {
     if (!map.current) return;
     const bbox = allBBoxes.current[mahId];
     if (bbox) {
-      map.current.fitBounds(
-        [[bbox[0], bbox[1]], [bbox[2], bbox[3]]], 
-        { padding: 60, duration: 800 }
-      );
+      // Calculate center of the neighborhood
+      const center: [number, number] = [
+        (bbox[0] + bbox[2]) / 2,
+        (bbox[1] + bbox[3]) / 2
+      ];
+      
+      // Zoom IN to level 14 (close view of neighborhood)
+      map.current.flyTo({
+        center: center,
+        zoom: 14,
+        duration: 1000,
+        essential: true
+      });
     }
   }
 
