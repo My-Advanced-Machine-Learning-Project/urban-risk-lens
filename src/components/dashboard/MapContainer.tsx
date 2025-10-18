@@ -8,6 +8,10 @@ import { t } from '@/lib/i18n';
 
 const MAPTILER_KEY = import.meta.env.VITE_MAPTILER_KEY || '';
 
+// UI constants for popup positioning and zoom behavior
+const UI_PADDING = { top: 96, right: 24, bottom: 24, left: 24 }; // header için pay
+const TARGET_ZOOM = 13.5; // Target zoom level for neighborhood focus
+
 function getStyleUrl(theme: 'light' | 'dark'): string {
   if (!MAPTILER_KEY) {
     return 'https://demotiles.maplibre.org/style.json';
@@ -94,16 +98,9 @@ export function MapContainer() {
   // Feature cache for safe access
   const featuresRef = useRef<GeoJSON.Feature[]>([]);
   
-  // Safe feature access helper
+  // Safe feature access helper - use featuresRef directly
   function getAllFeatures(): GeoJSON.Feature[] {
-    if (featuresRef.current.length) return featuresRef.current;
-    try {
-      const feats = map.current?.querySourceFeatures('mahalle') ?? [];
-      featuresRef.current = feats as unknown as GeoJSON.Feature[];
-    } catch {
-      // Ignore query errors
-    }
-    return featuresRef.current || [];
+    return featuresRef.current;
   }
   
   const { 
@@ -141,12 +138,11 @@ export function MapContainer() {
     map.current.addControl(new maplibregl.NavigationControl(), 'top-right');
     
     popup.current = new maplibregl.Popup({
-      closeButton: true,
-      closeOnClick: true,  // Close when clicking elsewhere on map
+      closeButton: false,     // No X button
+      closeOnClick: true,     // Close when clicking elsewhere on map
       closeOnMove: false,
       maxWidth: '320px',
-      offset: 15,  // Offset to ensure full visibility
-      anchor: 'bottom'
+      offset: [0, 12]        // Offset below the pin
     });
 
     map.current.on('load', () => {
@@ -182,8 +178,8 @@ export function MapContainer() {
     console.info('[MapContainer] Year changed to:', year, '- reloading all data');
     
     // Clear map layers before reloading
-    if (map.current.getLayer('mahalle-border')) {
-      map.current.removeLayer('mahalle-border');
+    if (map.current.getLayer('mahalle-selected')) {
+      map.current.removeLayer('mahalle-selected');
     }
     if (map.current.getLayer('mahalle-line')) {
       map.current.removeLayer('mahalle-line');
@@ -363,26 +359,17 @@ export function MapContainer() {
       });
     }
 
-    // Add highlighted border layer for selected neighborhoods
-    if (!map.current.getLayer('mahalle-border')) {
+    // Add highlighted border layer for selected neighborhoods (blue, prominent)
+    if (!map.current.getLayer('mahalle-selected')) {
       map.current.addLayer({
-        id: 'mahalle-border',
+        id: 'mahalle-selected',
         type: 'line',
         source: 'mahalle',
+        filter: ['==', ['feature-state', 'selected'], true],
         paint: {
-          'line-color': '#ffffff',
-          'line-width': [
-            'case',
-            ['boolean', ['feature-state', 'selected'], false],
-            4,  // Thicker border for selected
-            0   // No extra border for unselected
-          ],
-          'line-opacity': [
-            'case',
-            ['boolean', ['feature-state', 'selected'], false],
-            1,
-            0
-          ]
+          'line-color': '#60a5fa',    // mavi vurgu (blue highlight)
+          'line-width': 3,
+          'line-opacity': 0.95
         }
       });
     }
@@ -398,13 +385,27 @@ export function MapContainer() {
     console.info('[MapContainer] Layers added:', allFeatures.length);
   }
 
+  // Helper to fly to location with proper padding and zoom
+  function flyToWithPopup(center: [number, number]) {
+    if (!map.current) return;
+    const currentZoom = map.current.getZoom();
+    const targetZoom = Math.max(TARGET_ZOOM, currentZoom); // never zoom out
+    map.current.easeTo({ 
+      center, 
+      zoom: targetZoom, 
+      padding: UI_PADDING, 
+      duration: 700 
+    });
+  }
+
   // Handle feature click
   function handleFeatureClick(e: any) {
     if (!e.features || e.features.length === 0) return;
     
     const feature = e.features[0];
     const props = feature.properties;
-    const mahId = String(props.mah_id || props.fid);
+    // Consistent ID resolution
+    const mahId = String(props.mah_id ?? props.fid ?? feature.id ?? '');
     
     // Debug: log what data is actually available
     console.log('[Popup Debug] Feature properties:', {
@@ -463,11 +464,14 @@ export function MapContainer() {
       </div>
     `;
     
+    // Calculate feature center and fly there with proper padding
+    const center: [number, number] = e.lngLat ? [e.lngLat.lng, e.lngLat.lat] : [0, 0];
+    flyToWithPopup(center);
+    
     if (popup.current) {
       popup.current
-        .setLngLat(e.lngLat)
+        .setLngLat(center)
         .setHTML(html)
-        .setMaxWidth('320px')
         .addTo(map.current!);
     }
   }
@@ -491,8 +495,8 @@ export function MapContainer() {
       if (!all.length || !map.current) return;
       
       const feature = all.find((f: any) => {
-        const fId = f.properties?.mah_id ?? f.properties?.id ?? f.id ?? '';
-        return String(fId) === String(mahId);
+        const fId = String(f.properties?.mah_id ?? f.properties?.fid ?? '');
+        return fId === String(mahId);
       });
       if (!feature) return;
       
@@ -525,10 +529,14 @@ export function MapContainer() {
         return;
       }
       
+      // Use padding and ensure zoom in
+      const currentZoom = map.current.getZoom();
+      const targetZoom = Math.max(TARGET_ZOOM, currentZoom);
       map.current.flyTo({
         center,
-        zoom: 13,
-        speed: 0.8,
+        zoom: targetZoom,
+        speed: 0.9,
+        padding: UI_PADDING,
         essential: true
       });
       
@@ -586,10 +594,9 @@ export function MapContainer() {
             
             if (popup.current) popup.current.remove();
             popup.current = new maplibregl.Popup({ 
-              closeButton: true, 
+              closeButton: false,
               closeOnClick: true,
-              offset: 15,
-              anchor: 'bottom'
+              offset: [0, 12]
             })
               .setLngLat(center)
               .setHTML(html)
@@ -606,23 +613,32 @@ export function MapContainer() {
     };
   }, [toggleMah, mahData, language]);
 
-  // Zoom to mahalle - zoom IN to the neighborhood
+  // Zoom to mahalle - zoom IN to the neighborhood with padding
   function zoomToMah(mahId: string) {
     if (!map.current) return;
     const bbox = allBBoxes.current[mahId];
     if (bbox) {
-      // Calculate center of the neighborhood
-      const center: [number, number] = [
-        (bbox[0] + bbox[2]) / 2,
-        (bbox[1] + bbox[3]) / 2
-      ];
-      
-      // Zoom IN to level 14 (close view of neighborhood)
-      map.current.flyTo({
-        center: center,
-        zoom: 14,
-        duration: 1000,
-        essential: true
+      // First fit to bounds with padding
+      map.current.fitBounds([[bbox[0], bbox[1]], [bbox[2], bbox[3]]], {
+        padding: UI_PADDING,
+        duration: 600
+      });
+
+      // Then ensure we're zoomed in enough (never zoom out)
+      map.current.once('moveend', () => {
+        if (!map.current) return;
+        const center: [number, number] = [
+          (bbox[0] + bbox[2]) / 2,
+          (bbox[1] + bbox[3]) / 2
+        ];
+        const currentZoom = map.current.getZoom();
+        const targetZoom = Math.max(TARGET_ZOOM, currentZoom);
+        map.current.easeTo({ 
+          center, 
+          zoom: targetZoom, 
+          padding: UI_PADDING, 
+          duration: 500 
+        });
       });
     }
   }
@@ -634,20 +650,21 @@ export function MapContainer() {
     const bounds = new maplibregl.LngLatBounds();
     let hasFeatures = false;
 
-    cities.forEach(city => {
-      const cityData = citiesData.current.get(city);
-      if (cityData) {
-        cityData.features.forEach(feature => {
-          const mahId = String(feature.properties.mah_id || feature.properties.fid);
-          const bbox = allBBoxes.current[mahId];
-          if (bbox) {
-            bounds.extend([bbox[0], bbox[1]]);
-            bounds.extend([bbox[2], bbox[3]]);
-            hasFeatures = true;
-          }
-        });
-      }
-    });
+      cities.forEach(city => {
+        const cityData = citiesData.current.get(city);
+        if (cityData) {
+          cityData.features.forEach(feature => {
+            // Consistent ID resolution
+            const mahId = String(feature.properties.mah_id ?? feature.properties.fid ?? '');
+            const bbox = allBBoxes.current[mahId];
+            if (bbox) {
+              bounds.extend([bbox[0], bbox[1]]);
+              bounds.extend([bbox[2], bbox[3]]);
+              hasFeatures = true;
+            }
+          });
+        }
+      });
 
     if (hasFeatures) {
       map.current.fitBounds(bounds, { padding: 40, duration: 800 });
@@ -777,9 +794,11 @@ export function MapContainer() {
     // Set selected
     selectedMah.forEach(mahId => {
       citiesData.current.forEach((cityData) => {
-        const feature = cityData.features.find((f: any) => 
-          String(f.properties.mah_id || f.properties.fid) === mahId
-        );
+        const feature = cityData.features.find((f: any) => {
+          // Consistent ID resolution
+          const fId = String(f.properties.mah_id ?? f.properties.fid ?? '');
+          return fId === mahId;
+        });
         if (feature && (feature as any).id != null) {
           map.current?.setFeatureState(
             { source: 'mahalle', id: (feature as any).id },
