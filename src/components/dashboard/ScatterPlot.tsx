@@ -12,12 +12,12 @@ import { t } from '@/lib/i18n';
 import { getRiskClass, getRiskColor } from '@/lib/riskColors';
 
 const SCATTER_MODES = [
-  { value: 'vs30_risk', label: '1. VS30 vs Risk Skoru', xLabel: 'VS30 (m/s)', yLabel: 'Risk Skoru' },
-  { value: 'population_risk', label: '2. Nüfus Yoğunluğu vs Risk', xLabel: 'Nüfus', yLabel: 'Risk Skoru' },
-  { value: 'buildings_risk', label: '3. Bina Sayısı vs Risk', xLabel: 'Bina Sayısı', yLabel: 'Risk Skoru' },
-  { value: 'vs30_buildings', label: '4. VS30 vs Bina Sayısı', xLabel: 'VS30 (m/s)', yLabel: 'Bina Sayısı' },
-  { value: 'risk_class', label: '5. Risk Skoru vs Risk Sınıfı', xLabel: 'Risk Skoru', yLabel: 'Risk Sınıfı (1-5)' },
-  { value: 'city_comparison', label: '6. Şehir Karşılaştırması', xLabel: 'Şehir', yLabel: 'Ortalama Risk' },
+  { value: 'vs30_risk', labelKey: 'scatterMode1', xLabel: 'VS30 (m/s)', yLabel: 'Risk Skoru' },
+  { value: 'population_risk', labelKey: 'scatterMode2', xLabel: 'Nüfus', yLabel: 'Risk Skoru' },
+  { value: 'buildings_risk', labelKey: 'scatterMode3', xLabel: 'Bina Sayısı', yLabel: 'Risk Skoru' },
+  { value: 'vs30_buildings', labelKey: 'scatterMode4', xLabel: 'VS30 (m/s)', yLabel: 'Bina Sayısı' },
+  { value: 'risk_class', labelKey: 'scatterMode5', xLabel: 'Risk Skoru', yLabel: 'Risk Sınıfı (1-5)' },
+  { value: 'city_comparison', labelKey: 'scatterMode6', xLabel: 'Şehir', yLabel: 'Ortalama Risk' },
 ];
 
 export function ScatterPlot() {
@@ -211,7 +211,7 @@ export function ScatterPlot() {
       <CardHeader>
         <div className="flex items-center justify-between">
           <CardTitle className="text-base">
-            Dağılım Analizi
+            {t('scatterAnalysis', language)}
           </CardTitle>
           <Select value={scatterMode} onValueChange={(value) => setScatterMode(value as any)}>
             <SelectTrigger className="w-[280px]">
@@ -220,7 +220,7 @@ export function ScatterPlot() {
             <SelectContent>
               {SCATTER_MODES.map(mode => (
                 <SelectItem key={mode.value} value={mode.value}>
-                  {mode.label}
+                  {t(mode.labelKey as any, language)}
                 </SelectItem>
               ))}
             </SelectContent>

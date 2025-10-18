@@ -260,11 +260,11 @@ export function MapContainer() {
             <span class="font-medium">${props.toplam_bina?.toLocaleString() || 'N/A'}</span>
           </div>
           <div class="flex justify-between">
-            <span class="text-muted-foreground">VS30:</span>
+            <span class="text-muted-foreground">${t('vs30', language)}:</span>
             <span class="font-medium">${props.vs30_mean?.toFixed(1) || 'N/A'}</span>
           </div>
           <div class="flex items-center justify-between pt-2 border-t">
-            <span class="text-muted-foreground">Risk:</span>
+            <span class="text-muted-foreground">${t('riskScore', language)}:</span>
             <div class="flex items-center gap-2">
               <div class="w-4 h-4 rounded" style="background-color: ${riskColor}"></div>
               <span class="font-semibold">${riskScore.toFixed(3)}</span>
@@ -274,7 +274,7 @@ export function MapContainer() {
             onclick="window.selectAndZoom('${mahId}')"
             class="w-full mt-3 px-3 py-2 bg-primary text-primary-foreground rounded-md text-sm font-medium hover:bg-primary/90 transition-colors"
           >
-            Seç & Zoom
+            ${t('selectZoom', language)}
           </button>
         </div>
       </div>
@@ -349,6 +349,7 @@ export function MapContainer() {
   useEffect(() => {
     if (!map.current || !map.current.getLayer('mahalle-fill')) return;
     
+    console.info('[MapContainer] Updating metric paint:', metric);
     map.current.setPaintProperty('mahalle-fill', 'fill-color', getMetricPaint(metric));
   }, [metric]);
 

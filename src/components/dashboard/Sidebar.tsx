@@ -182,21 +182,20 @@ export function Sidebar() {
             </div>
           </div>
 
-          {/* Metric Selection */}
           <div>
             <label className="text-sm font-medium mb-2 block">
-              Metrik
+              {t('metric', language)}
             </label>
             <Select value={metric} onValueChange={(value) => setMetric(value as any)}>
               <SelectTrigger>
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="risk_score">Risk Skoru</SelectItem>
-                <SelectItem value="risk_class">Risk Sınıfı</SelectItem>
-                <SelectItem value="vs30">VS30</SelectItem>
-                <SelectItem value="population">Nüfus</SelectItem>
-                <SelectItem value="buildings">Bina Sayısı</SelectItem>
+                <SelectItem value="risk_score">{t('riskScore', language)}</SelectItem>
+                <SelectItem value="risk_class">{t('riskClass', language)}</SelectItem>
+                <SelectItem value="vs30">{t('vs30', language)}</SelectItem>
+                <SelectItem value="population">{t('population', language)}</SelectItem>
+                <SelectItem value="buildings">{t('buildings', language)}</SelectItem>
               </SelectContent>
             </Select>
           </div>
@@ -205,7 +204,7 @@ export function Sidebar() {
           <div className="relative">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
             <Input
-              placeholder="Mahalle veya ilçe ara..."
+              placeholder={t('search', language)}
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               className="pl-9 pr-9"
@@ -229,7 +228,7 @@ export function Sidebar() {
             className="w-full text-xs"
             onClick={clearMah}
           >
-            Seçimi Temizle
+            {t('clearSelection', language)}
           </Button>
         </div>
 
@@ -250,7 +249,7 @@ export function Sidebar() {
                     <span className="font-semibold text-sm">{city}</span>
                     <div className="flex items-center gap-2">
                       <span className="text-xs text-muted-foreground">
-                        {districtCount} ilçe
+                        {districtCount} {t('districts', language)}
                       </span>
                       {isCityExpanded ? (
                         <ChevronDown className="h-4 w-4" />
@@ -324,7 +323,7 @@ export function Sidebar() {
         <div className="p-4 border-t bg-muted/30">
           <div className="text-xs text-muted-foreground space-y-1">
             <div className="flex justify-between">
-              <span>Toplam Mahalle:</span>
+              <span>{t('totalNeighborhoods', language)}:</span>
               <span className="font-medium text-foreground">{totalNeighborhoods}</span>
             </div>
             <div className="flex justify-between">

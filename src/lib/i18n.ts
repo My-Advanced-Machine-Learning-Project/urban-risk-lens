@@ -4,6 +4,17 @@ export const translations = {
     citySelection: 'Risk Haritası',
     selected: 'Seçilen',
     year: 'Yıl',
+    metric: 'Metrik',
+    search: 'Ara...',
+    clearSelection: 'Seçimi Temizle',
+    totalNeighborhoods: 'Toplam Mahalle',
+    
+    // Metrics
+    riskScore: 'Risk Skoru',
+    riskClass: 'Risk Sınıfı',
+    vs30: 'VS30',
+    population: 'Nüfus',
+    buildings: 'Bina Sayısı',
     
     // Risk levels
     veryLow: 'Çok Düşük',
@@ -17,25 +28,42 @@ export const translations = {
     
     // Popup
     district: 'İlçe',
-    population: 'Nüfus',
-    buildings: 'Bina Sayısı',
+    selectZoom: 'Seç & Zoom',
     
-    // Metrics
+    // Cards
     totalDistricts: 'Toplam Mahalle',
     averageRisk: 'Ortalama Risk',
     highRiskAreas: 'Yüksek Riskli Alanlar',
     
     // Analytics
-    riskDistribution: 'Risk Dağılımı',
     scatterAnalysis: 'Dağılım Analizi',
-    vs30: 'VS30',
-    riskScore: 'Risk Skoru',
+    scatterMode1: 'VS30 vs Risk Skoru',
+    scatterMode2: 'Nüfus Yoğunluğu vs Risk',
+    scatterMode3: 'Bina Sayısı vs Risk',
+    scatterMode4: 'VS30 vs Bina Sayısı',
+    scatterMode5: 'Risk Skoru vs Risk Sınıfı',
+    scatterMode6: 'Şehir Karşılaştırması',
+    
+    // Common
+    city: 'Şehir',
+    districts: 'ilçe',
   },
   en: {
     // Sidebar
     citySelection: 'Risk Map',
     selected: 'Selected',
     year: 'Year',
+    metric: 'Metric',
+    search: 'Search...',
+    clearSelection: 'Clear Selection',
+    totalNeighborhoods: 'Total Neighborhoods',
+    
+    // Metrics
+    riskScore: 'Risk Score',
+    riskClass: 'Risk Class',
+    vs30: 'VS30',
+    population: 'Population',
+    buildings: 'Building Count',
     
     // Risk levels
     veryLow: 'Very Low',
@@ -49,19 +77,25 @@ export const translations = {
     
     // Popup
     district: 'District',
-    population: 'Population',
-    buildings: 'Building Count',
+    selectZoom: 'Select & Zoom',
     
-    // Metrics
+    // Cards
     totalDistricts: 'Total Neighborhoods',
     averageRisk: 'Average Risk',
     highRiskAreas: 'High Risk Areas',
     
     // Analytics
-    riskDistribution: 'Risk Distribution',
     scatterAnalysis: 'Scatter Analysis',
-    vs30: 'VS30',
-    riskScore: 'Risk Score',
+    scatterMode1: 'VS30 vs Risk Score',
+    scatterMode2: 'Population Density vs Risk',
+    scatterMode3: 'Building Count vs Risk',
+    scatterMode4: 'VS30 vs Building Count',
+    scatterMode5: 'Risk Score vs Risk Class',
+    scatterMode6: 'City Comparison',
+    
+    // Common
+    city: 'City',
+    districts: 'districts',
   },
 };
 
