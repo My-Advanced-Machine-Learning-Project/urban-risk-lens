@@ -80,6 +80,10 @@ export function Sidebar() {
     const term = searchTerm.toLowerCase();
     const filtered: typeof groupedData = {};
     
+    // Auto-expand districts and cities when filtering
+    const newExpandedCities = new Set<string>();
+    const newExpandedDistricts = new Set<string>();
+    
     Object.entries(groupedData).forEach(([city, districts]) => {
       const filteredDistricts: Record<string, Array<{ id: string; name: string }>> = {};
       
@@ -91,6 +95,9 @@ export function Sidebar() {
         
         if (filteredNeighborhoods.length > 0) {
           filteredDistricts[district] = filteredNeighborhoods;
+          // Auto-expand matching city and district
+          newExpandedCities.add(toKey(city));
+          newExpandedDistricts.add(`${city}-${district}`);
         }
       });
       
@@ -99,15 +106,22 @@ export function Sidebar() {
       }
     });
     
+    // Update expanded states when searching
+    if (searchTerm) {
+      setExpandedCities(newExpandedCities);
+      setExpandedDistricts(newExpandedDistricts);
+    }
+    
     return filtered;
   }, [groupedData, searchTerm]);
 
   const toggleCity = (city: string) => {
+    const cityKey = toKey(city);
     const newSet = new Set(expandedCities);
-    if (newSet.has(city)) {
-      newSet.delete(city);
+    if (newSet.has(cityKey)) {
+      newSet.delete(cityKey);
     } else {
-      newSet.add(city);
+      newSet.add(cityKey);
     }
     setExpandedCities(newSet);
   };
@@ -132,6 +146,27 @@ export function Sidebar() {
     });
     return count;
   }, [groupedData]);
+  
+  // Auto-expand first few districts on initial load
+  useMemo(() => {
+    if (totalNeighborhoods > 0 && expandedDistricts.size === 0) {
+      const firstDistrictsToExpand = new Set<string>();
+      let count = 0;
+      
+      Object.entries(groupedData).forEach(([city, districts]) => {
+        Object.keys(districts).slice(0, 2).forEach(district => {
+          if (count < 4) { // Expand up to 4 districts total
+            firstDistrictsToExpand.add(`${city}-${district}`);
+            count++;
+          }
+        });
+      });
+      
+      if (firstDistrictsToExpand.size > 0) {
+        setExpandedDistricts(firstDistrictsToExpand);
+      }
+    }
+  }, [totalNeighborhoods]);
 
   return (
     <>
@@ -193,7 +228,7 @@ export function Sidebar() {
           <div className="relative">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
             <Input
-              placeholder={t('search', language)}
+              placeholder={`${t('search', language)} (${totalNeighborhoods} ${language === 'tr' ? 'mahalle' : 'neighborhoods'})`}
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               className="pl-9 pr-9"
@@ -209,6 +244,14 @@ export function Sidebar() {
               </Button>
             )}
           </div>
+          
+          {totalNeighborhoods === 0 && (
+            <div className="text-xs text-muted-foreground text-center p-2 bg-muted/50 rounded">
+              {language === 'tr' 
+                ? 'Veriler yükleniyor... Konsolu kontrol edin.' 
+                : 'Loading data... Check console.'}
+            </div>
+          )}
 
           {/* Action Button */}
           <Button
@@ -225,7 +268,8 @@ export function Sidebar() {
         <ScrollArea className="flex-1">
           <div className="p-2">
             {Object.entries(filteredData).map(([city, districts]) => {
-              const isCityExpanded = expandedCities.has(city);
+              const cityKey = toKey(city);
+              const isCityExpanded = expandedCities.has(cityKey);
               const districtCount = Object.keys(districts).length;
               
               return (

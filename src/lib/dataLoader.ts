@@ -32,25 +32,51 @@ const CITY_CONFIG: Record<string, { geo: string; csv: string }> = {
   },
   'Ankara': {
     geo: '/data/ankara_mahalle_risk.geojson',
-    csv: '/data/ankara_risk_data.csv'
+    csv: '/data/2025_ankara.csv'
   }
 };
 
-// Parse CSV text to array of objects
+// Parse CSV text to array of objects (handles quoted values)
 function parseCSV(text: string): Record<string, any>[] {
   const lines = text.trim().split('\n');
   if (lines.length < 2) return [];
   
-  const headers = lines[0].split(',').map(h => h.trim());
+  // Parse CSV line considering quotes
+  const parseLine = (line: string): string[] => {
+    const values: string[] = [];
+    let current = '';
+    let inQuotes = false;
+    
+    for (let i = 0; i < line.length; i++) {
+      const char = line[i];
+      
+      if (char === '"') {
+        inQuotes = !inQuotes;
+      } else if (char === ',' && !inQuotes) {
+        values.push(current.trim());
+        current = '';
+      } else {
+        current += char;
+      }
+    }
+    values.push(current.trim());
+    return values;
+  };
+  
+  const headers = parseLine(lines[0]);
   const data: Record<string, any>[] = [];
   
   for (let i = 1; i < lines.length; i++) {
-    const values = lines[i].split(',');
+    const values = parseLine(lines[i]);
     if (values.length !== headers.length) continue;
     
     const row: Record<string, any> = {};
     headers.forEach((header, idx) => {
-      const value = values[idx].trim();
+      let value = values[idx];
+      // Remove quotes if present
+      if (value.startsWith('"') && value.endsWith('"')) {
+        value = value.slice(1, -1);
+      }
       // Try to parse as number, handle Turkish comma decimals
       const normalizedValue = value.replace(',', '.');
       const num = parseFloat(normalizedValue);
