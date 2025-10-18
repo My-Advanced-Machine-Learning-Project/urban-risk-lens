@@ -26,13 +26,15 @@ function getStyleUrl(theme: 'light' | 'dark'): string {
     : `https://api.maptiler.com/maps/streets-v2/style.json?key=${MAPTILER_KEY}`;
 }
 
-// Metric paint expressions with null safety - colors matching reference app
-function getMetricPaint(metric: string): any {
+// Metric paint expressions with year-aware coalescing - colors matching reference app
+function getMetricPaint(metric: string, year: number): any {
+  const Y = String(year);
+  
   if (metric === 'risk_score') {
     // Yellow to dark red gradient (Very Low to Very High)
     return [
       'step',
-      ['coalesce', ['get', 'risk_score'], -1],
+      ['coalesce', ['get', `risk_score_${Y}`], ['get', 'risk_score'], -1],
       '#6b7280', // default gray for missing data
       0, '#f5ebb8',      // 0.00-0.18: Very Low (pale yellow)
       0.18, '#f0c96c',   // 0.18-0.23: Low (yellow)
@@ -44,7 +46,7 @@ function getMetricPaint(metric: string): any {
     // Blue gradient (higher VS30 = better soil = darker blue)
     return [
       'step',
-      ['coalesce', ['get', 'vs30_mean'], ['get', 'vs30'], -1],
+      ['coalesce', ['get', `vs30_mean_${Y}`], ['get', 'vs30_mean'], ['get', 'vs30'], -1],
       '#6b7280', // default gray
       0, '#e8f0f7',      // 222-376: Very light blue
       222, '#e8f0f7',
@@ -57,7 +59,7 @@ function getMetricPaint(metric: string): any {
     // Teal/green gradient
     return [
       'step',
-      ['coalesce', ['get', 'toplam_nufus'], -1],
+      ['coalesce', ['get', `toplam_nufus_${Y}`], ['get', 'toplam_nufus'], -1],
       '#6b7280', // default gray
       0, '#d9f0ed',      // 13-1,398: Very light teal
       13, '#d9f0ed',
@@ -70,7 +72,7 @@ function getMetricPaint(metric: string): any {
     // Purple gradient
     return [
       'step',
-      ['coalesce', ['get', 'toplam_bina'], -1],
+      ['coalesce', ['get', `toplam_bina_${Y}`], ['get', 'toplam_bina'], -1],
       '#6b7280', // default gray
       0, '#e8d9f5',      // 10-341: Very light purple
       10, '#e8d9f5',
@@ -82,16 +84,7 @@ function getMetricPaint(metric: string): any {
   }
   
   // Default: risk_score
-  return [
-    'step',
-    ['coalesce', ['get', 'risk_score'], -1],
-    '#6b7280',
-    0, '#f5ebb8',
-    0.18, '#f0c96c',
-    0.23, '#e69344',
-    0.30, '#b94843',
-    0.43, '#6b2527'
-  ];
+  return getMetricPaint('risk_score', year);
 }
 
 export function MapContainer() {
@@ -285,7 +278,7 @@ export function MapContainer() {
       src.setData(currentGeoJSON.current as any);
       // Update choropleth colors for the new year's data
       if (map.current.getLayer('mahalle-fill')) {
-        map.current.setPaintProperty('mahalle-fill', 'fill-color', getMetricPaint(metric));
+        map.current.setPaintProperty('mahalle-fill', 'fill-color', getMetricPaint(metric, year));
         // Smooth cross-fade transition
         map.current.setPaintProperty('mahalle-fill', 'fill-opacity-transition', { duration: 250 });
       }
@@ -366,7 +359,7 @@ export function MapContainer() {
         type: 'fill',
         source: 'mahalle',
         paint: {
-          'fill-color': getMetricPaint(metric),
+          'fill-color': getMetricPaint(metric, year),
           'fill-opacity': [
             'case',
             ['boolean', ['feature-state', 'selected'], false],
@@ -491,7 +484,7 @@ export function MapContainer() {
           </div>
           <div style="display:flex;justify-content:space-between;margin:4px 0;">
             <span style="color:${labelColor};">Sınıf</span>
-            <span style="padding:2px 10px;border-radius:8px;font-weight:600;color:#111;background:${riskColor};">${riskLabel}</span>
+            <span style="padding:2px 10px;border-radius:8px;font-weight:600;color:#fff;background:${riskColor};">${riskLabel}</span>
           </div>
           <div style="display:flex;justify-content:space-between;margin:4px 0;">
             <span style="color:${labelColor};">${t('population', language)}</span>
@@ -632,7 +625,7 @@ export function MapContainer() {
                   </div>
                   <div style="display:flex;justify-content:space-between;margin:4px 0;">
                     <span style="color:${labelColor};">Sınıf</span>
-                    <span style="padding:2px 10px;border-radius:8px;font-weight:600;color:#111;background:${riskColor};">${riskLabel}</span>
+                    <span style="padding:2px 10px;border-radius:8px;font-weight:600;color:#fff;background:${riskColor};">${riskLabel}</span>
                   </div>
                   <div style="display:flex;justify-content:space-between;margin:4px 0;">
                     <span style="color:${labelColor};">${t('population', language)}</span>
@@ -752,7 +745,7 @@ export function MapContainer() {
     if (!map.current || !map.current.getLayer('mahalle-fill')) return;
     
     console.info('[MapContainer] Updating metric paint:', metric, 'year:', year);
-    map.current.setPaintProperty('mahalle-fill', 'fill-color', getMetricPaint(metric));
+    map.current.setPaintProperty('mahalle-fill', 'fill-color', getMetricPaint(metric, year));
   }, [metric, year]);
 
   // Handle sidebar toggle - resize map and scatter
