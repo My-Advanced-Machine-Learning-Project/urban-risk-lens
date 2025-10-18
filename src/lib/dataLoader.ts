@@ -51,11 +51,17 @@ function parseCSV(text: string): Record<string, any>[] {
     const row: Record<string, any> = {};
     headers.forEach((header, idx) => {
       const value = values[idx].trim();
-      // Try to parse as number
-      const num = parseFloat(value);
+      // Try to parse as number, handle Turkish comma decimals
+      const normalizedValue = value.replace(',', '.');
+      const num = parseFloat(normalizedValue);
       row[header] = isNaN(num) ? value : num;
     });
     data.push(row);
+  }
+  
+  console.info(`[CSV Parse] Parsed ${data.length} rows with headers:`, headers.slice(0, 10));
+  if (data.length > 0) {
+    console.info('[CSV Parse] Sample row:', data[0]);
   }
   
   return data;
@@ -105,8 +111,32 @@ export async function loadCityData(cityName: string): Promise<CityData | null> {
     const csvText = await csvResponse.text();
     const csvData = parseCSV(csvText);
     
+    console.info(`[DataLoader] ${cityName} - Raw data:`, {
+      geoFeatures: geojson.features?.length,
+      csvRows: csvData.length,
+      sampleGeoId: geojson.features?.[0]?.properties?.mah_id || geojson.features?.[0]?.properties?.fid,
+      sampleCsvKeys: csvData[0] ? Object.keys(csvData[0]).slice(0, 10) : []
+    });
+    
     // Join data - NOTE: csvData first, then features!
     const { features: joinedFeatures } = joinData(csvData, geojson.features);
+    
+    // Verify join worked
+    const withScore = joinedFeatures.filter(f => (f.properties?.risk_score ?? 0) > 0).length;
+    console.info(`[DataLoader] ${cityName} - Join result: ${withScore}/${joinedFeatures.length} features have risk_score`);
+    
+    // Sample feature check
+    if (joinedFeatures.length > 0) {
+      const sample = joinedFeatures[Math.floor(Math.random() * joinedFeatures.length)];
+      console.info(`[DataLoader] ${cityName} - Sample feature:`, {
+        mahalle: sample.properties?.mahalle_adi,
+        id: sample.properties?.mah_id || sample.properties?.fid,
+        risk_score: sample.properties?.risk_score,
+        population: sample.properties?.toplam_nufus,
+        buildings: sample.properties?.toplam_bina,
+        vs30: sample.properties?.vs30_mean
+      });
+    }
     
     // Reconstruct GeoJSON
     const joinedGeoJSON = {

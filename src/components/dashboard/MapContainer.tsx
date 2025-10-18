@@ -277,6 +277,17 @@ export function MapContainer() {
     const props = feature.properties;
     const mahId = String(props.mah_id || props.fid);
     
+    // Debug: log what data is actually available
+    console.log('[Popup Debug] Feature properties:', {
+      mahalle: props.mahalle_adi,
+      id: mahId,
+      risk_score: props.risk_score,
+      population: props.toplam_nufus,
+      buildings: props.toplam_bina,
+      vs30: props.vs30_mean,
+      allKeys: Object.keys(props).slice(0, 20)
+    });
+    
     const riskScore = props.risk_score || 0;
     const riskClass = getRiskClass(riskScore);
     const riskColor = getRiskColor(riskClass);

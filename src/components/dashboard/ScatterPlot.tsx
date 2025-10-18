@@ -27,6 +27,20 @@ export function ScatterPlot() {
 
   // Prepare data based on scatter mode
   const scatterData = useMemo(() => {
+    console.log('[ScatterPlot] Preparing data, mahData size:', mahData.size);
+    
+    // Sample check
+    if (mahData.size > 0) {
+      const [firstId, firstMah] = [...mahData.entries()][0];
+      console.log('[ScatterPlot] Sample mahData:', {
+        id: firstId,
+        risk_score: firstMah?.risk_score,
+        vs30: firstMah?.vs30_mean,
+        population: firstMah?.toplam_nufus,
+        buildings: firstMah?.toplam_bina
+      });
+    }
+    
     if (scatterMode === 'city_comparison') {
       // City comparison mode
       const cityStats: Record<string, { totalRisk: number; count: number; city: string }> = {
@@ -75,40 +89,43 @@ export function ScatterPlot() {
     mahData.forEach((mah, id) => {
       let x = 0, y = 0, size = 1000;
       
+      // Validate data exists and is not NaN
+      const hasValidData = (val: any) => val != null && !isNaN(Number(val)) && Number(val) > 0;
+      
       switch (scatterMode) {
         case 'vs30_risk':
-          if (!mah.vs30_mean || !mah.risk_score) return;
-          x = mah.vs30_mean;
-          y = mah.risk_score;
-          size = mah.toplam_bina || 1000;
+          if (!hasValidData(mah.vs30_mean) || !hasValidData(mah.risk_score)) return;
+          x = Number(mah.vs30_mean);
+          y = Number(mah.risk_score);
+          size = Number(mah.toplam_bina) || 1000;
           break;
           
         case 'population_risk':
-          if (!mah.toplam_nufus || !mah.risk_score) return;
-          x = mah.toplam_nufus;
-          y = mah.risk_score;
-          size = mah.toplam_bina || 1000;
+          if (!hasValidData(mah.toplam_nufus) || !hasValidData(mah.risk_score)) return;
+          x = Number(mah.toplam_nufus);
+          y = Number(mah.risk_score);
+          size = Number(mah.toplam_bina) || 1000;
           break;
           
         case 'buildings_risk':
-          if (!mah.toplam_bina || !mah.risk_score) return;
-          x = mah.toplam_bina;
-          y = mah.risk_score;
-          size = mah.toplam_nufus || 5000;
+          if (!hasValidData(mah.toplam_bina) || !hasValidData(mah.risk_score)) return;
+          x = Number(mah.toplam_bina);
+          y = Number(mah.risk_score);
+          size = Number(mah.toplam_nufus) || 5000;
           break;
           
         case 'vs30_buildings':
-          if (!mah.vs30_mean || !mah.toplam_bina) return;
-          x = mah.vs30_mean;
-          y = mah.toplam_bina;
-          size = mah.risk_score ? mah.risk_score * 5000 : 1000;
+          if (!hasValidData(mah.vs30_mean) || !hasValidData(mah.toplam_bina)) return;
+          x = Number(mah.vs30_mean);
+          y = Number(mah.toplam_bina);
+          size = (Number(mah.risk_score) || 0.2) * 5000;
           break;
           
         case 'risk_class':
-          if (!mah.risk_score || !mah.risk_class_5) return;
-          x = mah.risk_score;
-          y = mah.risk_class_5;
-          size = mah.toplam_bina || 1000;
+          if (!hasValidData(mah.risk_score) || !hasValidData(mah.risk_class_5)) return;
+          x = Number(mah.risk_score);
+          y = Number(mah.risk_class_5);
+          size = Number(mah.toplam_bina) || 1000;
           break;
       }
       
@@ -122,6 +139,11 @@ export function ScatterPlot() {
         isSelected: selectedMah.has(id.toString())
       });
     });
+    
+    console.log(`[ScatterPlot] Generated ${data.length} valid points for mode: ${scatterMode}`);
+    if (data.length === 0) {
+      console.warn('[ScatterPlot] No valid data points! Check if CSV join worked.');
+    }
     
     return data;
   }, [mahData, selectedMah, scatterMode]);
