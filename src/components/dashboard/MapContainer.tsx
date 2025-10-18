@@ -91,6 +91,21 @@ export function MapContainer() {
   const map = useRef<maplibregl.Map | null>(null);
   const popup = useRef<maplibregl.Popup | null>(null);
   
+  // Feature cache for safe access
+  const featuresRef = useRef<GeoJSON.Feature[]>([]);
+  
+  // Safe feature access helper
+  function getAllFeatures(): GeoJSON.Feature[] {
+    if (featuresRef.current.length) return featuresRef.current;
+    try {
+      const feats = map.current?.querySourceFeatures('neighborhoods') ?? [];
+      featuresRef.current = feats as unknown as GeoJSON.Feature[];
+    } catch {
+      // Ignore query errors
+    }
+    return featuresRef.current || [];
+  }
+  
   const { 
     theme, 
     language, 
@@ -101,8 +116,7 @@ export function MapContainer() {
     setCityIndex,
     setAllFeatures,
     toggleMah,
-    mahData,
-    allFeatures
+    mahData
   } = useMapState();
   
   const citiesData = useRef<Map<string, CityData>>(new Map());
@@ -216,6 +230,9 @@ export function MapContainer() {
       console.warn('[MapContainer] No features');
       return;
     }
+    
+    // Populate features ref for safe access
+    featuresRef.current = allFeatures as GeoJSON.Feature[];
 
     if (!map.current.getSource('mahalle')) {
       map.current.addSource('mahalle', {
@@ -358,19 +375,34 @@ export function MapContainer() {
     
     // Fly to neighborhood with optional popup (for scatter plot)
     (window as any).flyToNeighborhood = (mahId: string, opts?: { openPopup?: boolean }) => {
-      const feature = allFeatures.find(f => f.id.toString() === mahId.toString());
-      if (!feature || !map.current) return;
+      const all = getAllFeatures();
+      if (!all.length || !map.current) return;
       
-      // Calculate center from bbox or use raw geometry
+      const feature = all.find((f: any) => {
+        const fId = f.properties?.mah_id ?? f.properties?.id ?? f.id ?? '';
+        return String(fId) === String(mahId);
+      });
+      if (!feature) return;
+      
+      // Calculate center from bbox or use geometry
       let center: [number, number];
       if (feature.bbox) {
         center = [
           (feature.bbox[0] + feature.bbox[2]) / 2,
           (feature.bbox[1] + feature.bbox[3]) / 2
         ];
-      } else if (feature._raw?.geometry?.coordinates) {
+      } else if (feature.geometry?.type === 'Polygon' && feature.geometry.coordinates?.[0]) {
         // Simple centroid calculation for polygon
-        const coords = feature._raw.geometry.coordinates[0];
+        const coords = feature.geometry.coordinates[0];
+        if (coords && coords.length > 0) {
+          const sum = coords.reduce((acc: [number, number], c: number[]) => [acc[0] + c[0], acc[1] + c[1]], [0, 0]);
+          center = [sum[0] / coords.length, sum[1] / coords.length];
+        } else {
+          return;
+        }
+      } else if (feature.geometry?.type === 'MultiPolygon' && feature.geometry.coordinates?.[0]?.[0]) {
+        // Use first polygon of multipolygon
+        const coords = feature.geometry.coordinates[0][0];
         if (coords && coords.length > 0) {
           const sum = coords.reduce((acc: [number, number], c: number[]) => [acc[0] + c[0], acc[1] + c[1]], [0, 0]);
           center = [sum[0] / coords.length, sum[1] / coords.length];
@@ -428,7 +460,7 @@ export function MapContainer() {
       delete (window as any).scatterZoomToMah;
       delete (window as any).flyToNeighborhood;
     };
-  }, [toggleMah, allFeatures, mahData, language]);
+  }, [toggleMah, mahData, language]);
 
   // Zoom to mahalle
   function zoomToMah(mahId: string) {
