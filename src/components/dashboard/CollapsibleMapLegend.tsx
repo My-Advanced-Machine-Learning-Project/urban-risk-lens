@@ -9,14 +9,27 @@ type Props = {
 };
 
 // Format ranges based on metric type
-function formatRange(breaks: RiskBreak[], index: number): string {
+function formatRange(breaks: RiskBreak[], index: number, metric: string): string {
   if (index === breaks.length - 1) {
     // Last item - show "value+"
+    if (metric === 'risk_score') {
+      return `${breaks[index].value.toFixed(2)}+`;
+    } else if (metric === 'vs30' || metric === 'population' || metric === 'buildings') {
+      return `${Math.round(breaks[index].value).toLocaleString()}+`;
+    }
     return `${breaks[index].value.toFixed(2)}+`;
   }
+  
   // Show range from current to next
   const current = breaks[index].value;
   const next = breaks[index + 1].value;
+  
+  if (metric === 'risk_score') {
+    return `${current.toFixed(2)} – ${next.toFixed(2)}`;
+  } else if (metric === 'vs30' || metric === 'population' || metric === 'buildings') {
+    return `${Math.round(current).toLocaleString()} – ${Math.round(next).toLocaleString()}`;
+  }
+  
   return `${current.toFixed(2)} – ${next.toFixed(2)}`;
 }
 
@@ -53,7 +66,7 @@ export default function CollapsibleMapLegend({
         {palette.map((item, i) => (
           <div className="legend-item" key={`${item.color}-${i}`}>
             <div className="legend-swatch" style={{ backgroundColor: item.color }} />
-            <span className="legend-label">{formatRange(palette, i)}</span>
+            <span className="legend-label">{formatRange(palette, i, metric)}</span>
           </div>
         ))}
 
