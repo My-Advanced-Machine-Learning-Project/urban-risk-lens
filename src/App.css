@@ -1,6 +1,4 @@
-/* ===========================
-   Global root – full screen map
-   =========================== */
+/* ===================== Global root fix - tam ekran harita ===================== */
 #root {
   max-width: none !important;
   margin: 0 !important;
@@ -8,72 +6,94 @@
   text-align: initial !important;
 }
 
-/* Demo/Vite logo styles (haritaya etki etmez) */
-.logo { height: 6em; padding: 1.5em; will-change: filter; transition: filter 300ms; }
-.logo:hover { filter: drop-shadow(0 0 2em #646cffaa); }
-.logo.react:hover { filter: drop-shadow(0 0 2em #61dafbaa); }
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
 
-@keyframes logo-spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
 @media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo { animation: logo-spin infinite 20s linear; }
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
 }
 
-.card { padding: 2em; }
-.read-the-docs { color: #888; }
-
-/* ===========================
-   Legend – shared tokens
-   =========================== */
-.map-legend {
-  /* Varsayılan palet (JS tarafı renk geçmezse kullanılır) */
-  --legend-c1: #e9d5ff;
-  --legend-c2: #d8b4fe;
-  --legend-c3: #c084fc;
-  --legend-c4: #a855f7;
-  --legend-c5: #7e22ce;
-
-  /* Kart renkleri */
-  --legend-bg: hsla(222.2, 84%, 4.9%, 0.98);
-  --legend-fg: hsl(210, 40%, 98%);
-  --legend-muted: hsl(215.4, 16.3%, 56.9%);
-  --legend-border: hsla(217.2, 32.6%, 17.5%, 0.5);
-  --legend-shadow: 0 8px 32px rgba(0,0,0,.7);
+.card {
+  padding: 2em;
+}
+.read-the-docs {
+  color: #888;
 }
 
-/* ---- Map Legend (collapsible, professional) ---- */
-.map-legend .legend-card{
-  background: var(--legend-bg);
-  color: var(--legend-fg);
+/* ===================== Palette (map & scatter ortak) ===================== */
+/* Harita renk rampası (açık → koyu). Gerekirse kod tarafıyla eşleştir. */
+:root {
+  --map-c1: #e9e2b0; /* 0.00–0.18  (açık sarı-bej) */
+  --map-c2: #dcc38b; /* 0.18–0.23  */
+  --map-c3: #c99a66; /* 0.23–0.30  */
+  --map-c4: #b56550; /* 0.30–0.43  */
+  --map-c5: #7a1f1d; /* 0.43+      (koyu kırmızı) */
+
+  /* Scatter için aynı rampa */
+  --scat-c1: var(--map-c1);
+  --scat-c2: var(--map-c2);
+  --scat-c3: var(--map-c3);
+  --scat-c4: var(--map-c4);
+  --scat-c5: var(--map-c5);
+
+  /* Kart arka planı ve vurgu renkleri */
+  --card-bg: hsl(222.2 84% 4.9% / 0.98);
+  --card-fg: hsl(210 40% 98%);
+  --card-border: hsl(217.2 32.6% 17.5% / 0.5);
+  --muted: hsl(215.4 16.3% 56.9%);
+}
+
+/* ===================== Map Legend (collapsible, professional) ===================== */
+.map-legend .legend-card {
+  background: var(--card-bg);
+  color: var(--card-fg);
   backdrop-filter: blur(12px);
   border-radius: 12px;
   padding: 20px;
   max-width: 280px;
-  box-shadow: var(--legend-shadow);
-  border: 1px solid var(--legend-border);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.7);
+  border: 1px solid var(--card-border);
 }
-
-.map-legend .legend-header{
+.map-legend .legend-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 10px;
   margin-bottom: 16px;
 }
-
-.map-legend .legend-title{
+.map-legend .legend-title {
   font-weight: 600;
   font-size: 16px;
   letter-spacing: 0.01em;
-  color: var(--legend-fg);
+  color: var(--card-fg);
 }
-
-.map-legend .legend-toggle{
+.map-legend .legend-toggle {
   width: 32px;
   height: 32px;
   border-radius: 8px;
-  border: 1px solid rgba(255,255,255,0.25);
+  border: 1px solid rgba(255, 255, 255, 0.25);
   color: #fff;
-  background: rgba(51,65,85,.5);
+  background: rgba(51, 65, 85, 0.5);
   cursor: pointer;
   font-size: 20px;
   font-weight: 700;
@@ -82,77 +102,75 @@
   align-items: center;
   justify-content: center;
 }
-.map-legend .legend-toggle:hover{
-  background: rgba(71,85,105,.7);
-  border-color: rgba(255,255,255,0.4);
+.map-legend .legend-toggle:hover {
+  background: rgba(71, 85, 105, 0.7);
+  border-color: rgba(255, 255, 255, 0.4);
   transform: scale(1.05);
 }
-
-.map-legend .legend-item{
+.map-legend .legend-item {
   display: flex;
   align-items: center;
   gap: 14px;
   margin: 11px 0;
 }
-
-.map-legend .legend-swatch{
+.map-legend .legend-swatch {
   width: 48px;
   height: 28px;
   border-radius: 8px;
   border: none;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
   flex-shrink: 0;
-  /* Eğer JSX’ten inline backgroundColor gelmezse, aşağıdaki fallback devreye girer */
-  background: var(--legend-swatch, transparent);
+  background: transparent; /* default; aşağıda gerçek renkler atanır */
 }
-
-.map-legend .legend-label{
+.map-legend .legend-label {
   font-size: 14px;
   font-weight: 400;
-  color: var(--legend-muted);
+  color: var(--muted);
   letter-spacing: 0.01em;
 }
-
-.map-legend .legend-sub{
+.map-legend .legend-sub {
   font-size: 12px;
-  opacity: .85;
+  opacity: 0.85;
   margin-top: 14px;
   padding-top: 14px;
-  border-top: 1px solid var(--legend-border);
-  color: var(--legend-muted);
+  border-top: 1px solid var(--card-border);
+  color: var(--muted);
   font-weight: 400;
 }
 
-/* ---- SWATCH RENK FALLBACK’LARI ----
-   1) Eğer JSX inline stil verirse onu kullanır.
-   2) Vermezse aşağıdaki sınıflarla veya sıraya göre varsayılan palet kullanılır.
-*/
-
-/* Sınıf tabanlı kullanım (HTML’de .swatch-1..5 eklenirse) */
-.map-legend .legend-swatch.swatch-1 { background: var(--legend-c1); }
-.map-legend .legend-swatch.swatch-2 { background: var(--legend-c2); }
-.map-legend .legend-swatch.swatch-3 { background: var(--legend-c3); }
-.map-legend .legend-swatch.swatch-4 { background: var(--legend-c4); }
-.map-legend .legend-swatch.swatch-5 { background: var(--legend-c5); }
-
-/* Liste halinde ise sıraya göre otomatik boya (header vb. karışmasın diye .legend-list önerilir) */
-.map-legend .legend-list .legend-item:nth-child(1) .legend-swatch { background: var(--legend-c1); }
-.map-legend .legend-list .legend-item:nth-child(2) .legend-swatch { background: var(--legend-c2); }
-.map-legend .legend-list .legend-item:nth-child(3) .legend-swatch { background: var(--legend-c3); }
-.map-legend .legend-list .legend-item:nth-child(4) .legend-swatch { background: var(--legend-c4); }
-.map-legend .legend-list .legend-item:nth-child(5) .legend-swatch { background: var(--legend-c5); }
-
-/* Mobilde kartı biraz küçült */
-@media (max-width: 768px){
-  .map-legend .legend-card{ padding: 8px 10px; max-width: 240px; }
-  .map-legend .legend-title{ font-size: 14px; }
-  .map-legend .legend-item{ margin: 4px 0; }
+/* >>> Renkleri SIRAYA GÖRE ATA (JSX değiştirmeden çalışır) */
+.map-legend .legend-item:nth-of-type(1) .legend-swatch {
+  background: var(--map-c1) !important;
+}
+.map-legend .legend-item:nth-of-type(2) .legend-swatch {
+  background: var(--map-c2) !important;
+}
+.map-legend .legend-item:nth-of-type(3) .legend-swatch {
+  background: var(--map-c3) !important;
+}
+.map-legend .legend-item:nth-of-type(4) .legend-swatch {
+  background: var(--map-c4) !important;
+}
+.map-legend .legend-item:nth-of-type(5) .legend-swatch {
+  background: var(--map-c5) !important;
 }
 
-/* ===========================
-   Scatter Legend (right, vertical)
-   =========================== */
-.scatter-legend-vertical{
+/* Mobilde kartı biraz daha küçült */
+@media (max-width: 768px) {
+  .map-legend .legend-card {
+    padding: 8px 10px;
+    max-width: 240px;
+  }
+  .map-legend .legend-title {
+    font-size: 14px;
+  }
+  .map-legend .legend-item {
+    margin: 4px 0;
+  }
+}
+
+/* ===================== Scatter Legend (right, vertical, professional) ===================== */
+.scatter-legend-vertical {
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -160,37 +178,96 @@
   background: rgba(30, 41, 59, 0.95);
   backdrop-filter: blur(16px);
   border-radius: 10px;
-  border: 1px solid rgba(255,255,255,0.2);
-  box-shadow: 0 6px 24px rgba(0,0,0,0.5);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.5);
   min-width: 140px;
 }
-
-.scatter-legend-vertical .legend-item{
+.scatter-legend-vertical .legend-item {
   display: flex;
   align-items: center;
   gap: 10px;
   font-size: 13px;
 }
-
-.scatter-legend-vertical .legend-swatch{
+.scatter-legend-vertical .legend-swatch {
   width: 18px;
   height: 18px;
   border-radius: 50%;
-  border: 2px solid rgba(255,255,255,1);
-  box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+  border: 2px solid rgba(255, 255, 255, 1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
   flex-shrink: 0;
-  /* Varsayılan nokta rengi – UI’da değiştirilebilir */
-  background: #38bdf8;
+  background: transparent; /* default */
 }
-
-.scatter-legend-vertical .legend-label{
+.scatter-legend-vertical .legend-label {
   white-space: nowrap;
   color: #f1f5f9;
   font-weight: 600;
   font-size: 13px;
 }
 
-/* ===========================
-   Map popup – compact & mobile
-   =========================== */
-.map-popup .map
+/* >>> Scatter renklerini sıraya göre ata (Çok Düşük → Çok Yüksek) */
+.scatter-legend-vertical .legend-item:nth-of-type(1) .legend-swatch {
+  background: var(--scat-c1) !important;
+}
+.scatter-legend-vertical .legend-item:nth-of-type(2) .legend-swatch {
+  background: var(--scat-c2) !important;
+}
+.scatter-legend-vertical .legend-item:nth-of-type(3) .legend-swatch {
+  background: var(--scat-c3) !important;
+}
+.scatter-legend-vertical .legend-item:nth-of-type(4) .legend-swatch {
+  background: var(--scat-c4) !important;
+}
+.scatter-legend-vertical .legend-item:nth-of-type(5) .legend-swatch {
+  background: var(--scat-c5) !important;
+}
+
+/* ===================== Map popup: küçük ve mobilde sığsın ===================== */
+.map-popup .maplibregl-popup-content {
+  padding: 10px 12px !important;
+  border-radius: 12px !important;
+  max-width: 280px !important;
+}
+.map-popup h3 {
+  font-size: 15px;
+  font-weight: 700;
+  margin: 0 0 6px;
+}
+.map-popup p {
+  font-size: 12px;
+  opacity: 0.8;
+  margin: 0 0 8px;
+}
+.map-popup .row {
+  display: flex;
+  justify-content: space-between;
+  margin: 4px 0;
+  font-size: 13px;
+}
+.map-popup .btn {
+  width: 100%;
+  margin-top: 8px;
+  padding: 6px 10px;
+  font-size: 12px;
+  font-weight: 600;
+  background: #3b82f6;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.map-popup .btn:hover {
+  background: #2563eb;
+  transform: translateY(-1px);
+}
+@media (max-width: 768px) {
+  .map-popup .maplibregl-popup-content {
+    max-width: 240px !important;
+  }
+  .map-popup h3 {
+    font-size: 14px;
+  }
+  .map-popup .row {
+    font-size: 12px;
+  }
+}
