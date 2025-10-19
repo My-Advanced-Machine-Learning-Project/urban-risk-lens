@@ -106,6 +106,18 @@ export default function CollapsibleMapLegend({
             </span>
           </div>
         ))}
+
+        <div style={{
+          fontSize: '13px',
+          opacity: 0.85,
+          marginTop: '14px',
+          paddingTop: '14px',
+          borderTop: '1px solid rgba(255, 255, 255, 0.15)',
+          color: 'hsl(215.4 16.3% 76.9%)',
+          fontWeight: 500,
+        }}>
+          {subtitle}
+        </div>
       </div>
     </div>
   );
