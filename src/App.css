@@ -5,6 +5,7 @@
   --panel-fg: #e5e7eb;
   --panel-border: rgba(255, 255, 255, 0.2);
   --panel-shadow: 0 8px 28px rgba(0, 0, 0, 0.45);
+  --legend-bg-solid: rgb(30, 41, 59);        /* lejant için tam opak */
 }
 
 /* Light tema için otomatik (prefers-color-scheme) */
@@ -14,6 +15,7 @@
     --panel-fg: #111827;
     --panel-border: rgba(0, 0, 0, 0.15);
     --panel-shadow: 0 8px 28px rgba(0, 0, 0, 0.15);
+    --legend-bg-solid: rgb(241, 245, 249);   /* lejant için tam opak */
   }
 }
 
@@ -23,12 +25,14 @@
   --panel-fg: #e5e7eb;
   --panel-border: rgba(255, 255, 255, 0.2);
   --panel-shadow: 0 8px 28px rgba(0, 0, 0, 0.45);
+  --legend-bg-solid: rgb(30, 41, 59);
 }
 [data-theme="light"], .light {
   --panel-bg: rgba(241, 245, 249, 0.95);
   --panel-fg: #111827;
   --panel-border: rgba(0, 0, 0, 0.15);
   --panel-shadow: 0 8px 28px rgba(0, 0, 0, 0.15);
+  --legend-bg-solid: rgb(241, 245, 249);
 }
 
 /* ==== Lejant arka planını panele eşitle ==== */

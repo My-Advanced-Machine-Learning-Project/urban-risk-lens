@@ -61,7 +61,7 @@ export default function CollapsibleMapLegend({
       <div 
         className="legend-card"
         style={{
-          background: 'var(--panel-bg)',
+          background: 'var(--legend-bg-solid)',
           borderRadius: '16px',
           padding: '16px 20px',
           boxShadow: 'var(--panel-shadow)',
