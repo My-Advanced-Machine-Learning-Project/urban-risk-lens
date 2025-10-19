@@ -138,22 +138,7 @@
   font-weight: 400;
 }
 
-/* >>> Renkleri SIRAYA GÖRE ATA (JSX değiştirmeden çalışır) */
-.map-legend .legend-item:nth-of-type(1) .legend-swatch {
-  background: var(--map-c1) !important;
-}
-.map-legend .legend-item:nth-of-type(2) .legend-swatch {
-  background: var(--map-c2) !important;
-}
-.map-legend .legend-item:nth-of-type(3) .legend-swatch {
-  background: var(--map-c3) !important;
-}
-.map-legend .legend-item:nth-of-type(4) .legend-swatch {
-  background: var(--map-c4) !important;
-}
-.map-legend .legend-item:nth-of-type(5) .legend-swatch {
-  background: var(--map-c5) !important;
-}
+/* Inline backgroundColor from JSX will handle colors */
 
 /* Mobilde kartı biraz daha küçült */
 @media (max-width: 768px) {
@@ -204,22 +189,7 @@
   font-size: 13px;
 }
 
-/* >>> Scatter renklerini sıraya göre ata (Çok Düşük → Çok Yüksek) */
-.scatter-legend-vertical .legend-item:nth-of-type(1) .legend-swatch {
-  background: var(--scat-c1) !important;
-}
-.scatter-legend-vertical .legend-item:nth-of-type(2) .legend-swatch {
-  background: var(--scat-c2) !important;
-}
-.scatter-legend-vertical .legend-item:nth-of-type(3) .legend-swatch {
-  background: var(--scat-c3) !important;
-}
-.scatter-legend-vertical .legend-item:nth-of-type(4) .legend-swatch {
-  background: var(--scat-c4) !important;
-}
-.scatter-legend-vertical .legend-item:nth-of-type(5) .legend-swatch {
-  background: var(--scat-c5) !important;
-}
+/* Inline backgroundColor from JSX will handle colors */
 
 /* ===================== Map popup: küçük ve mobilde sığsın ===================== */
 .map-popup .maplibregl-popup-content {
