@@ -73,7 +73,7 @@ export default function CollapsibleMapLegend({
   return (
     <div
       className={
-        "map-legend pointer-events-auto fixed left-3 bottom-28 md:bottom-6 z-[5]" +
+        "map-legend pointer-events-auto fixed left-3 top-20 md:top-24 z-[5]" +
         (className ? " " + className : "")
       }
     >
