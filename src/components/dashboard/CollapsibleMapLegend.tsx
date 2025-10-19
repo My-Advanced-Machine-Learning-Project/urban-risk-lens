@@ -65,7 +65,6 @@ export default function CollapsibleMapLegend({
           borderRadius: '16px',
           padding: '16px 20px',
           boxShadow: 'var(--panel-shadow)',
-          border: '2px solid var(--panel-border)',
           color: 'var(--panel-fg)',
         }}
       >
