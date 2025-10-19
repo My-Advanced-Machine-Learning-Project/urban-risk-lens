@@ -1,110 +1,42 @@
-import { useEffect, useState } from "react";
-import { useMapState } from '@/stores/useMapState';
-import { t } from '@/lib/i18n';
-import { getPalette } from '@/lib/riskColors';
-import { cn } from '@/lib/utils';
+import React from "react";
 
-type Bin = { color: string; label: string };
-interface Props {
-  bins?: Bin[];
+/** Choropleth rampasını ve aralık etiketlerini burada tanımla
+ *  – Haritadaki renklerle bire bir aynı olmalı.
+ *  İstersen colorScale.range() kullanabilirsin.
+ */
+const LEGEND_COLORS = ["#e9e2b0", "#dcc38b", "#c99a66", "#b56550", "#7a1f1d"];
+const LEGEND_RANGES = ["0.00 – 0.18", "0.18 – 0.23", "0.23 – 0.30", "0.30 – 0.43", "0.43+"];
+
+type Props = {
   title?: string;
   subtitle?: string;
+  colors?: string[];
+  ranges?: string[];
   className?: string;
-}
+};
 
-/** Desktop: açık, Mobile (<768px): kapalı başlayan, katlanır harita lejantı. */
 export default function CollapsibleMapLegend({
-  bins,
-  title,
-  subtitle,
+  title = "Lejant",
+  subtitle = "Risk Sınıfı",
+  colors = LEGEND_COLORS,
+  ranges = LEGEND_RANGES,
   className = "",
 }: Props) {
-  const { language, metric } = useMapState();
-  const [open, setOpen] = useState(true);
-  const palette = getPalette(metric);
-
-  useEffect(() => {
-    const isMobile = window.matchMedia("(max-width: 768px)").matches;
-    if (isMobile) setOpen(false);
-  }, []);
-
-  // Use provided bins or generate from palette
-  const legendBins = bins || palette.map((item, index) => {
-    const nextValue = palette[index + 1]?.value;
-    
-    // Format range based on metric
-    let range = '';
-    if (metric === 'population' || metric === 'buildings') {
-      // Format with comma separators
-      const currentFormatted = item.value.toLocaleString('tr-TR');
-      const nextFormatted = nextValue ? nextValue.toLocaleString('tr-TR') : '';
-      range = nextValue 
-        ? `${currentFormatted} – ${nextFormatted}`
-        : `${currentFormatted}+`;
-    } else if (metric === 'vs30') {
-      // VS30 ranges
-      const currentFormatted = Math.round(item.value);
-      const nextFormatted = nextValue ? Math.round(nextValue) : '';
-      range = nextValue 
-        ? `${currentFormatted} – ${nextFormatted}`
-        : `${currentFormatted}+`;
-    } else {
-      // Risk score - keep decimals
-      range = nextValue 
-        ? `${item.value.toFixed(2)} – ${nextValue.toFixed(2)}`
-        : `${item.value.toFixed(2)}+`;
-    }
-
-    return {
-      color: item.color,
-      label: range
-    };
-  });
-
-  const legendTitle = title || t('legend', language);
-  const legendSubtitle = subtitle || (() => {
-    if (metric === 'risk_score') return "Risk Sınıfı";
-    if (metric === 'vs30') return t('vs30Desc', language);
-    if (metric === 'population') return t('populationDesc', language);
-    if (metric === 'buildings') return t('buildingsDesc', language);
-    return "Risk Sınıfı";
-  })();
-
   return (
-    <div
-      className={
-        "map-legend pointer-events-auto fixed left-3 top-20 md:top-24 z-[5]" +
-        (className ? " " + className : "")
-      }
-    >
+    <div className={`map-legend ${className}`}>
       <div className="legend-card">
         <div className="legend-header">
-          <span className="legend-title">{legendTitle}</span>
-          <button
-            aria-label={open ? "Lejantı daralt" : "Lejantı aç"}
-            className="legend-toggle"
-            onClick={() => setOpen((v) => !v)}
-          >
-            {open ? "−" : "+"}
-          </button>
+          <div className="legend-title">{title}</div>
         </div>
 
-        {open && (
-          <>
-            <div className="space-y-2">
-              {legendBins.map((b, i) => (
-                <div key={i} className="legend-item">
-                  <div
-                    className="legend-swatch"
-                    style={{ backgroundColor: b.color }}
-                  />
-                  <span className="legend-label">{b.label}</span>
-                </div>
-              ))}
-            </div>
-            <div className="legend-sub">{legendSubtitle}</div>
-          </>
-        )}
+        {colors.map((c, i) => (
+          <div className="legend-item" key={`${c}-${i}`}>
+            <div className="legend-swatch" style={{ backgroundColor: c }} />
+            <span className="legend-label">{ranges[i] ?? ""}</span>
+          </div>
+        ))}
+
+        <div className="legend-sub">{subtitle}</div>
       </div>
     </div>
   );
