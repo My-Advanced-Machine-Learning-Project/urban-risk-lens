@@ -60,14 +60,7 @@ export default function CollapsibleMapLegend({
     <div className={className}>
       <div 
         style={{
-          background: 'hsl(222.2 47.4% 11.2%)',
           color: 'hsl(210 40% 98%)',
-          backdropFilter: 'blur(12px)',
-          borderRadius: '16px',
-          padding: '20px',
-          maxWidth: '280px',
-          boxShadow: '0 8px 32px rgba(0, 0, 0, 0.7)',
-          border: '1px solid rgba(255, 255, 255, 0.1)',
         }}
       >
         <div style={{ marginBottom: '16px' }}>
