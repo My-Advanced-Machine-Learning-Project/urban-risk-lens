@@ -1,0 +1,9 @@
+[project]
+name = "nlp-based-preprocessing"
+version = "0.1.0"
+description = "NLP-based preprocessing for Turkish administrative data (mahaller/ilceler)."
+requires-python = ">=3.10"
+dependencies = []
+
+[tool.setuptools]
+package-dir = {"" = "src"}

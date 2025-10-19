@@ -1,0 +1,3 @@
+expect_admin_level: 8
+keep_columns: ["il","ilce","mahalle"]
+output_format: "csv"

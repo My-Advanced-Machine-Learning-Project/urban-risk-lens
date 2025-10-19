@@ -1,0 +1,8 @@
+column_map:
+  "Mahalle Adı": mahalle
+  "Mahalle": mahalle
+  "mahalle_adi": mahalle
+  "İlçe": ilce
+  "ilce": ilce
+  "İl": il
+  "il_adi": il
