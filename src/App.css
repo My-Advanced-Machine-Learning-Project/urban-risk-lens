@@ -42,7 +42,7 @@
 
 /* ===================== Palette (map & scatter ortak) ===================== */
 :root {
-  /* Harita rampa (açık → koyu) – choropleth ile eşleştir */
+  /* Choropleth rampası (açık → koyu) */
   --map-c1: #e9e2b0; /* 0.00–0.18 */
   --map-c2: #dcc38b; /* 0.18–0.23 */
   --map-c3: #c99a66; /* 0.23–0.30 */
@@ -56,66 +56,44 @@
   --scat-c4: var(--map-c4);
   --scat-c5: var(--map-c5);
 
-  --card-bg: hsl(222.2 84% 4.9% / 0.98);
-  --card-fg: hsl(210 40% 98%);
-  --card-border: hsl(217.2 32.6% 17.5% / 0.5);
-  --muted: hsl(215.4 16.3% 56.9%);
-
-  /* ==== Panel/Lejant ortak tema değişkenleri ==== */
-  --panel-bg: rgba(30, 41, 59, 0.85);        /* koyu lacivertimsi */
+  /* Kart/Panel tema değişkenleri (dark varsayılan) */
+  --panel-bg: rgba(30, 41, 59, 0.85);
   --panel-fg: #e5e7eb;
   --panel-border: rgba(255, 255, 255, 0.12);
   --panel-shadow: 0 8px 28px rgba(0, 0, 0, 0.45);
+
+  /* Metin tonları */
+  --card-fg: hsl(210 40% 98%);
+  --muted: hsl(215.4 16.3% 56.9%);
 }
 
-/* ==== Light tema için otomatik (prefers-color-scheme) ==== */
+/* Light tema */
 @media (prefers-color-scheme: light) {
   :root {
-    --panel-bg: rgba(241, 245, 249, 0.85);   /* açık gri */
+    --panel-bg: rgba(241, 245, 249, 0.85);
     --panel-fg: #111827;
     --panel-border: rgba(0, 0, 0, 0.08);
     --panel-shadow: 0 8px 28px rgba(0, 0, 0, 0.15);
   }
 }
 
-/* ==== Lejant arka planını panele eşitle ==== */
-.map-legend .legend-card,
-.scatter-legend-vertical {
-  background: var(--panel-bg) !important;
-  color: var(--panel-fg);
-  border: 1px solid var(--panel-border);
-  box-shadow: var(--panel-shadow);
+/* ===================== Map Legend ===================== */
+/* Lejant konteyner: panel açılınca alta düşsün */
+.map-legend {
+  position: absolute;
+  z-index: 20;
 }
 
-/* Başlık ve alt yazılar tema metin rengine uysun */
-.map-legend .legend-title,
-.map-legend .legend-label,
-.map-legend .legend-sub,
-.scatter-legend-vertical .legend-label {
-  color: var(--panel-fg);
-}
-
-/* ==== Z-index: panel açılınca lejant altta kalsın ==== */
-.map-legend { 
-  position: absolute; 
-  z-index: 20; 
-}
-
-/* Sık görülen panel/drawer sınıfları */
-.drawer, .side-panel, .filters-panel, .dashboard-panel { 
-  z-index: 40; 
-}
-
-/* ===================== Map Legend (collapsible) ===================== */
+/* Lejant kartı: panel ile bire bir aynı görünüm */
 .map-legend .legend-card {
-  background: hsl(222.2 47.4% 11.2%);
-  color: hsl(210 40% 98%);
+  background: var(--panel-bg);
+  color: var(--panel-fg);
   backdrop-filter: blur(12px);
   border-radius: 16px;
   padding: 20px;
   max-width: 280px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.7);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid var(--panel-border);
+  box-shadow: var(--panel-shadow);
 }
 
 .map-legend .legend-header {
@@ -129,7 +107,7 @@
   font-weight: 700;
   font-size: 18px;
   letter-spacing: 0.02em;
-  color: hsl(210 40% 98%);
+  color: var(--panel-fg);
 }
 
 .map-legend .legend-item {
@@ -139,8 +117,8 @@
   gap: 12px;
   margin: 12px 0;
   position: relative;
-  color: hsl(210 40% 98%);
   font-size: 14px;
+  color: var(--panel-fg);
 }
 
 .map-legend .legend-swatch {
@@ -150,13 +128,13 @@
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
   border: 1px solid rgba(255, 255, 255, 0.12);
   flex-shrink: 0;
-  background: transparent; /* Ensure inline styles can override */
+  background: transparent; /* inline renkleri ezme */
 }
 
 .map-legend .legend-label {
   font-size: 14px;
   font-weight: 500;
-  color: hsl(210 40% 96%);
+  color: var(--card-fg);
 }
 
 .map-legend .legend-sub {
@@ -164,8 +142,8 @@
   opacity: 0.85;
   margin-top: 14px;
   padding-top: 14px;
-  border-top: 1px solid rgba(255, 255, 255, 0.15);
-  color: hsl(215.4 16.3% 76.9%);
+  border-top: 1px solid var(--panel-border);
+  color: var(--muted);
   font-weight: 500;
 }
 
@@ -192,12 +170,14 @@
   flex-direction: column;
   gap: 8px;
   padding: 12px 14px;
-  background: rgba(30, 41, 59, 0.95);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: var(--panel-bg);
+  color: var(--panel-fg);
+  border: 1px solid var(--panel-border);
   border-radius: 10px;
-  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.5);
+  box-shadow: var(--panel-shadow);
   min-width: 150px;
 }
+
 .scatter-legend-vertical .legend-item {
   display: flex;
   align-items: center;
@@ -206,6 +186,7 @@
   position: relative;
   list-style: none;
 }
+
 .scatter-legend-vertical .legend-swatch {
   width: 18px;
   height: 18px;
@@ -213,15 +194,16 @@
   border: 2px solid rgba(255, 255, 255, 1);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
   flex-shrink: 0;
-  background: transparent; /* Ensure inline styles can override */
+  background: transparent; /* inline renkleri ezme */
 }
+
 .scatter-legend-vertical .legend-label {
   white-space: nowrap;
-  color: #f1f5f9;
+  color: var(--card-fg);
   font-weight: 600;
 }
 
-/* ===================== Map popup ===================== */
+/* ===================== Map popup (compact) ===================== */
 .map-popup .maplibregl-popup-content {
   padding: 10px 12px !important;
   border-radius: 12px !important;
@@ -260,6 +242,15 @@
   background: #2563eb;
   transform: translateY(-1px);
 }
+
+/* Panel/drawer genelde üstte kalsın; lejant altta */
+.drawer,
+.side-panel,
+.filters-panel,
+.dashboard-panel {
+  z-index: 40;
+}
+
 @media (max-width: 768px) {
   .map-popup .maplibregl-popup-content {
     max-width: 240px !important;
