@@ -64,14 +64,14 @@
 
 /* ===================== Map Legend (collapsible) ===================== */
 .map-legend .legend-card {
-  background: var(--card-bg);
-  color: var(--card-fg);
+  background: hsl(222.2 47.4% 11.2%);
+  color: hsl(210 40% 98%);
   backdrop-filter: blur(12px);
-  border-radius: 12px;
-  padding: 20px;
-  max-width: 280px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.7);
-  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  padding: 24px;
+  max-width: 320px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
+  border: 1px solid hsl(217.2 32.6% 17.5%);
 }
 .map-legend .legend-header {
   display: flex;
@@ -111,74 +111,37 @@
 .map-legend .legend-item {
   display: flex;
   align-items: center;
-  gap: 14px;
-  margin: 11px 0;
+  gap: 16px;
+  margin: 12px 0;
   position: relative;
 }
 .map-legend .legend-label {
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 400;
-  color: var(--muted);
+  color: hsl(215 20.2% 65.1%);
   letter-spacing: 0.01em;
 }
 .map-legend .legend-sub {
-  font-size: 12px;
-  opacity: 0.85;
-  margin-top: 14px;
-  padding-top: 14px;
-  border-top: 1px solid var(--card-border);
-  color: var(--muted);
+  font-size: 13px;
+  opacity: 0.8;
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid hsl(217.2 32.6% 17.5% / 0.6);
+  color: hsl(215 20.2% 65.1%);
   font-weight: 400;
 }
 
-/* SWATCH: HTML'de yoksa bile göster – pseudo element kullan */
-.map-legend .legend-item::before {
-  content: "";
-  display: inline-block;
+/* SWATCH: Renk kutuları */
+.map-legend .legend-swatch {
   width: 48px;
-  height: 28px;
+  height: 32px;
   border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-  border: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   flex-shrink: 0;
 }
 
-/* Renkleri sıraya göre ata (JSX'e gerek yok) */
-.map-legend .legend-item:nth-of-type(1)::before {
-  background: var(--map-c1) !important;
-}
-.map-legend .legend-item:nth-of-type(2)::before {
-  background: var(--map-c2) !important;
-}
-.map-legend .legend-item:nth-of-type(3)::before {
-  background: var(--map-c3) !important;
-}
-.map-legend .legend-item:nth-of-type(4)::before {
-  background: var(--map-c4) !important;
-}
-.map-legend .legend-item:nth-of-type(5)::before {
-  background: var(--map-c5) !important;
-}
-
-/* Eğer projede .legend-swatch elemanı varsa, o da renklensin */
-.map-legend .legend-swatch {
-  background: transparent;
-}
-.map-legend .legend-item:nth-of-type(1) .legend-swatch {
-  background: var(--map-c1) !important;
-}
-.map-legend .legend-item:nth-of-type(2) .legend-swatch {
-  background: var(--map-c2) !important;
-}
-.map-legend .legend-item:nth-of-type(3) .legend-swatch {
-  background: var(--map-c3) !important;
-}
-.map-legend .legend-item:nth-of-type(4) .legend-swatch {
-  background: var(--map-c4) !important;
-}
-.map-legend .legend-item:nth-of-type(5) .legend-swatch {
-  background: var(--map-c5) !important;
-}
+/* Inline backgroundColor CollapsibleMapLegend.tsx'de set ediliyor */
 
 /* Mobil */
 @media (max-width: 768px) {
