@@ -1,0 +1,10 @@
+# Core dependencies for NLP-Based Damage Assessment
+folium>=0.20.0
+pandas>=2.3.0
+geopy>=2.4.0
+requests>=2.32.0
+newspaper3k>=0.2.8
+tqdm>=4.66.0
+
+# Optional (for text processing)
+scikit-learn>=1.4.0

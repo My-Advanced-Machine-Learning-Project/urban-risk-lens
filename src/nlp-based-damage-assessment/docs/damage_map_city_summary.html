@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_9bda6fb2a1d07b1516d70a7a1e3367e4 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+</head>
+<body>
+    
+    
+    <div style="position: fixed; top: 10px; left: 50px; width: 400px;
+                background-color: white; border: 2px solid #2c3e50;
+                border-radius: 5px; z-index: 9999; padding: 10px;">
+        <h3 style="margin: 0;">🏙️ City Damage Summary</h3>
+        <p style="font-size: 12px; margin: 5px 0;">Circle size = Total damage mentions</p>
+        <p style="font-size: 12px; margin: 5px 0;">Color = Average damage severity</p>
+    </div>
+    
+    
+            <div class="folium-map" id="map_9bda6fb2a1d07b1516d70a7a1e3367e4" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_9bda6fb2a1d07b1516d70a7a1e3367e4 = L.map(
+                "map_9bda6fb2a1d07b1516d70a7a1e3367e4",
+                {
+                    center: [37.5, 36.9],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 7,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_fd8e5c9d51116ebade80794bbbd6771d = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_fd8e5c9d51116ebade80794bbbd6771d.addTo(map_9bda6fb2a1d07b1516d70a7a1e3367e4);
+        
+    
+            var circle_marker_c24700c164a04f135ea1a1990fc1bb5f = L.circleMarker(
+                [36.9863599, 35.3252861],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 50, "stroke": true, "weight": 3}
+            ).addTo(map_9bda6fb2a1d07b1516d70a7a1e3367e4);
+        
+    
+        var popup_7b66ebfd68981453b79d1705a91d43aa = L.popup({
+  "maxWidth": 270,
+});
+
+        
+            
+                var html_82bddc9ccee6de089bfdde9d2b87884d = $(`<div id="html_82bddc9ccee6de089bfdde9d2b87884d" style="width: 100.0%; height: 100.0%;">         <div style="width: 250px;">             <h3 style="margin: 0 0 10px 0; color: #2c3e50;">Adana</h3>             <hr>             <p><b>📰 Articles:</b> 55</p>             <p><b>📊 Average Damage:</b> 26.0/100</p>             <p><b>📈 Total Damage:</b> 1431</p>             <p><b>🔥 Max Damage:</b> 100</p>         </div>         </div>`)[0];
+                popup_7b66ebfd68981453b79d1705a91d43aa.setContent(html_82bddc9ccee6de089bfdde9d2b87884d);
+            
+        
+
+        circle_marker_c24700c164a04f135ea1a1990fc1bb5f.bindPopup(popup_7b66ebfd68981453b79d1705a91d43aa)
+        ;
+
+        
+    
+    
+            circle_marker_c24700c164a04f135ea1a1990fc1bb5f.bindTooltip(
+                `<div>
+                     Adana: 55 articles, avg damage: 26.0
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_c3f969bc66bcef814b6e25156ca2524a = L.marker(
+                [36.9863599, 35.3252861],
+                {
+}
+            ).addTo(map_9bda6fb2a1d07b1516d70a7a1e3367e4);
+        
+    
+            var div_icon_e666bbfb4917c56b32f46458c8e30a96 = L.divIcon({
+  "html": "\n                \u003cdiv style=\"font-size: 12px; font-weight: bold; color: #2c3e50;\n                            text-shadow: 1px 1px 2px white, -1px -1px 2px white;\"\u003e\n                    Adana\n                \u003c/div\u003e\n            ",
+  "className": "empty",
+});
+        
+    
+                marker_c3f969bc66bcef814b6e25156ca2524a.setIcon(div_icon_e666bbfb4917c56b32f46458c8e30a96);
+            
+    
+            var circle_marker_c9aea6cc82745127cd992e6f982b94e3 = L.circleMarker(
+                [37.0628317, 37.3792617],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 40.05, "stroke": true, "weight": 3}
+            ).addTo(map_9bda6fb2a1d07b1516d70a7a1e3367e4);
+        
+    
+        var popup_99363023730761c38081819901b4de5e = L.popup({
+  "maxWidth": 270,
+});
+
+        
+            
+                var html_b6dc715e75929dfddccea6a6aba3c412 = $(`<div id="html_b6dc715e75929dfddccea6a6aba3c412" style="width: 100.0%; height: 100.0%;">         <div style="width: 250px;">             <h3 style="margin: 0 0 10px 0; color: #2c3e50;">Gaziantep</h3>             <hr>             <p><b>📰 Articles:</b> 41</p>             <p><b>📊 Average Damage:</b> 19.5/100</p>             <p><b>📈 Total Damage:</b> 801</p>             <p><b>🔥 Max Damage:</b> 100</p>         </div>         </div>`)[0];
+                popup_99363023730761c38081819901b4de5e.setContent(html_b6dc715e75929dfddccea6a6aba3c412);
+            
+        
+
+        circle_marker_c9aea6cc82745127cd992e6f982b94e3.bindPopup(popup_99363023730761c38081819901b4de5e)
+        ;
+
+        
+    
+    
+            circle_marker_c9aea6cc82745127cd992e6f982b94e3.bindTooltip(
+                `<div>
+                     Gaziantep: 41 articles, avg damage: 19.5
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_2795154760883da78d1a12909cd229d5 = L.marker(
+                [37.0628317, 37.3792617],
+                {
+}
+            ).addTo(map_9bda6fb2a1d07b1516d70a7a1e3367e4);
+        
+    
+            var div_icon_e0793b778bcbc7135a9b2dce393ca371 = L.divIcon({
+  "html": "\n                \u003cdiv style=\"font-size: 12px; font-weight: bold; color: #2c3e50;\n                            text-shadow: 1px 1px 2px white, -1px -1px 2px white;\"\u003e\n                    Gaziantep\n                \u003c/div\u003e\n            ",
+  "className": "empty",
+});
+        
+    
+                marker_2795154760883da78d1a12909cd229d5.setIcon(div_icon_e0793b778bcbc7135a9b2dce393ca371);
+            
+    
+            var circle_marker_7ceebbcde287fdee2c59d984ff73ee14 = L.circleMarker(
+                [36.3451332, 36.0748022],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 50, "stroke": true, "weight": 3}
+            ).addTo(map_9bda6fb2a1d07b1516d70a7a1e3367e4);
+        
+    
+        var popup_9eed2b701018d0ad3ee04c93c5cd3a60 = L.popup({
+  "maxWidth": 270,
+});
+
+        
+            
+                var html_dcf01b96d1d628cda16e9e33b485fb80 = $(`<div id="html_dcf01b96d1d628cda16e9e33b485fb80" style="width: 100.0%; height: 100.0%;">         <div style="width: 250px;">             <h3 style="margin: 0 0 10px 0; color: #2c3e50;">Hatay</h3>             <hr>             <p><b>📰 Articles:</b> 89</p>             <p><b>📊 Average Damage:</b> 14.0/100</p>             <p><b>📈 Total Damage:</b> 1250</p>             <p><b>🔥 Max Damage:</b> 73</p>         </div>         </div>`)[0];
+                popup_9eed2b701018d0ad3ee04c93c5cd3a60.setContent(html_dcf01b96d1d628cda16e9e33b485fb80);
+            
+        
+
+        circle_marker_7ceebbcde287fdee2c59d984ff73ee14.bindPopup(popup_9eed2b701018d0ad3ee04c93c5cd3a60)
+        ;
+
+        
+    
+    
+            circle_marker_7ceebbcde287fdee2c59d984ff73ee14.bindTooltip(
+                `<div>
+                     Hatay: 89 articles, avg damage: 14.0
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_6f47be35aeccd0fe6c22b9ba711af7f0 = L.marker(
+                [36.3451332, 36.0748022],
+                {
+}
+            ).addTo(map_9bda6fb2a1d07b1516d70a7a1e3367e4);
+        
+    
+            var div_icon_62bca16301111164424f5aec9341dd25 = L.divIcon({
+  "html": "\n                \u003cdiv style=\"font-size: 12px; font-weight: bold; color: #2c3e50;\n                            text-shadow: 1px 1px 2px white, -1px -1px 2px white;\"\u003e\n                    Hatay\n                \u003c/div\u003e\n            ",
+  "className": "empty",
+});
+        
+    
+                marker_6f47be35aeccd0fe6c22b9ba711af7f0.setIcon(div_icon_62bca16301111164424f5aec9341dd25);
+            
+    
+            var circle_marker_b5c516e91e0cc8c41b17eeacb5dced52 = L.circleMarker(
+                [37.7830345, 36.830655],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 50, "stroke": true, "weight": 3}
+            ).addTo(map_9bda6fb2a1d07b1516d70a7a1e3367e4);
+        
+    
+        var popup_5059e6ef83521de112f43d892792e391 = L.popup({
+  "maxWidth": 270,
+});
+
+        
+            
+                var html_6b6f2b24017df41adee7a4a55c01720b = $(`<div id="html_6b6f2b24017df41adee7a4a55c01720b" style="width: 100.0%; height: 100.0%;">         <div style="width: 250px;">             <h3 style="margin: 0 0 10px 0; color: #2c3e50;">Kahramanmaraş</h3>             <hr>             <p><b>📰 Articles:</b> 94</p>             <p><b>📊 Average Damage:</b> 15.7/100</p>             <p><b>📈 Total Damage:</b> 1478</p>             <p><b>🔥 Max Damage:</b> 100</p>         </div>         </div>`)[0];
+                popup_5059e6ef83521de112f43d892792e391.setContent(html_6b6f2b24017df41adee7a4a55c01720b);
+            
+        
+
+        circle_marker_b5c516e91e0cc8c41b17eeacb5dced52.bindPopup(popup_5059e6ef83521de112f43d892792e391)
+        ;
+
+        
+    
+    
+            circle_marker_b5c516e91e0cc8c41b17eeacb5dced52.bindTooltip(
+                `<div>
+                     Kahramanmaraş: 94 articles, avg damage: 15.7
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_d8c80152edca09737d97ab0d91ae30bc = L.marker(
+                [37.7830345, 36.830655],
+                {
+}
+            ).addTo(map_9bda6fb2a1d07b1516d70a7a1e3367e4);
+        
+    
+            var div_icon_c4eaaba07bd31f955c5b4d7abe09142b = L.divIcon({
+  "html": "\n                \u003cdiv style=\"font-size: 12px; font-weight: bold; color: #2c3e50;\n                            text-shadow: 1px 1px 2px white, -1px -1px 2px white;\"\u003e\n                    Kahramanmara\u015f\n                \u003c/div\u003e\n            ",
+  "className": "empty",
+});
+        
+    
+                marker_d8c80152edca09737d97ab0d91ae30bc.setIcon(div_icon_c4eaaba07bd31f955c5b4d7abe09142b);
+            
+    
+            var circle_marker_923a6aa1f35794712e7c18282479f249 = L.circleMarker(
+                [36.7797231, 37.1416892],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_9bda6fb2a1d07b1516d70a7a1e3367e4);
+        
+    
+        var popup_cd67b463eaf06c1f2f2024ac441763a2 = L.popup({
+  "maxWidth": 270,
+});
+
+        
+            
+                var html_7bb5c6ae75c06817ba28a47658418083 = $(`<div id="html_7bb5c6ae75c06817ba28a47658418083" style="width: 100.0%; height: 100.0%;">         <div style="width: 250px;">             <h3 style="margin: 0 0 10px 0; color: #2c3e50;">Kilis</h3>             <hr>             <p><b>📰 Articles:</b> 13</p>             <p><b>📊 Average Damage:</b> 10.0/100</p>             <p><b>📈 Total Damage:</b> 130</p>             <p><b>🔥 Max Damage:</b> 68</p>         </div>         </div>`)[0];
+                popup_cd67b463eaf06c1f2f2024ac441763a2.setContent(html_7bb5c6ae75c06817ba28a47658418083);
+            
+        
+
+        circle_marker_923a6aa1f35794712e7c18282479f249.bindPopup(popup_cd67b463eaf06c1f2f2024ac441763a2)
+        ;
+
+        
+    
+    
+            circle_marker_923a6aa1f35794712e7c18282479f249.bindTooltip(
+                `<div>
+                     Kilis: 13 articles, avg damage: 10.0
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_f0c6ca246d58d8577031ad75a9709355 = L.marker(
+                [36.7797231, 37.1416892],
+                {
+}
+            ).addTo(map_9bda6fb2a1d07b1516d70a7a1e3367e4);
+        
+    
+            var div_icon_7b18bf65070676b14742406c6adab3cb = L.divIcon({
+  "html": "\n                \u003cdiv style=\"font-size: 12px; font-weight: bold; color: #2c3e50;\n                            text-shadow: 1px 1px 2px white, -1px -1px 2px white;\"\u003e\n                    Kilis\n                \u003c/div\u003e\n            ",
+  "className": "empty",
+});
+        
+    
+                marker_f0c6ca246d58d8577031ad75a9709355.setIcon(div_icon_7b18bf65070676b14742406c6adab3cb);
+            
+    
+            var circle_marker_5aa4761c35d6f06a47c8fb56c2fcbf9d = L.circleMarker(
+                [38.3487153, 38.3190674],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 18.05, "stroke": true, "weight": 3}
+            ).addTo(map_9bda6fb2a1d07b1516d70a7a1e3367e4);
+        
+    
+        var popup_8837c4e0e592e55449b2f36995a6f9ff = L.popup({
+  "maxWidth": 270,
+});
+
+        
+            
+                var html_dfe62bb2821225ff0f1883b0a4db06cc = $(`<div id="html_dfe62bb2821225ff0f1883b0a4db06cc" style="width: 100.0%; height: 100.0%;">         <div style="width: 250px;">             <h3 style="margin: 0 0 10px 0; color: #2c3e50;">Malatya</h3>             <hr>             <p><b>📰 Articles:</b> 26</p>             <p><b>📊 Average Damage:</b> 13.9/100</p>             <p><b>📈 Total Damage:</b> 361</p>             <p><b>🔥 Max Damage:</b> 90</p>         </div>         </div>`)[0];
+                popup_8837c4e0e592e55449b2f36995a6f9ff.setContent(html_dfe62bb2821225ff0f1883b0a4db06cc);
+            
+        
+
+        circle_marker_5aa4761c35d6f06a47c8fb56c2fcbf9d.bindPopup(popup_8837c4e0e592e55449b2f36995a6f9ff)
+        ;
+
+        
+    
+    
+            circle_marker_5aa4761c35d6f06a47c8fb56c2fcbf9d.bindTooltip(
+                `<div>
+                     Malatya: 26 articles, avg damage: 13.9
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_88192702b8a963fa1933ca6f8be4567d = L.marker(
+                [38.3487153, 38.3190674],
+                {
+}
+            ).addTo(map_9bda6fb2a1d07b1516d70a7a1e3367e4);
+        
+    
+            var div_icon_6ab975d59fcbfc2cfdee963c293ffda6 = L.divIcon({
+  "html": "\n                \u003cdiv style=\"font-size: 12px; font-weight: bold; color: #2c3e50;\n                            text-shadow: 1px 1px 2px white, -1px -1px 2px white;\"\u003e\n                    Malatya\n                \u003c/div\u003e\n            ",
+  "className": "empty",
+});
+        
+    
+                marker_88192702b8a963fa1933ca6f8be4567d.setIcon(div_icon_6ab975d59fcbfc2cfdee963c293ffda6);
+            
+    
+            var circle_marker_9eacf948574a2f37f12435b44f669b04 = L.circleMarker(
+                [37.2517882, 36.2993502],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_9bda6fb2a1d07b1516d70a7a1e3367e4);
+        
+    
+        var popup_e06fb24324f4812b0e26aa4b0411c30d = L.popup({
+  "maxWidth": 270,
+});
+
+        
+            
+                var html_e6acd0c5388b2594539b6d6a9158194d = $(`<div id="html_e6acd0c5388b2594539b6d6a9158194d" style="width: 100.0%; height: 100.0%;">         <div style="width: 250px;">             <h3 style="margin: 0 0 10px 0; color: #2c3e50;">Osmaniye</h3>             <hr>             <p><b>📰 Articles:</b> 5</p>             <p><b>📊 Average Damage:</b> 8.4/100</p>             <p><b>📈 Total Damage:</b> 42</p>             <p><b>🔥 Max Damage:</b> 14</p>         </div>         </div>`)[0];
+                popup_e06fb24324f4812b0e26aa4b0411c30d.setContent(html_e6acd0c5388b2594539b6d6a9158194d);
+            
+        
+
+        circle_marker_9eacf948574a2f37f12435b44f669b04.bindPopup(popup_e06fb24324f4812b0e26aa4b0411c30d)
+        ;
+
+        
+    
+    
+            circle_marker_9eacf948574a2f37f12435b44f669b04.bindTooltip(
+                `<div>
+                     Osmaniye: 5 articles, avg damage: 8.4
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_8995011057803ec0b80146ae33640414 = L.marker(
+                [37.2517882, 36.2993502],
+                {
+}
+            ).addTo(map_9bda6fb2a1d07b1516d70a7a1e3367e4);
+        
+    
+            var div_icon_d59cdec78d3a03a4ed3460736766aa0f = L.divIcon({
+  "html": "\n                \u003cdiv style=\"font-size: 12px; font-weight: bold; color: #2c3e50;\n                            text-shadow: 1px 1px 2px white, -1px -1px 2px white;\"\u003e\n                    Osmaniye\n                \u003c/div\u003e\n            ",
+  "className": "empty",
+});
+        
+    
+                marker_8995011057803ec0b80146ae33640414.setIcon(div_icon_d59cdec78d3a03a4ed3460736766aa0f);
+            
+</script>
+</html>
