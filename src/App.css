@@ -106,6 +106,7 @@
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
   border: 1px solid rgba(255, 255, 255, 0.12);
   flex-shrink: 0;
+  /* inline backgroundColor will override */
 }
 
 .map-legend .legend-label {
@@ -153,8 +154,7 @@
   box-shadow: 0 6px 24px rgba(0, 0, 0, 0.5);
   min-width: 150px;
 }
-.scatter-legend-vertical .legend-item,
-.scatter-legend-vertical li {
+.scatter-legend-vertical .legend-item {
   display: flex;
   align-items: center;
   gap: 10px;
@@ -162,62 +162,19 @@
   position: relative;
   list-style: none;
 }
-.scatter-legend-vertical .legend-label {
-  white-space: nowrap;
-  color: #f1f5f9;
-  font-weight: 600;
-}
-
-/* Swatch: pseudo-element ile (daire) */
-.scatter-legend-vertical .legend-item::before,
-.scatter-legend-vertical li::before {
-  content: "";
-  display: inline-block;
+.scatter-legend-vertical .legend-swatch {
   width: 18px;
   height: 18px;
   border-radius: 50%;
   border: 2px solid rgba(255, 255, 255, 1);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
   flex-shrink: 0;
+  /* inline backgroundColor will override */
 }
-
-/* Sıra bazlı renk atama (Çok Düşük → Çok Yüksek) */
-.scatter-legend-vertical .legend-item:nth-of-type(1)::before,
-.scatter-legend-vertical li:nth-of-type(1)::before {
-  background: var(--scat-c1) !important;
-}
-.scatter-legend-vertical .legend-item:nth-of-type(2)::before,
-.scatter-legend-vertical li:nth-of-type(2)::before {
-  background: var(--scat-c2) !important;
-}
-.scatter-legend-vertical .legend-item:nth-of-type(3)::before,
-.scatter-legend-vertical li:nth-of-type(3)::before {
-  background: var(--scat-c3) !important;
-}
-.scatter-legend-vertical .legend-item:nth-of-type(4)::before,
-.scatter-legend-vertical li:nth-of-type(4)::before {
-  background: var(--scat-c4) !important;
-}
-.scatter-legend-vertical .legend-item:nth-of-type(5)::before,
-.scatter-legend-vertical li:nth-of-type(5)::before {
-  background: var(--scat-c5) !important;
-}
-
-/* Eğer .legend-swatch elemanı varsa da renklensin (yedek) */
-.scatter-legend-vertical .legend-item:nth-of-type(1) .legend-swatch {
-  background: var(--scat-c1) !important;
-}
-.scatter-legend-vertical .legend-item:nth-of-type(2) .legend-swatch {
-  background: var(--scat-c2) !important;
-}
-.scatter-legend-vertical .legend-item:nth-of-type(3) .legend-swatch {
-  background: var(--scat-c3) !important;
-}
-.scatter-legend-vertical .legend-item:nth-of-type(4) .legend-swatch {
-  background: var(--scat-c4) !important;
-}
-.scatter-legend-vertical .legend-item:nth-of-type(5) .legend-swatch {
-  background: var(--scat-c5) !important;
+.scatter-legend-vertical .legend-label {
+  white-space: nowrap;
+  color: #f1f5f9;
+  font-weight: 600;
 }
 
 /* ===================== Map popup ===================== */
