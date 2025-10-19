@@ -103,7 +103,7 @@ MIT License - see [LICENSE](LICENSE)
 - Turkish newspapers
 - OpenStreetMap
 - Folium library
-- 2023 earthquake victims
+- The author respectfully acknowledges the victims and survivors of the 2023 Türkiye earthquakes.
 
 ---
 
