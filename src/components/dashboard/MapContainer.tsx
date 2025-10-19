@@ -577,29 +577,42 @@ export function MapContainer() {
     if (p.il_adi) locParts.push(proper(p.il_adi));
     const locationStr = locParts.join(' • ') || '—';
     
+    // Theme-aware popup colors
+    const isDark = theme === 'dark';
+    const bgColor = isDark ? 'rgba(22,27,34,0.95)' : 'rgba(255,255,255,0.95)';
+    const titleColor = isDark ? '#fff' : '#111';
+    const subtitleColor = isDark ? '#c9d1d9' : '#666';
+    const labelColor = isDark ? '#8b949e' : '#6b7280';
+    const valueColor = isDark ? '#fff' : '#111';
+    const buttonBg = isDark ? '#2563eb' : '#3b82f6';
+    const buttonHoverBg = isDark ? '#1d4ed8' : '#2563eb';
+    
     const html = `
-      <div>
-        <h3>${p.mahalle_adi || '—'}</h3>
-        <p>${locationStr}</p>
+      <div style="background:${bgColor};border:3px solid ${riskColor};box-shadow:0 4px 12px rgba(0,0,0,0.15);">
+        <h3 style="color:${titleColor};">${p.mahalle_adi || '—'}</h3>
+        <p style="color:${subtitleColor};">${locationStr}</p>
 
         <div class="row">
-          <span>Risk</span>
-          <span style="font-weight:600;">${fmtFloat(riskScore)}</span>
+          <span style="color:${labelColor};">Risk</span>
+          <span style="font-weight:600;color:${valueColor};">${fmtFloat(riskScore)}</span>
         </div>
         <div class="row">
-          <span>Sınıf</span>
-          <span style="padding:4px 12px;border-radius:6px;font-weight:600;color:#fff;background:${riskColor};font-size:12px;">${translatedLabel}</span>
+          <span style="color:${labelColor};">Sınıf</span>
+          <span style="padding:4px 12px;border-radius:6px;font-weight:600;color:#000;background:${riskColor};font-size:12px;">${translatedLabel}</span>
         </div>
         <div class="row">
-          <span>${t('population', language)}</span>
-          <span style="font-weight:500;">${fmtInt(population)}</span>
+          <span style="color:${labelColor};">${t('population', language)}</span>
+          <span style="font-weight:500;color:${valueColor};">${fmtInt(population)}</span>
         </div>
         <div class="row">
-          <span>${t('buildings', language)}</span>
-          <span style="font-weight:500;">${fmtInt(buildings)}</span>
+          <span style="color:${labelColor};">${t('buildings', language)}</span>
+          <span style="font-weight:500;color:${valueColor};">${fmtInt(buildings)}</span>
         </div>
 
-        <button class="btn" onclick="window.selectAndZoom('${mahId}')">
+        <button class="btn" onclick="window.selectAndZoom('${mahId}')" 
+                style="background:${buttonBg};"
+                onmouseover="this.style.background='${buttonHoverBg}'" 
+                onmouseout="this.style.background='${buttonBg}'">
           ${t('zoom', language)}
         </button>
       </div>
@@ -719,29 +732,42 @@ export function MapContainer() {
             if (mah.il_adi) locationParts.push(proper(mah.il_adi));
             const locationStr = locationParts.join(' • ') || '—';
             
+            // Theme-aware popup colors
+            const isDark = theme === 'dark';
+            const bgColor = isDark ? 'rgba(22,27,34,0.95)' : 'rgba(255,255,255,0.95)';
+            const titleColor = isDark ? '#fff' : '#111';
+            const subtitleColor = isDark ? '#c9d1d9' : '#666';
+            const labelColor = isDark ? '#8b949e' : '#6b7280';
+            const valueColor = isDark ? '#fff' : '#111';
+            const buttonBg = isDark ? '#2563eb' : '#3b82f6';
+            const buttonHoverBg = isDark ? '#1d4ed8' : '#2563eb';
+            
             const html = `
-              <div>
-                <h3>${mah.mahalle_adi || '—'}</h3>
-                <p>${locationStr}</p>
+              <div style="background:${bgColor};border:3px solid ${riskColor};box-shadow:0 4px 12px rgba(0,0,0,0.15);">
+                <h3 style="color:${titleColor};">${mah.mahalle_adi || '—'}</h3>
+                <p style="color:${subtitleColor};">${locationStr}</p>
 
                 <div class="row">
-                  <span>Risk</span>
-                  <span style="font-weight:600;">${fmtFloat(riskScore)}</span>
+                  <span style="color:${labelColor};">Risk</span>
+                  <span style="font-weight:600;color:${valueColor};">${fmtFloat(riskScore)}</span>
                 </div>
                 <div class="row">
-                  <span>Sınıf</span>
-                  <span style="padding:4px 12px;border-radius:6px;font-weight:600;color:#fff;background:${riskColor};font-size:12px;">${translatedLabel}</span>
+                  <span style="color:${labelColor};">Sınıf</span>
+                  <span style="padding:4px 12px;border-radius:6px;font-weight:600;color:#000;background:${riskColor};font-size:12px;">${translatedLabel}</span>
                 </div>
                 <div class="row">
-                  <span>${t('population', language)}</span>
-                  <span style="font-weight:500;">${fmtInt(population)}</span>
+                  <span style="color:${labelColor};">${t('population', language)}</span>
+                  <span style="font-weight:500;color:${valueColor};">${fmtInt(population)}</span>
                 </div>
                 <div class="row">
-                  <span>${t('buildings', language)}</span>
-                  <span style="font-weight:500;">${fmtInt(buildings)}</span>
+                  <span style="color:${labelColor};">${t('buildings', language)}</span>
+                  <span style="font-weight:500;color:${valueColor};">${fmtInt(buildings)}</span>
                 </div>
 
-                <button class="btn" onclick="window.selectAndZoom('${mahId}')">
+                <button class="btn" onclick="window.selectAndZoom('${mahId}')" 
+                        style="background:${buttonBg};"
+                        onmouseover="this.style.background='${buttonHoverBg}'" 
+                        onmouseout="this.style.background='${buttonBg}'">
                   ${t('zoom', language)}
                 </button>
               </div>

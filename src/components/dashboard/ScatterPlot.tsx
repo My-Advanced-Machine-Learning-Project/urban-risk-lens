@@ -479,7 +479,10 @@ export function ScatterPlot() {
         </div>
         
         {/* Legend - Right side, top */}
-        <div className="absolute right-4 top-4 scatter-legend-vertical">
+        <div 
+          className="scatter-legend-vertical"
+          style={{ position: 'absolute', right: 12, top: 12, zIndex: 2 }}
+        >
           {['veryLow', 'low', 'medium', 'high', 'veryHigh'].map(riskClass => (
             <div key={riskClass} className="legend-item">
               <div
