@@ -106,7 +106,7 @@
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
   border: 1px solid rgba(255, 255, 255, 0.12);
   flex-shrink: 0;
-  /* inline backgroundColor will override */
+  background: transparent; /* Ensure inline styles can override */
 }
 
 .map-legend .legend-label {
@@ -169,7 +169,7 @@
   border: 2px solid rgba(255, 255, 255, 1);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
   flex-shrink: 0;
-  /* inline backgroundColor will override */
+  background: transparent; /* Ensure inline styles can override */
 }
 .scatter-legend-vertical .legend-label {
   white-space: nowrap;

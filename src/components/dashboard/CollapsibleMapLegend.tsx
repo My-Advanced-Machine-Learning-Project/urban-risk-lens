@@ -55,6 +55,10 @@ export default function CollapsibleMapLegend({
   const palette = getPalette(metric);
   const title = language === 'tr' ? 'Lejant' : 'Legend';
   const subtitle = getSubtitle(metric, language);
+  
+  // Debug: Log colors to verify they're being loaded correctly
+  console.log('[CollapsibleMapLegend] Metric:', metric);
+  console.log('[CollapsibleMapLegend] Palette:', palette);
 
   return (
     <div className={`map-legend ${className}`}>
@@ -65,7 +69,11 @@ export default function CollapsibleMapLegend({
 
         {palette.map((item, i) => (
           <div className="legend-item" key={`${item.color}-${i}`}>
-            <div className="legend-swatch" style={{ backgroundColor: item.color }} />
+            <div 
+              className="legend-swatch" 
+              style={{ backgroundColor: item.color }}
+              data-color={item.color}
+            />
             <span className="legend-label">{formatRange(palette, i, metric)}</span>
           </div>
         ))}
