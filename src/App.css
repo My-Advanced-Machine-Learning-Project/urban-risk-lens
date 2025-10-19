@@ -1,8 +1,9 @@
+/* Global root fix - tam ekran harita için */
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  text-align: initial !important;
 }
 
 .logo {
@@ -112,7 +113,7 @@
   .map-legend .legend-item{ margin: 4px 0; }
 }
 
-/* ---- Scatter Legend (left, vertical, professional) ---- */
+/* ---- Scatter Legend (right, vertical, professional) ---- */
 .scatter-legend-vertical{
   display: flex; 
   flex-direction: column; 
@@ -144,4 +145,51 @@
   color: #e5e7eb;
   font-weight: 600;
   font-size: 12px;
+}
+
+/* ---- Map popup: küçük ve mobilde sığsın ---- */
+.map-popup .maplibregl-popup-content{
+  padding: 10px 12px !important;
+  border-radius: 12px !important;
+  max-width: 280px !important;
+}
+.map-popup h3{ 
+  font-size: 15px; 
+  font-weight: 700; 
+  margin: 0 0 6px; 
+}
+.map-popup p{ 
+  font-size: 12px; 
+  opacity: 0.8; 
+  margin: 0 0 8px; 
+}
+.map-popup .row{ 
+  display: flex; 
+  justify-content: space-between; 
+  margin: 4px 0; 
+  font-size: 13px; 
+}
+.map-popup .btn{
+  width: 100%; 
+  margin-top: 8px; 
+  padding: 6px 10px; 
+  font-size: 12px; 
+  font-weight: 600;
+  background: #3b82f6; 
+  color: #fff; 
+  border: none; 
+  border-radius: 8px; 
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.map-popup .btn:hover{
+  background: #2563eb;
+  transform: translateY(-1px);
+}
+@media (max-width: 768px){
+  .map-popup .maplibregl-popup-content{ 
+    max-width: 240px !important; 
+  }
+  .map-popup h3{ font-size: 14px; }
+  .map-popup .row{ font-size: 12px; }
 }
