@@ -1008,7 +1008,7 @@ export function MapContainer() {
       <CollapsibleMapLegend 
         metric={metric} 
         language={language}
-        className="absolute bottom-8 left-4 z-10"
+        className="absolute top-4 left-4 z-[1000]"
       />
     </div>
   );
