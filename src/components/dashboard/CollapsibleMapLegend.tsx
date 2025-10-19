@@ -57,24 +57,27 @@ export default function CollapsibleMapLegend({
   const subtitle = getSubtitle(metric, language);
 
   return (
-    <div className={className}>
+    <div className={`${className} map-legend`}>
       <div 
+        className="legend-card"
         style={{
-          background: 'rgba(20, 25, 40, 0.85)',
+          background: 'var(--panel-bg)',
           borderRadius: '16px',
           padding: '16px 20px',
-          boxShadow: '0 4px 12px rgba(0, 0, 0, 0.4)',
-          border: '1px solid rgba(255, 255, 255, 0.1)',
-          color: 'hsl(210 40% 98%)',
+          boxShadow: 'var(--panel-shadow)',
+          border: '1px solid var(--panel-border)',
+          color: 'var(--panel-fg)',
         }}
       >
         <div style={{ marginBottom: '16px' }}>
-          <div style={{
-            fontWeight: 700,
-            fontSize: '18px',
-            letterSpacing: '0.02em',
-            color: 'hsl(210 40% 98%)',
-          }}>
+          <div 
+            className="legend-title"
+            style={{
+              fontWeight: 700,
+              fontSize: '18px',
+              letterSpacing: '0.02em',
+            }}
+          >
             {title}
           </div>
         </div>
@@ -87,7 +90,6 @@ export default function CollapsibleMapLegend({
               alignItems: 'center',
               gap: '12px',
               margin: '12px 0',
-              color: 'hsl(210 40% 98%)',
               fontSize: '14px',
             }}
           >
@@ -102,25 +104,29 @@ export default function CollapsibleMapLegend({
                 backgroundColor: item.color,
               }}
             />
-            <span style={{
-              fontSize: '14px',
-              fontWeight: 500,
-              color: 'hsl(210 40% 96%)',
-            }}>
+            <span 
+              className="legend-label"
+              style={{
+                fontSize: '14px',
+                fontWeight: 500,
+              }}
+            >
               {formatRange(palette, i, metric)}
             </span>
           </div>
         ))}
 
-        <div style={{
-          fontSize: '13px',
-          opacity: 0.85,
-          marginTop: '14px',
-          paddingTop: '14px',
-          borderTop: '1px solid rgba(255, 255, 255, 0.15)',
-          color: 'hsl(215.4 16.3% 76.9%)',
-          fontWeight: 500,
-        }}>
+        <div 
+          className="legend-sub"
+          style={{
+            fontSize: '13px',
+            opacity: 0.85,
+            marginTop: '14px',
+            paddingTop: '14px',
+            borderTop: '1px solid rgba(255, 255, 255, 0.15)',
+            fontWeight: 500,
+          }}
+        >
           {subtitle}
         </div>
       </div>

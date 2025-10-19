@@ -60,6 +60,50 @@
   --card-fg: hsl(210 40% 98%);
   --card-border: hsl(217.2 32.6% 17.5% / 0.5);
   --muted: hsl(215.4 16.3% 56.9%);
+
+  /* ==== Panel/Lejant ortak tema değişkenleri ==== */
+  --panel-bg: rgba(30, 41, 59, 0.85);        /* koyu lacivertimsi */
+  --panel-fg: #e5e7eb;
+  --panel-border: rgba(255, 255, 255, 0.12);
+  --panel-shadow: 0 8px 28px rgba(0, 0, 0, 0.45);
+}
+
+/* ==== Light tema için otomatik (prefers-color-scheme) ==== */
+@media (prefers-color-scheme: light) {
+  :root {
+    --panel-bg: rgba(241, 245, 249, 0.85);   /* açık gri */
+    --panel-fg: #111827;
+    --panel-border: rgba(0, 0, 0, 0.08);
+    --panel-shadow: 0 8px 28px rgba(0, 0, 0, 0.15);
+  }
+}
+
+/* ==== Lejant arka planını panele eşitle ==== */
+.map-legend .legend-card,
+.scatter-legend-vertical {
+  background: var(--panel-bg) !important;
+  color: var(--panel-fg);
+  border: 1px solid var(--panel-border);
+  box-shadow: var(--panel-shadow);
+}
+
+/* Başlık ve alt yazılar tema metin rengine uysun */
+.map-legend .legend-title,
+.map-legend .legend-label,
+.map-legend .legend-sub,
+.scatter-legend-vertical .legend-label {
+  color: var(--panel-fg);
+}
+
+/* ==== Z-index: panel açılınca lejant altta kalsın ==== */
+.map-legend { 
+  position: absolute; 
+  z-index: 20; 
+}
+
+/* Sık görülen panel/drawer sınıfları */
+.drawer, .side-panel, .filters-panel, .dashboard-panel { 
+  z-index: 40; 
 }
 
 /* ===================== Map Legend (collapsible) ===================== */
