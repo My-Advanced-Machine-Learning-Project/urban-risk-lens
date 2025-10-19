@@ -55,30 +55,76 @@ export default function CollapsibleMapLegend({
   const palette = getPalette(metric);
   const title = language === 'tr' ? 'Lejant' : 'Legend';
   const subtitle = getSubtitle(metric, language);
-  
-  // Debug: Log colors to verify they're being loaded correctly
-  console.log('[CollapsibleMapLegend] Metric:', metric);
-  console.log('[CollapsibleMapLegend] Palette:', palette);
 
   return (
-    <div className={`map-legend ${className}`}>
-      <div className="legend-card">
-        <div className="legend-header">
-          <div className="legend-title">{title}</div>
+    <div className={className}>
+      <div 
+        style={{
+          background: 'hsl(222.2 47.4% 11.2%)',
+          color: 'hsl(210 40% 98%)',
+          backdropFilter: 'blur(12px)',
+          borderRadius: '16px',
+          padding: '20px',
+          maxWidth: '280px',
+          boxShadow: '0 8px 32px rgba(0, 0, 0, 0.7)',
+          border: '1px solid rgba(255, 255, 255, 0.1)',
+        }}
+      >
+        <div style={{ marginBottom: '16px' }}>
+          <div style={{
+            fontWeight: 700,
+            fontSize: '18px',
+            letterSpacing: '0.02em',
+            color: 'hsl(210 40% 98%)',
+          }}>
+            {title}
+          </div>
         </div>
 
         {palette.map((item, i) => (
-          <div className="legend-item" key={`${item.color}-${i}`}>
+          <div 
+            key={`${item.color}-${i}`}
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '12px',
+              margin: '12px 0',
+              color: 'hsl(210 40% 98%)',
+              fontSize: '14px',
+            }}
+          >
             <div 
-              className="legend-swatch" 
-              style={{ backgroundColor: item.color }}
-              data-color={item.color}
+              style={{ 
+                width: '48px',
+                height: '28px',
+                borderRadius: '8px',
+                boxShadow: '0 2px 6px rgba(0, 0, 0, 0.3)',
+                border: '1px solid rgba(255, 255, 255, 0.12)',
+                flexShrink: 0,
+                backgroundColor: item.color,
+              }}
             />
-            <span className="legend-label">{formatRange(palette, i, metric)}</span>
+            <span style={{
+              fontSize: '14px',
+              fontWeight: 500,
+              color: 'hsl(210 40% 96%)',
+            }}>
+              {formatRange(palette, i, metric)}
+            </span>
           </div>
         ))}
 
-        <div className="legend-sub">{subtitle}</div>
+        <div style={{
+          fontSize: '13px',
+          opacity: 0.85,
+          marginTop: '14px',
+          paddingTop: '14px',
+          borderTop: '1px solid rgba(255, 255, 255, 0.15)',
+          color: 'hsl(215.4 16.3% 76.9%)',
+          fontWeight: 500,
+        }}>
+          {subtitle}
+        </div>
       </div>
     </div>
   );

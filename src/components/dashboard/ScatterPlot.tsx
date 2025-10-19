@@ -480,18 +480,55 @@ export function ScatterPlot() {
         
         {/* Legend - Right side, top */}
         <div 
-          className="scatter-legend-vertical"
-          style={{ position: 'absolute', right: 12, top: 12, zIndex: 2 }}
+          style={{ 
+            position: 'absolute', 
+            right: 12, 
+            top: 12, 
+            zIndex: 2,
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '8px',
+            padding: '12px 14px',
+            background: 'rgba(30, 41, 59, 0.95)',
+            border: '1px solid rgba(255, 255, 255, 0.2)',
+            borderRadius: '10px',
+            boxShadow: '0 6px 24px rgba(0, 0, 0, 0.5)',
+            minWidth: '150px',
+          }}
         >
-          {['veryLow', 'low', 'medium', 'high', 'veryHigh'].map(riskClass => (
-            <div key={riskClass} className="legend-item">
-              <div
-                className="legend-swatch"
-                style={{ backgroundColor: getRiskColor(riskClass) }}
-              />
-              <span className="legend-label">{t(riskClass as any, language)}</span>
-            </div>
-          ))}
+          {['veryLow', 'low', 'medium', 'high', 'veryHigh'].map(riskClass => {
+            const color = getRiskColor(riskClass);
+            return (
+              <div 
+                key={riskClass} 
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '10px',
+                  fontSize: '13px',
+                }}
+              >
+                <div
+                  style={{ 
+                    width: '18px',
+                    height: '18px',
+                    borderRadius: '50%',
+                    border: '2px solid rgba(255, 255, 255, 1)',
+                    boxShadow: '0 2px 8px rgba(0, 0, 0, 0.5)',
+                    flexShrink: 0,
+                    backgroundColor: color,
+                  }}
+                />
+                <span style={{
+                  whiteSpace: 'nowrap',
+                  color: '#f1f5f9',
+                  fontWeight: 600,
+                }}>
+                  {t(riskClass as any, language)}
+                </span>
+              </div>
+            );
+          })}
         </div>
         
         {/* Hover tooltip - shows on hover, not blocking click */}
