@@ -25,7 +25,7 @@ This project analyzes **735 Turkish newspaper articles** about the devastating F
 
 ## 🚀 Live Demo
 
-👉 **[View Interactive Map](https://yourusername.github.io/nlp-based-damage-assessment/)**
+👉 **[View Interactive Map](https://my-advanced-machine-learning-project.github.io/urban-risk-lens/)**
 
 - 735 interactive markers
 - Damage heatmap
