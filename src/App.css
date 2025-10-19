@@ -64,14 +64,14 @@
 
 /* ===================== Map Legend (collapsible) ===================== */
 .map-legend .legend-card {
-  background: var(--card-bg);
-  color: var(--card-fg);
+  background: hsl(222.2 47.4% 11.2%);
+  color: hsl(210 40% 98%);
   backdrop-filter: blur(12px);
-  border-radius: 12px;
-  padding: 16px 18px;
-  max-width: 300px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
-  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  padding: 20px;
+  max-width: 280px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .map-legend .legend-header {
@@ -79,99 +79,65 @@
   align-items: center;
   justify-content: space-between;
   gap: 10px;
-  margin-bottom: 12px;
+  margin-bottom: 16px;
 }
 .map-legend .legend-title {
-  font-weight: 600;
-  font-size: 16px;
-  letter-spacing: 0.01em;
+  font-weight: 700;
+  font-size: 18px;
+  letter-spacing: 0.02em;
+  color: hsl(210 40% 98%);
 }
 
-.map-legend .legend-item,
-.map-legend li {
-  /* hem .legend-item hem <li> yapısına uyumlu */
+.map-legend .legend-item {
   list-style: none;
   display: flex;
   align-items: center;
   gap: 12px;
-  margin: 10px 0;
+  margin: 12px 0;
   position: relative;
-  color: var(--muted);
+  color: hsl(210 40% 98%);
   font-size: 14px;
 }
 
-/* Swatch: HTML’de olmasa bile göster – pseudo-element */
-.map-legend .legend-item::before,
-.map-legend li::before {
-  content: "";
-  display: inline-block;
-  width: 46px;
-  height: 26px;
-  border-radius: 8px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  flex-shrink: 0;
-}
-
-/* Eğer projede .legend-swatch varsa, aynı stilde kalsın */
 .map-legend .legend-swatch {
-  width: 46px;
-  height: 26px;
+  width: 48px;
+  height: 28px;
   border-radius: 8px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
   border: 1px solid rgba(255, 255, 255, 0.12);
   flex-shrink: 0;
 }
 
-/* Sıra bazlı renk atama (5 kademe) */
-.map-legend .legend-item:nth-of-type(1)::before,
-.map-legend li:nth-of-type(1)::before,
-.map-legend .legend-item:nth-of-type(1) .legend-swatch {
-  background: var(--map-c1) !important;
-}
-
-.map-legend .legend-item:nth-of-type(2)::before,
-.map-legend li:nth-of-type(2)::before,
-.map-legend .legend-item:nth-of-type(2) .legend-swatch {
-  background: var(--map-c2) !important;
-}
-
-.map-legend .legend-item:nth-of-type(3)::before,
-.map-legend li:nth-of-type(3)::before,
-.map-legend .legend-item:nth-of-type(3) .legend-swatch {
-  background: var(--map-c3) !important;
-}
-
-.map-legend .legend-item:nth-of-type(4)::before,
-.map-legend li:nth-of-type(4)::before,
-.map-legend .legend-item:nth-of-type(4) .legend-swatch {
-  background: var(--map-c4) !important;
-}
-
-.map-legend .legend-item:nth-of-type(5)::before,
-.map-legend li:nth-of-type(5)::before,
-.map-legend .legend-item:nth-of-type(5) .legend-swatch {
-  background: var(--map-c5) !important;
+.map-legend .legend-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: hsl(210 40% 96%);
 }
 
 .map-legend .legend-sub {
-  font-size: 12px;
-  opacity: 0.9;
-  margin-top: 12px;
-  padding-top: 12px;
-  border-top: 1px solid var(--card-border);
-  color: var(--muted);
+  font-size: 13px;
+  opacity: 0.85;
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  color: hsl(215.4 16.3% 76.9%);
+  font-weight: 500;
 }
 
 /* Mobil */
 @media (max-width: 768px) {
   .map-legend .legend-card {
-    padding: 10px 12px;
+    padding: 14px 16px;
     max-width: 240px;
   }
-  .map-legend .legend-item,
-  .map-legend li {
-    margin: 6px 0;
+  .map-legend .legend-item {
+    margin: 8px 0;
+  }
+  .map-legend .legend-title {
+    font-size: 16px;
+  }
+  .map-legend .legend-label {
+    font-size: 13px;
   }
 }
 

@@ -1,27 +1,48 @@
 import React from "react";
-
-/** Choropleth rampasını ve aralık etiketlerini burada tanımla
- *  – Haritadaki renklerle bire bir aynı olmalı.
- *  İstersen colorScale.range() kullanabilirsin.
- */
-const LEGEND_COLORS = ["#e9e2b0", "#dcc38b", "#c99a66", "#b56550", "#7a1f1d"];
-const LEGEND_RANGES = ["0.00 – 0.18", "0.18 – 0.23", "0.23 – 0.30", "0.30 – 0.43", "0.43+"];
+import { getPalette, type RiskBreak } from "@/lib/riskColors";
+import { t } from "@/lib/i18n";
 
 type Props = {
-  title?: string;
-  subtitle?: string;
-  colors?: string[];
-  ranges?: string[];
+  metric?: string;
+  language?: string;
   className?: string;
 };
 
+// Format ranges based on metric type
+function formatRange(breaks: RiskBreak[], index: number): string {
+  if (index === breaks.length - 1) {
+    // Last item - show "value+"
+    return `${breaks[index].value.toFixed(2)}+`;
+  }
+  // Show range from current to next
+  const current = breaks[index].value;
+  const next = breaks[index + 1].value;
+  return `${current.toFixed(2)} – ${next.toFixed(2)}`;
+}
+
+// Get subtitle based on metric
+function getSubtitle(metric: string, language: string): string {
+  if (metric === 'risk_score') {
+    return language === 'tr' ? 'Risk Skoru (0-1 arası)' : 'Risk Score (0-1 range)';
+  } else if (metric === 'vs30') {
+    return language === 'tr' ? 'VS30 (m/s)' : 'VS30 (m/s)';
+  } else if (metric === 'population') {
+    return language === 'tr' ? 'Nüfus' : 'Population';
+  } else if (metric === 'buildings') {
+    return language === 'tr' ? 'Bina Sayısı' : 'Building Count';
+  }
+  return '';
+}
+
 export default function CollapsibleMapLegend({
-  title = "Lejant",
-  subtitle = "Risk Sınıfı",
-  colors = LEGEND_COLORS,
-  ranges = LEGEND_RANGES,
+  metric = 'risk_score',
+  language = 'tr',
   className = "",
 }: Props) {
+  const palette = getPalette(metric);
+  const title = language === 'tr' ? 'Lejant' : 'Legend';
+  const subtitle = getSubtitle(metric, language);
+
   return (
     <div className={`map-legend ${className}`}>
       <div className="legend-card">
@@ -29,10 +50,10 @@ export default function CollapsibleMapLegend({
           <div className="legend-title">{title}</div>
         </div>
 
-        {colors.map((c, i) => (
-          <div className="legend-item" key={`${c}-${i}`}>
-            <div className="legend-swatch" style={{ backgroundColor: c }} />
-            <span className="legend-label">{ranges[i] ?? ""}</span>
+        {palette.map((item, i) => (
+          <div className="legend-item" key={`${item.color}-${i}`}>
+            <div className="legend-swatch" style={{ backgroundColor: item.color }} />
+            <span className="legend-label">{formatRange(palette, i)}</span>
           </div>
         ))}
 

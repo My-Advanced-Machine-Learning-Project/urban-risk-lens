@@ -5,6 +5,7 @@ import { useMapState } from '@/stores/useMapState';
 import { loadCitiesData, type CityData } from '@/lib/dataLoader';
 import { getRiskClass, getRiskColor } from '@/lib/riskColors';
 import { t } from '@/lib/i18n';
+import CollapsibleMapLegend from './CollapsibleMapLegend';
 
 const MAPTILER_KEY = import.meta.env.VITE_MAPTILER_KEY || '';
 
@@ -999,9 +1000,16 @@ export function MapContainer() {
   }
 
   return (
-    <div 
-      ref={mapContainer} 
-      className="absolute inset-0 w-full h-full"
-    />
+    <div className="absolute inset-0 w-full h-full">
+      <div 
+        ref={mapContainer} 
+        className="absolute inset-0 w-full h-full"
+      />
+      <CollapsibleMapLegend 
+        metric={metric} 
+        language={language}
+        className="absolute bottom-8 left-4 z-10"
+      />
+    </div>
   );
 }
