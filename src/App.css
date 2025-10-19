@@ -1,0 +1,55 @@
+/* ==== Panel/Lejant ortak tema değişkenleri ==== */
+/* Varsayılan: dark */
+:root {
+  --panel-bg: rgba(30, 41, 59, 0.95);        /* koyu lacivertimsi */
+  --panel-fg: #e5e7eb;
+  --panel-border: rgba(255, 255, 255, 0.2);
+  --panel-shadow: 0 8px 28px rgba(0, 0, 0, 0.45);
+}
+
+/* Light tema için otomatik (prefers-color-scheme) */
+@media (prefers-color-scheme: light) {
+  :root {
+    --panel-bg: rgba(241, 245, 249, 0.95);   /* açık gri */
+    --panel-fg: #111827;
+    --panel-border: rgba(0, 0, 0, 0.15);
+    --panel-shadow: 0 8px 28px rgba(0, 0, 0, 0.15);
+  }
+}
+
+/* Eğer uygulama data-theme kullanıyorsa bunlar da desteklenir */
+[data-theme="dark"], .dark {
+  --panel-bg: rgba(30, 41, 59, 0.95);
+  --panel-fg: #e5e7eb;
+  --panel-border: rgba(255, 255, 255, 0.2);
+  --panel-shadow: 0 8px 28px rgba(0, 0, 0, 0.45);
+}
+[data-theme="light"], .light {
+  --panel-bg: rgba(241, 245, 249, 0.95);
+  --panel-fg: #111827;
+  --panel-border: rgba(0, 0, 0, 0.15);
+  --panel-shadow: 0 8px 28px rgba(0, 0, 0, 0.15);
+}
+
+/* ==== Lejant arka planını panele eşitle ==== */
+.map-legend .legend-card,
+.scatter-legend-vertical {
+  background: var(--panel-bg) !important;
+  color: var(--panel-fg);
+  border: 1px solid var(--panel-border);
+  box-shadow: var(--panel-shadow);
+}
+
+/* Başlık ve alt yazılar tema metin rengine uysun */
+.map-legend .legend-title,
+.map-legend .legend-label,
+.map-legend .legend-sub,
+.scatter-legend-vertical .legend-label {
+  color: var(--panel-fg);
+}
+
+/* ==== Z-index: panel açılınca lejant altta kalsın ==== */
+/* Lejantı biraz aşağı çekiyoruz; panel/drawer yüksekse onun üstüne çıkmasın */
+.map-legend { position: absolute; z-index: 20; }
+/* Sık görülen panel/drawer sınıfları — varsa zaten daha yüksek olmalı */
+.drawer, .side-panel, .filters-panel, .dashboard-panel { z-index: 40; }
